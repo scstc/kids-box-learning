@@ -18,12 +18,16 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
   const unitId = unitStartPages.reduce((unit, start, index) => page >= start ? index + 1 : unit, 1);
   useEffect(() => {
     const node = dialog.current;
+    const app = document.getElementById("root");
+    const previousVisibility = app?.style.visibility ?? "";
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     audio.stop();
     pauseOtherMedia();
     node?.showModal();
-    return () => { node?.close(); document.body.style.overflow = previous; audio.stop(); pauseOtherMedia(); };
+    // Keep the background page out of Android WebView's fullscreen compositor.
+    if (app) app.style.visibility = "hidden";
+    return () => { node?.close(); if (app) app.style.visibility = previousVisibility; document.body.style.overflow = previous; audio.stop(); pauseOtherMedia(); };
   }, [audio.stop]);
   const close = () => {
     if (document.fullscreenElement) void document.exitFullscreen().catch(() => {});
