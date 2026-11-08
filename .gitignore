@@ -4,3 +4,10 @@ dist/
 *.tsbuildinfo
 artifacts/
 .openai/
+android/local.properties
+android/.gradle/
+android/**/build/
+*.keystore
+*.jks
+downloads/
+.venv/
