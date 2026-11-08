@@ -19,15 +19,15 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
   useEffect(() => {
     const node = dialog.current;
     const app = document.getElementById("root");
-    const previousVisibility = app?.style.visibility ?? "";
+    const previousDisplay = app?.style.display ?? "";
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     audio.stop();
     pauseOtherMedia();
     node?.showModal();
-    // Keep the background page out of Android WebView's fullscreen compositor.
-    if (app) app.style.visibility = "hidden";
-    return () => { node?.close(); if (app) app.style.visibility = previousVisibility; document.body.style.overflow = previous; audio.stop(); pauseOtherMedia(); };
+    // GSAP sets visibility on descendants, so hiding the app requires display.
+    if (app) app.style.display = "none";
+    return () => { node?.close(); if (app) app.style.display = previousDisplay; document.body.style.overflow = previous; audio.stop(); pauseOtherMedia(); };
   }, [audio.stop]);
   const close = () => {
     if (document.fullscreenElement) void document.exitFullscreen().catch(() => {});
