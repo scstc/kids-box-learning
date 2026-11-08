@@ -21,7 +21,7 @@ export function usePronunciation() {
       stop();
       const request = sequence.current;
       setAudioError("");
-      const audio = new Audio(`/audio/${id}.mp3`);
+      const audio = new Audio(`${import.meta.env.BASE_URL}audio/${id}.mp3`);
       player.current = audio;
       audio.playbackRate = slow ? 0.75 : 1;
       audio.preservesPitch = true;

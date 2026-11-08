@@ -3,4 +3,4 @@ dist/
 *.local
 *.tsbuildinfo
 artifacts/
-.openai/*.tar.gz
+.openai/

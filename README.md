@@ -2,6 +2,10 @@
 
 面向孩子的动物英文学习网页，使用 React 19、TypeScript、Vite 和 React Bits。
 
+在线访问：https://scstc.github.io/learn-english/ （无需登录，支持手机）。
+
+源码仓库：https://github.com/scstc/learn-english
+
 ## 启动
 
 ```powershell
@@ -16,6 +20,21 @@ npm test
 npm run build
 npm run preview
 ```
+
+## 自动部署
+
+推送到 `main` 分支后，GitHub Actions 会安装依赖、执行测试、构建并部署到 GitHub Pages。也可在 Actions 页面手动运行 `Deploy to GitHub Pages`。
+
+仓库 Settings → Pages 的部署来源设为 **GitHub Actions**。部署流程通过 Pages 返回的路径设置 Vite `base`，音频和图标跟随这个路径加载；本地开发仍然使用根路径。
+
+在本地检查 GitHub Pages 子目录部署：
+
+```powershell
+npm run build -- --base /learn-english/
+npm run preview
+```
+
+然后打开预览地址下的 `/learn-english/` 路径。
 
 ## 学习流程
 
