@@ -22,6 +22,7 @@ import {
 } from "../data/bookActivities";
 import { useBookResources } from "../hooks/useBookResources";
 import "./bookActivities.css";
+import BookPageReader from "./BookPageReader";
 
 const icons = {
   point: Ear,
@@ -33,6 +34,9 @@ const icons = {
   questions: Users,
   story: BookOpen,
   respond: AudioLines,
+  craft: ImagePlus,
+  game: Users,
+  reading: BookOpen,
 };
 const activitiesLabel: Record<BookActivityKind, string> = {
   point: "听音指认",
@@ -44,6 +48,9 @@ const activitiesLabel: Record<BookActivityKind, string> = {
   questions: "情景问答",
   story: "连环故事",
   respond: "听辨表达",
+  craft: "动手制作",
+  game: "互动游戏",
+  reading: "阅读听辨",
 };
 export default function BookActivities({
   unitId,
@@ -107,10 +114,9 @@ export default function BookActivities({
         <span className="kb-eyebrow">
           FOLLOW THE BOOK, ACTIVITY BY ACTIVITY
         </span>
-        <h2>这一单元的课本活动，还在等教材页。</h2>
+        <h2>暂时没有找到这个单元的课本活动。</h2>
         <p>
-          不是每个单元都有相同的活动顺序。尚未取得这个单元的原书页面，因此暂不编造
-          Listen and point、歌曲或故事的页码与内容。
+          请返回课程地图选择第 1–12 单元，或者先进行配套练习。
         </p>
         <div className="kb-book-type-preview">
           <span>
@@ -127,8 +133,7 @@ export default function BookActivities({
           </span>
         </div>
         <p className="kb-book-resource-note">
-          当前已根据外研社官方样张核实 Unit 1 的 12
-          项活动，其他单元仍可进行原创配套练习。
+          本册已整理 12 个单元的原书活动。
         </p>
         <div className="kb-button-row">
           <button className="kb-btn" onClick={onPractice}>
@@ -153,10 +158,7 @@ export default function BookActivities({
       <div className="kb-book-activity-intro">
         <span className="kb-eyebrow">THE BOOK HAS MORE THAN WORDS</span>
         <h2>跟着课本，听、指、说、唱。</h2>
-        <p>
-          按原书活动顺序学习。Unit 1
-          的活动标题、页码与录音编号已按外研社样张核对。
-        </p>
+        <p>按原书的活动顺序学习，点开活动就能看到对应的原书页面。</p>
         <div>
           <a href={officialSampleUrl} target="_blank" rel="noreferrer">
             官方第 1 单元样张
@@ -175,7 +177,8 @@ export default function BookActivities({
               <h3>
                 LESSON {lesson}
                 <span>
-                  第 {4 + (lesson - 1) * 2}–{5 + (lesson - 1) * 2} 页
+                  第 {activities[0].page + (lesson - 1) * 2}–
+                  {activities[0].page + (lesson - 1) * 2 + 1} 页
                 </span>
               </h3>
               {activities
@@ -208,7 +211,7 @@ export default function BookActivities({
             </div>
           ))}
         </aside>
-        <article className="kb-book-activity-detail" key={resourceKey}>
+        <article className="kb-book-activity-detail">
           <div className="kb-book-activity-meta">
             <span>
               ACTIVITY {String(activity.number).padStart(2, "0")} · P
@@ -217,7 +220,7 @@ export default function BookActivities({
             <span>
               {activity.track
                 ? `CD1 · Track ${String(activity.track).padStart(2, "0")}`
-                : "情景问答活动"}
+                : "录音编号请看原书图标"}
             </span>
           </div>
           <span className="kb-book-kind">
@@ -226,56 +229,62 @@ export default function BookActivities({
           </span>
           <h3>{activity.title}</h3>
           <strong className="kb-book-activity-zh">{activity.zh}</strong>
-          <p className="kb-book-focus">{activity.focus}</p>
-          <div className="kb-book-instruction">
-            <Lightbulb size={20} />
-            <p>{activity.instruction}</p>
-          </div>
-          <div className="kb-private-book-notice">
-            <Upload size={17} />
-            <p>
-              原书图片和音频由家长添加，<strong>只保存在本设备</strong>
-              ，不会上传到网站或公开仓库。歌曲、歌谣与故事不使用合成语音代替。
-            </p>
-          </div>
-          <div className="kb-book-resource-buttons">
-            <label>
-              <ImagePlus size={18} />
-              {resources.urls.image ? "更换教材页照片" : "添加教材页照片"}
-              <input
-                type="file"
-                accept="image/jpeg,image/png,image/webp,image/avif"
-                disabled={resources.saving || resources.loading}
-                onChange={(event) => {
-                  void add("image", event.currentTarget.files);
-                  event.currentTarget.value = "";
-                }}
-              />
-            </label>
-            <label>
-              <FileAudio size={18} />
-              {resources.urls.audio ? "更换对应原版音频" : "添加对应原版音频"}
-              <input
-                type="file"
-                accept="audio/*,.mp3,.m4a,.wav,.ogg"
-                disabled={resources.saving || resources.loading}
-                onChange={(event) => {
-                  void add("audio", event.currentTarget.files);
-                  event.currentTarget.value = "";
-                }}
-              />
-            </label>
-          </div>
-          {resources.saving && (
-            <p className="kb-book-save-status" role="status">
-              正在保存在本设备…
-            </p>
-          )}
-          {resources.error && (
-            <p className="kb-book-resource-error" role="alert">
-              {resources.error}
-            </p>
-          )}
+          <details className="kb-book-teacher-note">
+            <summary>陪练提示</summary>
+            <p className="kb-book-focus">{activity.focus}</p>
+            <div className="kb-book-instruction">
+              <Lightbulb size={20} />
+              <p>{activity.instruction}</p>
+            </div>
+          </details>
+          <details className="kb-book-parent-tools">
+            <summary>家长：添加原版音频或替换页面照片</summary>
+            <div className="kb-private-book-notice">
+              <Upload size={17} />
+              <p>
+                教材图片已就绪。补充添加的音频和照片
+                <strong>只保存在本设备</strong>。 歌曲、歌谣与故事需要原版录音。
+              </p>
+            </div>
+            <div className="kb-book-resource-buttons">
+              <label>
+                <ImagePlus size={18} />
+                {resources.urls.image ? "更换教材页照片" : "添加教材页照片"}
+                <input
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp,image/avif"
+                  disabled={resources.saving || resources.loading}
+                  onChange={(event) => {
+                    void add("image", event.currentTarget.files);
+                    event.currentTarget.value = "";
+                  }}
+                />
+              </label>
+              <label>
+                <FileAudio size={18} />
+                {resources.urls.audio ? "更换对应原版音频" : "添加对应原版音频"}
+                <input
+                  type="file"
+                  accept="audio/*,.mp3,.m4a,.wav,.ogg"
+                  disabled={resources.saving || resources.loading}
+                  onChange={(event) => {
+                    void add("audio", event.currentTarget.files);
+                    event.currentTarget.value = "";
+                  }}
+                />
+              </label>
+            </div>
+            {resources.saving && (
+              <p className="kb-book-save-status" role="status">
+                正在保存在本设备…
+              </p>
+            )}
+            {resources.error && (
+              <p className="kb-book-resource-error" role="alert">
+                {resources.error}
+              </p>
+            )}
+          </details>
           {resources.urls.audio ? (
             <div className="kb-book-player">
               <div>
@@ -319,7 +328,7 @@ export default function BookActivities({
                 <p>
                   {activity.track
                     ? `请添加 CD1 的第 ${activity.track} 轨，或使用纸质书配套的官方播放器。`
-                    : "可以先按照纸质书和家人进行问答。"}
+                    : "如本项配有录音，请按原书图标选择对应音轨；也可先看图和家人练习。"}
                 </p>
               </div>
             </div>
@@ -353,11 +362,7 @@ export default function BookActivities({
               )}
             </div>
           ) : (
-            <div className="kb-book-page-placeholder">
-              <BookOpen size={35} />
-              <strong>拿出课本第 {activity.page} 页，一起练习。</strong>
-              <p>也可以添加自己拍摄的教材页，在平板上边听边指。</p>
-            </div>
+            <BookPageReader printedPage={activity.page} />
           )}
           {mediaError && (
             <p className="kb-book-resource-error" role="alert">

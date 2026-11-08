@@ -28,6 +28,7 @@ import {
 import App from "./App";
 import WordArt, { unitIcons } from "./components/WordArt";
 import BookActivities from "./components/BookActivities";
+import BookLibrary from "./components/BookLibrary";
 import {
   additionalBookSections,
   verifiedBookActivities,
@@ -51,7 +52,7 @@ import { useCourseAudio } from "./hooks/useCourseAudio";
 import { useCourseProgress } from "./hooks/useCourseProgress";
 import "./course.css";
 
-type View = "map" | "lesson" | "review" | "passport" | "legacy";
+type View = "map" | "lesson" | "review" | "passport" | "legacy" | "library";
 type Activity = "book" | "words" | "sentences" | "listen" | "spell";
 type Game = {
   questions: WordEntry[];
@@ -113,6 +114,7 @@ function newRound(questions: WordEntry[], round = 0, firstTry = 0): Game {
 export default function CourseApp() {
   const [view, setView] = useState<View>("map");
   const [unitId, setUnitId] = useState(1);
+  const [bookGroup, setBookGroup] = useState("CLIL");
   const [wordIndex, setWordIndex] = useState(0);
   const [activity, setActivity] = useState<Activity>("book");
   const [showTranslation, setShowTranslation] = useState(false);
@@ -776,12 +778,18 @@ export default function CourseApp() {
                 <h2>课本不止词语，还有这些学习板块。</h2>
                 <div className="kb-additional-section-grid">
                   {additionalBookSections.map((section) => (
-                    <div key={section.en}>
+                    <button
+                      key={section.en}
+                      onClick={() => {
+                        setBookGroup(section.en);
+                        navigate("library");
+                      }}
+                    >
                       <strong>{section.title}</strong>
                       <span>{section.en}</span>
                       <p>{section.description}</p>
-                      <small>对应教材页与活动内容待核对</small>
-                    </div>
+                      <small>打开原书活动 →</small>
+                    </button>
                   ))}
                 </div>
               </section>
@@ -790,8 +798,8 @@ export default function CourseApp() {
                 <div>
                   <strong>按课本活动学习，配套练习帮助巩固。</strong>
                   <p>
-                    已根据外研社公开样张核对 Unit 1
-                    活动顺序；其余单元的原书活动待核对。词语、例句和游戏为原创配套练习，不替代原版歌曲与故事。
+                    已按你提供的电子书核对全部 12 个单元的 144
+                    项活动，并整理跨学科、价值观、复习和语法参考页。词语、例句和游戏为原创配套练习；原版录音需另行添加。
                   </p>
                   <a href={courseSource} target="_blank" rel="noreferrer">
                     查看第二版单元目录
@@ -808,6 +816,14 @@ export default function CourseApp() {
                 </div>
               </aside>
             </>
+          )}
+
+          {view === "library" && (
+            <BookLibrary
+              key={bookGroup}
+              group={bookGroup}
+              onBack={() => navigate("map")}
+            />
           )}
 
           {view === "lesson" && (
@@ -1358,6 +1374,9 @@ export default function CourseApp() {
                 <p>
                   这是一份跟着第 1 册主题走的配套练习。可以自由选择单元，每次
                   5–10 分钟就很好。
+                </p>
+                <p>
+                  「课本活动」已包含对应的原书页面，直接点开就能学习。跨学科、价值观、复习和语法参考在课程地图底部。原版录音可在对应活动内另行添加。
                 </p>
                 <div className="kb-parent-steps">
                   <p>
