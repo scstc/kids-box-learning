@@ -324,7 +324,7 @@ export default function BookActivities({
               <div>
                 <strong>
                   {bookHotspots[activity.page]?.length
-                    ? "动物图片和词语标签可以点读"
+                    ? "本页已支持词语点读"
                     : activity.kind === "song"
                       ? "原书歌曲尚未添加"
                       : activity.kind === "story"

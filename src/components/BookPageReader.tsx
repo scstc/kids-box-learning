@@ -128,7 +128,7 @@ function Page({ printedPage, audio, beforeSpeak }: ReaderProps) {
                   width: `${hotspot.width}%`,
                   height: `${hotspot.height}%`,
                 }}
-                aria-label={`播放 ${hotspot.word} 单词发音（${hotspot.kind === "label" ? "词语标签" : "动物图片"}）`}
+                aria-label={`播放 ${hotspot.word} 单词发音（${hotspot.kind === "label" ? "词语标签" : "图片区域"}）`}
                 aria-pressed={audio.playingText === hotspot.word}
                 onClick={() => {
                   beforeSpeak?.();
@@ -148,7 +148,7 @@ function Page({ printedPage, audio, beforeSpeak }: ReaderProps) {
       </div>
       <p className="kb-book-page-note">
         {hotspots.length
-          ? "点动物图片或带喇叭的词语标签，听单词英式发音（配套词典音频）。"
+          ? "点带喇叭的词语标签，听配套英式发音。宠物、野生动物和颜色页也支持点图片区域。"
           : "这一页暂支持点指，词语点读区域尚未配置。"}
         放大后可左右滑动查看。
       </p>

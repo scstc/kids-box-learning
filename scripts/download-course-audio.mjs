@@ -1,13 +1,23 @@
 import { mkdir, stat, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { spawn } from "node:child_process";
-import { getAudioItems } from "../src/data/course.ts";
+import { audioKey, getAudioItems } from "../src/data/course.ts";
+import { bookHotspots } from "../src/data/bookHotspots.ts";
 
 const directory = fileURLToPath(
   new URL("../public/course-audio/", import.meta.url),
 );
 await mkdir(directory, { recursive: true });
-const queue = getAudioItems().filter((item) => !/[.!?]/.test(item.text));
+const queue = [
+  ...new Map(
+    [
+      ...getAudioItems().filter((item) => !/[.!?]/.test(item.text)),
+      ...Object.values(bookHotspots)
+        .flat()
+        .map(({ word }) => ({ key: audioKey(word), text: word })),
+    ].map((item) => [item.key, item]),
+  ).values(),
+];
 let count = 0;
 const failures = [];
 async function worker() {

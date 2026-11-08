@@ -30,6 +30,7 @@ import App from "./App";
 import WordArt, { unitIcons } from "./components/WordArt";
 import BookActivities from "./components/BookActivities";
 import BookLibrary from "./components/BookLibrary";
+import SpellingInput from "./components/SpellingInput";
 import {
   additionalBookSections,
   verifiedBookActivities,
@@ -465,36 +466,15 @@ export default function CourseApp() {
                 </div>
               </>
             ) : (
-              <label className="kb-spelling-input">
-                写出听到的单词
-                <input
-                  aria-label="输入单词"
-                  type="text"
-                  value={typedSpelling}
-                  maxLength={64}
-                  disabled={game.correct}
-                  placeholder="在这里输入单词"
-                  autoCapitalize="none"
-                  autoCorrect="off"
-                  autoComplete="off"
-                  spellCheck={false}
-                  onChange={(event) => {
-                    setTypedSpelling(event.currentTarget.value);
-                    if (game.wrong.length) setGame({ ...game, wrong: [] });
-                  }}
-                  onKeyDown={(event) => {
-                    if (
-                      event.key === "Enter" &&
-                      !event.nativeEvent.isComposing &&
-                      typedSpelling.trim() &&
-                      !game.correct
-                    ) {
-                      event.preventDefault();
-                      checkSpelling();
-                    }
-                  }}
-                />
-              </label>
+              <SpellingInput
+                value={typedSpelling}
+                disabled={game.correct}
+                onSubmit={checkSpelling}
+                onChange={(value) => {
+                  setTypedSpelling(value);
+                  if (game.wrong.length) setGame({ ...game, wrong: [] });
+                }}
+              />
             )}
             <div className="kb-button-row">
               <button

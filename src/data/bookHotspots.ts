@@ -1,3 +1,5 @@
+import { bookWordLabels } from "./bookWordLabels.ts";
+
 export type BookHotspot = {
   word: string;
   kind: "label" | "picture";
@@ -26,6 +28,33 @@ function region(
 // Manually checked against the bundled page-048.jpg; percentages scale with zoom.
 // These play supporting dictionary words, not the textbook's original dialogue.
 export const bookHotspots: Record<number, BookHotspot[]> = {
+  ...Object.fromEntries(
+    Object.entries(bookWordLabels).map(([page, labels]) => [
+      page,
+      labels.map((label) => ({ ...label, kind: "label" as const })),
+    ]),
+  ),
+  7: [
+    region("pink", "picture", 115, 1000, 240, 215),
+    region("orange", "picture", 375, 1000, 230, 215),
+    region("yellow", "picture", 620, 1000, 230, 215),
+    region("red", "picture", 880, 1000, 230, 215),
+    region("blue", "picture", 220, 1230, 240, 205),
+    region("green", "picture", 495, 1230, 230, 205),
+    region("purple", "picture", 740, 1230, 240, 205),
+  ],
+  34: [
+    ...(bookWordLabels[34] ?? []).map((label) => ({
+      ...label,
+      kind: "label" as const,
+    })),
+    region("horse", "picture", 355, 372, 205, 215),
+    region("dog", "picture", 275, 945, 165, 365),
+    region("fish", "picture", 489, 1023, 124, 120),
+    region("mouse", "picture", 681, 982, 80, 110),
+    region("cat", "picture", 829, 904, 182, 203),
+    region("bird", "picture", 1086, 991, 74, 138),
+  ],
   48: [
     region("giraffe", "picture", 200, 565, 251, 113),
     region("elephant", "picture", 395, 680, 260, 158),

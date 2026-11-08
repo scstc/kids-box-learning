@@ -1152,6 +1152,46 @@
   outline: 3px solid #846831;
   outline-offset: 3px;
 }
+.kb-plain-keyboard {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 7px;
+  max-width: 520px;
+  margin: 14px auto;
+}
+.kb-plain-keyboard button {
+  min-height: 48px;
+  border: 1px solid #c8d6b6;
+  border-radius: 8px;
+  background: #f2f5e8;
+  color: #49613a;
+  font:
+    700 22px/1.3 "Nunito Variable",
+    sans-serif;
+  touch-action: manipulation;
+}
+.kb-plain-keyboard button:hover:not(:disabled) {
+  background: #e3eccf;
+}
+.kb-plain-keyboard button:disabled {
+  opacity: 0.5;
+}
+.kb-plain-keyboard .kb-keyboard-space,
+.kb-plain-keyboard .kb-keyboard-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 12px;
+}
+.kb-plain-keyboard .kb-keyboard-space {
+  grid-column: span 2;
+}
+@media (max-width: 480px) {
+  .kb-plain-keyboard {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
 .kb-word-chunks > button {
   position: relative;
   min-height: 76px;
