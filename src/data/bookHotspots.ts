@@ -1,8 +1,11 @@
 import { bookWordLabels } from "./bookWordLabels.ts";
+import { bookReadingRegions } from "./bookReadingRegions.ts";
+import { bookPrintedText } from "./bookPrintedText.ts";
+import { bookFooterRegions } from "./bookFooterRegions.ts";
 
 export type BookHotspot = {
   word: string;
-  kind: "label" | "picture";
+  kind: "label" | "picture" | "text";
   x: number;
   y: number;
   width: number;
@@ -27,7 +30,7 @@ function region(
 }
 // Manually checked against the bundled page-048.jpg; percentages scale with zoom.
 // These play supporting dictionary words, not the textbook's original dialogue.
-export const bookHotspots: Record<number, BookHotspot[]> = {
+const baseHotspots: Record<number, BookHotspot[]> = {
   ...Object.fromEntries(
     Object.entries(bookWordLabels).map(([page, labels]) => [
       page,
@@ -74,3 +77,9 @@ export const bookHotspots: Record<number, BookHotspot[]> = {
     region("tiger", "label", 949, 1282, 119, 50),
   ],
 };
+
+export const bookHotspots: Record<number, BookHotspot[]> = Object.fromEntries(
+  Array.from({ length: 92 }, (_, index) => index + 4).map((page) => [page, [
+    ...(baseHotspots[page] ?? []), ...(bookPrintedText[page] ?? []), ...(bookReadingRegions[page] ?? []), ...(bookFooterRegions[page] ?? []),
+  ]]),
+);

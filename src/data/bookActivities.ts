@@ -1,4 +1,4 @@
-import { findBookAudio } from "./bookAudio";
+import { findBookAudio } from "./bookAudio.ts";
 
 export type BookActivityKind =
   | "point"

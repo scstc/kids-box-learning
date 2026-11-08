@@ -1,0 +1,10 @@
+import { stat, writeFile } from 'node:fs/promises';
+import { bookHotspots } from '../src/data/bookHotspots.ts';
+import { audioKey } from '../src/data/course.ts';
+import { bookScenes } from '../src/data/bookScenes.ts';
+const texts=[...Object.values(bookHotspots).flat().map(({word})=>word),...Object.values(bookScenes).flatMap(scene=>[...scene.questions.map(q=>q.text),...scene.answers.flatMap(a=>Object.values(a.replies))])];
+const items=[...new Map(texts.map(text=>[audioKey(text),{key:audioKey(text),text}])).values()];
+const missing=[];
+for(const item of items)if(!await stat(new URL(`../public/course-audio/${item.key}.mp3`,import.meta.url)).then(s=>s.size>1000).catch(()=>false))missing.push(item);
+await writeFile(new URL('../artifacts/reading-audio-missing.json',import.meta.url),JSON.stringify(missing,null,2));
+console.log({unique:items.length,missing:missing.length});

@@ -3,10 +3,11 @@ name: Build Android APK
 on:
   push:
     branches: [main]
+    tags: ['v*']
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   apk:
@@ -35,6 +36,17 @@ jobs:
         run: npm ci
       - name: Test learning content
         run: npm test
+      - name: Restore the existing application signing key
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_SIGNING_KEYSTORE }}
+        run: |
+          test -n "$KEYSTORE_BASE64" || { echo 'Missing ANDROID_SIGNING_KEYSTORE; refusing to sign with a different key.'; exit 1; }
+          printf '%s' "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/kids-box.keystore"
+          echo "KIDSBOX_KEYSTORE=$RUNNER_TEMP/kids-box.keystore" >> "$GITHUB_ENV"
+      - name: Verify release tag
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          node --input-type=module -e 'import fs from "node:fs"; const v=JSON.parse(fs.readFileSync("app-version.json")); if(process.env.GITHUB_REF_NAME!==`v${v.version}`) throw Error("Tag does not match app-version.json");'
       - name: Build and sync local web assets
         run: npm run android:sync
       - name: Build APK
@@ -43,11 +55,22 @@ jobs:
           # GitHub's Gradle release download returns 504; use a mirror with Gradle's published SHA-256.
           sed -i -e 's#services.gradle.org/distributions/#repo.huaweicloud.com/gradle/#' -e 's/-all.zip/-bin.zip/' android/gradle/wrapper/gradle-wrapper.properties
           printf '\ndistributionSha256Sum=bd71102213493060956ec229d946beee57158dbd89d0e62b91bca0fa2c5f3531\n' >> android/gradle/wrapper/gradle-wrapper.properties
-          npm run android:build
+          node scripts/build-android.mjs --release
       - name: Upload installable APK
         uses: actions/upload-artifact@v4
         with:
-          name: kids-box-learning-debug
-          path: downloads/kids-box-learning-debug.apk
+          name: kids-box-learning-apk
+          path: |
+            downloads/kids-box-learning-*.apk
+            downloads/kids-box-learning-*.apk.sha256
+            downloads/update.json
           if-no-files-found: error
           retention-days: 30
+      - name: Publish installable APK on GitHub Releases
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" --verify-tag --draft --title "小小英语 $GITHUB_REF_NAME" --notes-file releases/notes.md
+          gh release upload "$GITHUB_REF_NAME" downloads/kids-box-learning-*.apk downloads/kids-box-learning-*.apk.sha256 downloads/update.json
+          gh release edit "$GITHUB_REF_NAME" --draft=false --latest

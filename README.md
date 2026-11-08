@@ -21,7 +21,10 @@ React + TypeScript + React Bits 制作的平板友好学习应用，包含 Web �
 - 单独的「课本活动」入口，保留 Listen and point、Listen and repeat、Sing the song、Say the chant、Monty’s phonics、故事等活动类型。
 - **12个单元、144项课本活动的标题、顺序和页码已按用户提供的93页电子书核对。**另外包含6个跨学科、6个价值观、3个阶段复习和语法参考入口，覆盖书上第4–95页。
 - 原书第4–95页共92张图页已内置，各活动自动显示对应页；支持翻页、放大和点指。不需要家长再次导入PDF。原始扫描本的PDF第2页对应书上第4页，图页已按书上页码命名。
-- 全屏「课本点读」只显示原书正文、两侧翻页按钮和一个小退出按钮，自动按屏幕完整显示书页。书页 CD 图标、词语仍可点读，播放时不显示额外播放器，并记住阅读位置。普通课本活动页保留页码、缩放和录音控制；视频和闪卡从单元的「视频与闪卡」进入。
+- 全屏「课本点读」顶部保留单元选择、页码跳转和退出，两侧可以翻页，自动按屏幕完整显示书页。CD录音播放时显示一个小的暂停/继续按钮，重复点同一CD图标也可暂停或从原位置继续，不展开原生播放器。跳页、切换单元和退出会停止播放，并记住阅读位置。
+- 92个书页共760个文字/图片点读区域，包括12个单元的Phonics单词和完整例句、整册35页Functions/Grammar/Vocabulary页脚、活动标题、问答气泡和语法参考。第12页Who's that?、That's Meera.、She's eight.，第13页How are you? / I'm fine, thank you.，第17页Great! / Come on! / Let's play. / OK.均可直接朗读。多词短语及跨行对白保持完整含义；所有点读内容有本地发音，补充发音不会冒充缺少的原版CD录音。
+- 13页课本场景支持点问题、再点人物或图片听回答：P8姓名/年龄、P14人物、P22物品、P28纠正描述、P38猜动物、P44物品问答、P51动物动作、P52身体部位、P58猜衣着、P68能力、P74动作、P82猜动作、P88喜好。答案对应所选图片；猜错轻摇提示、猜对星星彩屑，动态开关和系统减少动态设置均生效。不会录音或判断孩子发音。
+- 244段原版音频与47个视频已用Whisper large-v3-turbo在电脑上识别英文字幕。字幕采用手机26px、平板28–40px的加粗大字，支持换行。播放时每50毫秒采样进度并高亮当前词，句子提前120毫秒显示、短停顿保留300毫秒，暂停或翻页后隐藏；点击文字时直接显示对应英文。关闭了会误删短对话和歌声的VAD过滤，重新连续识别，保留有文本但缺少逐词时间的段落。字幕JSON随APK离线打包，识别模型不装到平板。自动字幕仍可能在歌曲、专名或自然拼读短音上误识别；纯伴奏视频不生成猜测的歌词字幕。家长自行导入的新音频暂没有自动字幕。
 - 按原书人工核对全部144处CD1–4标记，其中138处已匹配用户提供的原版录音（优先按学生用书页码/活动号匹配，再按CD音轨匹配）。歌曲、歌谣、故事及CLIL、Values、Review使用相应原版录音，明确标示未提供的6处音轨。
 - 244段原始音频完整内置在 `public/音频/`。练习册、教师配套及额外CD音轨保留在「视频与闪卡 → 配套音频」中，可按单元查看或切换全册音频列表。
 - 47个原版视频和95张原版闪卡已按单元接入。视频包含12组歌曲、伴奏、故事和11个拓展活动，使用H.264/AAC、保留720×480和原显示比例，约410MB；项目目录为 `public/视频/`，NAS源目录 `视频(1)` 保持原样。闪卡位于 `public/闪卡/`，点击可听配套词典英式发音。
@@ -64,9 +67,26 @@ npm run android:apk
 
 需要 Android SDK 36、Build Tools 36.0.0、JDK 21。Windows 构建脚本优先使用已有的 Scoop temurin21-jdk；也可通过 ANDROID_JAVA_HOME 指定 Android 构建使用的 JDK，不更改全局 Java。SDK 路径使用未跟踪的 android/local.properties 或环境变量 ANDROID_HOME。
 
-安装文件生成在 downloads/kids-box-learning-debug.apk，是便于本机安装测试的 debug 签名包。GitHub Actions 的 Build Android APK 工作流也会构建并保留 APK artifact；它不是应用商店发布包。
+安装文件生成在 downloads/kids-box-learning-debug.apk，供本机调试。正式版运行 `npm run android:release`，输出带版本的 APK、SHA-256校验文件和 `update.json`；GitHub Actions 使用相同的固定密钥构建正式版。
 
 安卓包中包含所有原书正文图页、原版音频/视频/闪卡、原创配套练习、字体、插画和词语/句子音频，可离线使用。家长手动添加的音频也保存在设备内。官方资源链接需要联网；Web版尚未提供完整离线缓存。更新安装使用 `adb -s <设备序列号> install -r downloads/kids-box-learning-debug.apk`，保留设备内学习进度。
+
+### 在线升级与发布
+
+在安卓应用的「家长指南 → 应用更新」手动检查版本，下载完成后点击安装，在安卓系统页面确认更新。网络中断由系统下载器等待恢复，关闭应用后仍可下载，重开可继续查看进度。应用先校验大小、SHA-256、包名、版本和签名；覆盖安装保留进度。首次安装本功能前的旧版，需要先通过ADB或手动安装更新。网页版提供GitHub Releases下载入口。
+
+版本唯一来源为 `app-version.json`，采用「年份后两位.季度.本季度第几次发布」，例如 `26.4.1`。按中国时区计算季度，同季递增，跨季从1开始；内部versionCode随发布单调增加。
+
+```powershell
+npm run version:release
+# 核对 app-version.json、更新 releases/notes.md，提交并推送 main 后：
+git tag v26.4.1
+git push origin v26.4.1
+```
+
+标签必须与版本文件一致。Android工作流完成测试和签名构建后创建GitHub正式Release，上传APK、`.apk.sha256`和`update.json`后再设为latest。更新优先读取GitHub API，连接失败时读取Release中的同一份更新清单。Pages继续随main推送更新。
+
+本机使用未跟踪的 `android/kids-box.keystore`，CI使用仓库Secret `ANDROID_SIGNING_KEYSTORE`（keystore的base64）。沿用原安装包密钥以支持覆盖更新；密钥不得提交，需自行备份。可用 `KIDSBOX_KEYSTORE`、`KIDSBOX_STORE_PASSWORD`、`KIDSBOX_KEY_ALIAS`、`KIDSBOX_KEY_PASSWORD`覆盖本机构建配置；签名缺失时CI失败，不生成另一把密钥。
 
 ### 已知资源缺口
 
@@ -92,6 +112,10 @@ npm run android:apk
 - src/components/BookLibrary.tsx：跨学科、价值观、阶段复习和语法参考。
 - src/data/bookAudio.ts、src/data/bookMedia.ts：原版音轨与页面点击区域、全部音频/视频/闪卡索引。
 - src/data/originalArt.ts、public/book-art/：原书封面、单元场景与词语裁图及来源。95张闪卡插图与4张大小/长短对比图采用透明PNG，保留眼白、白衣服和白色物体，并处理椅背、车轮和卷尾的镂空；完整课本场景保留原背景。图片随APK离线打包，运行 `npm run art:transparent` 可从原始闪卡重新生成透明图。
+- src/data/bookReadingRegions.ts、bookFooterRegions.ts、bookPrintedText.ts：对照扫描本补充的对白与35页页脚点读位置；`scripts/build-book-reading.mjs` 从本机OCR资料生成活动标题，页脚以人工核对的词组边界为准。
+- src/data/bookScenes.ts、src/components/BookSceneActivity.tsx：13处场景的问答、图片目标和反馈；新增点读/问答后运行 `node scripts/prepare-reading-audio.mjs`，再用 `scripts/render-sentence-audio.py artifacts/reading-audio-missing.json`生成缺少的离线语音。
+- src/components/AppUpdate.tsx、android/.../AppUpdaterPlugin.java：安卓原生版本检查、后台下载、完整性与签名校验及系统安装。
+- src/data/bookSubtitles.ts、public/subtitles/、src/components/MediaSubtitles.tsx：离线英文字幕索引、时间轴与播放器同步。重新识别：用项目uv环境安装 `scripts/speech-requirements.txt`，运行 `node scripts/prepare-book-speech.mjs`，再运行 `.venv/Scripts/python.exe scripts/transcribe-book-audio.py`（默认使用本机NVIDIA GPU；CPU可加 `--device cpu`）。
 - src/components/LearningWord.tsx、CorrectCelebration.tsx：单词互动、触控聚光与答对庆祝；useLearningMotion.ts管理设备内动态设置。
 - src/components/FullscreenBook.tsx、src/components/BookMedia.tsx：全屏课本和单元原版资源。
 - scripts/download-course-audio.mjs：获取词语英式发音；少数 WAV 响应通过 ffmpeg 转为 MP3。

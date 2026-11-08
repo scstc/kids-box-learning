@@ -26,6 +26,7 @@ import BookPageReader from "./BookPageReader";
 import type { CourseAudio } from "../hooks/useCourseAudio";
 import { findBookAudio } from "../data/bookAudio";
 import { mediaUrl } from "../data/media";
+import MediaSubtitles from "./MediaSubtitles";
 
 const icons = {
   point: Ear,
@@ -320,6 +321,7 @@ export default function BookActivities({
                   )
                 }
               />
+              <MediaSubtitles key={audioSource} file={resources.urls.audio ? undefined : original?.file} mediaRef={player} />
             </div>
           ) : (
             <div className="kb-book-audio-missing">

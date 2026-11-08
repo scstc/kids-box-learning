@@ -11,7 +11,9 @@
     "test": "vitest run",
     "android:sync": "npm run build && cap sync android",
     "android:build": "node scripts/build-android.mjs",
-    "android:apk": "npm run android:sync && npm run android:build"
+    "android:apk": "npm run android:sync && npm run android:build",
+    "android:release": "npm run android:sync && node scripts/build-android.mjs --release",
+    "version:release": "node scripts/set-release-version.mjs"
   },
   "dependencies": {
     "@capacitor/android": "^8.6.0",

@@ -39,6 +39,7 @@ import BookActivities from "./components/BookActivities";
 import BookLibrary from "./components/BookLibrary";
 import BookMedia from "./components/BookMedia";
 import FullscreenBook from "./components/FullscreenBook";
+import AppUpdate from "./components/AppUpdate";
 import { pauseOtherMedia } from "./data/media";
 import SpellingInput from "./components/SpellingInput";
 import {
@@ -1573,6 +1574,7 @@ export default function CourseApp() {
                 <p className="kb-parent-small">
                   词语音频为词典英式发音，情景句为英式合成语音；都随应用打包。网页版需要联网加载资源，安卓安装包可离线使用。学习进度只保存在当前设备，不使用麦克风。
                 </p>
+                <AppUpdate />
                 <button className="kb-btn" onClick={() => setDialog(null)}>
                   一起开始探险
                   <ArrowRight size={18} />

@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import {
   ChevronLeft,
   ChevronRight,
+  Pause,
+  Play,
   Volume2,
   ZoomIn,
   ZoomOut,
@@ -11,6 +13,8 @@ import { bookAudioReferences, type BookAudioReference } from "../data/bookAudio"
 import { mediaUrl } from "../data/media";
 import type { CourseAudio } from "../hooks/useCourseAudio";
 import "./bookPages.css";
+import MediaSubtitles from "./MediaSubtitles";
+import BookSceneActivity from "./BookSceneActivity";
 
 type ReaderProps = {
   printedPage: number;
@@ -31,6 +35,10 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal 
   const [loop, setLoop] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const player = useRef<HTMLAudioElement>(null);
+  useEffect(() => {
+    const media = player.current;
+    return () => media?.pause();
+  }, []);
   const scroll = useRef<HTMLDivElement>(null);
   const tracks = bookAudioReferences.filter((ref) => ref.page === page);
   const [point, setPoint] = useState<{ x: number; y: number } | null>(null);
@@ -51,6 +59,11 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal 
   const playTrack = (track: BookAudioReference) => {
     beforeSpeak?.();
     audio.stop();
+    if (selected?.activity === track.activity && selected.file === track.file && player.current?.src) {
+      if (!player.current.paused) player.current.pause();
+      else void player.current.play().catch(() => setMediaError("录音未能播放，请重试。"));
+      return;
+    }
     player.current?.pause();
     setSelected(track);
     setMediaError("");
@@ -224,7 +237,7 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal 
                   width: `${hotspot.width}%`,
                   height: `${hotspot.height}%`,
                 }}
-                aria-label={`播放 ${hotspot.word} 单词发音（${hotspot.kind === "label" ? "词语标签" : "图片区域"}）`}
+                aria-label={hotspot.kind === "text" ? `朗读 ${hotspot.word}` : `播放 ${hotspot.word} 单词发音（${hotspot.kind === "label" ? "词语标签" : "图片区域"}）`}
                 aria-pressed={audio.playingText === hotspot.word}
                 onClick={() => {
                   beforeSpeak?.();
@@ -243,6 +256,7 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal 
               data-missing={!track.file || undefined}
               onClick={() => playTrack(track)} />
           ))}
+          {loaded && !error && <BookSceneActivity key={page} page={page} speak={(text) => { beforeSpeak?.(); player.current?.pause(); void audio.play(text); }} />}
           {point && loaded && (
             <span
               className="kb-book-point"
@@ -250,6 +264,10 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal 
             />
           )}
         </div>
+      </div>
+      <div className="kb-reader-playback">
+        {minimal && selected?.file && <button className="kb-reader-pause" aria-label={isPlaying ? "暂停课本录音" : "继续课本录音"} onClick={() => playTrack(selected)}>{isPlaying ? <Pause size={22} /> : <Play size={22} />}</button>}
+        {audio.playingText ? <div className="kb-media-subtitles" lang="en">{audio.playingText}</div> : <MediaSubtitles file={selected?.file} mediaRef={player} />}
       </div>
       {!minimal && <p className="kb-book-page-note">
         {tracks.length ? "点书上的蓝色 CD 图标，听本项原版录音。" : "本页没有 CD 录音标记。"}

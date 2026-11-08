@@ -1,0 +1,5 @@
+edge-tts==7.3.1
+faster-whisper==1.2.1
+# Needed only for local NVIDIA GPU transcription, not for running the app.
+nvidia-cublas-cu12==12.9.2.10; platform_system == "Windows"
+nvidia-cudnn-cu12==9.28.1.4; platform_system == "Windows"

@@ -1,0 +1,101 @@
+import type { BookHotspot } from "./bookHotspots";
+
+type PrintedRegion = [text: string, x: number, y: number, width: number, height: number];
+// Read against the supplied scans. Keep words, complete examples and speech bubbles separate.
+export const readingRegions: Record<number, PrintedRegion[]> = {
+  6: [["How old are you?",842,196,310,58],["I'm three.",687,467,177,56]],
+  8: [["six",175,447,80,55],["star",240,704,100,55],["Six stars.",695,679,210,65],["What's your name?",724,836,343,71],["How old are you?",868,929,310,71]],
+  11: [["Four purple chairs.",748,843,324,71],["No. Six orange chairs.",808,931,375,71]],
+  12: [["Who's that?",675,493,237,58],["That's Meera.",307,896,225,48],["She's eight.",327,944,185,44]],
+  14: [["pink",226,450,110,55],["blue",226,717,110,60],["A pink pen and a blue bag.",530,716,595,70],["Who's that?",669,855,243,71],["He's Mr Star.",966,855,242,70],
+    ["pink",165,255,210,190],["blue",165,524,210,185]],
+  21: [["No, he isn't.",507,1436,231,70]],
+  22: [["train",200,444,135,60],["doll",235,694,85,60],["Ten dolls on a train.",610,630,455,65]],
+  28: [["sad",123,468,100,60],["happy",293,676,145,65],["Sad cat.",603,613,190,65],["Happy cat!",844,613,255,65],["Look at my mother. She's ugly.",701,853,500,70],["No, she isn't. She's beautiful.",743,939,458,70]],
+  38: [["ten",220,420,95,60],["red",223,684,95,60],["Ten red pets.",670,656,295,65],["They're long and ugly.",315,864,379,70],["Number six. The fish.",762,863,351,71]],
+  41: [["I'm a boy monster.",771,860,321,71]],
+  44: [["green",110,430,140,60],["brown",333,551,155,65],["frog",139,690,110,65],["A green and brown frog.",578,661,555,75],["Have you got a brown dog?",269,878,464,71],["Yes, I have.",815,878,211,71]],
+  49: [["tiger",98,210,350,165],["giraffe",115,385,225,395],["elephant",365,249,330,355],["hippo",687,245,310,332],["snake",996,210,170,405],["crocodile",470,611,680,171]],
+  50: [["They've got big ears.",187,1150,351,70]],
+  51: [["What am I?",178,1429,241,71],["You're an elephant.",502,1428,334,72]],
+  52: [["fish",234,430,100,65],["big",240,716,90,65],["Six big fish.",691,714,257,75],["Have they got small ears?",212,905,440,88],["No, they haven't.",676,905,296,80],
+    ["big",220,1363,105,51],["small",220,1453,105,50],["heads",333,1363,118,46],["ears",450,1363,94,46],["feet",333,1408,100,46],["mouths",333,1453,160,46],["short",581,1408,112,46],["long",581,1453,112,46],["tails",702,1408,88,46],["noses",790,1408,120,46],["legs",702,1453,88,46],["arms",790,1453,110,46]],
+  56: [["Has Simon got my red trousers?",52,427,534,93]],
+  58: [["orange",236,438,175,65],["socks",131,687,140,70],["dog",395,690,110,70],["A long dog in orange socks.",574,610,625,75],["She's got a yellow jacket.",277,878,416,70],["Meera!",735,898,163,65]],
+  60: [["River and plain.",886,910,271,71]],
+  62: [["It's a hippo.",885,1071,213,71]],
+  66: [["I can't sing.",224,654,222,71],["I can ride a bike.",357,918,292,71],["She can ride a horse.",566,1165,361,71]],
+  67: [["Who can draw?",277,835,292,71],["Grandma.",652,835,190,71]],
+  68: [["Lily",261,457,95,70],["blue",254,730,115,65],["Lily's got a blue and yellow tail.",468,730,700,75],["Can you sing?",440,977,265,83],["Yes, I can.",745,977,200,83],["Can you swim?",353,1416,283,84],["No, I can't.",728,1421,212,79]],
+  71: [["Is the red car in the shoe?",281,575,445,71],["Yes, it is.",808,575,171,71]],
+  72: [["I'm flying my plane.",685,889,337,70]],
+  73: [["What am I doing?",228,1407,325,71],["You're driving a lorry.",628,1407,369,71]],
+  74: [["duck",150,445,125,65],["under",389,445,145,65],["bus",269,677,100,65],["The ducks are under the bus.",557,624,645,70],["I'm driving my car.",326,866,326,71],["No, you're walking.",735,867,330,70]],
+  76: [["They've got a big orange ball.",157,1376,494,71],["They're playing basketball.",680,1376,449,71]],
+  79: [["Where's the computer?",729,512,409,70],["It's in the kitchen.",911,585,307,71]],
+  80: [["What's Simon doing?",412,923,361,70]],
+  81: [["What's Stella doing?",116,1024,362,81],["She's reading a book.",743,1063,372,75],["Where is she?",163,1334,266,75],["She's in the bedroom.",771,1374,372,83]],
+  82: [["horse",140,451,145,65],["hippo",140,676,140,70],["A horse and a hippo in a helicopter.",402,676,790,75],["They're eating fish.",783,810,333,71],["Number four.",920,888,247,70]],
+  87: [["Do you like apples?",253,1354,340,71],["Yes, I do.",675,1354,175,71],["Do you like ice cream?",205,1450,388,71],["No, I don't.",675,1450,211,71]],
+  88: [["like",116,431,105,65],["bike",384,519,115,65],["white",99,677,140,75],["I like my white bike!",672,687,450,75]],
+  94: [["What's your name?",155,165,355,48],["I'm Suzy.",662,165,160,48],["How old are you?",155,216,326,48],["I'm three.",662,216,171,48],
+    ["I'm = I am.",140,283,155,40],["Who's he?",155,357,193,48],["He's Alex.",660,357,183,48],["How old is she?",155,410,286,48],["She's seven.",660,410,210,48],
+    ["He's = he is.",140,474,170,40],["She's = she is.",335,474,200,40],["That's = that is.",560,474,227,40],
+    ["Where's the ball?",155,547,317,48],["It's next to the chair.",700,547,366,48],["It isn't under the table.",700,599,398,48],["Is your ball in your bag?",155,668,436,58],
+    ["Where's = where is.",138,735,287,40],["Isn't = is not.",452,735,190,40],["We're happy.",155,808,242,52],["We aren't ugly.",495,808,278,52],
+    ["We're = we are.",138,879,235,40],["Aren't = are not.",395,879,250,40],["They're long.",155,952,236,52],["They aren't big.",495,952,283,52],["Are they short?",834,952,291,52],
+    ["I, you, we've got purple hair.",155,1065,528,54],["Have you got a small mouth?",155,1134,526,55],["Yes, I have.",768,1134,205,50],["No, I haven't.",771,1186,243,50],
+    ["I've got = I have got.",140,1250,309,48],["Haven't = have not.",474,1250,286,48],["They've got big mouths.",155,1324,425,55],["They haven't got tails.",665,1324,395,55],["Have they got long legs?",155,1393,446,55],
+    ["They've got = they have got.",138,1463,422,49],["Haven't got = have not got.",585,1463,408,49]],
+  95: [["She's got your red trousers.",176,161,491,56],["He hasn't got a white ball.",689,161,466,56],
+    ["Has he or she got a train?",177,231,418,55],["Yes, he or she has.",686,231,281,48],["No, he or she hasn't.",688,282,320,50],
+    ["He's got = he has got.",160,349,323,48],["She's got = she has got.",507,349,352,48],["Hasn't got = has not got.",160,392,372,48],
+    ["can sing.",517,475,428,50],["can't play the guitar.",517,524,614,53],["Can you ride a bike?",176,591,376,54],["Can't = cannot.",160,659,226,42],
+    ["What are you doing?",175,733,389,54],["I'm flying.",818,733,175,54],["Are you flying your helicopter?",176,803,557,55],
+    ["What's he or she doing?",175,918,387,55],["He's or she's listening to music.",673,917,499,55],
+    ["What are they doing?",175,970,400,55],["They're sitting on the sofa.",672,969,475,55],
+    ["Is he or she listening to music?",176,1040,361,102],["Yes, he or she is.",672,1040,246,48],["No, he or she isn't.",673,1091,287,48],
+    ["What's = what is.",160,1159,253,42],["I like cake.",176,1232,193,49],["I don't like chocolate.",674,1232,378,49],
+    ["Do you like snakes?",176,1301,358,50],["Yes, I do.",672,1301,166,49],["No, I don't.",674,1353,206,49],["Don't = do not.",160,1417,225,41]],
+};
+
+// Complete speech bubbles, review passages and phrase banks omitted by the scan OCR.
+const additionalReading: Record<number, PrintedRegion[]> = {
+  10: [["Listen and point.",326,306,390,71]],
+  12: [["Listen and point.",326,135,390,71]],
+  15: [["Act out the story.",310,1420,510,71]],
+  20: [["Is your ball in your bag?",773,454,226,100],["No, it's next to your chair.",461,1234,225,100]],
+  21: [["Is Monty under the chair?",508,1180,265,88]],
+  30: [["What's blue and red?",850,905,220,96],["Purple!",979,1031,140,48]],
+  32: [["It's green. It's on a chair.",147,1168,223,94],["Number nine.",890,1451,213,49]],
+  39: [["Act out the story.",310,1420,510,71]],
+  41: [["No. She's a girl monster.",924,942,215,88]],
+  42: [["I've got a yellow face.",724,202,365,59]],
+  43: [["I'm a very ugly monster. I've got three eyes.",743,1210,379,91]],
+  60: [["Hippo?",685,910,140,50]],
+  69: [["Act out the story.",310,1420,510,71]],
+  70: [["Listen and repeat.",326,1390,450,71]],
+  72: [["What are you doing, Maskman?",330,332,266,92]],
+  76: [["They're sailing.",773,214,260,60],["playing basketball",251,304,247,44],["playing table-tennis",524,304,298,44],["riding bikes",251,348,182,44],["riding horses",466,348,203,44],["sailing",710,348,106,44]],
+  79: [["Monty's in the bathroom.",344,241,239,91],["No, he isn't. He's in the bedroom.",644,281,278,86]],
+  80: [["He's drawing a picture.",966,1080,220,92]],
+  82: [["playing",169,879,126,44],["driving",335,879,126,44],["flying",492,879,115,44],["eating",650,879,115,44],["reading",116,924,122,44],["playing",267,924,122,44],["swimming",414,924,175,44],["watching",623,924,170,44]],
+  86: [["I like chocolate cake.",389,250,350,59],["I don't like chocolate.",982,569,206,95],["Do you like Maskman cake?",365,1060,254,89]],
+  92: [["I'm Ben. I'm seven.",520,1058,250,70],
+    ["I like football and basketball, but I don't like tennis.",775,1058,337,70],["I like football and basketball, but I don't like tennis.",505,1130,328,71],
+    ["I can swim and ride a bike, but I can't play the guitar.",838,1130,291,71],["I can swim and ride a bike, but I can't play the guitar.",492,1206,643,73],
+    ["I like cake and burgers, but I don't like chocolate or ice cream.",520,1283,582,72],["I like cake and burgers, but I don't like chocolate or ice cream.",520,1358,224,71],
+    ["I like apples and bananas.",750,1358,358,71],["I'm eating a banana now.",625,1440,382,65]],
+  93: [["The elephant's drinking water.",805,118,221,88]],
+};
+for (const [page, regions] of Object.entries(additionalReading))
+  (readingRegions[Number(page)] ??= []).push(...regions);
+
+for (const page of [8,14,22,28,38,44,52,58,68,74,82,88])
+  readingRegions[page].push(["Monty's phonics",325,128,535,90]);
+
+export const bookReadingRegions: Record<number, BookHotspot[]> = Object.fromEntries(
+  Object.entries(readingRegions).map(([page, regions]) => [page, regions.map(([word, x, y, width, height]) => ({
+    word, kind: "text", x: x / 1259 * 100, y: y / 1600 * 100, width: width / 1259 * 100, height: height / 1600 * 100,
+  }))]),
+);
