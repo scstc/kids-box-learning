@@ -11,6 +11,9 @@ React + TypeScript + React Bits 制作的平板友好学习应用，包含 Web �
 
 - 12 个主题单元入口；119 个词语练习项、36 组原创情景句。
 - 词语英式发音、慢速听读、拼读提示、听音选择、字母拼写、错词背包和设备内进度。
+- 首页书本使用PDF原封面，12个单元卡片、单元标题和足迹使用对应原书场景。108个词语练习项使用原版闪卡或PDF裁图，词语大图、小卡片、听音选择、拼写提示、错词背包和旧动物小站共用原图。大小、长短使用原版物品对比并标出当前对象。其余11个补充词暂用中文释义，不用不相关图画或英文答案代替。图片来源、书页与裁图坐标记录在 `src/data/originalArt.ts`。
+- 词语页接入React Bits官方TechText：0.85秒正确字母逐个入场，点击有轮廓和轻微弹跳并播放整词；原版图片支持SpotlightCard触控聚光，当前发音的拼读块同步高亮，学习确认/下一题按钮使用StarBorder。提供「再看一次」和可记忆的动态开关，尊重系统「减少动态效果」。动画不随机替换字母、不自动拖动字母，不影响音标与读音。
+- 「听音找朋友」「字母拼拼乐」答对后出现星星彩纸和「答对啦」，下一题清除特效；答错时保持重试提示。特效不拦截点击、不添加声音，关闭动态或系统减少动态时保留静态正确反馈。
 - 全部词卡显示英式IPA音标。拼读块可逐块点击，播放词内实际声音；静音e只提示不发音，不读成字母名。130种分块合成示范音频随应用打包，不依赖设备TTS或在线服务。
 - 分块后有「连起来读」按钮，依次播放有声分块，再播放完整单词。可随时停止；切换词语或点击其他声音会取消连读。
 - 字母拼拼乐提供「字母提示」开关：开启时使用字母按钮，关闭后隐藏字母库和长度格子，使用完整A–Z应用内键盘自行拼写，不唤起系统输入法或显示联想候选词；也支持实体键盘。设置保存在本设备；忽略大小写、空格和连字符，保留拼错重试与错词复习。
@@ -88,6 +91,8 @@ npm run android:apk
 - src/components/BookPageReader.tsx、public/book-pages/：按书上页码加载已内置的原书图页。
 - src/components/BookLibrary.tsx：跨学科、价值观、阶段复习和语法参考。
 - src/data/bookAudio.ts、src/data/bookMedia.ts：原版音轨与页面点击区域、全部音频/视频/闪卡索引。
+- src/data/originalArt.ts、public/book-art/：原书封面、单元场景与词语裁图及来源；图片采用WebP，随APK离线打包。
+- src/components/LearningWord.tsx、CorrectCelebration.tsx：单词互动、触控聚光与答对庆祝；useLearningMotion.ts管理设备内动态设置。
 - src/components/FullscreenBook.tsx、src/components/BookMedia.tsx：全屏课本和单元原版资源。
 - scripts/download-course-audio.mjs：获取词语英式发音；少数 WAV 响应通过 ffmpeg 转为 MP3。
 - scripts/render-sentence-audio.py：使用 edge-tts 的 en-GB-SoniaNeural 生成原创例句音频。
@@ -101,7 +106,7 @@ npm run android:apk
 - 第1册 Unit 1 官方样张：https://cdn-web.unischool.cn/kb/mfzy/yzyyp/KB2XS1_U1_yz.pdf
 - 第1册 Unit 1 官方音频包：https://cdn-web.unischool.cn/kb/mfzy/yzyyp/KB2XS1_U1_yp.zip
 - 第二版单元目录：https://www.blinklearning.com/coursePlayer/curso2.php?idcurso=164001 （海外版本，只用于核对主题顺序，不作为中文版页码来源）
-- React Bits 官方 AnimatedContent 和 ClickSpark：https://reactbits.dev/ ，源码 https://github.com/DavidHDev/react-bits
+- React Bits 官方：[TechText](https://reactbits.dev/text-animations/tech-text)、[SpotlightCard](https://reactbits.dev/components/spotlight-card)、[StarBorder](https://reactbits.dev/animations/star-border)、[AnimatedContent](https://reactbits.dev/animations/animated-content)、[ClickSpark](https://reactbits.dev/animations/click-spark)。新组件从官方TS/CSS registry获取，不增加动画依赖；许可证保存在 `src/components/reactbits/LICENSE.md`（MIT + Commons Clause）。另调研TrueFocus和CountUp，当前采用与读音同步的字块聚焦，保持其他字块清晰。
 - Lucide 图标：https://lucide.dev/ （ISC）
 - Nunito、DM Sans：Fontsource 本地字体（OFL）
 - 词语录音：有道词典英式发音接口。对外商业发布前需确认音频授权或替换为已授权录音。

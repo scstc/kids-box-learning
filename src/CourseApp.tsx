@@ -27,7 +27,14 @@ import {
   X,
 } from "lucide-react";
 import App from "./App";
-import WordArt, { unitIcons } from "./components/WordArt";
+import WordArt from "./components/WordArt";
+import CorrectCelebration from "./components/CorrectCelebration";
+import LearningWord from "./components/LearningWord";
+import SpotlightCard from "./components/reactbits/SpotlightCard";
+import RewardButton from "./components/RewardButton";
+import { useLearningMotion } from "./hooks/useLearningMotion";
+import { originalCover, originalUnitArt } from "./data/originalArt";
+import { mediaUrl } from "./data/media";
 import BookActivities from "./components/BookActivities";
 import BookLibrary from "./components/BookLibrary";
 import BookMedia from "./components/BookMedia";
@@ -121,6 +128,8 @@ function newRound(questions: WordEntry[], round = 0, firstTry = 0): Game {
 export default function CourseApp() {
   const [view, setView] = useState<View>("map");
   const [readerPage, setReaderPage] = useState<number | null>(null);
+  const [wordAnimationReplay, setWordAnimationReplay] = useState(0);
+  const motion = useLearningMotion();
   const [unitId, setUnitId] = useState(1);
   const [bookGroup, setBookGroup] = useState("CLIL");
   const [wordIndex, setWordIndex] = useState(0);
@@ -296,6 +305,7 @@ export default function CourseApp() {
     if (game.finished)
       return (
         <section className="kb-game-finish">
+          {motion.canAnimate && <CorrectCelebration message="完成挑战！" />}
           <span className="kb-finish-star">
             <Star size={45} fill="currentColor" />
           </span>
@@ -343,8 +353,10 @@ export default function CourseApp() {
     return (
       <section
         className="kb-game"
+        data-correct={game.correct || undefined}
         aria-label={activity === "listen" ? "听音找朋友" : "字母拼拼乐"}
       >
+        {game.correct && motion.canAnimate && <CorrectCelebration key={`${activity}:${game.round}:${entryKey(question)}`} />}
         <div className="kb-game-top">
           <span className="kb-eyebrow">
             {activity === "listen" ? "LISTEN & FIND" : "LETTERS & SOUNDS"}
@@ -549,12 +561,12 @@ export default function CourseApp() {
                 <Check size={20} />
                 答对啦！{question.word.en} · {question.word.zh}
               </span>
-              <button className="kb-btn" onClick={nextQuestion}>
+              <RewardButton animated={motion.canAnimate} className="kb-btn kb-reward-next" onClick={nextQuestion}>
                 {game.round === game.questions.length - 1
                   ? "完成挑战"
                   : "下一题"}
                 <ArrowRight size={18} />
-              </button>
+              </RewardButton>
             </>
           ) : (
             <span>
@@ -576,9 +588,10 @@ export default function CourseApp() {
       sparkCount={6}
       shape="star"
       duration={420}
+      disabled={!motion.canAnimate}
       style={{ overflowX: "clip" }}
     >
-      <div className="kb-shell">
+      <div className="kb-shell" data-motion={motion.canAnimate ? "on" : "off"}>
         <a className="skip-link" href="#course-main">
           跳到学习内容
         </a>
@@ -675,17 +688,8 @@ export default function CourseApp() {
                     <span className="kb-scene-leaf">
                       <Sprout size={55} />
                     </span>
-                    <div className="kb-book">
-                      <span>MY LITTLE</span>
-                      <strong>
-                        book of
-                        <br />
-                        discoveries<span>.</span>
-                      </strong>
-                      <span className="kb-book-art">
-                        <WordArt id="giraffe" unitId={7} />
-                      </span>
-                      <small>LISTEN · SAY · PLAY</small>
+                    <div className="kb-book kb-original-cover">
+                      <img src={mediaUrl(originalCover.file)} width={originalCover.width} height={originalCover.height} alt="" decoding="async" />
                     </div>
                     <span className="kb-floating-note note-hello">
                       Hello, explorer!
@@ -783,7 +787,6 @@ export default function CourseApp() {
                       </div>
                       <div className="kb-unit-grid">
                         {units.map((unit) => {
-                          const Icon = unitIcons[unit.icon];
                           const count = learnedIn(unit);
                           return (
                             <button
@@ -805,9 +808,7 @@ export default function CourseApp() {
                                   )}
                                 </span>
                               </div>
-                              <span className="kb-unit-icon">
-                                <Icon size={34} strokeWidth={1.6} />
-                              </span>
+                              <img className="kb-unit-picture" src={mediaUrl(originalUnitArt[unit.id].file)} width={originalUnitArt[unit.id].width} height={originalUnitArt[unit.id].height} alt="" loading="lazy" decoding="async" />
                               <h3>{unit.title}</h3>
                               <strong>{unit.zh}</strong>
                               <p>{unit.description}</p>
@@ -956,10 +957,7 @@ export default function CourseApp() {
               </div>
               <section className="kb-lesson-heading" style={themeStyle(unit)}>
                 <span className="kb-lesson-icon">
-                  {(() => {
-                    const Icon = unitIcons[unit.icon];
-                    return <Icon size={38} />;
-                  })()}
+                  <img src={mediaUrl(originalUnitArt[unit.id].file)} width={originalUnitArt[unit.id].width} height={originalUnitArt[unit.id].height} alt="" />
                 </span>
                 <div>
                   <span className="kb-eyebrow">
@@ -1083,7 +1081,7 @@ export default function CourseApp() {
                     style={themeStyle(unit)}
                     key={`${unit.id}-${word.id}`}
                   >
-                    <div className="kb-word-scene">
+                    <SpotlightCard className="kb-word-scene" theme="light" spotlightColor={unit.color} intensity={motion.canAnimate ? 0.24 : 0} borderGlow={motion.canAnimate ? 0.7 : 0} proximity={0} spotlightSize={180} style={{ background: unit.background }}>
                       <span className="kb-eyebrow">A NEW LITTLE DISCOVERY</span>
                       <span className="kb-word-scene-spark">
                         <Sparkles size={26} />
@@ -1098,7 +1096,7 @@ export default function CourseApp() {
                       >
                         <Volume2 size={25} />
                       </button>
-                    </div>
+                    </SpotlightCard>
                     <div className="kb-word-detail">
                       <div className="kb-word-topline">
                         <span>
@@ -1108,12 +1106,11 @@ export default function CourseApp() {
                           {wordIndex + 1} / {unit.words.length}
                         </span>
                       </div>
-                      <h2
-                        className={word.en.length > 11 ? "kb-long-word" : ""}
-                        lang="en"
-                      >
-                        {word.en}
-                      </h2>
+                      <LearningWord text={word.en} animated={motion.canAnimate} color={unit.color} replay={wordAnimationReplay} onRead={() => void audio.play(word.en)} />
+                      <div className="kb-motion-tools">
+                        <button disabled={!motion.canAnimate} onClick={() => { setWordAnimationReplay((value) => value + 1); void audio.play(word.en); }}><Sparkles size={16} />再看一次</button>
+                        <button aria-pressed={motion.enabled} onClick={motion.toggle}>动态效果{motion.enabled ? "开" : "关"}</button>
+                      </div>
                       <p
                         className="kb-word-ipa"
                         aria-label={`英式音标 /${word.ipa}/`}
@@ -1231,7 +1228,7 @@ export default function CourseApp() {
                       <p className="kb-chunk-note">
                         点击分块听读音，再连起来听完整单词。分块数不一定等于音节数；分块声音为合成示范。
                       </p>
-                      <button
+                      <RewardButton animated={motion.canAnimate}
                         className="kb-btn kb-learn-next"
                         onClick={markAndNext}
                       >
@@ -1240,7 +1237,7 @@ export default function CourseApp() {
                           ? "复习好啦，继续"
                           : "我认识它啦"}
                         <ArrowRight size={18} />
-                      </button>
+                      </RewardButton>
                       <div className="kb-word-pager">
                         <button
                           disabled={wordIndex === 0}
@@ -1414,7 +1411,6 @@ export default function CourseApp() {
               />
               <section className="kb-passport-grid">
                 {courseUnits.map((unit) => {
-                  const Icon = unitIcons[unit.icon];
                   const count = learnedIn(unit);
                   return (
                     <button
@@ -1426,7 +1422,7 @@ export default function CourseApp() {
                       style={themeStyle(unit)}
                     >
                       <span className="kb-stamp">
-                        <Icon size={38} />
+                        <img src={mediaUrl(originalUnitArt[unit.id].file)} width={originalUnitArt[unit.id].width} height={originalUnitArt[unit.id].height} alt="" loading="lazy" />
                         {count === unit.words.length && (
                           <i>
                             <Check size={15} />
