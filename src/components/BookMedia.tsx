@@ -3,6 +3,7 @@ import { Volume2 } from "lucide-react";
 import { bookFlashcards, bookVideos } from "../data/bookMedia";
 import { relatedBookAudio } from "../data/bookAudio";
 import { mediaUrl } from "../data/media";
+import { originalFlashcardArt } from "../data/originalArt";
 import type { CourseAudio } from "../hooks/useCourseAudio";
 import "./bookMedia.css";
 
@@ -39,7 +40,7 @@ export default function BookMedia({ unitId, audio }: { unitId: number; audio: Co
     {tab === "cards" && <>
       <p>点原版闪卡，听配套英式发音。</p>
       <div className="kb-media-grid kb-flashcards">{cards.map((card) => <button key={card.number} aria-label={`闪卡 ${card.name}，点击听发音`} onClick={() => void audio.play(card.name)}>
-        <img src={mediaUrl(card.file)} alt={card.name} loading="lazy" /><strong>{card.name}</strong><Volume2 size={18} />
+        <img src={mediaUrl(originalFlashcardArt[card.number]?.file ?? card.file)} alt={card.name} loading="lazy" /><strong>{card.name}</strong><Volume2 size={18} />
       </button>)}</div>
       {unitId === 3 && <p>提供的闪卡中缺少编号 073，其他闪卡已全部收录。</p>}
     </>}

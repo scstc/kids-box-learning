@@ -18,8 +18,9 @@ type ReaderProps = {
   beforeSpeak?: () => void;
   onPageChange?: (page: number) => void;
   fitPage?: boolean;
+  minimal?: boolean;
 };
-function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage }: ReaderProps) {
+function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal }: ReaderProps) {
   const [page, setPage] = useState(printedPage);
   const [zoom, setZoom] = useState(1);
   const [loaded, setLoaded] = useState(false);
@@ -101,7 +102,7 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage }: Reader
     setError(false);
   };
   return (
-    <section className={`kb-book-reader${fitPage ? " kb-reader-fit" : ""}`} aria-label="原书页面">
+    <section className={`kb-book-reader${fitPage ? " kb-reader-fit" : ""}${minimal ? " kb-reader-minimal" : ""}`} aria-label="原书页面">
       <div className="kb-book-page-toolbar">
         <button
           aria-label="原书上一页"
@@ -110,7 +111,7 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage }: Reader
         >
           <ChevronLeft size={20} />
         </button>
-        <label>
+        {!minimal && <label>
           第{" "}
           <input
             aria-label="原书页码"
@@ -124,7 +125,7 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage }: Reader
             }}
           />{" "}
           页
-        </label>
+        </label>}
         <button
           aria-label="原书下一页"
           disabled={page >= 95}
@@ -132,7 +133,7 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage }: Reader
         >
           <ChevronRight size={20} />
         </button>
-        <button
+        {!minimal && <><button
           aria-label="缩小原书"
           disabled={zoom <= 1}
           onClick={() => setZoom(Math.max(1, zoom - 0.25))}
@@ -146,9 +147,9 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage }: Reader
           onClick={() => setZoom(Math.min(2, zoom + 0.25))}
         >
           <ZoomIn size={19} />
-        </button>
+        </button></>}
       </div>
-      <div className="kb-reader-tracks" aria-label="本页原版录音">
+      {!minimal && <div className="kb-reader-tracks" aria-label="本页原版录音">
         {tracks.map((track) => (
           <button
             key={track.activity}
@@ -160,9 +161,9 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage }: Reader
           </button>
         ))}
         {tracks.length > 0 && <label><input type="checkbox" checked={loop} onChange={(event) => setLoop(event.target.checked)} />循环</label>}
-      </div>
-      <div className="kb-reader-audio" hidden={!selected?.file}>
-        <audio ref={player} controls preload="none" loop={loop}
+      </div>}
+      <div className="kb-reader-audio" hidden={minimal || !selected?.file}>
+        <audio ref={player} controls={!minimal} preload="none" loop={loop}
           aria-label="课本点读播放器"
           onPlay={() => { audio.stop(); setIsPlaying(true); }}
           onPause={() => setIsPlaying(false)} onEnded={() => setIsPlaying(false)}
@@ -250,11 +251,11 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage }: Reader
           )}
         </div>
       </div>
-      <p className="kb-book-page-note">
+      {!minimal && <p className="kb-book-page-note">
         {tracks.length ? "点书上的蓝色 CD 图标，听本项原版录音。" : "本页没有 CD 录音标记。"}
         {hotspots.length > 0 && " 点带边框的词语可听配套英式发音。"}
         放大后可左右滑动查看。
-      </p>
+      </p>}
     </section>
   );
 }

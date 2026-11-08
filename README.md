@@ -21,7 +21,7 @@ React + TypeScript + React Bits 制作的平板友好学习应用，包含 Web �
 - 单独的「课本活动」入口，保留 Listen and point、Listen and repeat、Sing the song、Say the chant、Monty’s phonics、故事等活动类型。
 - **12个单元、144项课本活动的标题、顺序和页码已按用户提供的93页电子书核对。**另外包含6个跨学科、6个价值观、3个阶段复习和语法参考入口，覆盖书上第4–95页。
 - 原书第4–95页共92张图页已内置，各活动自动显示对应页；支持翻页、放大和点指。不需要家长再次导入PDF。原始扫描本的PDF第2页对应书上第4页，图页已按书上页码命名。
-- 全屏「课本点读」直接显示原书正文，支持书页 CD 图标点读、词语点读、翻页、页码跳转、单元跳转、缩放、整页/页宽显示、循环播放与阅读位置记忆；从课本内可直接打开当前单元的视频和闪卡。支持退出全屏后继续使用其他练习。
+- 全屏「课本点读」只显示原书正文、两侧翻页按钮和一个小退出按钮，自动按屏幕完整显示书页。书页 CD 图标、词语仍可点读，播放时不显示额外播放器，并记住阅读位置。普通课本活动页保留页码、缩放和录音控制；视频和闪卡从单元的「视频与闪卡」进入。
 - 按原书人工核对全部144处CD1–4标记，其中138处已匹配用户提供的原版录音（优先按学生用书页码/活动号匹配，再按CD音轨匹配）。歌曲、歌谣、故事及CLIL、Values、Review使用相应原版录音，明确标示未提供的6处音轨。
 - 244段原始音频完整内置在 `public/音频/`。练习册、教师配套及额外CD音轨保留在「视频与闪卡 → 配套音频」中，可按单元查看或切换全册音频列表。
 - 47个原版视频和95张原版闪卡已按单元接入。视频包含12组歌曲、伴奏、故事和11个拓展活动，使用H.264/AAC、保留720×480和原显示比例，约410MB；项目目录为 `public/视频/`，NAS源目录 `视频(1)` 保持原样。闪卡位于 `public/闪卡/`，点击可听配套词典英式发音。
@@ -91,7 +91,7 @@ npm run android:apk
 - src/components/BookPageReader.tsx、public/book-pages/：按书上页码加载已内置的原书图页。
 - src/components/BookLibrary.tsx：跨学科、价值观、阶段复习和语法参考。
 - src/data/bookAudio.ts、src/data/bookMedia.ts：原版音轨与页面点击区域、全部音频/视频/闪卡索引。
-- src/data/originalArt.ts、public/book-art/：原书封面、单元场景与词语裁图及来源；图片采用WebP，随APK离线打包。
+- src/data/originalArt.ts、public/book-art/：原书封面、单元场景与词语裁图及来源。95张闪卡插图与4张大小/长短对比图采用透明PNG，保留眼白、白衣服和白色物体，并处理椅背、车轮和卷尾的镂空；完整课本场景保留原背景。图片随APK离线打包，运行 `npm run art:transparent` 可从原始闪卡重新生成透明图。
 - src/components/LearningWord.tsx、CorrectCelebration.tsx：单词互动、触控聚光与答对庆祝；useLearningMotion.ts管理设备内动态设置。
 - src/components/FullscreenBook.tsx、src/components/BookMedia.tsx：全屏课本和单元原版资源。
 - scripts/download-course-audio.mjs：获取词语英式发音；少数 WAV 响应通过 ffmpeg 转为 MP3。

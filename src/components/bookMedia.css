@@ -10,7 +10,7 @@
 .kb-media-grid img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: contain; background: white; margin-bottom: 10px; }
 .kb-media-grid strong, .kb-media-grid span { display: block; line-height: 1.8; overflow-wrap: anywhere; }
 .kb-media-grid span { font-size: 13px; }
-.kb-flashcards img { aspect-ratio: 691 / 875; }
+.kb-flashcards img { aspect-ratio: 691 / 875; background: transparent; }
 .kb-flashcards button > svg { position: absolute; right: 12px; bottom: 18px; }
 .kb-media-player { margin-bottom: 20px; padding: 14px; background: #f4f7eb; border: 1px solid #dbe3ce; border-radius: 12px; }
 .kb-media-player strong { display: block; margin-bottom: 10px; overflow-wrap: anywhere; }
