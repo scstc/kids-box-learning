@@ -997,7 +997,7 @@
   flex-wrap: wrap;
   margin-top: 14px;
 }
-.kb-word-chunks > span {
+.kb-word-chunks > :is(button, span) {
   display: block;
   font-size: 27px;
   font-family: "Nunito Variable", sans-serif;
@@ -1008,15 +1008,15 @@
   border-radius: 8px;
   line-height: 1.25;
 }
-.kb-word-chunks > span:nth-child(2n) {
+.kb-word-chunks > :is(button, span):nth-child(2n) {
   background: #edf3e3;
   color: #819866;
 }
-.kb-word-chunks > span:nth-child(3n) {
+.kb-word-chunks > :is(button, span):nth-child(3n) {
   background: #f0ebf5;
   color: #a08ab4;
 }
-.kb-word-chunks > span.kb-chunk-divider {
+.kb-word-chunks > :is(button, span).kb-chunk-divider {
   padding: 2px;
   background: transparent;
   font-size: 19px;
@@ -1045,6 +1045,154 @@
   line-height: 1.8;
   color: #a3ac95;
   margin-top: 10px;
+}
+.kb-word-ipa {
+  font-family: "Segoe UI", "Arial", sans-serif;
+  font-size: 22px;
+  color: #536943;
+  line-height: 1.5;
+  margin: 4px 0 12px;
+}
+.kb-blend-button {
+  margin-top: 14px;
+  align-self: flex-start;
+  min-height: 48px;
+  font-size: 13px;
+}
+.kb-spelling-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: 420px;
+  width: 100%;
+  margin: 18px auto;
+  padding: 12px 18px;
+  background: #f2f5e9;
+  border: 1px solid #dae3cc;
+  border-radius: 12px;
+  text-align: left;
+  color: #526c3d;
+  font-size: 14px;
+  cursor: pointer;
+}
+.kb-spelling-toggle small {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 5px;
+  color: #647653;
+}
+.kb-spelling-toggle input {
+  appearance: none;
+  position: relative;
+  width: 62px;
+  height: 44px;
+  border: 1px solid #a9b898;
+  border-radius: 24px;
+  background: #dce5cf;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.kb-spelling-toggle input::before {
+  content: "";
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fffef7;
+  top: 5px;
+  left: 5px;
+  box-shadow: 0 1px 3px #526c3d44;
+}
+.kb-spelling-toggle input:checked {
+  background: #607d43;
+}
+.kb-spelling-toggle input:checked::before {
+  transform: translateX(18px);
+}
+.kb-spelling-toggle input:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.kb-spelling-toggle input:focus-visible {
+  outline: 3px solid #846831;
+  outline-offset: 3px;
+}
+.kb-spelling-input {
+  display: block;
+  max-width: 520px;
+  margin: 20px auto;
+  text-align: left;
+  color: #526c3d;
+  font-size: 14px;
+}
+.kb-spelling-input input {
+  display: block;
+  width: 100%;
+  min-height: 62px;
+  margin-top: 9px;
+  padding: 12px 15px;
+  border: 2px solid #b7c99d;
+  border-radius: 10px;
+  color: #40582f;
+  background: #fffef8;
+  font:
+    600 25px/1.5 "Nunito Variable",
+    sans-serif;
+  letter-spacing: 2px;
+}
+.kb-spelling-input input::placeholder {
+  letter-spacing: 0;
+  font-size: 16px;
+  font-weight: 400;
+  color: #7a886c;
+}
+.kb-spelling-input input:focus-visible {
+  outline: 3px solid #846831;
+  outline-offset: 3px;
+}
+.kb-word-chunks > button {
+  position: relative;
+  min-height: 76px;
+  min-width: 60px;
+  border: 2px solid transparent;
+  padding: 8px 16px;
+  touch-action: manipulation;
+}
+.kb-word-chunks > button strong {
+  display: block;
+  font: inherit;
+  padding-right: 9px;
+}
+.kb-word-chunks > button small {
+  display: block;
+  font:
+    15px/1.5 "Segoe UI",
+    Arial,
+    sans-serif;
+  color: #526641;
+  margin-top: 5px;
+}
+.kb-word-chunks > button > svg {
+  position: absolute;
+  top: 6px;
+  right: 5px;
+}
+.kb-word-chunks > button:hover {
+  border-color: #9bad80;
+}
+.kb-word-chunks > button[aria-pressed="true"] {
+  border-color: #607d43;
+  box-shadow: 0 0 0 3px #bccd9d55;
+}
+.kb-word-chunks > button:focus-visible {
+  outline: 3px solid #846831;
+  outline-offset: 3px;
+}
+.kb-word-chunks > button.kb-silent-chunk {
+  border-style: dashed;
+  border-color: #b9bdaa;
 }
 .kb-learn-next {
   align-self: flex-start;
@@ -2165,7 +2313,7 @@
   .kb-mini-word-grid {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
-  .kb-word-chunks > span {
+  .kb-word-chunks > :is(button, span) {
     font-size: 25px;
     padding: 5px 9px;
   }
@@ -2425,7 +2573,7 @@
   .kb-word-chunks {
     gap: 6px;
   }
-  .kb-word-chunks > span {
+  .kb-word-chunks > :is(button, span) {
     font-size: 23px;
     padding: 5px 9px;
   }
@@ -3030,7 +3178,7 @@
     gap: 7px;
     margin-top: 13px;
   }
-  .kb-word-chunks > span {
+  .kb-word-chunks > :is(button, span) {
     font-size: 26px;
     padding: 6px 11px;
   }
@@ -3556,7 +3704,7 @@
   .kb-word-detail > h2.kb-long-word {
     font-size: 36px;
   }
-  .kb-word-chunks > span {
+  .kb-word-chunks > :is(button, span) {
     font-size: 25px;
     padding: 6px 10px;
   }

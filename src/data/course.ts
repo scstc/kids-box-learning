@@ -1,3 +1,5 @@
+import { wordPronunciations } from "./pronunciations.ts";
+
 export type ChunkType = "拼读块" | "音节" | "整词";
 export type CourseWord = {
   id: string;
@@ -6,6 +8,8 @@ export type CourseWord = {
   chunks: string[];
   tip: string;
   chunkType: ChunkType;
+  ipa: string;
+  sounds: string[];
 };
 export type Sentence = { en: string; zh: string; tip: string };
 export type CourseUnit = {
@@ -40,7 +44,9 @@ function word(
   tip: string,
   chunkType: ChunkType = "拼读块",
 ): CourseWord {
-  return { id: audioKey(en), en, zh, chunks, tip, chunkType };
+  const pronunciation = wordPronunciations[en];
+  if (!pronunciation) throw new Error(`Missing pronunciation: ${en}`);
+  return { id: audioKey(en), en, zh, chunks, tip, chunkType, ...pronunciation };
 }
 
 export const courseUnits: CourseUnit[] = [

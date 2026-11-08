@@ -23,6 +23,7 @@ import {
   Star,
   Turtle,
   Volume2,
+  VolumeX,
   X,
 } from "lucide-react";
 import App from "./App";
@@ -51,6 +52,7 @@ import {
 import { useCourseAudio } from "./hooks/useCourseAudio";
 import { useCourseProgress } from "./hooks/useCourseProgress";
 import "./course.css";
+import { matchesSpelling } from "./data/spelling";
 
 type View = "map" | "lesson" | "review" | "passport" | "legacy" | "library";
 type Activity = "book" | "words" | "sentences" | "listen" | "spell";
@@ -122,6 +124,14 @@ export default function CourseApp() {
   const [dialog, setDialog] = useState<"help" | "reset" | null>(null);
   const [game, setGame] = useState<Game | null>(null);
   const [notice, setNotice] = useState("");
+  const [typedSpelling, setTypedSpelling] = useState("");
+  const [spellingHints, setSpellingHints] = useState(() => {
+    try {
+      return localStorage.getItem("kids-box-spelling-hints-v1") !== "off";
+    } catch {
+      return true;
+    }
+  });
   const top = useRef<HTMLElement>(null);
   const { progress, learn, incorrect, correct, visit, reset, storageError } =
     useCourseProgress();
@@ -177,6 +187,7 @@ export default function CourseApp() {
     if (!pool.length) return;
     setActivity(kind);
     setGame(newRound(shuffled(pool)));
+    setTypedSpelling("");
     audio.stop();
     scrollTop();
   };
@@ -199,10 +210,12 @@ export default function CourseApp() {
   const checkSpelling = () => {
     if (!game || game.correct) return;
     const question = game.questions[game.round];
-    const selected = game.selected
-      .map((id) => game.tiles.find((tile) => tile.id === id)!.letter)
-      .join("");
-    const isCorrect = selected === spellingLetters(question.word.en).join("");
+    const selected = spellingHints
+      ? game.selected
+          .map((id) => game.tiles.find((tile) => tile.id === id)!.letter)
+          .join("")
+      : typedSpelling;
+    const isCorrect = matchesSpelling(selected, question.word.en);
     if (isCorrect) {
       correct(question);
       void audio.play(question.word.en);
@@ -218,6 +231,7 @@ export default function CourseApp() {
   const nextQuestion = () => {
     if (!game || !game.correct) return;
     audio.stop();
+    setTypedSpelling("");
     setGame(
       game.round + 1 >= game.questions.length
         ? { ...game, finished: true }
@@ -315,12 +329,18 @@ export default function CourseApp() {
           </span>
         </div>
         <h2>
-          {activity === "listen" ? "小耳朵，听见了谁？" : "小字母，排排队。"}
+          {activity === "listen"
+            ? "小耳朵，听见了谁？"
+            : spellingHints
+              ? "小字母，排排队。"
+              : "听一听，自己拼出来。"}
         </h2>
         <p>
           {activity === "listen"
             ? "先听声音，再点选对应的图片和意思。"
-            : "先听一听，再把字母放进正确的位置。"}
+            : spellingHints
+              ? "先听一听，再把字母放进正确的位置。"
+              : "没有字母提示，试着写出你听到的单词。"}
         </p>
         <button
           className={`kb-big-audio ${audio.playingText ? "is-playing" : ""}`}
@@ -364,78 +384,154 @@ export default function CourseApp() {
           </div>
         ) : (
           <div className="kb-spelling">
+            <label className="kb-spelling-toggle">
+              <span>
+                字母提示
+                <small>{spellingHints ? "选字母拼写" : "自己输入单词"}</small>
+              </span>
+              <input
+                type="checkbox"
+                role="switch"
+                aria-label="字母提示"
+                checked={spellingHints}
+                disabled={game.correct}
+                onChange={(event) => {
+                  const enabled = event.currentTarget.checked;
+                  setSpellingHints(enabled);
+                  setTypedSpelling("");
+                  setGame({ ...game, selected: [], wrong: [] });
+                  try {
+                    localStorage.setItem(
+                      "kids-box-spelling-hints-v1",
+                      enabled ? "on" : "off",
+                    );
+                  } catch {
+                    setNotice("切换成功，但这个设置暂时无法保存。");
+                  }
+                }}
+              />
+            </label>
             <div className="kb-spell-clue">
               <WordArt id={question.word.id} unitId={question.unitId} />
               <strong>{question.word.zh}</strong>
             </div>
-            <div className="kb-spell-slots" aria-label="已选字母">
-              {spellingLetters(question.word.en).map((_, index) => (
-                <button
-                  key={index}
-                  disabled={game.correct || game.selected[index] === undefined}
-                  aria-label={
-                    game.selected[index] === undefined
-                      ? `第 ${index + 1} 格`
-                      : `移除第 ${index + 1} 个字母`
-                  }
-                  onClick={() =>
-                    setGame({
-                      ...game,
-                      selected: game.selected.filter((_, i) => i !== index),
-                      wrong: [],
-                    })
-                  }
-                >
-                  {game.selected[index] === undefined
-                    ? ""
-                    : game.tiles.find(
-                        (tile) => tile.id === game.selected[index],
-                      )!.letter}
-                </button>
-              ))}
-            </div>
-            <div className="kb-letter-bank" aria-label="可选字母">
-              {game.tiles.map((tile) => (
-                <button
-                  key={tile.id}
-                  disabled={game.correct || game.selected.includes(tile.id)}
-                  onClick={() =>
-                    setGame({
-                      ...game,
-                      selected: [...game.selected, tile.id],
-                      wrong: [],
-                    })
-                  }
-                  aria-label={`字母 ${tile.letter}`}
-                >
-                  {tile.letter}
-                </button>
-              ))}
-            </div>
+            {spellingHints ? (
+              <>
+                <div className="kb-spell-slots" aria-label="已选字母">
+                  {spellingLetters(question.word.en).map((_, index) => (
+                    <button
+                      key={index}
+                      disabled={
+                        game.correct || game.selected[index] === undefined
+                      }
+                      aria-label={
+                        game.selected[index] === undefined
+                          ? `第 ${index + 1} 格`
+                          : `移除第 ${index + 1} 个字母`
+                      }
+                      onClick={() =>
+                        setGame({
+                          ...game,
+                          selected: game.selected.filter((_, i) => i !== index),
+                          wrong: [],
+                        })
+                      }
+                    >
+                      {game.selected[index] === undefined
+                        ? ""
+                        : game.tiles.find(
+                            (tile) => tile.id === game.selected[index],
+                          )!.letter}
+                    </button>
+                  ))}
+                </div>
+                <div className="kb-letter-bank" aria-label="可选字母">
+                  {game.tiles.map((tile) => (
+                    <button
+                      key={tile.id}
+                      disabled={game.correct || game.selected.includes(tile.id)}
+                      onClick={() =>
+                        setGame({
+                          ...game,
+                          selected: [...game.selected, tile.id],
+                          wrong: [],
+                        })
+                      }
+                      aria-label={`字母 ${tile.letter}`}
+                    >
+                      {tile.letter}
+                    </button>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <label className="kb-spelling-input">
+                写出听到的单词
+                <input
+                  aria-label="输入单词"
+                  type="text"
+                  value={typedSpelling}
+                  maxLength={64}
+                  disabled={game.correct}
+                  placeholder="在这里输入单词"
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                  autoComplete="off"
+                  spellCheck={false}
+                  onChange={(event) => {
+                    setTypedSpelling(event.currentTarget.value);
+                    if (game.wrong.length) setGame({ ...game, wrong: [] });
+                  }}
+                  onKeyDown={(event) => {
+                    if (
+                      event.key === "Enter" &&
+                      !event.nativeEvent.isComposing &&
+                      typedSpelling.trim() &&
+                      !game.correct
+                    ) {
+                      event.preventDefault();
+                      checkSpelling();
+                    }
+                  }}
+                />
+              </label>
+            )}
             <div className="kb-button-row">
               <button
                 className="kb-btn kb-btn-secondary"
-                disabled={!game.selected.length || game.correct}
-                onClick={() => setGame({ ...game, selected: [], wrong: [] })}
+                disabled={
+                  (spellingHints
+                    ? !game.selected.length
+                    : !typedSpelling.length) || game.correct
+                }
+                onClick={() => {
+                  setGame({ ...game, selected: [], wrong: [] });
+                  setTypedSpelling("");
+                }}
               >
                 <RotateCcw size={17} />
-                重新排列
+                {spellingHints ? "重新排列" : "清空重写"}
               </button>
               <button
                 className="kb-btn"
                 disabled={
-                  game.selected.length !== game.tiles.length || game.correct
+                  (spellingHints
+                    ? game.selected.length !== game.tiles.length
+                    : !typedSpelling.trim()) || game.correct
                 }
                 onClick={checkSpelling}
               >
                 <Check size={18} />
-                拼好啦
+                {spellingHints ? "拼好啦" : "检查答案"}
               </button>
             </div>
             <p className="kb-spell-hint">
-              {question.word.en.includes(" ") || question.word.en.includes("-")
-                ? "这里只拼字母，空格和连字符不用放进格子。"
-                : "点一下已放好的字母，就能把它拿回来。"}
+              {!spellingHints
+                ? "可以直接输入，不区分大小写。空格和连字符可省略。"
+                : question.word.en.includes(" ") ||
+                    question.word.en.includes("-")
+                  ? "这里只拼字母，空格和连字符不用放进格子。"
+                  : "点一下已放好的字母，就能把它拿回来。"}
             </p>
           </div>
         )}
@@ -822,6 +918,7 @@ export default function CourseApp() {
             <BookLibrary
               key={bookGroup}
               group={bookGroup}
+              audio={audio}
               onBack={() => navigate("map")}
             />
           )}
@@ -914,6 +1011,7 @@ export default function CourseApp() {
                 <BookActivities
                   key={unit.id}
                   unitId={unit.id}
+                  audio={audio}
                   onPractice={() => setActivity("words")}
                 />
               ) : activity === "listen" || activity === "spell" ? (
@@ -1007,6 +1105,12 @@ export default function CourseApp() {
                       >
                         {word.en}
                       </h2>
+                      <p
+                        className="kb-word-ipa"
+                        aria-label={`英式音标 /${word.ipa}/`}
+                      >
+                        /{word.ipa}/
+                      </p>
                       <div className="kb-word-translation">
                         <span>{word.zh}</span>
                         {progress.learned.includes(entryKey(currentEntry)) && (
@@ -1050,25 +1154,73 @@ export default function CourseApp() {
                         <span>{word.chunkType}</span>
                       </div>
                       <div className="kb-word-chunks">
-                        {word.chunks.map((chunk, index) => (
-                          <span
-                            key={index}
-                            className={
-                              chunk === " " || chunk === "-"
-                                ? "kb-chunk-divider"
-                                : ""
-                            }
-                          >
-                            {chunk === " " ? "·" : chunk}
-                          </span>
-                        ))}
+                        {word.chunks.map((chunk, index) =>
+                          chunk === " " || chunk === "-" ? (
+                            <span key={index} className="kb-chunk-divider">
+                              {chunk === " " ? "·" : chunk}
+                            </span>
+                          ) : (
+                            <button
+                              key={index}
+                              className={
+                                word.sounds[index] ? "" : "kb-silent-chunk"
+                              }
+                              aria-label={
+                                word.sounds[index]
+                                  ? `播放 ${word.en} 中 ${chunk} 的读音 /${word.sounds[index]}/`
+                                  : `${chunk} 在 ${word.en} 中不发音`
+                              }
+                              aria-pressed={
+                                audio.playingText === `${word.id}:${index}`
+                              }
+                              onClick={() => {
+                                if (word.sounds[index])
+                                  void audio.playSound(
+                                    word.sounds[index],
+                                    `${word.id}:${index}`,
+                                  );
+                                else {
+                                  audio.stop();
+                                  setNotice(
+                                    `${chunk} 在 ${word.en} 中不发音。`,
+                                  );
+                                }
+                              }}
+                            >
+                              <strong>{chunk}</strong>
+                              <small>
+                                {word.sounds[index]
+                                  ? `/${word.sounds[index]}/`
+                                  : "不发音"}
+                              </small>
+                              {word.sounds[index] ? (
+                                <Volume2 size={13} aria-hidden="true" />
+                              ) : (
+                                <VolumeX size={13} aria-hidden="true" />
+                              )}
+                            </button>
+                          ),
+                        )}
                       </div>
+                      <button
+                        className="kb-btn kb-blend-button"
+                        onClick={() =>
+                          audio.blending ? audio.stop() : audio.blend(word)
+                        }
+                        aria-label={
+                          audio.blending ? "停止连读" : "分块后连读完整单词"
+                        }
+                      >
+                        <Volume2 size={19} />
+                        {audio.blending ? "正在连读 · 点击停止" : "连起来读"}
+                        <ArrowRight size={17} />
+                      </button>
                       <div className="kb-word-tip">
                         <Lightbulb size={20} />
                         <p>{word.tip}</p>
                       </div>
                       <p className="kb-chunk-note">
-                        分块帮助看清规律，发音要连起来听；分块数不一定等于音节数。
+                        点击分块听读音，再连起来听完整单词。分块数不一定等于音节数；分块声音为合成示范。
                       </p>
                       <button
                         className="kb-btn kb-learn-next"
@@ -1329,9 +1481,7 @@ export default function CourseApp() {
           <div className="kb-audio-error" role="alert">
             <Volume2 size={18} />
             {audio.error}
-            <button onClick={() => void audio.play(audio.lastText || word.en)}>
-              重试
-            </button>
+            <button onClick={audio.retry}>重试</button>
           </div>
         )}
         {dialog && (

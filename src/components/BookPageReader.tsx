@@ -1,15 +1,30 @@
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Volume2,
+  ZoomIn,
+  ZoomOut,
+} from "lucide-react";
+import { bookHotspots } from "../data/bookHotspots";
+import type { CourseAudio } from "../hooks/useCourseAudio";
 import "./bookPages.css";
 
-function Page({ printedPage }: { printedPage: number }) {
+type ReaderProps = {
+  printedPage: number;
+  audio: CourseAudio;
+  beforeSpeak?: () => void;
+};
+function Page({ printedPage, audio, beforeSpeak }: ReaderProps) {
   const [page, setPage] = useState(printedPage);
   const [zoom, setZoom] = useState(1);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
   const [point, setPoint] = useState<{ x: number; y: number } | null>(null);
+  const hotspots = bookHotspots[page] ?? [];
   const go = (next: number) => {
     if (next < 4 || next > 95 || next === page) return;
+    audio.stop();
     setPage(next);
     setPoint(null);
     setLoaded(false);
@@ -100,6 +115,29 @@ function Page({ printedPage }: { printedPage: number }) {
               onError={() => setError(true)}
             />
           )}
+          {loaded &&
+            !error &&
+            hotspots.map((hotspot, index) => (
+              <button
+                key={`${page}:${index}`}
+                className="kb-book-word-hotspot"
+                data-kind={hotspot.kind}
+                style={{
+                  left: `${hotspot.x}%`,
+                  top: `${hotspot.y}%`,
+                  width: `${hotspot.width}%`,
+                  height: `${hotspot.height}%`,
+                }}
+                aria-label={`播放 ${hotspot.word} 单词发音（${hotspot.kind === "label" ? "词语标签" : "动物图片"}）`}
+                aria-pressed={audio.playingText === hotspot.word}
+                onClick={() => {
+                  beforeSpeak?.();
+                  void audio.play(hotspot.word);
+                }}
+              >
+                <Volume2 size={15} aria-hidden="true" />
+              </button>
+            ))}
           {point && loaded && (
             <span
               className="kb-book-point"
@@ -109,16 +147,15 @@ function Page({ printedPage }: { printedPage: number }) {
         </div>
       </div>
       <p className="kb-book-page-note">
-        点击原图可点指；放大后可左右滑动查看。
+        {hotspots.length
+          ? "点动物图片或带喇叭的词语标签，听单词英式发音（配套词典音频）。"
+          : "这一页暂支持点指，词语点读区域尚未配置。"}
+        放大后可左右滑动查看。
       </p>
     </section>
   );
 }
 
-export default function BookPageReader({
-  printedPage,
-}: {
-  printedPage: number;
-}) {
-  return <Page key={printedPage} printedPage={printedPage} />;
+export default function BookPageReader(props: ReaderProps) {
+  return <Page key={props.printedPage} {...props} />;
 }

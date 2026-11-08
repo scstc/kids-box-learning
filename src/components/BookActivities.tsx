@@ -23,6 +23,8 @@ import {
 import { useBookResources } from "../hooks/useBookResources";
 import "./bookActivities.css";
 import BookPageReader from "./BookPageReader";
+import type { CourseAudio } from "../hooks/useCourseAudio";
+import { bookHotspots } from "../data/bookHotspots";
 
 const icons = {
   point: Ear,
@@ -55,9 +57,11 @@ const activitiesLabel: Record<BookActivityKind, string> = {
 export default function BookActivities({
   unitId,
   onPractice,
+  audio,
 }: {
   unitId: number;
   onPractice: () => void;
+  audio: CourseAudio;
 }) {
   const activities = verifiedBookActivities[unitId] ?? [];
   const [selected, setSelected] = useState(activities[0]?.number ?? 1);
@@ -90,7 +94,8 @@ export default function BookActivities({
     setPoint(null);
     setMediaError("");
     player.current?.pause();
-  }, [resourceKey]);
+    audio.stop();
+  }, [resourceKey, audio.stop]);
   const mark = () => {
     const next = [...new Set([...completed, resourceKey])];
     setCompleted(next);
@@ -115,9 +120,7 @@ export default function BookActivities({
           FOLLOW THE BOOK, ACTIVITY BY ACTIVITY
         </span>
         <h2>暂时没有找到这个单元的课本活动。</h2>
-        <p>
-          请返回课程地图选择第 1–12 单元，或者先进行配套练习。
-        </p>
+        <p>请返回课程地图选择第 1–12 单元，或者先进行配套练习。</p>
         <div className="kb-book-type-preview">
           <span>
             <Ear size={18} />
@@ -307,6 +310,7 @@ export default function BookActivities({
                 controls
                 preload="metadata"
                 loop={loop}
+                onPlay={audio.stop}
                 onError={() =>
                   setMediaError(
                     "这条音频无法播放，请尝试 MP3、M4A 或 WAV 格式。",
@@ -319,16 +323,20 @@ export default function BookActivities({
               <Music size={23} />
               <div>
                 <strong>
-                  {activity.kind === "song"
-                    ? "原书歌曲尚未添加"
-                    : activity.kind === "story"
-                      ? "原版故事音频尚未添加"
-                      : "本活动原版音频尚未添加"}
+                  {bookHotspots[activity.page]?.length
+                    ? "动物图片和词语标签可以点读"
+                    : activity.kind === "song"
+                      ? "原书歌曲尚未添加"
+                      : activity.kind === "story"
+                        ? "原版故事音频尚未添加"
+                        : "本活动原版音频尚未添加"}
                 </strong>
                 <p>
-                  {activity.track
-                    ? `请添加 CD1 的第 ${activity.track} 轨，或使用纸质书配套的官方播放器。`
-                    : "如本项配有录音，请按原书图标选择对应音轨；也可先看图和家人练习。"}
+                  {bookHotspots[activity.page]?.length
+                    ? "播放的是配套单词英式发音；本活动原版整段录音尚待补充。"
+                    : activity.track
+                      ? `请添加 CD1 的第 ${activity.track} 轨，或使用纸质书配套的官方播放器。`
+                      : "如本项配有录音，请按原书图标选择对应音轨；也可先看图和家人练习。"}
                 </p>
               </div>
             </div>
@@ -362,7 +370,11 @@ export default function BookActivities({
               )}
             </div>
           ) : (
-            <BookPageReader printedPage={activity.page} />
+            <BookPageReader
+              printedPage={activity.page}
+              audio={audio}
+              beforeSpeak={() => player.current?.pause()}
+            />
           )}
           {mediaError && (
             <p className="kb-book-resource-error" role="alert">
