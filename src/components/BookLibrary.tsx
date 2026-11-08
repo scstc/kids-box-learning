@@ -60,6 +60,7 @@ export default function BookLibrary({
               ))}
             </ol>
           )}
+          <details className="kb-book-parent-tools"><summary>家长：补充本板块录音</summary>
           <div className="kb-book-resource-buttons">
             <label>
               <FileAudio size={18} />
@@ -77,6 +78,7 @@ export default function BookLibrary({
               />
             </label>
           </div>
+          </details>
           {resources.error && <p role="alert">{resources.error}</p>}
           {resources.urls.audio ? (
             <audio
@@ -90,7 +92,7 @@ export default function BookLibrary({
             />
           ) : (
             <p>
-              原版录音尚未添加。可以先看图练习；听力、歌谣需要相应的教材录音。
+              点击下方书页上的蓝色 CD 图标，播放对应原版录音。
             </p>
           )}
           <BookPageReader

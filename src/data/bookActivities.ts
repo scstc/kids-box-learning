@@ -1,3 +1,5 @@
+import { findBookAudio } from "./bookAudio";
+
 export type BookActivityKind =
   | "point"
   | "repeat"
@@ -19,6 +21,7 @@ export type BookActivity = {
   zh: string;
   kind: BookActivityKind;
   track: number | null;
+  disc?: number;
   focus: string;
   instruction: string;
 };
@@ -505,7 +508,8 @@ for (const [unit, sequence] of Object.entries(unitSequences)) {
       zh,
       kind,
       instruction,
-      track: null, // Do not infer disc/track numbers from OCR of tiny audio icons.
+      track: findBookAudio(unitStartPages[Number(unit) - 1] + Math.floor(index / 2), index + 1)?.track ?? null,
+      disc: Math.ceil(Number(unit) / 3),
       focus: "对照原书页面练习",
     };
   });

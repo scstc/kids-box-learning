@@ -7,6 +7,8 @@ import {
   ZoomOut,
 } from "lucide-react";
 import { bookHotspots } from "../data/bookHotspots";
+import { bookAudioReferences, type BookAudioReference } from "../data/bookAudio";
+import { mediaUrl } from "../data/media";
 import type { CourseAudio } from "../hooks/useCourseAudio";
 import "./bookPages.css";
 
@@ -14,12 +16,22 @@ type ReaderProps = {
   printedPage: number;
   audio: CourseAudio;
   beforeSpeak?: () => void;
+  onPageChange?: (page: number) => void;
+  fitPage?: boolean;
 };
-function Page({ printedPage, audio, beforeSpeak }: ReaderProps) {
+function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage }: ReaderProps) {
   const [page, setPage] = useState(printedPage);
   const [zoom, setZoom] = useState(1);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
+  const [retry, setRetry] = useState(0);
+  const [selected, setSelected] = useState<BookAudioReference | null>(null);
+  const [mediaError, setMediaError] = useState("");
+  const [loop, setLoop] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const player = useRef<HTMLAudioElement>(null);
+  const scroll = useRef<HTMLDivElement>(null);
+  const tracks = bookAudioReferences.filter((ref) => ref.page === page);
   const [point, setPoint] = useState<{ x: number; y: number } | null>(null);
   const hotspots = bookHotspots[page] ?? [];
   const board = useRef<HTMLDivElement>(null);
@@ -35,6 +47,19 @@ function Page({ printedPage, audio, beforeSpeak }: ReaderProps) {
     observer.observe(board.current);
     return () => observer.disconnect();
   }, []);
+  const playTrack = (track: BookAudioReference) => {
+    beforeSpeak?.();
+    audio.stop();
+    player.current?.pause();
+    setSelected(track);
+    setMediaError("");
+    if (!track.file || !player.current) return;
+    player.current.src = mediaUrl(track.file);
+    void player.current.play().catch((error: unknown) => {
+      if (!(error instanceof DOMException && error.name === "AbortError"))
+        setMediaError("录音未能播放，请检查音量后重试。");
+    });
+  };
   const speakerSide = (index: number) => {
     const hotspot = hotspots[index];
     if (hotspot.kind !== "label" || !imageSize.height) return "hidden";
@@ -64,13 +89,19 @@ function Page({ printedPage, audio, beforeSpeak }: ReaderProps) {
   const go = (next: number) => {
     if (next < 4 || next > 95 || next === page) return;
     audio.stop();
+    player.current?.pause();
+    player.current?.removeAttribute("src");
+    setSelected(null);
+    setMediaError("");
     setPage(next);
+    onPageChange?.(next);
+    scroll.current?.scrollTo(0, 0);
     setPoint(null);
     setLoaded(false);
     setError(false);
   };
   return (
-    <section className="kb-book-reader" aria-label="原书页面">
+    <section className={`kb-book-reader${fitPage ? " kb-reader-fit" : ""}`} aria-label="原书页面">
       <div className="kb-book-page-toolbar">
         <button
           aria-label="原书上一页"
@@ -117,6 +148,28 @@ function Page({ printedPage, audio, beforeSpeak }: ReaderProps) {
           <ZoomIn size={19} />
         </button>
       </div>
+      <div className="kb-reader-tracks" aria-label="本页原版录音">
+        {tracks.map((track) => (
+          <button
+            key={track.activity}
+            aria-pressed={selected?.activity === track.activity}
+            onClick={() => playTrack(track)}
+          >
+            <Volume2 size={17} />活动 {track.activity} · CD{track.disc}/{track.track}
+            {!track.file && "（缺少录音）"}
+          </button>
+        ))}
+        {tracks.length > 0 && <label><input type="checkbox" checked={loop} onChange={(event) => setLoop(event.target.checked)} />循环</label>}
+      </div>
+      <div className="kb-reader-audio" hidden={!selected?.file}>
+        <audio ref={player} controls preload="none" loop={loop}
+          aria-label="课本点读播放器"
+          onPlay={() => { audio.stop(); setIsPlaying(true); }}
+          onPause={() => setIsPlaying(false)} onEnded={() => setIsPlaying(false)}
+          onError={() => setMediaError("录音未能加载，请重试。")} />
+      </div>
+      {selected && !selected.file && <p role="status">配套文件中缺少 CD{selected.disc} 第 {selected.track} 轨（本页活动 {selected.activity}）。</p>}
+      {mediaError && <p role="alert">{mediaError}<button onClick={() => selected && playTrack(selected)}>重试录音</button></p>}
       {!loaded && !error && <p role="status">正在打开原书页面…</p>}
       {error && (
         <p role="alert">
@@ -125,17 +178,18 @@ function Page({ printedPage, audio, beforeSpeak }: ReaderProps) {
             onClick={() => {
               setError(false);
               setLoaded(false);
+              setRetry((value) => value + 1);
             }}
           >
             重试
           </button>
         </p>
       )}
-      <div className="kb-book-page-scroll" aria-busy={!loaded && !error}>
+      <div ref={scroll} className="kb-book-page-scroll" aria-busy={!loaded && !error}>
         <div
           ref={board}
           className="kb-book-page-image"
-          style={{ width: `${zoom * 100}%` }}
+          style={{ width: fitPage ? `min(${zoom * 100}%, calc(var(--reader-page-height) * ${1259 / 1600 * zoom}))` : `${zoom * 100}%` }}
           onPointerDown={(event) => {
             const bounds = event.currentTarget.getBoundingClientRect();
             setPoint({
@@ -146,7 +200,7 @@ function Page({ printedPage, audio, beforeSpeak }: ReaderProps) {
         >
           {!error && (
             <img
-              key={page}
+              key={`${page}:${retry}`}
               src={`${import.meta.env.BASE_URL}book-pages/page-${String(page).padStart(3, "0")}.jpg`}
               alt={`原书第 ${page} 页`}
               decoding="async"
@@ -173,12 +227,21 @@ function Page({ printedPage, audio, beforeSpeak }: ReaderProps) {
                 aria-pressed={audio.playingText === hotspot.word}
                 onClick={() => {
                   beforeSpeak?.();
+                  player.current?.pause();
                   void audio.play(hotspot.word);
                 }}
               >
                 <Volume2 size={15} aria-hidden="true" />
               </button>
             ))}
+          {loaded && !error && tracks.map((track) => (
+            <button key={`cd:${track.activity}`} className="kb-book-cd-hotspot"
+              style={{ left: `${track.x}%`, top: `${track.y}%`, width: `${track.width}%`, height: `${track.height}%` }}
+              aria-label={`播放本页活动 ${track.activity}，CD${track.disc} 第 ${track.track} 轨${track.file ? "" : "，缺少录音"}`}
+              aria-pressed={selected?.activity === track.activity && isPlaying}
+              data-missing={!track.file || undefined}
+              onClick={() => playTrack(track)} />
+          ))}
           {point && loaded && (
             <span
               className="kb-book-point"
@@ -188,9 +251,8 @@ function Page({ printedPage, audio, beforeSpeak }: ReaderProps) {
         </div>
       </div>
       <p className="kb-book-page-note">
-        {hotspots.length
-          ? "点词语标签即可听配套英式发音。宠物、野生动物和颜色页也支持点图片区域。"
-          : "这一页暂支持点指，词语点读区域尚未配置。"}
+        {tracks.length ? "点书上的蓝色 CD 图标，听本项原版录音。" : "本页没有 CD 录音标记。"}
+        {hotspots.length > 0 && " 点带边框的词语可听配套英式发音。"}
         放大后可左右滑动查看。
       </p>
     </section>

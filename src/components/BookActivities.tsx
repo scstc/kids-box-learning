@@ -24,7 +24,8 @@ import { useBookResources } from "../hooks/useBookResources";
 import "./bookActivities.css";
 import BookPageReader from "./BookPageReader";
 import type { CourseAudio } from "../hooks/useCourseAudio";
-import { bookHotspots } from "../data/bookHotspots";
+import { findBookAudio } from "../data/bookAudio";
+import { mediaUrl } from "../data/media";
 
 const icons = {
   point: Ear,
@@ -86,6 +87,8 @@ export default function BookActivities({
     activities[0];
   const resourceKey = `book1:unit${unitId}:activity${activity?.number ?? 0}`;
   const resources = useBookResources(resourceKey);
+  const original = activity && findBookAudio(activity.page, activity.number);
+  const audioSource = resources.urls.audio ?? (original?.file ? mediaUrl(original.file) : undefined);
   const player = useRef<HTMLAudioElement>(null);
   useEffect(() => {
     setSelected(activities[0]?.number ?? 1);
@@ -222,8 +225,8 @@ export default function BookActivities({
             </span>
             <span>
               {activity.track
-                ? `CD1 · Track ${String(activity.track).padStart(2, "0")}`
-                : "录音编号请看原书图标"}
+                ? `CD${original?.disc ?? 1} · Track ${String(activity.track).padStart(2, "0")}`
+                : "看图互动活动"}
             </span>
           </div>
           <span className="kb-book-kind">
@@ -245,8 +248,8 @@ export default function BookActivities({
             <div className="kb-private-book-notice">
               <Upload size={17} />
               <p>
-                教材图片已就绪。补充添加的音频和照片
-                <strong>只保存在本设备</strong>。 歌曲、歌谣与故事需要原版录音。
+                原版图页和配套录音已内置。补充添加的音频和照片
+                <strong>只保存在本设备</strong>。
               </p>
             </div>
             <div className="kb-book-resource-buttons">
@@ -288,11 +291,11 @@ export default function BookActivities({
               </p>
             )}
           </details>
-          {resources.urls.audio ? (
+          {audioSource ? (
             <div className="kb-book-player">
               <div>
                 <FileAudio size={17} />
-                <span>{resources.resources.audio?.name}</span>
+                <span>{resources.resources.audio?.name ?? `原版录音 · CD${original?.disc} / ${original?.track}`}</span>
                 <label>
                   <input
                     type="checkbox"
@@ -304,9 +307,9 @@ export default function BookActivities({
                 </label>
               </div>
               <audio
-                key={resources.urls.audio}
+                key={audioSource}
                 ref={player}
-                src={resources.urls.audio}
+                src={audioSource}
                 controls
                 preload="metadata"
                 loop={loop}
@@ -323,20 +326,12 @@ export default function BookActivities({
               <Music size={23} />
               <div>
                 <strong>
-                  {bookHotspots[activity.page]?.length
-                    ? "本页已支持词语点读"
-                    : activity.kind === "song"
-                      ? "原书歌曲尚未添加"
-                      : activity.kind === "story"
-                        ? "原版故事音频尚未添加"
-                        : "本活动原版音频尚未添加"}
+                  {original ? "配套文件中缺少这一轨录音" : "看图、动手，和家人一起练习"}
                 </strong>
                 <p>
-                  {bookHotspots[activity.page]?.length
-                    ? "播放的是配套单词英式发音；本活动原版整段录音尚待补充。"
-                    : activity.track
-                      ? `请添加 CD1 的第 ${activity.track} 轨，或使用纸质书配套的官方播放器。`
-                      : "如本项配有录音，请按原书图标选择对应音轨；也可先看图和家人练习。"}
+                  {original
+                    ? `缺少 CD${original.disc} 第 ${original.track} 轨（第 ${activity.page} 页活动 ${activity.number}），可在家长工具中补充。`
+                    : "本活动没有 CD 标记，可按原书示例练习。"}
                 </p>
               </div>
             </div>

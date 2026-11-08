@@ -60,9 +60,7 @@ describe("课本活动的来源与顺序", () => {
     );
     for (let unit = 2; unit <= 12; unit++) {
       expect(verifiedBookActivities[unit]).toHaveLength(12);
-      expect(
-        verifiedBookActivities[unit].every((item) => item.track === null),
-      ).toBe(true);
+      expect(verifiedBookActivities[unit].find((item) => item.kind === "song")?.track).toBeTypeOf("number");
     }
   });
   it("原书正文图页随应用完整打包，安卓离线使用不要求家长再次导入PDF", () => {

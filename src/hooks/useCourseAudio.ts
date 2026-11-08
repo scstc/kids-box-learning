@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { audioKey, type CourseWord } from "../data/course";
 import { soundKey } from "../data/pronunciations";
+import { pauseOtherMedia } from "../data/media";
 
 export function useCourseAudio() {
   const player = useRef<HTMLAudioElement | null>(null);
@@ -30,6 +31,7 @@ export function useCourseAudio() {
       if (!sequence) stop();
       const current = request.current;
       if (sequence && sequence.id !== current) return;
+      pauseOtherMedia();
       setError("");
       setLastText(text);
       lastRequest.current = { text, path, slow };

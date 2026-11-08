@@ -30,10 +30,14 @@ import App from "./App";
 import WordArt, { unitIcons } from "./components/WordArt";
 import BookActivities from "./components/BookActivities";
 import BookLibrary from "./components/BookLibrary";
+import BookMedia from "./components/BookMedia";
+import FullscreenBook from "./components/FullscreenBook";
+import { pauseOtherMedia } from "./data/media";
 import SpellingInput from "./components/SpellingInput";
 import {
   additionalBookSections,
   verifiedBookActivities,
+  unitStartPages,
 } from "./data/bookActivities";
 import AnimatedContent from "./components/reactbits/AnimatedContent";
 import ClickSpark from "./components/reactbits/ClickSpark";
@@ -56,7 +60,7 @@ import "./course.css";
 import { matchesSpelling } from "./data/spelling";
 
 type View = "map" | "lesson" | "review" | "passport" | "legacy" | "library";
-type Activity = "book" | "words" | "sentences" | "listen" | "spell";
+type Activity = "book" | "words" | "sentences" | "listen" | "spell" | "media";
 type Game = {
   questions: WordEntry[];
   round: number;
@@ -116,6 +120,7 @@ function newRound(questions: WordEntry[], round = 0, firstTry = 0): Game {
 
 export default function CourseApp() {
   const [view, setView] = useState<View>("map");
+  const [readerPage, setReaderPage] = useState<number | null>(null);
   const [unitId, setUnitId] = useState(1);
   const [bookGroup, setBookGroup] = useState("CLIL");
   const [wordIndex, setWordIndex] = useState(0);
@@ -137,6 +142,25 @@ export default function CourseApp() {
   const { progress, learn, incorrect, correct, visit, reset, storageError } =
     useCourseProgress();
   const audio = useCourseAudio();
+  useEffect(() => {
+    const onPlay = (event: Event) => {
+      if (!(event.target instanceof HTMLMediaElement)) return;
+      audio.stop();
+      pauseOtherMedia(event.target);
+    };
+    document.addEventListener("play", onPlay, true);
+    return () => document.removeEventListener("play", onPlay, true);
+  }, [audio.stop]);
+  const openReader = (page?: number) => {
+    audio.stop();
+    pauseOtherMedia();
+    let next = page ?? 4;
+    if (page === undefined) {
+      try { const saved = Number(localStorage.getItem("kids-box-reader-page-v1")); if (Number.isInteger(saved) && saved >= 4 && saved <= 95) next = saved; } catch { /* Start at the first page. */ }
+    }
+    setReaderPage(next);
+    if (!document.fullscreenElement) void document.documentElement.requestFullscreen?.().catch(() => {});
+  };
   const unit = courseUnits.find((unit) => unit.id === unitId)!;
   const word = unit.words[wordIndex];
   const currentEntry = { unitId, word };
@@ -573,6 +597,7 @@ export default function CourseApp() {
             </div>
           </button>
           <nav aria-label="课程导航">
+            <button onClick={() => openReader()}><BookOpen size={18} /><span>课本点读</span></button>
             <button
               aria-current={
                 view === "map" || view === "lesson" ? "page" : undefined
@@ -875,7 +900,7 @@ export default function CourseApp() {
                   <strong>按课本活动学习，配套练习帮助巩固。</strong>
                   <p>
                     已按你提供的电子书核对全部 12 个单元的 144
-                    项活动，并整理跨学科、价值观、复习和语法参考页。词语、例句和游戏为原创配套练习；原版录音需另行添加。
+                    项活动，并整理跨学科、价值观、复习和语法参考页。原版音频、视频和闪卡已内置，可直接打开课本点读。
                   </p>
                   <a href={courseSource} target="_blank" rel="noreferrer">
                     查看第二版单元目录
@@ -963,6 +988,7 @@ export default function CourseApp() {
                 {(
                   [
                     { id: "book", title: "课本活动", Icon: BookOpen },
+                    { id: "media", title: "视频与闪卡", Icon: Layers3 },
                     { id: "words", title: "词语探险", Icon: Ear },
                     { id: "sentences", title: "情景说一说", Icon: AudioLines },
                     { id: "listen", title: "听音找朋友", Icon: Headphones },
@@ -987,6 +1013,7 @@ export default function CourseApp() {
                   </button>
                 ))}
               </div>
+              <button className="kb-btn kb-btn-secondary" onClick={() => openReader(unitStartPages[unit.id - 1])}><BookOpen size={18} />全屏课本点读</button>
               {activity === "book" ? (
                 <BookActivities
                   key={unit.id}
@@ -994,6 +1021,8 @@ export default function CourseApp() {
                   audio={audio}
                   onPractice={() => setActivity("words")}
                 />
+              ) : activity === "media" ? (
+                <BookMedia key={unit.id} unitId={unit.id} audio={audio} />
               ) : activity === "listen" || activity === "spell" ? (
                 renderGame()
               ) : activity === "sentences" ? (
@@ -1506,7 +1535,7 @@ export default function CourseApp() {
                   5–10 分钟就很好。
                 </p>
                 <p>
-                  「课本活动」已包含对应的原书页面，直接点开就能学习。跨学科、价值观、复习和语法参考在课程地图底部。原版录音可在对应活动内另行添加。
+                  「课本点读」全屏显示原书页面，点蓝色 CD 图标听原版录音。单元内可查看视频、歌曲伴奏和原版闪卡。跨学科、价值观、复习和语法参考在课程地图底部。
                 </p>
                 <div className="kb-parent-steps">
                   <p>
@@ -1556,6 +1585,7 @@ export default function CourseApp() {
             )}
           </CourseDialog>
         )}
+        {readerPage !== null && <FullscreenBook initialPage={readerPage} audio={audio} onClose={() => setReaderPage(null)} />}
       </div>
     </ClickSpark>
   );

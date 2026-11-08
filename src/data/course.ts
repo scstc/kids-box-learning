@@ -28,7 +28,7 @@ export const courseSource =
   "https://www.blinklearning.com/coursePlayer/curso2.php?idcurso=164001";
 export const courseEdition = "Kid’s Box · 第二版 · 第 1 册";
 export const contentNote =
-  "原书活动和图页已按你提供的第1册电子书整理。词汇、例句与游戏为原创配套编排；歌曲、歌谣和故事的原版录音仍需补充。";
+  "原书活动、图页及配套音视频和闪卡已按你提供的第1册资源整理。词汇、例句与游戏为原创配套编排；缺少的原版音轨会在对应活动中标明。";
 
 export function audioKey(text: string): string {
   return text
