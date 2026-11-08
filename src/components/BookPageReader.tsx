@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ChevronLeft,
   ChevronRight,
@@ -22,6 +22,45 @@ function Page({ printedPage, audio, beforeSpeak }: ReaderProps) {
   const [error, setError] = useState(false);
   const [point, setPoint] = useState<{ x: number; y: number } | null>(null);
   const hotspots = bookHotspots[page] ?? [];
+  const board = useRef<HTMLDivElement>(null);
+  const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
+  useEffect(() => {
+    if (!board.current) return;
+    const observer = new ResizeObserver(([entry]) => {
+      setImageSize({
+        width: entry.contentRect.width,
+        height: entry.contentRect.height,
+      });
+    });
+    observer.observe(board.current);
+    return () => observer.disconnect();
+  }, []);
+  const speakerSide = (index: number) => {
+    const hotspot = hotspots[index];
+    if (hotspot.kind !== "label" || !imageSize.height) return "hidden";
+    const left = (hotspot.x / 100) * imageSize.width;
+    const top = (hotspot.y / 100) * imageSize.height;
+    const width = Math.max(44, (hotspot.width / 100) * imageSize.width);
+    const height = Math.max(44, (hotspot.height / 100) * imageSize.height);
+    const y = top + height / 2 - 11;
+    for (const side of ["right", "left"] as const) {
+      const x = side === "right" ? left + width + 6 : left - 28;
+      if (x < 0 || x + 22 > imageSize.width) continue;
+      const overlaps = hotspots.some((other, otherIndex) => {
+        if (otherIndex === index || other.kind !== "label") return false;
+        const otherLeft = (other.x / 100) * imageSize.width;
+        const otherTop = (other.y / 100) * imageSize.height;
+        return (
+          x < otherLeft + (other.width / 100) * imageSize.width + 2 &&
+          x + 22 > otherLeft - 2 &&
+          y < otherTop + (other.height / 100) * imageSize.height + 2 &&
+          y + 22 > otherTop - 2
+        );
+      });
+      if (!overlaps) return side;
+    }
+    return "hidden";
+  };
   const go = (next: number) => {
     if (next < 4 || next > 95 || next === page) return;
     audio.stop();
@@ -94,6 +133,7 @@ function Page({ printedPage, audio, beforeSpeak }: ReaderProps) {
       )}
       <div className="kb-book-page-scroll" aria-busy={!loaded && !error}>
         <div
+          ref={board}
           className="kb-book-page-image"
           style={{ width: `${zoom * 100}%` }}
           onPointerDown={(event) => {
@@ -122,6 +162,7 @@ function Page({ printedPage, audio, beforeSpeak }: ReaderProps) {
                 key={`${page}:${index}`}
                 className="kb-book-word-hotspot"
                 data-kind={hotspot.kind}
+                data-speaker-side={speakerSide(index)}
                 style={{
                   left: `${hotspot.x}%`,
                   top: `${hotspot.y}%`,
@@ -148,7 +189,7 @@ function Page({ printedPage, audio, beforeSpeak }: ReaderProps) {
       </div>
       <p className="kb-book-page-note">
         {hotspots.length
-          ? "点带喇叭的词语标签，听配套英式发音。宠物、野生动物和颜色页也支持点图片区域。"
+          ? "点词语标签即可听配套英式发音。宠物、野生动物和颜色页也支持点图片区域。"
           : "这一页暂支持点指，词语点读区域尚未配置。"}
         放大后可左右滑动查看。
       </p>

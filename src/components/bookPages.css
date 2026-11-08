@@ -74,18 +74,23 @@
 }
 .kb-book-word-hotspot > svg {
   position: absolute;
-  right: -9px;
-  top: -9px;
+  left: calc(100% + 6px);
+  top: 50%;
+  transform: translateY(-50%);
   background: #fffdf2;
   color: #526c3d;
-  padding: 4px;
-  width: 25px;
-  height: 25px;
+  padding: 3px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   box-shadow: 0 1px 4px #526c3d44;
 }
-.kb-book-word-hotspot[data-kind="picture"] > svg {
-  opacity: 0;
+.kb-book-word-hotspot[data-speaker-side="left"] > svg {
+  left: auto;
+  right: calc(100% + 6px);
+}
+.kb-book-word-hotspot[data-speaker-side="hidden"] > svg {
+  display: none;
 }
 .kb-book-word-hotspot:hover,
 .kb-book-word-hotspot[aria-pressed="true"] {
