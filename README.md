@@ -31,7 +31,7 @@ npm run preview
 
 ```powershell
 npm run build -- --base /learn-english/
-npm run preview
+npm run preview -- --base /learn-english/
 ```
 
 然后打开预览地址下的 `/learn-english/` 路径。
