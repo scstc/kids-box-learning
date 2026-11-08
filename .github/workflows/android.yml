@@ -40,8 +40,9 @@ jobs:
       - name: Build APK
         run: |
           chmod +x android/gradlew
-          # CI needs the runtime distribution; the all archive also downloads sources/docs.
-          sed -i 's/-all.zip/-bin.zip/' android/gradle/wrapper/gradle-wrapper.properties
+          # GitHub's Gradle release download returns 504; use a mirror with Gradle's published SHA-256.
+          sed -i -e 's#services.gradle.org/distributions/#repo.huaweicloud.com/gradle/#' -e 's/-all.zip/-bin.zip/' android/gradle/wrapper/gradle-wrapper.properties
+          printf '\ndistributionSha256Sum=bd71102213493060956ec229d946beee57158dbd89d0e62b91bca0fa2c5f3531\n' >> android/gradle/wrapper/gradle-wrapper.properties
           npm run android:build
       - name: Upload installable APK
         uses: actions/upload-artifact@v4
