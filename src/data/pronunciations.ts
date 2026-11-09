@@ -1,3 +1,5 @@
+import { additionalWordDetails } from "./additionalVocabulary.ts";
+
 export type WordPronunciation = { ipa: string; sounds: string[] };
 const p = (ipa: string, sounds: string): WordPronunciation => ({
   ipa,
@@ -8,6 +10,7 @@ const p = (ipa: string, sounds: string): WordPronunciation => ({
 // Sounds follow this course's spelling chunks; an empty sound is silent or a separator.
 // Consonants shared across spelling chunks are sounded once (hip|po → hɪp|əʊ).
 export const wordPronunciations: Record<string, WordPronunciation> = {
+  ...Object.fromEntries(Object.values(additionalWordDetails).map(({ en, ipa, sounds }) => [en, { ipa, sounds }])),
   hello: p("həˈləʊ", "hə|ləʊ"),
   goodbye: p("ˌɡʊdˈbaɪ", "ɡʊd|baɪ"),
   red: p("red", "r|e|d"),

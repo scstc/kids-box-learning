@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 import { spawn } from "node:child_process";
 import { audioKey, getAudioItems } from "../src/data/course.ts";
 import { bookHotspots } from "../src/data/bookHotspots.ts";
+import { starterSounds } from "../src/data/starter.ts";
 
 const directory = fileURLToPath(
   new URL("../public/course-audio/", import.meta.url),
@@ -12,6 +13,7 @@ const queue = [
   ...new Map(
     [
       ...getAudioItems().filter((item) => !/[.!?]/.test(item.text)),
+      ...starterSounds.map(({ example }) => ({ key: audioKey(example), text: example })),
       ...Object.values(bookHotspots)
         .flat()
         .map(({ word }) => ({ key: audioKey(word), text: word })),

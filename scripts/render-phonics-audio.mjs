@@ -1,10 +1,11 @@
 // One-time build tool. Install the synthesizer in ignored artifacts, not the app:
 // npm install --prefix artifacts/phonics-tools --no-save --no-package-lock @echogarden/espeak-ng-emscripten@0.3.5
-import { mkdir, writeFile, readFile } from "node:fs/promises";
+import { mkdir, writeFile, readFile, stat } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import createModule from "../artifacts/phonics-tools/node_modules/@echogarden/espeak-ng-emscripten/espeak-ng.js";
 import { wordPronunciations, soundKey } from "../src/data/pronunciations.ts";
+import { starterLetters, starterSounds } from "../src/data/starter.ts";
 
 const module = await createModule({
   locateFile: (name) =>
@@ -33,6 +34,7 @@ const phonemes = {
   eɪ: "eI",
   aɪ: "aI",
   aʊ: "aU",
+  ɔɪ: "OI",
   əʊ: "@U",
   eə: "e@",
   ɪə: "I@",
@@ -68,10 +70,12 @@ function toEspeak(ipa) {
 }
 const report = [];
 for (const ipa of new Set(
-  Object.values(wordPronunciations)
+  [...Object.values(wordPronunciations)
     .flatMap((word) => word.sounds)
-    .filter(Boolean),
+    .filter(Boolean), ...starterLetters.map(letter => letter.ipa), ...starterSounds.map(sound => sound.ipa)],
 )) {
+  const target = fileURLToPath(new URL(`${soundKey(ipa)}.mp3`, directory));
+  if (await stat(target).then(file => file.size > 500).catch(() => false)) continue;
   const mnemonic = toEspeak(ipa);
   const chunks = [];
   voice.synthesize(`[[${mnemonic}]]`, (samples) => {
@@ -82,7 +86,6 @@ for (const ipa of new Set(
   });
   const pcm = Buffer.concat(chunks);
   if (pcm.length < 500) throw new Error(`Empty sound: ${ipa}`);
-  const target = fileURLToPath(new URL(`${soundKey(ipa)}.mp3`, directory));
   const result = spawnSync(
     "ffmpeg",
     [

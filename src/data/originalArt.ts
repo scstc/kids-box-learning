@@ -1311,6 +1311,950 @@ export const originalWordArt: Record<string, OriginalArt> = {
         60
       ]
     }
+  },
+  "1:suzy": {
+    "file": "book-art/card-001.png",
+    "width": 284,
+    "height": 493,
+    "source": {
+      "kind": "flashcard",
+      "number": 1
+    }
+  },
+  "1:simon": {
+    "file": "book-art/card-003.png",
+    "width": 296,
+    "height": 599,
+    "source": {
+      "kind": "flashcard",
+      "number": 3
+    }
+  },
+  "1:stella": {
+    "file": "book-art/card-005.png",
+    "width": 258,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 5
+    }
+  },
+  "1:mrs-star": {
+    "file": "book-art/card-007.png",
+    "width": 232,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 7
+    }
+  },
+  "1:mr-star": {
+    "file": "book-art/card-009.png",
+    "width": 240,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 9
+    }
+  },
+  "1:maskman": {
+    "file": "book-art/card-011.png",
+    "width": 411,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 11
+    }
+  },
+  "1:marie": {
+    "file": "book-art/card-013.png",
+    "width": 293,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 13
+    }
+  },
+  "1:monty": {
+    "file": "book-art/card-015.png",
+    "width": 381,
+    "height": 517,
+    "source": {
+      "kind": "flashcard",
+      "number": 15
+    }
+  },
+  "1:meera": {
+    "file": "book-art/card-037.png",
+    "width": 278,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 37
+    }
+  },
+  "1:star": {
+    "file": "book-art/extra-star.webp",
+    "width": 170,
+    "height": 135,
+    "source": {
+      "kind": "pdf",
+      "page": 8,
+      "rect": [
+        226,
+        560,
+        170,
+        135
+      ]
+    }
+  },
+  "2:alex": {
+    "file": "book-art/card-065.png",
+    "width": 212,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 65
+    }
+  },
+  "2:lenny": {
+    "file": "book-art/card-067.png",
+    "width": 253,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 67
+    }
+  },
+  "2:pink": {
+    "file": "book-art/card-043.png",
+    "width": 527,
+    "height": 464,
+    "source": {
+      "kind": "flashcard",
+      "number": 43
+    }
+  },
+  "2:blue": {
+    "file": "book-art/card-051.png",
+    "width": 527,
+    "height": 464,
+    "source": {
+      "kind": "flashcard",
+      "number": 51
+    }
+  },
+  "3:on": {
+    "file": "book-art/extra-on.png",
+    "width": 600,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 57
+    }
+  },
+  "3:under": {
+    "file": "book-art/extra-under.png",
+    "width": 600,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 57
+    }
+  },
+  "4:ugly": {
+    "file": "book-art/extra-ugly.webp",
+    "width": 240,
+    "height": 300,
+    "source": {
+      "kind": "pdf",
+      "page": 26,
+      "rect": [
+        365,
+        545,
+        240,
+        300
+      ]
+    }
+  },
+  "4:old": {
+    "file": "book-art/extra-old.webp",
+    "width": 230,
+    "height": 350,
+    "source": {
+      "kind": "pdf",
+      "page": 26,
+      "rect": [
+        160,
+        775,
+        230,
+        350
+      ]
+    }
+  },
+  "4:young": {
+    "file": "book-art/extra-young.webp",
+    "width": 180,
+    "height": 310,
+    "source": {
+      "kind": "pdf",
+      "page": 26,
+      "rect": [
+        367,
+        1000,
+        180,
+        310
+      ]
+    }
+  },
+  "4:beautiful": {
+    "file": "book-art/extra-beautiful.webp",
+    "width": 157,
+    "height": 480,
+    "source": {
+      "kind": "pdf",
+      "page": 26,
+      "rect": [
+        1020,
+        575,
+        200,
+        610
+      ]
+    }
+  },
+  "5:dirty": {
+    "file": "book-art/extra-dirty.webp",
+    "width": 455,
+    "height": 200,
+    "source": {
+      "kind": "pdf",
+      "page": 36,
+      "rect": [
+        300,
+        220,
+        455,
+        200
+      ]
+    }
+  },
+  "5:clean": {
+    "file": "book-art/extra-clean.webp",
+    "width": 250,
+    "height": 470,
+    "source": {
+      "kind": "pdf",
+      "page": 36,
+      "rect": [
+        865,
+        260,
+        250,
+        470
+      ]
+    }
+  },
+  "5:ten": {
+    "file": "book-art/card-035.png",
+    "width": 476,
+    "height": 483,
+    "source": {
+      "kind": "flashcard",
+      "number": 35
+    }
+  },
+  "5:red": {
+    "file": "book-art/card-039.png",
+    "width": 527,
+    "height": 464,
+    "source": {
+      "kind": "flashcard",
+      "number": 39
+    }
+  },
+  "6:body": {
+    "file": "book-art/card-107.png",
+    "width": 479,
+    "height": 478,
+    "source": {
+      "kind": "flashcard",
+      "number": 107
+    }
+  },
+  "6:teeth": {
+    "file": "book-art/card-115.png",
+    "width": 485,
+    "height": 483,
+    "source": {
+      "kind": "flashcard",
+      "number": 115
+    }
+  },
+  "6:ears": {
+    "file": "book-art/extra-ears.png",
+    "width": 520,
+    "height": 440,
+    "source": {
+      "kind": "pdf",
+      "page": 40,
+      "rect": [
+        434,
+        445,
+        112,
+        176
+      ]
+    }
+  },
+  "6:eyes": {
+    "file": "book-art/extra-eyes.png",
+    "width": 520,
+    "height": 440,
+    "source": {
+      "kind": "flashcard",
+      "number": 109
+    }
+  },
+  "6:green": {
+    "file": "book-art/card-045.png",
+    "width": 527,
+    "height": 464,
+    "source": {
+      "kind": "flashcard",
+      "number": 45
+    }
+  },
+  "6:brown": {
+    "file": "book-art/card-083.png",
+    "width": 527,
+    "height": 464,
+    "source": {
+      "kind": "flashcard",
+      "number": 83
+    }
+  },
+  "6:frog": {
+    "file": "book-art/extra-frog.webp",
+    "width": 180,
+    "height": 160,
+    "source": {
+      "kind": "pdf",
+      "page": 44,
+      "rect": [
+        95,
+        525,
+        180,
+        160
+      ]
+    }
+  },
+  "7:foot": {
+    "file": "book-art/word-6-foot.webp",
+    "width": 160,
+    "height": 105,
+    "source": {
+      "kind": "pdf",
+      "page": 40,
+      "rect": [
+        415,
+        791,
+        160,
+        105
+      ]
+    }
+  },
+  "7:hand": {
+    "file": "book-art/word-6-hand.webp",
+    "width": 125,
+    "height": 155,
+    "source": {
+      "kind": "pdf",
+      "page": 40,
+      "rect": [
+        764,
+        535,
+        125,
+        155
+      ]
+    }
+  },
+  "7:arm": {
+    "file": "book-art/extra-arm.webp",
+    "width": 100,
+    "height": 220,
+    "source": {
+      "kind": "pdf",
+      "page": 50,
+      "rect": [
+        790,
+        325,
+        100,
+        220
+      ]
+    }
+  },
+  "7:feet": {
+    "file": "book-art/extra-feet.png",
+    "width": 520,
+    "height": 440,
+    "source": {
+      "kind": "pdf",
+      "page": 40,
+      "rect": [
+        415,
+        791,
+        160,
+        105
+      ]
+    }
+  },
+  "7:arms": {
+    "file": "book-art/extra-arms.png",
+    "width": 520,
+    "height": 440,
+    "source": {
+      "kind": "pdf",
+      "page": 50,
+      "rect": [
+        790,
+        325,
+        100,
+        220
+      ]
+    }
+  },
+  "7:hands": {
+    "file": "book-art/extra-hands.png",
+    "width": 520,
+    "height": 440,
+    "source": {
+      "kind": "pdf",
+      "page": 40,
+      "rect": [
+        764,
+        535,
+        125,
+        155
+      ]
+    }
+  },
+  "7:legs": {
+    "file": "book-art/extra-legs.png",
+    "width": 520,
+    "height": 440,
+    "source": {
+      "kind": "pdf",
+      "page": 65,
+      "rect": [
+        500,
+        1020,
+        155,
+        300
+      ]
+    }
+  },
+  "7:tails": {
+    "file": "book-art/extra-tails.png",
+    "width": 520,
+    "height": 440,
+    "source": {
+      "kind": "pdf",
+      "page": 50,
+      "rect": [
+        990,
+        688,
+        139,
+        141
+      ]
+    }
+  },
+  "7:fish": {
+    "file": "book-art/card-097.png",
+    "width": 430,
+    "height": 541,
+    "source": {
+      "kind": "flashcard",
+      "number": 97
+    }
+  },
+  "7:big": {
+    "file": "book-art/word-5-big.png",
+    "width": 600,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 57
+    }
+  },
+  "7:small": {
+    "file": "book-art/word-5-small.png",
+    "width": 600,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 57
+    }
+  },
+  "7:heads": {
+    "file": "book-art/extra-heads.png",
+    "width": 520,
+    "height": 440,
+    "source": {
+      "kind": "pdf",
+      "page": 40,
+      "rect": [
+        438,
+        440,
+        350,
+        267
+      ]
+    }
+  },
+  "7:ears": {
+    "file": "book-art/extra-ears.png",
+    "width": 520,
+    "height": 440,
+    "source": {
+      "kind": "pdf",
+      "page": 40,
+      "rect": [
+        434,
+        445,
+        112,
+        176
+      ]
+    }
+  },
+  "7:mouths": {
+    "file": "book-art/extra-mouths.png",
+    "width": 520,
+    "height": 440,
+    "source": {
+      "kind": "flashcard",
+      "number": 111
+    }
+  },
+  "7:short": {
+    "file": "book-art/word-5-short.png",
+    "width": 600,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 63,
+      "page": 36,
+      "rect": [
+        691,
+        1128,
+        74,
+        60
+      ]
+    }
+  },
+  "7:long": {
+    "file": "book-art/word-5-long.png",
+    "width": 600,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 63,
+      "page": 36,
+      "rect": [
+        691,
+        1128,
+        74,
+        60
+      ]
+    }
+  },
+  "7:noses": {
+    "file": "book-art/extra-noses.png",
+    "width": 520,
+    "height": 440,
+    "source": {
+      "kind": "flashcard",
+      "number": 113
+    }
+  },
+  "8:orange": {
+    "file": "book-art/card-047.png",
+    "width": 527,
+    "height": 464,
+    "source": {
+      "kind": "flashcard",
+      "number": 47
+    }
+  },
+  "8:dog": {
+    "file": "book-art/card-095.png",
+    "width": 381,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 95
+    }
+  },
+  "9:play-football": {
+    "file": "book-art/card-143.png",
+    "width": 483,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 143
+    }
+  },
+  "9:play-basketball": {
+    "file": "book-art/card-145.png",
+    "width": 439,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 145
+    }
+  },
+  "9:play-tennis": {
+    "file": "book-art/card-147.png",
+    "width": 454,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 147
+    }
+  },
+  "9:play-the-guitar": {
+    "file": "book-art/card-149.png",
+    "width": 432,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 149
+    }
+  },
+  "9:play-the-piano": {
+    "file": "book-art/card-151.png",
+    "width": 534,
+    "height": 593,
+    "source": {
+      "kind": "flashcard",
+      "number": 151
+    }
+  },
+  "9:ride-a-bike": {
+    "file": "book-art/card-155.png",
+    "width": 482,
+    "height": 568,
+    "source": {
+      "kind": "flashcard",
+      "number": 155
+    }
+  },
+  "9:piano": {
+    "file": "book-art/card-151.png",
+    "width": 534,
+    "height": 593,
+    "source": {
+      "kind": "flashcard",
+      "number": 151
+    }
+  },
+  "9:lily": {
+    "file": "book-art/extra-lily.webp",
+    "width": 170,
+    "height": 200,
+    "source": {
+      "kind": "pdf",
+      "page": 68,
+      "rect": [
+        220,
+        245,
+        170,
+        200
+      ]
+    }
+  },
+  "9:blue": {
+    "file": "book-art/card-051.png",
+    "width": 527,
+    "height": 464,
+    "source": {
+      "kind": "flashcard",
+      "number": 51
+    }
+  },
+  "9:guitar": {
+    "file": "book-art/card-149.png",
+    "width": 432,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 149
+    }
+  },
+  "9:draw": {
+    "file": "book-art/extra-draw.webp",
+    "width": 385,
+    "height": 280,
+    "source": {
+      "kind": "pdf",
+      "page": 80,
+      "rect": [
+        180,
+        615,
+        385,
+        280
+      ]
+    }
+  },
+  "10:school-bus": {
+    "file": "book-art/card-157.png",
+    "width": 505,
+    "height": 400,
+    "source": {
+      "kind": "flashcard",
+      "number": 157
+    }
+  },
+  "10:flying": {
+    "file": "book-art/extra-flying.webp",
+    "width": 225,
+    "height": 180,
+    "source": {
+      "kind": "pdf",
+      "page": 82,
+      "rect": [
+        675,
+        1030,
+        225,
+        180
+      ]
+    }
+  },
+  "10:riding": {
+    "file": "book-art/card-155.png",
+    "width": 482,
+    "height": 568,
+    "source": {
+      "kind": "flashcard",
+      "number": 155
+    }
+  },
+  "10:walking": {
+    "file": "book-art/extra-walking.webp",
+    "width": 190,
+    "height": 225,
+    "source": {
+      "kind": "pdf",
+      "page": 74,
+      "rect": [
+        140,
+        975,
+        190,
+        225
+      ]
+    }
+  },
+  "10:duck": {
+    "file": "book-art/extra-duck.webp",
+    "width": 165,
+    "height": 195,
+    "source": {
+      "kind": "pdf",
+      "page": 74,
+      "rect": [
+        110,
+        240,
+        165,
+        195
+      ]
+    }
+  },
+  "10:under": {
+    "file": "book-art/extra-under.png",
+    "width": 600,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 57
+    }
+  },
+  "10:driving": {
+    "file": "book-art/extra-driving.webp",
+    "width": 215,
+    "height": 180,
+    "source": {
+      "kind": "pdf",
+      "page": 82,
+      "rect": [
+        420,
+        1030,
+        215,
+        180
+      ]
+    }
+  },
+  "11:dining-room": {
+    "file": "book-art/card-173.png",
+    "width": 426,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 173
+    }
+  },
+  "11:hall": {
+    "file": "book-art/card-175.png",
+    "width": 430,
+    "height": 600,
+    "source": {
+      "kind": "flashcard",
+      "number": 175
+    }
+  },
+  "11:horse": {
+    "file": "book-art/card-099.png",
+    "width": 432,
+    "height": 599,
+    "source": {
+      "kind": "flashcard",
+      "number": 99
+    }
+  },
+  "11:hippo": {
+    "file": "book-art/card-121.png",
+    "width": 443,
+    "height": 451,
+    "source": {
+      "kind": "flashcard",
+      "number": 121
+    }
+  },
+  "11:playing": {
+    "file": "book-art/extra-playing.webp",
+    "width": 220,
+    "height": 180,
+    "source": {
+      "kind": "pdf",
+      "page": 82,
+      "rect": [
+        140,
+        1030,
+        220,
+        180
+      ]
+    }
+  },
+  "11:driving": {
+    "file": "book-art/extra-driving.webp",
+    "width": 215,
+    "height": 180,
+    "source": {
+      "kind": "pdf",
+      "page": 82,
+      "rect": [
+        420,
+        1030,
+        215,
+        180
+      ]
+    }
+  },
+  "11:flying": {
+    "file": "book-art/extra-flying.webp",
+    "width": 225,
+    "height": 180,
+    "source": {
+      "kind": "pdf",
+      "page": 82,
+      "rect": [
+        675,
+        1030,
+        225,
+        180
+      ]
+    }
+  },
+  "11:eating": {
+    "file": "book-art/extra-eating.webp",
+    "width": 240,
+    "height": 180,
+    "source": {
+      "kind": "pdf",
+      "page": 82,
+      "rect": [
+        935,
+        1030,
+        240,
+        180
+      ]
+    }
+  },
+  "11:reading": {
+    "file": "book-art/extra-reading.webp",
+    "width": 220,
+    "height": 190,
+    "source": {
+      "kind": "pdf",
+      "page": 82,
+      "rect": [
+        135,
+        1260,
+        220,
+        190
+      ]
+    }
+  },
+  "11:swimming": {
+    "file": "book-art/extra-swimming.webp",
+    "width": 235,
+    "height": 190,
+    "source": {
+      "kind": "pdf",
+      "page": 82,
+      "rect": [
+        675,
+        1260,
+        235,
+        190
+      ]
+    }
+  },
+  "11:watching": {
+    "file": "book-art/extra-watching.webp",
+    "width": 235,
+    "height": 190,
+    "source": {
+      "kind": "pdf",
+      "page": 82,
+      "rect": [
+        945,
+        1260,
+        235,
+        190
+      ]
+    }
+  },
+  "12:burger": {
+    "file": "book-art/card-185.png",
+    "width": 423,
+    "height": 403,
+    "source": {
+      "kind": "flashcard",
+      "number": 185
+    }
+  },
+  "12:bike": {
+    "file": "book-art/card-077.png",
+    "width": 480,
+    "height": 442,
+    "source": {
+      "kind": "flashcard",
+      "number": 77
+    }
+  },
+  "12:white": {
+    "file": "book-art/card-085.png",
+    "width": 527,
+    "height": 464,
+    "source": {
+      "kind": "flashcard",
+      "number": 85
+    }
   }
 };
 
@@ -1369,6 +2313,21 @@ export const wordArtFallbacks = [
     "unitId": 11,
     "id": "garden",
     "zh": "花园"
+  },
+  {
+    "unitId": 3,
+    "id": "in",
+    "zh": ""
+  },
+  {
+    "unitId": 3,
+    "id": "next-to",
+    "zh": ""
+  },
+  {
+    "unitId": 12,
+    "id": "like",
+    "zh": ""
   }
 ];
 

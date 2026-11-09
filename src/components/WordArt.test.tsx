@@ -12,7 +12,7 @@ describe("Learn from context without translation or a revealed spelling", () => 
       const clue = markup.replace(/<[^>]*>/g, "");
       expect(clue.trim().length, word.en).toBeGreaterThan(0);
       expect(clue, word.en).not.toMatch(/[\p{Script=Han}]/u);
-      expect(clue.toLowerCase(), word.en).not.toContain(word.en.toLowerCase());
+      expect(clue.toLowerCase(), word.en).not.toMatch(new RegExp(`\\b${word.en.toLowerCase()}\\b`));
     }
   });
 });

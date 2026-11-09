@@ -13,7 +13,7 @@ export default function BookShelf({ animated, onOpen }: { animated: boolean; onO
         const available = book.status === "available";
         const card = <button className="kb-book-choice" disabled={!available} onClick={available ? onOpen : undefined}
           aria-label={`Book ${book.number}: ${available ? "open Book 1" : "Coming soon"}`}>
-          <span className="kb-book-choice-art" aria-hidden="true">
+          <span className={`kb-book-choice-art${available ? " kb-book-cover" : ""}`} style={{ aspectRatio: `${originalCover.width} / ${originalCover.height}` }} aria-hidden="true">
             {available ? <img src={mediaUrl(originalCover.file)} width={originalCover.width} height={originalCover.height} alt="" loading="lazy" /> : <><BookOpen size={30} /><b>{book.number}</b></>}
           </span>
           <strong>Book {book.number}</strong>

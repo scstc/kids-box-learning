@@ -41,7 +41,8 @@ for (const [index, file] of images.entries()) {
   await sharp(path.join(staging, file)).resize(cover ? 1502 : 1259, 1600, { fit: 'fill' })
     .jpeg({ quality: 92, chromaSubsampling: '4:4:4' }).toFile(output);
 }
-const artwork = [originalCover, ...Object.values(originalUnitArt), ...Object.values(originalWordArt).filter(art => art.source.kind === 'pdf')];
+// Extra vocabulary crops and plural compositions are rebuilt from the imported pages below.
+const artwork = [originalCover, ...Object.values(originalUnitArt), ...Object.values(originalWordArt).filter(art => art.source.kind === 'pdf' && !art.file.startsWith('book-art/extra-'))];
 for (const art of artwork) {
   const [left, top, width, height] = art.source.rect;
   const page = art.source.page === 'cover' ? path.join(staging, 'cover.jpg') : path.join(pages, `page-${String(art.source.page).padStart(3, '0')}.jpg`);
@@ -62,3 +63,4 @@ await writeFile(path.join(root, 'public', 'book-source.json'), JSON.stringify({
   pageWidth: 1259, pageHeight: 1600, extractedArtwork: artwork.length,
 }, null, 2) + '\n');
 console.log({ source: path.basename(source), sha256, pages: 92, artwork: artwork.length });
+run(process.execPath, [path.join(root, 'scripts', 'expand-vocabulary-art.mjs')]);

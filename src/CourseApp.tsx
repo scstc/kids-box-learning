@@ -42,6 +42,7 @@ import FullscreenBook from "./components/FullscreenBook";
 import AppUpdate from "./components/AppUpdate";
 import BookShelf from "./components/BookShelf";
 import LearningCount from "./components/LearningCount";
+import Starter from "./components/Starter";
 import { pauseOtherMedia } from "./data/media";
 import SpellingInput from "./components/SpellingInput";
 import {
@@ -69,7 +70,7 @@ import { useCourseProgress } from "./hooks/useCourseProgress";
 import "./course.css";
 import { matchesSpelling } from "./data/spelling";
 
-type View = "map" | "lesson" | "review" | "passport" | "legacy" | "library";
+type View = "map" | "lesson" | "review" | "passport" | "legacy" | "library" | "starter";
 type Activity = "book" | "words" | "sentences" | "listen" | "spell" | "media";
 type Game = {
   questions: WordEntry[];
@@ -634,6 +635,9 @@ export default function CourseApp() {
               <Footprints size={18} />
               <span>My progress</span>
             </button>
+            <button aria-current={view === "starter" ? "page" : undefined} onClick={() => navigate("starter")}>
+              <AudioLines size={18} /><span>Starter</span>
+            </button>
           </nav>
           <button
             className="kb-help"
@@ -743,6 +747,7 @@ export default function CourseApp() {
                   <Sprout size={38} />
                 </span>
               </section>
+              <button className="kb-starter-entry" onClick={() => navigate("starter")}><AudioLines size={26} /><span><strong>Starter</strong><small>Alphabet &amp; Sounds · A–Z and English sounds</small></span><ArrowRight size={21} /></button>
               <BookShelf animated={motion.canAnimate} onOpen={() => openUnit(progress.lastUnit)} />
               <div className="kb-map-heading">
                 <div>
@@ -916,6 +921,7 @@ export default function CourseApp() {
             </>
           )}
 
+          {view === "starter" && <Starter audio={audio} />}
           {view === "library" && (
             <BookLibrary
               key={bookGroup}

@@ -1,4 +1,7 @@
 import { wordPronunciations } from "./pronunciations.ts";
+import { additionalWordDetails } from "./additionalVocabulary.ts";
+import { unitVocabulary } from "./unitVocabulary.ts";
+import { originalWordArt } from "./originalArt.ts";
 
 export type ChunkType = "拼读块" | "音节" | "整词";
 export type CourseWord = {
@@ -1136,6 +1139,19 @@ export const courseUnits: CourseUnit[] = [
 ];
 
 export type WordEntry = { unitId: number; word: CourseWord };
+// Extend the original practice list from reviewed textbook targets. Keep existing
+// entries and their IDs so expanding a unit never clears earlier progress.
+const originalWords = courseUnits.flatMap(unit => unit.words);
+for (const unit of courseUnits) {
+  for (const target of unitVocabulary[unit.id]) {
+    if (unit.words.some(item => audioKey(item.en) === audioKey(target.en))) continue;
+    const existing = originalWords.find(item => audioKey(item.en) === audioKey(target.en));
+    if (existing) { unit.words.push({ ...existing }); continue; }
+    const detail = (additionalWordDetails as Record<string, typeof additionalWordDetails.Suzy>)[target.en];
+    if (!detail) throw new Error(`Missing word details: Unit ${unit.id}, ${target.en}`);
+    unit.words.push(word(detail.en, "", detail.chunks, detail.tip, detail.chunkType as ChunkType));
+  }
+}
 export const allWordEntries: WordEntry[] = courseUnits.flatMap((unit) =>
   unit.words.map((word) => ({ unitId: unit.id, word })),
 );
@@ -1162,10 +1178,12 @@ export function makeCourseChoices(
   answer: WordEntry,
   pool: readonly WordEntry[],
 ): WordEntry[] {
+  const picture = originalWordArt[`${answer.unitId}:${answer.word.id}`]?.file;
   const unique = new Map(
     pool
       .filter((entry) => entry.word.en !== answer.word.en)
-      .map((entry) => [entry.word.en, entry]),
+      .filter((entry) => !picture || originalWordArt[`${entry.unitId}:${entry.word.id}`]?.file !== picture)
+      .map((entry) => [originalWordArt[`${entry.unitId}:${entry.word.id}`]?.file ?? entry.word.en, entry]),
   );
   return shuffled([answer, ...shuffled([...unique.values()]).slice(0, 2)]);
 }

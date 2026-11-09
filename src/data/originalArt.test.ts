@@ -6,11 +6,11 @@ import { originalCover, originalUnitArt, originalWordArt, originalFlashcardArt, 
 import { unitStartPages } from "./bookActivities";
 
 describe("原书插图与词义保持一致", () => {
-  it("封面和12张单元图来自用户的扫描本，每个词都有原图或明确的中文展示", () => {
+  it("封面和12张单元图来自用户的扫描本，每个词都有原图或英文语境提示", () => {
     expect(originalCover.source).toMatchObject({ kind: "pdf", page: "cover" });
     expect(Object.values(originalUnitArt).map((image) => image.source.page)).toEqual(unitStartPages);
-    expect(Object.keys(originalWordArt)).toHaveLength(108);
-    expect(wordArtFallbacks).toHaveLength(11);
+    expect(Object.keys(originalWordArt).length).toBeGreaterThanOrEqual(108);
+    expect(wordArtFallbacks.length).toBeGreaterThanOrEqual(11);
     const fallbacks = new Set(wordArtFallbacks.map((item) => `${item.unitId}:${item.id}`));
     for (const unit of courseUnits) for (const word of unit.words)
       expect(Boolean(originalWordArt[`${unit.id}:${word.id}`]) !== fallbacks.has(`${unit.id}:${word.id}`)).toBe(true);

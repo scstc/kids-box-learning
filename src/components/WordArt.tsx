@@ -14,6 +14,7 @@ export default function WordArt({ id, unitId, className = "" }: {
     dress: "👗 Something to wear", play: "🧸 Have some fun!", run: "🏃 Move fast!",
     jump: "🦘 Up in the air!", dance: "💃 Move to the music", funny: "😆 It makes you laugh",
     hungry: "🍽️ Time to eat!", garden: "🌷 Flowers grow here",
+    in: "📦 Inside the box", "next-to": "🧸 🧸 Side by side", like: "❤️ A favourite!",
   };
   const meaning = clues[id] ?? "🎧 Look and listen";
   if (!image || failedFile === image.file)

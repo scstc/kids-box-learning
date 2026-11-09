@@ -3817,7 +3817,7 @@
 .kb-motion-tools button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 9px; font-size: 12px; color: var(--ink-secondary); background: var(--surface); }
 .kb-motion-tools button:disabled { opacity: .5; cursor: default; }
 @media (max-width: 600px) {
-  .kb-header nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 3px; overflow: visible; }
+  .kb-header nav { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3px; overflow: visible; }
   .kb-header nav > button { flex-direction: column; gap: 4px; min-width: 0; padding: 8px 2px; white-space: normal; font-size: 11px; }
   .kb-header nav > button > span { overflow-wrap: anywhere; }
 }
