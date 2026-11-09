@@ -1,7 +1,7 @@
 export type BookAudioReference = { unitId?: number; page: number; activity: number; disc: number; track: number; file?: string; source?: string; x: number; y: number; width: number; height: number };
 export type RelatedBookAudio = { file: string; name: string; unitId: number | null; kind: string };
 
-// CD/track numbers checked against the supplied PDF. Page-specific recordings take priority.
+// CD/track numbers checked against the supplied PDF. Verified ID3/intro overrides misleading filenames.
 export const bookAudioReferences: BookAudioReference[] = [
   {
     "unitId": 1,
@@ -1331,8 +1331,8 @@ export const bookAudioReferences: BookAudioReference[] = [
     "activity": 12,
     "disc": 4,
     "track": 17,
-    "file": "音频/U10_pb_p75_12.mp3",
-    "source": "page-activity",
+    "file": "音频/CD4/cd4_17_Track_17.mp3",
+    "source": "cd-track",
     "x": 12.947,
     "y": 88.5,
     "width": 5.56,
@@ -1767,6 +1767,8 @@ export const bookAudioReferences: BookAudioReference[] = [
     "activity": 1,
     "disc": 4,
     "track": 18,
+    "file": "音频/U10_pb_p75_12.mp3",
+    "source": "id3-track-verified",
     "x": 15.647,
     "y": 13,
     "width": 5.56,

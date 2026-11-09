@@ -21,11 +21,12 @@ React + TypeScript + React Bits 制作的平板友好学习应用，包含 Web �
 - 单独的「课本活动」入口，保留 Listen and point、Listen and repeat、Sing the song、Say the chant、Monty’s phonics、故事等活动类型。
 - **12个单元、144项课本活动的标题、顺序和页码已按用户提供的93页电子书核对。**另外包含6个跨学科、6个价值观、3个阶段复习和语法参考入口，覆盖书上第4–95页。
 - 原书第4–95页共92张图页已内置，各活动自动显示对应页；支持翻页、放大和点指。不需要家长再次导入PDF。原始扫描本的PDF第2页对应书上第4页，图页已按书上页码命名。
+- 26.4.2起使用用户重新提供的无水印 `01.pdf`：替换全部92张正文图页、封面、12张单元场景和21张PDF词语裁图；保留1259×1600点读坐标系，并重新生成含PDF铅笔裁图的长短对比卡。`public/book-source.json`记录源文件SHA-256、页数和尺寸；原始PDF仅留在本机artifacts。
 - 全屏「课本点读」顶部保留单元选择、页码跳转和退出，两侧可以翻页，自动按屏幕完整显示书页。CD录音播放时显示一个小的暂停/继续按钮，重复点同一CD图标也可暂停或从原位置继续，不展开原生播放器。跳页、切换单元和退出会停止播放，并记住阅读位置。
 - 92个书页共760个文字/图片点读区域，包括12个单元的Phonics单词和完整例句、整册35页Functions/Grammar/Vocabulary页脚、活动标题、问答气泡和语法参考。第12页Who's that?、That's Meera.、She's eight.，第13页How are you? / I'm fine, thank you.，第17页Great! / Come on! / Let's play. / OK.均可直接朗读。多词短语及跨行对白保持完整含义；所有点读内容有本地发音，补充发音不会冒充缺少的原版CD录音。
 - 13页课本场景支持点问题、再点人物或图片听回答：P8姓名/年龄、P14人物、P22物品、P28纠正描述、P38猜动物、P44物品问答、P51动物动作、P52身体部位、P58猜衣着、P68能力、P74动作、P82猜动作、P88喜好。答案对应所选图片；猜错轻摇提示、猜对星星彩屑，动态开关和系统减少动态设置均生效。不会录音或判断孩子发音。
 - 244段原版音频与47个视频已用Whisper large-v3-turbo在电脑上识别英文字幕。字幕采用手机26px、平板28–40px的加粗大字，支持换行。播放时每50毫秒采样进度并高亮当前词，句子提前120毫秒显示、短停顿保留300毫秒，暂停或翻页后隐藏；点击文字时直接显示对应英文。关闭了会误删短对话和歌声的VAD过滤，重新连续识别，保留有文本但缺少逐词时间的段落。字幕JSON随APK离线打包，识别模型不装到平板。自动字幕仍可能在歌曲、专名或自然拼读短音上误识别；纯伴奏视频不生成猜测的歌词字幕。家长自行导入的新音频暂没有自动字幕。
-- 按原书人工核对全部144处CD1–4标记，其中138处已匹配用户提供的原版录音（优先按学生用书页码/活动号匹配，再按CD音轨匹配）。歌曲、歌谣、故事及CLIL、Values、Review使用相应原版录音，明确标示未提供的6处音轨。
+- 按原书人工核对全部144处CD1–4标记，其中139处已匹配用户提供的原版录音。结合MP3内嵌音轨标签、录音开头报读与书页匹配，不仅依据文件名；`U10_pb_p75_12.mp3`实际为CD4第18轨、P76活动1，P75活动12使用CD4第17轨。歌曲、歌谣、故事及CLIL、Values、Review使用相应原版录音，明确标示未提供的5处音轨。
 - 244段原始音频完整内置在 `public/音频/`。练习册、教师配套及额外CD音轨保留在「视频与闪卡 → 配套音频」中，可按单元查看或切换全册音频列表。
 - 47个原版视频和95张原版闪卡已按单元接入。视频包含12组歌曲、伴奏、故事和11个拓展活动，使用H.264/AAC、保留720×480和原显示比例，约410MB；项目目录为 `public/视频/`，NAS源目录 `视频(1)` 保持原样。闪卡位于 `public/闪卡/`，点击可听配套词典英式发音。
 - 家长仍可在折叠工具内补充音频或替换照片，这些新增文件保存在本设备IndexedDB。网页和APK的存储互相独立；清除浏览器或应用数据会删除本机添加的资源。原书录音、视频与单词发音播放互斥，翻页、切换资源或退出课本时停止播放。
@@ -98,7 +99,6 @@ git push origin v26.4.1
 | 50 / 5（Unit 7） | CD3 / 7 |
 | 85 / 3（Unit 12） | CD4 / 38 |
 | 17 / 4（Values） | CD1 / 35 |
-| 76 / 1（CLIL） | CD4 / 18 |
 | 91 / 4（Values） | CD4 / 52 |
 
 闪卡编号073未包含在提供的文件中，其余95张全部收录。原始PDF、原始视频及处理/核验中间文件留在本机 `artifacts/`，不提交。
@@ -113,6 +113,7 @@ git push origin v26.4.1
 - src/data/bookAudio.ts、src/data/bookMedia.ts：原版音轨与页面点击区域、全部音频/视频/闪卡索引。
 - src/data/originalArt.ts、public/book-art/：原书封面、单元场景与词语裁图及来源。95张闪卡插图与4张大小/长短对比图采用透明PNG，保留眼白、白衣服和白色物体，并处理椅背、车轮和卷尾的镂空；完整课本场景保留原背景。图片随APK离线打包，运行 `npm run art:transparent` 可从原始闪卡重新生成透明图。
 - src/data/bookReadingRegions.ts、bookFooterRegions.ts、bookPrintedText.ts：对照扫描本补充的对白与35页页脚点读位置；`scripts/build-book-reading.mjs` 从本机OCR资料生成活动标题，页脚以人工核对的词组边界为准。
+- scripts/import-book-pdf.mjs：使用Poppler读取已核对的93页无水印扫描本，按现有坐标系重新生成正文图页和PDF配图。运行 `node scripts/import-book-pdf.mjs <01.pdf路径>` 后，再运行 `npm run art:transparent` 刷新含PDF裁图的对比卡；不同版式应先重新核对热点，脚本会拒绝页数或原图尺寸不一致的文件。
 - src/data/bookScenes.ts、src/components/BookSceneActivity.tsx：13处场景的问答、图片目标和反馈；新增点读/问答后运行 `node scripts/prepare-reading-audio.mjs`，再用 `scripts/render-sentence-audio.py artifacts/reading-audio-missing.json`生成缺少的离线语音。
 - src/components/AppUpdate.tsx、android/.../AppUpdaterPlugin.java：安卓原生版本检查、后台下载、完整性与签名校验及系统安装。
 - src/data/bookSubtitles.ts、public/subtitles/、src/components/MediaSubtitles.tsx：离线英文字幕索引、时间轴与播放器同步。重新识别：用项目uv环境安装 `scripts/speech-requirements.txt`，运行 `node scripts/prepare-book-speech.mjs`，再运行 `.venv/Scripts/python.exe scripts/transcribe-book-audio.py`（默认使用本机NVIDIA GPU；CPU可加 `--device cpu`）。

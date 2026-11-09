@@ -8,11 +8,11 @@ import { audioKey } from "./course";
 const resource = (file: string) => readFileSync(new URL(`../../public/${file}`, import.meta.url));
 
 describe("原版教材点读与离线媒体", () => {
-  it("每处 CD 标记对应一个明确音轨，缺少的六轨不使用其他录音顶替", () => {
+  it("每处 CD 标记对应一个明确音轨，缺少的五轨不使用其他录音顶替", () => {
     expect(bookAudioReferences).toHaveLength(144);
     expect(new Set(bookAudioReferences.map((ref) => `${ref.page}:${ref.activity}`)).size).toBe(144);
     expect(bookAudioReferences.filter((ref) => !ref.file).map(({page, activity, disc, track}) => [page, activity, disc, track])).toEqual([
-      [25, 3, 2, 5], [50, 5, 3, 7], [85, 3, 4, 38], [17, 4, 1, 35], [76, 1, 4, 18], [91, 4, 4, 52],
+      [25, 3, 2, 5], [50, 5, 3, 7], [85, 3, 4, 38], [17, 4, 1, 35], [91, 4, 4, 52],
     ]);
     for (const ref of bookAudioReferences) {
       if (ref.file) expect(resource(ref.file).length).toBeGreaterThan(1000);
@@ -27,6 +27,10 @@ describe("原版教材点读与离线媒体", () => {
     expect(findBookAudio(15, 11)?.track).toBe(32);
     expect(findBookAudio(51, 7)?.file).toContain("pb_p51_7.mp3");
     expect(findBookAudio(65, 4)?.track).toBe(42);
+    // This filename says P75/12, but its ID3 is CD4 Track 18 and its spoken intro says P76/1.
+    // Prefer that verified identity so P75 plays its story exercise and P76 is not marked missing.
+    expect(findBookAudio(75, 12)?.file).toBe("音频/CD4/cd4_17_Track_17.mp3");
+    expect(findBookAudio(76, 1)?.file).toBe("音频/U10_pb_p75_12.mp3");
     for (const page of new Set(bookAudioReferences.map((ref) => ref.page))) {
       const refs = bookAudioReferences.filter((ref) => ref.page === page);
       if (refs.length === 2) expect(Math.abs(refs[0].y - refs[1].y), `page ${page}`).toBeGreaterThan(10);
