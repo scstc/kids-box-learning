@@ -23,8 +23,9 @@ type ReaderProps = {
   onPageChange?: (page: number) => void;
   fitPage?: boolean;
   minimal?: boolean;
+  playbackRate?: number;
 };
-function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal }: ReaderProps) {
+function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal, playbackRate = 1 }: ReaderProps) {
   const [page, setPage] = useState(printedPage);
   const [zoom, setZoom] = useState(1);
   const [loaded, setLoaded] = useState(false);
@@ -35,6 +36,12 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal 
   const [loop, setLoop] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const player = useRef<HTMLAudioElement>(null);
+  useEffect(() => {
+    if (!player.current) return;
+    player.current.defaultPlaybackRate = playbackRate;
+    player.current.playbackRate = playbackRate;
+    player.current.preservesPitch = true;
+  }, [playbackRate]);
   useEffect(() => {
     const media = player.current;
     return () => media?.pause();
@@ -178,6 +185,7 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal 
       <div className="kb-reader-audio" hidden={minimal || !selected?.file}>
         <audio ref={player} controls={!minimal} preload="none" loop={loop}
           aria-label="Book recording player"
+          onLoadedMetadata={(event) => { event.currentTarget.playbackRate = playbackRate; }}
           onPlay={() => { audio.stop(); setIsPlaying(true); }}
           onPause={() => setIsPlaying(false)} onEnded={() => setIsPlaying(false)}
           onError={() => setMediaError("This recording could not load. Please try again.")} />
