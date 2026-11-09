@@ -85,6 +85,26 @@ describe("按实际发音学习，而不是朗读字母名", () => {
       ).toBeGreaterThan(1000);
     }
   });
+  it("P48三条红蛇的头部和身体能点读，右边绿叶不会误读成snake", () => {
+    const hit = (x: number, y: number) => bookHotspots[48].filter(region =>
+      x / 1259 * 100 >= region.x && x / 1259 * 100 <= region.x + region.width &&
+      y / 1600 * 100 >= region.y && y / 1600 * 100 <= region.y + region.height,
+    ).at(-1);
+    for (const [x, y] of [[742, 708], [732, 777], [929, 691], [1016, 670], [1023, 739], [1033, 716]]) {
+      expect(hit(x, y), `${x},${y}`).toMatchObject({ word: "snake", kind: "picture" });
+    }
+    expect(hit(1130, 792)).toMatchObject({ word: "snake", kind: "label" });
+    expect(hit(1140, 858)?.word).not.toBe("snake");
+  });
+  it("P34猫耳、鸟头和老鼠尾巴，以及P48上方鳄鱼、猴子身体和老虎尾巴都有对应图片点读", () => {
+    for (const [page, word, x, y] of [
+      [34, "cat", 975, 870], [34, "bird", 1093, 977], [34, "mouse", 794, 1070],
+      [48, "crocodile", 299, 799], [48, "monkey", 868, 910], [48, "tiger", 1137, 973],
+    ] as const) {
+      const hit = bookHotspots[page].filter(r => x/1259*100>=r.x&&x/1259*100<=r.x+r.width&&y/1600*100>=r.y&&y/1600*100<=r.y+r.height).at(-1);
+      expect(hit, `P${page}: ${word}`).toMatchObject({ word, kind: "picture" });
+    }
+  });
   it("12个单元主要词语页都有完整点读标签，宠物页不再遗漏horse等词", () => {
     const expected: Record<number, string[]> = {
       4: ["Mr Star", "Mrs Star", "Stella", "Simon", "Suzy"],

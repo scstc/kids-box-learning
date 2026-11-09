@@ -9,6 +9,7 @@ import {
   ZoomOut,
 } from "lucide-react";
 import { bookHotspots } from "../data/bookHotspots";
+import { bookTouchTargets } from "../data/bookTouchTargets";
 import { bookAudioReferences, type BookAudioReference } from "../data/bookAudio";
 import { mediaUrl } from "../data/media";
 import type { CourseAudio } from "../hooks/useCourseAudio";
@@ -52,6 +53,11 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal,
   const hotspots = bookHotspots[page] ?? [];
   const board = useRef<HTMLDivElement>(null);
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
+  const touchRegions = [
+    ...hotspots,
+    ...tracks.map(track => ({ ...track, word: `CD${track.disc}/${track.track}`, kind: "picture" as const })),
+  ];
+  const touchTargets = bookTouchTargets(touchRegions, imageSize.width, imageSize.height);
   useEffect(() => {
     if (!board.current) return;
     const observer = new ResizeObserver(([entry]) => {
@@ -86,20 +92,22 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal,
     if (hotspot.kind !== "label" || !imageSize.height) return "hidden";
     const left = (hotspot.x / 100) * imageSize.width;
     const top = (hotspot.y / 100) * imageSize.height;
-    const width = Math.max(44, (hotspot.width / 100) * imageSize.width);
-    const height = Math.max(44, (hotspot.height / 100) * imageSize.height);
+    const width = Math.max(touchTargets[index].minWidth, (hotspot.width / 100) * imageSize.width);
+    const height = Math.max(touchTargets[index].minHeight, (hotspot.height / 100) * imageSize.height);
     const y = top + height / 2 - 11;
     for (const side of ["right", "left"] as const) {
       const x = side === "right" ? left + width + 6 : left - 28;
       if (x < 0 || x + 22 > imageSize.width) continue;
-      const overlaps = hotspots.some((other, otherIndex) => {
-        if (otherIndex === index || other.kind !== "label") return false;
+      const overlaps = touchRegions.some((other, otherIndex) => {
+        if (otherIndex === index || other.word === hotspot.word) return false;
         const otherLeft = (other.x / 100) * imageSize.width;
         const otherTop = (other.y / 100) * imageSize.height;
+        const otherWidth = Math.max(touchTargets[otherIndex].minWidth, (other.width / 100) * imageSize.width);
+        const otherHeight = Math.max(touchTargets[otherIndex].minHeight, (other.height / 100) * imageSize.height);
         return (
-          x < otherLeft + (other.width / 100) * imageSize.width + 2 &&
+          x < otherLeft + otherWidth + 2 &&
           x + 22 > otherLeft - 2 &&
-          y < otherTop + (other.height / 100) * imageSize.height + 2 &&
+          y < otherTop + otherHeight + 2 &&
           y + 22 > otherTop - 2
         );
       });
@@ -244,6 +252,7 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal,
                   top: `${hotspot.y}%`,
                   width: `${hotspot.width}%`,
                   height: `${hotspot.height}%`,
+                  ...touchTargets[index],
                 }}
                 aria-label={hotspot.kind === "text" ? `Read aloud: ${hotspot.word}` : `Play ${hotspot.word} pronunciation (${hotspot.kind === "label" ? "word label" : "picture area"})`}
                 aria-pressed={audio.playingText === hotspot.word}
@@ -256,9 +265,9 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal,
                 <Volume2 size={15} aria-hidden="true" />
               </button>
             ))}
-          {loaded && !error && tracks.map((track) => (
+          {loaded && !error && tracks.map((track, index) => (
             <button key={`cd:${track.activity}`} className="kb-book-cd-hotspot"
-              style={{ left: `${track.x}%`, top: `${track.y}%`, width: `${track.width}%`, height: `${track.height}%` }}
+              style={{ left: `${track.x}%`, top: `${track.y}%`, width: `${track.width}%`, height: `${track.height}%`, ...touchTargets[hotspots.length + index] }}
               aria-label={`Play page activity ${track.activity}, CD${track.disc} track ${track.track}${track.file ? "" : ", recording missing"}`}
               aria-pressed={selected?.activity === track.activity && isPlaying}
               data-missing={!track.file || undefined}

@@ -56,6 +56,7 @@
 }
 .kb-book-cd-hotspot {
   position: absolute;
+  padding: 0;
   min-width: 44px;
   min-height: 44px;
   border: 2px solid #7299bbaa;
@@ -146,6 +147,7 @@
   .kb-reader-unit-menu { left: 12px; right: 12px; width: auto; max-width: none; }
   .kb-reader-page-menu { left: 12px; right: 12px; width: auto; max-width: none; }
   .kb-reader-speed-menu { right: 12px; }
+  .kb-reader-minimal .kb-book-page-toolbar { align-items: flex-end; }
 }
 .kb-reader-minimal .kb-book-word-hotspot > svg { display: none; }
 .kb-reader-minimal .kb-book-word-hotspot[data-kind], .kb-reader-minimal .kb-book-cd-hotspot { border-color: transparent; }
@@ -158,6 +160,7 @@
 }
 .kb-book-word-hotspot {
   position: absolute;
+  padding: 0;
   border: 2px solid transparent;
   border-radius: 8px;
   min-width: 44px;
