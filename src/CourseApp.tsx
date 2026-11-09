@@ -45,6 +45,7 @@ import LearningCount from "./components/LearningCount";
 import Starter from "./components/Starter";
 import WordSounds from "./components/WordSounds";
 import GrammarPractice from "./components/GrammarPractice";
+import CheckPractice from "./components/CheckPractice";
 import { recordedWordGuide } from "./data/cambridgePronunciation";
 import { pauseOtherMedia } from "./data/media";
 import SpellingInput from "./components/SpellingInput";
@@ -74,7 +75,7 @@ import "./course.css";
 import { matchesSpelling } from "./data/spelling";
 
 type View = "map" | "lesson" | "review" | "passport" | "legacy" | "library" | "starter";
-type Activity = "book" | "words" | "sentences" | "grammar" | "listen" | "spell" | "media";
+type Activity = "book" | "words" | "sentences" | "grammar" | "checks" | "listen" | "spell" | "media";
 type Game = {
   questions: WordEntry[];
   round: number;
@@ -1006,6 +1007,7 @@ export default function CourseApp() {
                     { id: "words", title: "Word explorer", Icon: Ear },
                     { id: "sentences", title: "Let's talk", Icon: AudioLines },
                     { id: "grammar", title: "Ask & answer", Icon: HelpCircle },
+                    { id: "checks", title: "Check & play", Icon: Check },
                     { id: "listen", title: "Listen and find", Icon: Headphones },
                     { id: "spell", title: "Spelling play", Icon: Sparkles },
                   ] as const
@@ -1040,6 +1042,8 @@ export default function CourseApp() {
                 <BookMedia key={unit.id} unitId={unit.id} audio={audio} />
               ) : activity === "grammar" ? (
                 <GrammarPractice unitId={unit.id} audio={audio} animated={motion.canAnimate} />
+              ) : activity === "checks" ? (
+                <CheckPractice key={unit.id} unitId={unit.id} audio={audio} animated={motion.canAnimate} />
               ) : activity === "listen" || activity === "spell" ? (
                 renderGame()
               ) : activity === "sentences" ? (

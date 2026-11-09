@@ -762,7 +762,8 @@
   margin: 3px 0 9px;
 }
 .kb-activity-tabs {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: stretch;
   justify-content: flex-start;
   gap: 5px;
@@ -778,12 +779,14 @@
   align-items: center;
   justify-content: center;
   gap: 9px;
-  min-height: 46px;
+  min-height: 50px;
   border-radius: 9px;
   font-size: 12px;
   color: var(--muted);
   font-weight: 600;
-  white-space: nowrap;
+  min-width: 0;
+  white-space: normal;
+  padding: 10px 8px;
 }
 .kb-activity-tabs > button > span {
   font-size: 9px;

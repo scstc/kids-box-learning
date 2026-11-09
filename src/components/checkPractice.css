@@ -1,0 +1,34 @@
+.kb-check-practice { margin-top: 20px; }
+.kb-check-modes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 18px; }
+.kb-check-modes > button { display: flex; align-items: center; justify-content: center; gap: 10px; min-width: 0; min-height: 64px; padding: 12px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); color: var(--ink-secondary); font-size: 16px; font-weight: 700; line-height: 1.4; }
+.kb-check-modes > button[aria-pressed="true"] { color: var(--primary-dark); border-color: var(--primary-soft-border); background: var(--primary-soft); }
+.kb-check-modes > button > svg { flex-shrink: 0; }
+.kb-check-round { position: relative; isolation: isolate; padding: 30px 36px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); }
+.kb-check-topline { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; color: var(--muted); font-size: 14px; }
+.kb-check-round > h2 { margin: 18px 0 10px; font-size: clamp(26px, 4vw, 34px); line-height: 1.35; }
+.kb-check-description { margin: 0; color: var(--muted); line-height: 1.7; }
+.kb-check-round > progress { display: block; width: 100%; height: 6px; margin: 22px 0; border: 0; border-radius: 999px; overflow: hidden; accent-color: var(--primary); background: var(--primary-soft); }
+.kb-check-round > progress::-webkit-progress-bar { background: var(--primary-soft); }
+.kb-check-round > progress::-webkit-progress-value { background: var(--primary); }
+.kb-check-round > progress::-moz-progress-bar { background: var(--primary); }
+.kb-check-prompt { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 22px; margin-bottom: 24px; border: 1px solid var(--primary-soft-border); border-radius: 16px; background: var(--primary-soft); }
+.kb-check-prompt > h3 { margin: 0; min-width: 0; overflow-wrap: anywhere; font-size: clamp(21px, 3vw, 28px); line-height: 1.45; }
+.kb-check-prompt > button { display: grid; place-items: center; flex-shrink: 0; width: 54px; height: 54px; border: 1px solid var(--primary-soft-border); border-radius: 14px; background: var(--surface); color: var(--primary); }
+.kb-check-prompt > button[aria-pressed="true"] { color: var(--on-primary); background: var(--primary); }
+.kb-check-feedback { display: flex; align-items: flex-start; gap: 10px; margin-top: 22px; padding: 16px; border-radius: 12px; background: var(--page); color: var(--ink-secondary); line-height: 1.7; }
+.kb-check-feedback > p { margin: 0; }
+.kb-check-feedback > svg { flex-shrink: 0; margin-top: 3px; }
+.kb-check-feedback.is-right { color: var(--success); background: var(--success-soft); }
+.kb-check-next { display: flex; justify-content: flex-end; margin-top: 20px; }
+.kb-check-next .kb-btn { min-height: 52px; }
+.kb-check-finish { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; padding-block: 48px; }
+.kb-check-finish > p { margin: 0; line-height: 1.7; color: var(--muted); }
+.kb-check-star { color: var(--accent-ink); fill: var(--accent-soft); }
+@media (max-width: 600px) {
+  .kb-check-modes { gap: 8px; }
+  .kb-check-modes > button { flex-direction: column; gap: 7px; padding: 10px 5px; font-size: 13px; }
+  .kb-check-round { padding: 22px 16px; }
+  .kb-check-prompt { padding: 16px 14px; gap: 12px; }
+  .kb-check-prompt > button { width: 50px; height: 50px; }
+  .kb-check-next .kb-btn { width: 100%; }
+}

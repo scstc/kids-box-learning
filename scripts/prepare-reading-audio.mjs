@@ -3,7 +3,11 @@ import { bookHotspots } from '../src/data/bookHotspots.ts';
 import { audioKey } from '../src/data/course.ts';
 import { bookScenes } from '../src/data/bookScenes.ts';
 import { grammarQuestions } from '../src/data/grammarQuestions.ts';
-const texts=[...Object.values(bookHotspots).flat().map(({word})=>word),...Object.values(bookScenes).flatMap(scene=>[...scene.questions.map(q=>q.text),...scene.answers.flatMap(a=>Object.values(a.replies))]),...grammarQuestions.flatMap(question=>[question.prompt,...question.options])];
+import { placementQuestions, sentenceQuestions, pictureFixQuestions } from '../src/data/checkActivities.ts';
+const texts=[...Object.values(bookHotspots).flat().map(({word})=>word),...Object.values(bookScenes).flatMap(scene=>[...scene.questions.map(q=>q.text),...scene.answers.flatMap(a=>Object.values(a.replies))]),...grammarQuestions.flatMap(question=>[question.prompt,...question.options]),
+  ...placementQuestions.flatMap(question=>[question.prompt,...question.items.map(item=>item.en)]),
+  ...sentenceQuestions.flatMap(question=>[question.prompt,question.sentence,...question.answer,...(question.distractors??[])]),
+  ...pictureFixQuestions.flatMap(question=>[question.statement,question.correctedStatement,...question.options])];
 const items=[...new Map(texts.map(text=>[audioKey(text),{key:audioKey(text),text}])).values()];
 const missing=[];
 for(const item of items)if(!await stat(new URL(`../public/course-audio/${item.key}.mp3`,import.meta.url)).then(s=>s.size>1000).catch(()=>false))missing.push(item);

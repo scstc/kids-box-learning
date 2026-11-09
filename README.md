@@ -24,6 +24,7 @@ React + TypeScript + React Bits 制作的全英文、平板友好学习应用，
 - 分块后有「连起来读」按钮，依次播放有声分块，再播放完整单词。可随时停止；切换词语或点击其他声音会取消连读。
 - 字母拼拼乐提供「字母提示」开关：开启时使用字母按钮，关闭后隐藏字母库和长度格子，使用完整A–Z应用内键盘自行拼写，不唤起系统输入法或显示联想候选词；也支持实体键盘。设置保存在本设备；忽略大小写、空格和连字符，保留拼错重试与错词复习。
 - 每个单元增加 Ask & answer：12个单元各3道固定句型问答选择题，共36题。姓名、年龄、颜色、位置、have got、can、进行时和喜好等句型均有覆盖，每题A/B/C只有一个合适回答。题目和三个选项各有独立语音按钮，试听不判题；答错可重试，答对有解释与庆祝，显示本轮结果。81条独立语音全部内置，复用62条已有资源、补齐19条Sonia英式例句语音。练习结果仅保留在当前一轮。
+- Check & play 集中提供三种新检查：Listen & place 听指令移动原书图片，检查物品和 on/under/next to 位置；Build a sentence 点击或触摸拖放词卡拼出完整回答，可撤销、移除和重试；Look & fix 先判断原书图片描述，错误描述必须进一步选出正确表达才过关。12单元每种各2题，共72个挑战，222条独立语音均有本地文件。拖放也可用点选与键盘完成；取消拖动或放到区域外不计错，试听不提交答案，显示本轮首次答对数量。单元菜单使用自适应网格，手机、平板及桌面均显示完整入口。
 - 家长入口 For parents → Learning records → Clear learning records，以及 My progress 页，可打开清空确认。确认后清除已学词汇、错词袋、课本活动完成标记、旧动物小站进度和上次阅读页码，回到初始地图。拼写提示、动态效果、CD速度设置和自行添加的图片/音频保留；取消不清空，存储失败明确提示并允许重试。
 - 12个单元主要词语页的全部标签已配置点读，另包含数字、颜色、形容词、身体部位、栖息地和复习等页面的词语区域。第34页宠物、第48页野生动物以及第7页颜色还支持点图片，播放配套英式词语/短语音频。
 - 单独的「课本活动」入口，保留 Listen and point、Listen and repeat、Sing the song、Say the chant、Monty’s phonics、故事等活动类型。
@@ -130,6 +131,7 @@ git push origin v26.4.1
 - scripts/import-book-pdf.mjs：使用Poppler读取已核对的93页无水印扫描本，按现有坐标系重新生成正文图页和PDF配图。运行 `node scripts/import-book-pdf.mjs <01.pdf路径>` 后，再运行 `npm run art:transparent` 刷新含PDF裁图的对比卡；不同版式应先重新核对热点，脚本会拒绝页数或原图尺寸不一致的文件。
 - src/data/bookScenes.ts、src/components/BookSceneActivity.tsx：13处场景的问答、图片目标和反馈；新增点读/问答后运行 `node scripts/prepare-reading-audio.mjs`，再用 `scripts/render-sentence-audio.py artifacts/reading-audio-missing.json`生成缺少的离线语音。
 - src/data/grammarQuestions.ts、src/components/GrammarPractice.tsx：各单元的固定句型问答选择题；问题与所有选项也由上述音频准备脚本收集，测试检查实际播放路径完整。
+- src/data/checkActivities.ts、src/components/CheckPractice.tsx、ListenPlace.tsx、BuildSentence.tsx、FixPicture.tsx：三类检查的数据、共享进度反馈、触摸拖放和两阶段纠错；原书图片事实已实际核对。新增指令、词卡和纠正选项也由上述音频准备脚本收集。
 - src/data/learningRecords.ts、src/hooks/useCourseProgress.ts：按确切的四类记录处理完整清空，保留明确的空主进度记录，避免旧动物进度再次迁入；不清理整个localStorage或资源IndexedDB。
 - src/components/AppUpdate.tsx、android/.../AppUpdaterPlugin.java：安卓原生版本检查、后台下载、完整性与签名校验及系统安装。
 - src/data/bookSubtitles.ts、public/subtitles/、src/components/MediaSubtitles.tsx：离线英文字幕索引、时间轴与播放器同步。重新识别：用项目uv环境安装 `scripts/speech-requirements.txt`，运行 `node scripts/prepare-book-speech.mjs`，再运行 `.venv/Scripts/python.exe scripts/transcribe-book-audio.py`（默认使用本机NVIDIA GPU；CPU可加 `--device cpu`）。
