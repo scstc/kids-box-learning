@@ -53,14 +53,14 @@ public class AppUpdaterPlugin extends Plugin {
         connection.setRequestProperty("Accept", "application/vnd.github+json");
         try {
             int status = connection.getResponseCode();
-            if (status == 404) throw new Exception("GitHub 上暂时没有可用的新版本。");
-            if (status != 200) throw new Exception("GitHub 暂时无法连接（" + status + "），请稍后重试。");
+            if (status == 404) throw new Exception("No release is available on GitHub yet.");
+            if (status != 200) throw new Exception("GitHub could not be reached (" + status + "). Please try again later.");
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             try (java.io.InputStream input = connection.getInputStream()) {
                 byte[] buffer = new byte[8192]; int length;
                 while ((length = input.read(buffer)) != -1) {
                     bytes.write(buffer, 0, length);
-                    if (bytes.size() > 1024 * 1024) throw new Exception("版本信息过大，请稍后重试。");
+                    if (bytes.size() > 1024 * 1024) throw new Exception("Release information is too large. Try again later.");
                 }
             }
             return bytes.toString("UTF-8");
@@ -71,7 +71,7 @@ public class AppUpdaterPlugin extends Plugin {
             JSObject result = new JSObject();
             result.put("version", installed().versionName); result.put("versionCode", code(installed())); result.put("canInstall", allowed());
             call.resolve(result);
-        } catch (Exception error) { call.reject("无法读取当前版本。", error); }
+        } catch (Exception error) { call.reject("Could not read the installed version.", error); }
     }
     @PluginMethod public void check(PluginCall call) {
         worker.execute(() -> {
@@ -81,45 +81,45 @@ public class AppUpdaterPlugin extends Plugin {
                 catch (Exception apiError) { release = new JSONObject(read(REPO + "/releases/latest/download/update.json")); }
                 String tag = release.getString("tag_name");
                 Matcher match = Pattern.compile("^v(\\d{2})\\.([1-4])\\.([1-9]\\d{0,3})$").matcher(tag);
-                if (!match.matches() || release.optBoolean("draft") || release.optBoolean("prerelease")) throw new Exception("发布版本格式不正确。");
+                if (!match.matches() || release.optBoolean("draft") || release.optBoolean("prerelease")) throw new Exception("Invalid release version format.");
                 long versionCode = Long.parseLong(match.group(1)) * 100000 + Long.parseLong(match.group(2)) * 10000 + Long.parseLong(match.group(3));
                 String version = tag.substring(1), name = "kids-box-learning-" + version + ".apk";
                 JSONArray assets = release.getJSONArray("assets"); JSONObject asset = null;
                 for (int i = 0; i < assets.length(); i++) if (name.equals(assets.getJSONObject(i).optString("name"))) asset = assets.getJSONObject(i);
-                if (asset == null) throw new Exception("这个版本还没有安装包，请稍后重试。");
+                if (asset == null) throw new Exception("No APK is available for this version yet. Try again later.");
                 String url = asset.getString("browser_download_url");
-                if (!url.equals(REPO + "/releases/download/" + tag + "/" + name)) throw new Exception("安装包地址不匹配。");
+                if (!url.equals(REPO + "/releases/download/" + tag + "/" + name)) throw new Exception("The APK address does not match this release.");
                 String digest = asset.optString("digest", "");
                 if (!digest.matches("sha256:[a-fA-F0-9]{64}")) {
                     digest = "sha256:" + read(url + ".sha256").trim().split("\\s+")[0];
                 }
-                if (!digest.matches("sha256:[a-fA-F0-9]{64}")) throw new Exception("安装包校验信息缺失。");
+                if (!digest.matches("sha256:[a-fA-F0-9]{64}")) throw new Exception("The APK verification information is missing.");
                 latest = new JSONObject(); latest.put("version", version); latest.put("versionCode", versionCode);
                 latest.put("size", asset.getLong("size")); latest.put("url", url); latest.put("sha256", digest.substring(7).toLowerCase());
                 latest.put("notes", release.optString("body")); latest.put("releaseUrl", REPO + "/releases/tag/" + tag);
                 JSObject result = JSObject.fromJSONObject(latest); result.put("available", versionCode > code(installed()));
                 call.resolve(result);
-            } catch (Exception error) { call.reject(error.getMessage() == null ? "无法检查更新，请检查网络后重试。" : error.getMessage(), error); }
+            } catch (Exception error) { call.reject(error.getMessage() == null ? "Could not check for updates. Check your connection and try again." : error.getMessage(), error); }
         });
     }
     @PluginMethod public void download(PluginCall call) {
         worker.execute(() -> {
             try {
-                if (latest == null || latest.getLong("versionCode") <= code(installed())) throw new Exception("请先检查是否有新版本。");
+                if (latest == null || latest.getLong("versionCode") <= code(installed())) throw new Exception("Please check for a new version first.");
                 long old = prefs().getLong("id", -1);
                 if (old != -1) manager().remove(old);
                 File target = apk();
-                if (target.exists() && !target.delete()) throw new Exception("旧安装包无法清理，请重试。");
+                if (target.exists() && !target.delete()) throw new Exception("Could not remove the old APK. Please try again.");
                 DownloadManager.Request request = new DownloadManager.Request(Uri.parse(latest.getString("url")))
-                    .setTitle("小小英语 " + latest.getString("version"))
-                    .setDescription("下载完成后，请在小小英语的检查更新页面确认安装")
+                    .setTitle("Kids Box " + latest.getString("version"))
+                    .setDescription("When the download finishes, confirm installation in Kids Box App updates.")
                     .setMimeType("application/vnd.android.package-archive")
                     .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                     .setDestinationInExternalFilesDir(getContext(), Environment.DIRECTORY_DOWNLOADS, target.getName());
                 long id = manager().enqueue(request);
                 prefs().edit().putLong("id", id).putString("release", latest.toString()).remove("verified").remove("error").apply();
                 call.resolve(status());
-            } catch (Exception error) { call.reject("下载未能开始：" + error.getMessage(), error); }
+            } catch (Exception error) { call.reject("Could not start download: " + error.getMessage(), error); }
         });
     }
     private Signature[] signatures(PackageInfo info) {
@@ -133,21 +133,21 @@ public class AppUpdaterPlugin extends Plugin {
             try {
                 JSONObject release = new JSONObject(prefs().getString("release", "{}"));
                 File file = apk();
-                if (file.length() != release.getLong("size")) throw new Exception("安装包不完整，请重新下载。");
+                if (file.length() != release.getLong("size")) throw new Exception("The APK is incomplete. Please download it again.");
                 MessageDigest sha = MessageDigest.getInstance("SHA-256");
                 try (FileInputStream input = new FileInputStream(file)) {
                     byte[] buffer = new byte[1024 * 128]; int length;
                     while ((length = input.read(buffer)) != -1) sha.update(buffer, 0, length);
                 }
                 StringBuilder hash = new StringBuilder(); for (byte b : sha.digest()) hash.append(String.format("%02x", b & 255));
-                if (!hash.toString().equals(release.getString("sha256"))) throw new Exception("安装包校验失败，请重新下载。");
+                if (!hash.toString().equals(release.getString("sha256"))) throw new Exception("APK verification failed. Please download it again.");
                 int flags = Build.VERSION.SDK_INT >= 28 ? PackageManager.GET_SIGNING_CERTIFICATES : PackageManager.GET_SIGNATURES;
                 PackageManager pm = getContext().getPackageManager();
                 PackageInfo archive = pm.getPackageArchiveInfo(file.getAbsolutePath(), flags);
                 PackageInfo current = pm.getPackageInfo(getContext().getPackageName(), flags);
-                if (archive == null || !getContext().getPackageName().equals(archive.packageName) || code(archive) != release.getLong("versionCode") || code(archive) <= code(current)) throw new Exception("安装包版本或应用不匹配。");
+                if (archive == null || !getContext().getPackageName().equals(archive.packageName) || code(archive) != release.getLong("versionCode") || code(archive) <= code(current)) throw new Exception("The APK version or application does not match.");
                 Signature[] a = signatures(archive), b = signatures(current);
-                if (a == null || b == null || !Arrays.equals(a, b)) throw new Exception("安装包签名不匹配，已停止安装以保留现有数据。");
+                if (a == null || b == null || !Arrays.equals(a, b)) throw new Exception("The APK signature does not match. Installation stopped to protect your data.");
                 if (prefs().getLong("id", -1) == id) prefs().edit().putLong("verified", id).remove("error").apply();
             } catch (Exception error) { if (prefs().getLong("id", -1) == id) prefs().edit().putString("error", error.getMessage()).apply(); }
             finally { verifying = false; }
@@ -159,9 +159,9 @@ public class AppUpdaterPlugin extends Plugin {
         JSONObject release = new JSONObject(prefs().getString("release", "{}"));
         if (release.optLong("versionCode") <= code(installed())) { manager().remove(id); prefs().edit().clear().apply(); return result; }
         result.put("version", release.optString("version")); result.put("size", release.optLong("size"));
-        if (prefs().contains("error")) { result.put("state", "error"); result.put("message", prefs().getString("error", "下载失败，请重试。")); return result; }
+        if (prefs().contains("error")) { result.put("state", "error"); result.put("message", prefs().getString("error", "Download failed. Please try again.")); return result; }
         try (Cursor cursor = manager().query(new DownloadManager.Query().setFilterById(id))) {
-            if (cursor == null || !cursor.moveToFirst()) { result.put("state", "error"); result.put("message", "下载已被移除，请重新下载。"); return result; }
+            if (cursor == null || !cursor.moveToFirst()) { result.put("state", "error"); result.put("message", "The download was removed. Please download it again."); return result; }
             int state = cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS));
             result.put("downloaded", cursor.getLong(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR)));
             long total = cursor.getLong(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
@@ -170,13 +170,13 @@ public class AppUpdaterPlugin extends Plugin {
                 boolean valid = prefs().getLong("verified", -2) == id;
                 result.put("state", valid ? "ready" : "verifying"); if (!valid) verify(id);
             } else if (state == DownloadManager.STATUS_FAILED) {
-                result.put("state", "error"); result.put("message", "下载失败，请检查网络和可用空间后重试。");
+                result.put("state", "error"); result.put("message", "Download failed. Check your connection and free storage, then try again.");
             } else result.put("state", state == DownloadManager.STATUS_PAUSED ? "paused" : "downloading");
         }
         return result;
     }
     @PluginMethod public void getStatus(PluginCall call) {
-        worker.execute(() -> { try { call.resolve(status()); } catch (Exception error) { call.reject("无法读取下载状态。", error); } });
+        worker.execute(() -> { try { call.resolve(status()); } catch (Exception error) { call.reject("Could not read download status.", error); } });
     }
     @PluginMethod public void cancel(PluginCall call) {
         worker.execute(() -> { long id = prefs().getLong("id", -1); if (id != -1) manager().remove(id); prefs().edit().clear().apply(); call.resolve(); });
@@ -184,23 +184,23 @@ public class AppUpdaterPlugin extends Plugin {
     private void openInstaller(PluginCall call) {
         try {
             long id = prefs().getLong("id", -1);
-            if (id == -1 || prefs().getLong("verified", -2) != id || !apk().isFile()) throw new Exception("请先完成下载和校验。");
+            if (id == -1 || prefs().getLong("verified", -2) != id || !apk().isFile()) throw new Exception("Please finish downloading and verifying first.");
             Uri uri = FileProvider.getUriForFile(getContext(), getContext().getPackageName() + ".fileprovider", apk());
             Intent intent = new Intent(Intent.ACTION_VIEW).setDataAndType(uri, "application/vnd.android.package-archive")
                 .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NEW_TASK);
             getActivity().startActivity(intent);
             JSObject result = new JSObject(); result.put("state", "installer-opened"); call.resolve(result);
-        } catch (Exception error) { call.reject("系统未能打开安装页面：" + error.getMessage(), error); }
+        } catch (Exception error) { call.reject("Could not open the system installer: " + error.getMessage(), error); }
     }
     @PluginMethod public void install(PluginCall call) {
         getActivity().runOnUiThread(() -> {
             try {
-                if (prefs().getLong("verified", -2) != prefs().getLong("id", -1)) throw new Exception("请先完成下载和校验。");
+                if (prefs().getLong("verified", -2) != prefs().getLong("id", -1)) throw new Exception("Please finish downloading and verifying first.");
                 if (!allowed()) {
                     Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:" + getContext().getPackageName()));
                     startActivityForResult(call, intent, "installPermissionResult");
                 } else openInstaller(call);
-            } catch (Exception error) { call.reject("请在系统设置中允许小小英语安装更新。", error); }
+            } catch (Exception error) { call.reject("Allow Kids Box to install updates in system settings.", error); }
         });
     }
     @ActivityCallback private void installPermissionResult(PluginCall call, ActivityResult result) {

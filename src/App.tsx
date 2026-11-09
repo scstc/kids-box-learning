@@ -109,19 +109,19 @@ export default function App() {
   };
   const finishAnimal = () => {
     markLearned(animal.id);
-    setToast(`收集到一枚${animal.chinese}足迹！`);
+    setToast(`You earned a ${animal.name} footprint!`);
     if (activeIndex < animals.length - 1) {
       setActiveIndex((previous) => previous + 1);
       setMode("listen");
     } else {
       setPage("passport");
-      setToast("新足迹已收集，来看看你的探险护照！");
+      setToast("New footprint! Take a look at your passport.");
     }
   };
 
   return (
     <ClickSpark
-      sparkColor={["#e5b74f", "#8cab73", "#db9b7d"]}
+      sparkColor={["#f2a54a", "#69bce8", "#8d89e8"]}
       sparkSize={7}
       sparkRadius={24}
       sparkCount={7}
@@ -130,30 +130,30 @@ export default function App() {
     >
       <div className="app-shell">
         <a href="#main" className="skip-link">
-          跳到学习内容
+          Skip to learning
         </a>
         <header className="site-header">
           <button
             className="brand"
             onClick={() => openPage("explore")}
-            aria-label="Little Safari 首页"
+            aria-label="Little Safari home"
           >
             <span className="brand-icon">
               <Sprout size={27} strokeWidth={2.2} />
             </span>
             <span>
               little safari<span className="brand-dot">.</span>
-              <small>小小声音探险家</small>
+              <small>Little sound explorers</small>
             </span>
           </button>
-          <nav className="main-nav" aria-label="主导航">
+          <nav className="main-nav" aria-label="Main navigation">
             <button
               onClick={() => openPage("explore")}
               className={page === "explore" ? "active" : ""}
               aria-current={page === "explore" ? "page" : undefined}
             >
               <Compass size={18} />
-              <span>动物探险</span>
+              <span>Animal adventure</span>
             </button>
             <button
               onClick={() => openPage("lab")}
@@ -161,7 +161,7 @@ export default function App() {
               aria-current={page === "lab" ? "page" : undefined}
             >
               <AudioLines size={18} />
-              <span>声音实验室</span>
+              <span>Sound lab</span>
             </button>
             <button
               onClick={() => openPage("passport")}
@@ -169,7 +169,7 @@ export default function App() {
               aria-current={page === "passport" ? "page" : undefined}
             >
               <BookOpen size={18} />
-              <span>我的护照</span>
+              <span>My passport</span>
               {learned.length > 0 && (
                 <span className="nav-count">{learned.length}</span>
               )}
@@ -177,11 +177,11 @@ export default function App() {
           </nav>
           <button
             className="help-button"
-            aria-label="给家长的话"
+            aria-label="For parents"
             onClick={() => setHelpOpen(true)}
           >
             <HelpCircle size={18} />
-            <span>给家长的话</span>
+            <span>For parents</span>
           </button>
         </header>
 
@@ -195,15 +195,15 @@ export default function App() {
                 <h1>
                   {page === "passport" ? (
                     <>
-                      每一个小脚印，<span>都是新发现。</span>
+                      Every little step,<span>a new discovery.</span>
                     </>
                   ) : page === "lab" ? (
                     <>
-                      把单词拆开，<span>让声音连起来。</span>
+                      Explore the parts,<span>blend the sounds.</span>
                     </>
                   ) : (
                     <>
-                      听见声音，<span>认识新朋友。</span>
+                      Listen closely,<span>meet a new friend.</span>
                       <svg
                         className="heading-spark"
                         viewBox="0 0 32 34"
@@ -221,10 +221,10 @@ export default function App() {
                 </h1>
                 <p>
                   {page === "passport"
-                    ? "不用着急，按自己的节奏，把好奇心装进小小护照。"
+                    ? "Take your time. Fill your passport with discoveries."
                     : page === "lab"
-                      ? "拍拍手，找音节；仔细听，发现藏在字母里的小秘密。"
-                      : "不急着背字母。一起听一听、拼一拼，走进声音里的动物园。"}
+                      ? "Clap the syllables and discover the sounds inside each word."
+                      : "Listen, blend and explore the animal world."}
                 </p>
               </div>
               <div className="journey-progress">
@@ -233,7 +233,7 @@ export default function App() {
                 </div>
                 <div>
                   <div className="progress-label">
-                    你的小小探险{" "}
+                    Your adventure{" "}
                     <strong>
                       {learned.length}
                       <span> / 7</span>
@@ -242,7 +242,7 @@ export default function App() {
                   <div
                     className="progress-track"
                     role="progressbar"
-                    aria-label="已学习动物"
+                    aria-label="Animals explored"
                     aria-valuenow={learned.length}
                     aria-valuemin={0}
                     aria-valuemax={7}
@@ -251,8 +251,8 @@ export default function App() {
                   </div>
                   <small>
                     {learned.length === 7
-                      ? "所有动物朋友都认识你啦！"
-                      : "每认识一个朋友，就收集一枚足迹"}
+                      ? "You have met every animal!"
+                      : "Meet a friend and collect a footprint."}
                   </small>
                 </div>
               </div>
@@ -266,10 +266,10 @@ export default function App() {
                   <span className="section-kicker">
                     <Map size={17} /> MY LITTLE PASSPORT
                   </span>
-                  <h2>我的动物朋友</h2>
+                  <h2>My animal friends</h2>
                   <p>
-                    已经认识了 {learned.length}{" "}
-                    位朋友，再见面时，也记得大声打招呼哦。
+                    You have met {learned.length}{" "}
+                    friends. Say hello when you see them again!
                   </p>
                 </div>
                 <div className="stamp-grid">
@@ -278,7 +278,7 @@ export default function App() {
                       key={item.id}
                       className={`stamp ${learned.includes(item.id) ? "collected" : ""}`}
                       onClick={() => chooseAnimal(index)}
-                      aria-label={`${item.chinese}，${learned.includes(item.id) ? "已收集，点击复习" : "待探索，点击学习"}`}
+                      aria-label={`${item.name}: ${learned.includes(item.id) ? "Collected. Tap to practise." : "Ready to explore. Tap to learn."}`}
                     >
                       <span className="stamp-circle">
                         <AnimalArt animal={item.id} />
@@ -289,11 +289,11 @@ export default function App() {
                         )}
                       </span>
                       <strong>{item.name}</strong>
-                      <span>{item.chinese}</span>
+
                       <small>
                         {learned.includes(item.id)
-                          ? "好朋友，再读一遍"
-                          : "等你来认识"}
+                          ? "Say hello again"
+                          : "Ready to meet you"}
                       </small>
                     </button>
                   ))}
@@ -301,7 +301,7 @@ export default function App() {
                 <div className="passport-actions">
                   <button className="primary-button" onClick={startQuiz}>
                     <Headphones size={19} />
-                    听音找朋友
+                    Listen and find
                     <ArrowRight size={19} />
                   </button>
                   <button
@@ -309,7 +309,7 @@ export default function App() {
                     onClick={() => setResetOpen(true)}
                   >
                     <RotateCcw size={15} />
-                    重新开始探险
+                    Start a new adventure
                   </button>
                 </div>
               </section>
@@ -325,13 +325,13 @@ export default function App() {
                 <section
                   className="lesson-panel"
                   ref={lessonRef}
-                  aria-label="动物学习卡"
+                  aria-label="Animal learning card"
                 >
                   <div className="lesson-toolbar">
                     <div
                       className="step-tabs"
                       role="tablist"
-                      aria-label="学习方式"
+                      aria-label="Learning activities"
                     >
                       <button
                         role="tab"
@@ -341,7 +341,7 @@ export default function App() {
                       >
                         <span>01</span>
                         <Ear size={17} />
-                        听一听
+                        Listen
                       </button>
                       <button
                         role="tab"
@@ -351,7 +351,7 @@ export default function App() {
                       >
                         <span>02</span>
                         <AudioLines size={17} />
-                        拆开读
+                        Explore sounds
                       </button>
                       <button
                         role="tab"
@@ -361,12 +361,12 @@ export default function App() {
                       >
                         <span>03</span>
                         <Sparkles size={17} />
-                        玩一玩
+                        Play
                       </button>
                     </div>
                     <span className="toolbar-label">
                       <Leaf size={15} />
-                      {mode === "quiz" ? "听音找朋友" : "第 1 站 · 奇妙动物园"}
+                      {mode === "quiz" ? "Listen and find" : "Stop 1 · Animal world"}
                     </span>
                   </div>
 
@@ -374,7 +374,7 @@ export default function App() {
                     <div
                       className="quiz-panel"
                       role="tabpanel"
-                      aria-label="听音找朋友"
+                      aria-label="Listen and find"
                     >
                       {quizFinished ? (
                         <div className="quiz-complete">
@@ -384,8 +384,8 @@ export default function App() {
                           <span className="section-kicker">
                             SAFARI COMPLETE!
                           </span>
-                          <h2>你找到所有动物朋友啦！</h2>
-                          <p>7 个声音，7 位朋友。你的小耳朵真灵！</p>
+                          <h2>You found every animal!</h2>
+                          <p>Seven sounds, seven friends. Great listening!</p>
                           <div className="complete-friends">
                             {animals.map((item) => (
                               <AnimalArt key={item.id} animal={item.id} />
@@ -396,7 +396,7 @@ export default function App() {
                               className="primary-button"
                               onClick={() => setPage("passport")}
                             >
-                              看看我的护照
+                              See my passport
                               <BookOpen size={18} />
                             </button>
                             <button
@@ -404,7 +404,7 @@ export default function App() {
                               onClick={startQuiz}
                             >
                               <RotateCcw size={17} />
-                              再玩一次
+                              Play again
                             </button>
                           </div>
                         </div>
@@ -417,16 +417,16 @@ export default function App() {
                             <span className="question-count">
                               {quizRound + 1} / 7
                             </span>
-                            <h2>谁在和你打招呼？</h2>
-                            <p>点一下小喇叭，找到声音里的动物朋友。</p>
+                            <h2>Who is saying hello?</h2>
+                            <p>Tap the speaker, listen and choose the animal.</p>
                           </div>
                           <button
                             className={`quiz-play ${playing ? "is-playing" : ""}`}
                             onClick={() => void play(quizAnimal.id)}
-                            aria-label="播放题目中的动物发音"
+                            aria-label="Play the animal sound"
                           >
                             <Volume2 size={32} />
-                            <span>{playing ? "仔细听…" : "听听它是谁"}</span>
+                            <span>{playing ? "Listen closely…" : "Listen to the word"}</span>
                           </button>
                           <div className="quiz-choices">
                             {quizChoices.map((item) => (
@@ -442,17 +442,17 @@ export default function App() {
                                 disabled={
                                   correct || wrongChoices.includes(item.id)
                                 }
-                                aria-label={`选择${item.chinese}`}
+                                aria-label={`Choose ${item.name}`}
                               >
                                 <AnimalArt animal={item.id} />
-                                <span>{item.chinese}</span>
+
                                 {correct && item.id === quizAnimal.id && (
                                   <span className="answer-check">
                                     <Check size={19} />
                                   </span>
                                 )}
                                 {wrongChoices.includes(item.id) && (
-                                  <small>再听听看</small>
+                                  <small>Listen again</small>
                                 )}
                               </button>
                             ))}
@@ -462,22 +462,21 @@ export default function App() {
                               <>
                                 <span>
                                   <Check size={20} />
-                                  找对啦！{quizAnimal.name}，
-                                  {quizAnimal.chinese}！
+                                  You found it! {quizAnimal.name}
                                 </span>
                                 <button
                                   className="primary-button"
                                   onClick={nextQuestion}
                                 >
-                                  {quizRound === 6 ? "完成探险" : "下一位朋友"}
+                                  {quizRound === 6 ? "Finish adventure" : "Next friend"}
                                   <ArrowRight size={18} />
                                 </button>
                               </>
                             ) : (
                               <span>
                                 {wrongChoices.length
-                                  ? "没关系，小耳朵再听一次，试试另一个朋友。"
-                                  : "不用着急，想听几遍都可以。"}
+                                  ? "Listen again and try another friend."
+                                  : "Take your time. Listen as often as you like."}
                               </span>
                             )}
                           </div>
@@ -489,7 +488,7 @@ export default function App() {
                       className="lesson-content"
                       role="tabpanel"
                       aria-label={
-                        mode === "listen" ? "听一听动物发音" : "探索发音规律"
+                        mode === "listen" ? "Listen to the animal word" : "Explore the sounds"
                       }
                     >
                       <div
@@ -524,7 +523,7 @@ export default function App() {
                         <button
                           className={`scene-sound ${playing ? "is-playing" : ""}`}
                           onClick={() => void play(animal.id)}
-                          aria-label={`听${animal.name}的发音`}
+                          aria-label={`Listen to ${animal.name} pronunciation`}
                         >
                           <Volume2 size={23} />
                         </button>
@@ -546,17 +545,17 @@ export default function App() {
                           className={`word-title ${animal.name.length > 8 ? "long-word" : ""}`}
                         >
                           <h2 lang="en">{animal.name}</h2>
-                          <span>{animal.chinese}</span>
+
                           {learned.includes(animal.id) && (
                             <span className="learned-pill">
                               <Check size={13} />
-                              已认识
+                              Explored
                             </span>
                           )}
                         </div>
                         <div className="phonetic">
                           <span>{animal.ipa}</span>
-                          <span className="pronunciation-tag">美式发音</span>
+                          <span className="pronunciation-tag">American pronunciation</span>
                         </div>
 
                         {mode === "listen" ? (
@@ -566,10 +565,10 @@ export default function App() {
                                 <Headphones size={18} />
                               </span>
                               <p>
-                                先用小耳朵听，再用小嘴巴说。
+                                Listen first, then say it aloud.
                                 <br />
                                 <span>
-                                  听听看，这个单词里藏着几个声音节拍？
+                                  How many syllables can you hear?
                                 </span>
                               </p>
                             </div>
@@ -579,7 +578,7 @@ export default function App() {
                                 onClick={() => void play(animal.id)}
                               >
                                 <Volume2 size={21} />
-                                {playing ? "正在发音…" : "听一听，跟我读"}
+                                {playing ? "Playing…" : "Listen and repeat"}
                                 <span className="audio-bars">
                                   <i />
                                   <i />
@@ -592,11 +591,11 @@ export default function App() {
                                 onClick={() => void play(animal.id, true)}
                               >
                                 <Turtle size={22} />
-                                <span>慢一点</span>
+                                <span>Slower</span>
                               </button>
                             </div>
                             <div className="rhythm-preview">
-                              <span className="rhythm-label">声音小脚印</span>
+                              <span className="rhythm-label">Sound steps</span>
                               <div>
                                 {animal.parts.map((part, index) => (
                                   <span key={index}>
@@ -613,15 +612,15 @@ export default function App() {
                               </div>
                               <span className="rhythm-hint">
                                 {animal.id === "snake"
-                                  ? "找找不发音的 e"
-                                  : `${animal.parts.length} 个音节，拍拍手读一读`}
+                                  ? "Find the silent e"
+                                  : `${animal.parts.length} syllables. Clap and say them.`}
                               </span>
                             </div>
                             <button
                               className="next-step"
                               onClick={() => setMode("sounds")}
                             >
-                              发现声音里的小秘密
+                              Discover the sounds
                               <ArrowRight size={18} />
                             </button>
                           </>
@@ -629,7 +628,7 @@ export default function App() {
                           <>
                             <p className="parts-instruction">
                               <AudioLines size={17} />
-                              点点声音块，发现字母里的秘密
+                              Tap a part to hear its sound.
                             </p>
                             <div
                               className={`sound-parts ${animal.parts.length > 3 ? "many-parts" : ""}`}
@@ -642,7 +641,7 @@ export default function App() {
                                   aria-pressed={partIndex === index}
                                 >
                                   <strong>{part.text}</strong>
-                                  <small>{part.ipa}</small>
+                                  <small>{part.ipa === "静音" ? "silent" : part.ipa}</small>
                                 </button>
                               ))}
                             </div>
@@ -652,7 +651,7 @@ export default function App() {
                                 <strong>
                                   {partIndex === null
                                     ? animal.ruleLabel
-                                    : `${animal.parts[partIndex].text} 的声音秘密`}
+                                    : `${animal.parts[partIndex].text} sound patterns`}
                                 </strong>
                                 <span>
                                   {partIndex === null
@@ -667,21 +666,21 @@ export default function App() {
                                 onClick={() => void play(animal.id, true)}
                               >
                                 <Volume2 size={18} />
-                                慢速听整词
+                                Hear the word slowly
                               </button>
                               <button
                                 className="primary-button"
                                 onClick={finishAnimal}
                               >
                                 <Check size={18} />
-                                我会读啦
+                                I can say it!
                                 <ArrowRight size={18} />
                               </button>
                             </div>
                             <p className="sound-note">
                               {animal.id === "snake"
-                                ? "这些是拼读声音块；snake 本身只有 1 个音节。"
-                                : "按音节分块帮助记忆；音节里的字母要连起来听。"}
+                                ? "These are sound parts. The word snake has one syllable."
+                                : "Listen to each syllable, then blend the whole word."}
                             </p>
                           </>
                         )}
@@ -691,7 +690,7 @@ export default function App() {
                               setActiveIndex((previous) => previous - 1)
                             }
                             disabled={activeIndex === 0}
-                            aria-label="上一只动物"
+                            aria-label="Previous animal"
                           >
                             <ChevronLeft size={19} />
                           </button>
@@ -700,7 +699,7 @@ export default function App() {
                               <button
                                 key={item.id}
                                 onClick={() => setActiveIndex(index)}
-                                aria-label={`查看${item.chinese}`}
+                                aria-label={`View ${item.name}`}
                                 aria-current={
                                   activeIndex === index ? "true" : undefined
                                 }
@@ -715,7 +714,7 @@ export default function App() {
                               setActiveIndex((previous) => previous + 1)
                             }
                             disabled={activeIndex === animals.length - 1}
-                            aria-label="下一只动物"
+                            aria-label="Next animal"
                           >
                             <ChevronRight size={19} />
                           </button>
@@ -732,18 +731,18 @@ export default function App() {
                 delay={0.2}
                 trigger="mount"
               >
-                <section className="animal-collection" aria-label="选择动物">
+                <section className="animal-collection" aria-label="Choose an animal">
                   <div className="collection-header">
                     <div>
                       <span className="section-kicker">
                         <Footprints size={17} /> YOUR SAFARI FRIENDS
                       </span>
                       <h2>
-                        下一位，想认识谁？<span>7 位朋友，等你来发现</span>
+                        Who will you meet next?<span>Seven friends to discover</span>
                       </h2>
                     </div>
                     <span className="collection-hint">
-                      点一个小伙伴，开始探索
+                      Tap a friend to start exploring.
                       <ArrowDown size={15} />
                     </span>
                   </div>
@@ -759,7 +758,7 @@ export default function App() {
                           } as CSSProperties
                         }
                         onClick={() => chooseAnimal(index)}
-                        aria-label={`学习${item.name}，${item.chinese}`}
+                        aria-label={`Learn ${item.name}`}
                         aria-pressed={activeIndex === index && mode !== "quiz"}
                       >
                         <div className="animal-thumb">
@@ -776,8 +775,7 @@ export default function App() {
                         </div>
                         <strong lang="en">{item.name}</strong>
                         <span className="animal-chinese">
-                          {item.chinese}
-                          <span className="card-arrow">
+                                                    <span className="card-arrow">
                             <ArrowRight size={13} />
                           </span>
                         </span>
@@ -794,8 +792,8 @@ export default function App() {
               <Heart size={19} />
             </span>
             <p>
-              <strong>每个孩子，都有自己的学习节奏。</strong>{" "}
-              不用一次记住所有单词，今天多听一次，就是一点小进步。
+              <strong>Everyone learns at their own pace.</strong>{" "}
+              A little listening every day is a step forward.
             </p>
             <span className="note-doodle">
               <Sprout size={28} />
@@ -803,7 +801,7 @@ export default function App() {
           </aside>
           {storageError && (
             <p className="storage-notice" role="status">
-              浏览器暂时无法保存进度，这次探险仍然可以继续。
+              Progress could not be saved. You can keep learning.
             </p>
           )}
           {audioError && (
@@ -815,7 +813,7 @@ export default function App() {
                   void play(mode === "quiz" ? quizAnimal.id : animal.id)
                 }
               >
-                再试一次
+                Try again
               </button>
             </div>
           )}
@@ -826,7 +824,7 @@ export default function App() {
             <Sprout size={15} /> little steps, wild discoveries.
           </span>
           <span>
-            用好奇心学习，用声音记住 <span className="footer-dot">·</span> Made
+            Explore with curiosity. Remember through sound. <span className="footer-dot">·</span> Made
             for little explorers
           </span>
         </footer>
@@ -839,7 +837,7 @@ export default function App() {
 
         {(helpOpen || resetOpen) && (
           <InfoDialog
-            title={resetOpen ? "想重新开始这次探险吗？" : "让声音先走一步"}
+            title={resetOpen ? "Start this adventure again?" : "Start with sound"}
             onClose={() => {
               setHelpOpen(false);
               setResetOpen(false);
@@ -848,14 +846,14 @@ export default function App() {
             {resetOpen ? (
               <>
                 <p>
-                  将清空这台设备上已收集的动物足迹，7 位动物朋友随时等你回来。
+                  This clears animal footprints on this device. Your seven friends will still be here.
                 </p>
                 <div className="dialog-actions">
                   <button
                     className="secondary-button"
                     onClick={() => setResetOpen(false)}
                   >
-                    保留足迹
+                    Keep my progress
                   </button>
                   <button
                     className="primary-button"
@@ -866,7 +864,7 @@ export default function App() {
                       openPage("explore");
                     }}
                   >
-                    重新开始
+                    Start again
                     <RotateCcw size={17} />
                   </button>
                 </div>
@@ -874,48 +872,45 @@ export default function App() {
             ) : (
               <>
                 <p>
-                  Little Safari
-                  鼓励孩子先听、模仿、发现规律，再慢慢建立声音与字母的联系。每天认识一两位动物朋友就很好。
+                  Little Safari helps children listen, repeat and discover sound patterns. Explore one or two animals each day.
                 </p>
                 <div className="parent-steps">
                   <p>
                     <Ear size={22} />
                     <span>
-                      <strong>先听整词</strong>
-                      点小喇叭听发音，再用慢速播放跟读。
+                      <strong>Listen to the whole word</strong>
+                      Tap the speaker, then try the slower pronunciation.
                     </span>
                   </p>
                   <p>
                     <AudioLines size={22} />
                     <span>
-                      <strong>听节拍，找规律</strong>
-                      音节分块帮助记忆，声音提示解释具体发音。snake
-                      使用声音块，只有一个音节。
+                      <strong>Clap and explore</strong>
+                      Syllables help you remember. Sound tips explain the patterns. Snake uses sound parts and has just one syllable.
                     </span>
                   </p>
                   <p>
                     <Play size={22} />
                     <span>
-                      <strong>用游戏代替考核</strong>
-                      听音找动物，答错也可以继续尝试。
+                      <strong>Learn through play</strong>
+                      Listen and find the animal. You can always try again.
                     </span>
                   </p>
                 </div>
                 <div className="parent-note">
                   <Lightbulb size={20} />
                   <p>
-                    这 7 个词的难度不同，并非都适合初阶自然拼读。giraffe、monkey
-                    等词包含需要特别记忆的发音。这里结合音节、常见拼读规律和整词听读，不使用中文谐音。
+                    Some words, such as giraffe and monkey, have special sounds. We combine syllables, phonics and whole-word listening.
                   </p>
                 </div>
                 <p className="privacy-note">
-                  学习进度只保存在当前浏览器。点一下就能听整词发音，无需开启麦克风，也不会录制孩子的声音。
+                  Progress stays on this device. Tap to listen. The app does not use the microphone or record your voice.
                 </p>
                 <button
                   className="primary-button dialog-start"
                   onClick={() => setHelpOpen(false)}
                 >
-                  一起开始探险
+                  Let's explore
                   <ArrowRight size={18} />
                 </button>
               </>
@@ -952,7 +947,7 @@ function InfoDialog({
       }}
       aria-labelledby="dialog-title"
     >
-      <button className="dialog-close" aria-label="关闭" onClick={onClose}>
+      <button className="dialog-close" aria-label="Close" onClick={onClose}>
         <X size={21} />
       </button>
       <span className="dialog-leaf">

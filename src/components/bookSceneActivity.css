@@ -1,12 +1,12 @@
 .kb-scene-layer { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
 .kb-scene-question, .kb-scene-answer { position: absolute; display: block; pointer-events: auto; border: 2px solid transparent; border-radius: 12px; background: transparent; cursor: pointer; touch-action: manipulation; padding: 0; }
-.kb-scene-question[aria-pressed="true"] { border-color: #d3a12b; background: #f2d36722; box-shadow: 0 0 0 3px #f2d36744; }
-.kb-scene-answer[data-feedback="correct"] { border-color: #6c8e4d; background: #bdd59922; }
-.kb-scene-answer[data-feedback="retry"] { border-color: #cda14e; }
+.kb-scene-question[aria-pressed="true"] { border-color: var(--accent); background: rgba(var(--accent-rgb), 0.133); box-shadow: 0 0 0 3px rgba(var(--ink-rgb), 0.267); }
+.kb-scene-answer[data-feedback="correct"] { border-color: var(--success); background: var(--success-soft); }
+.kb-scene-answer[data-feedback="retry"] { border-color: var(--accent); }
 .kb-scene-layer[data-motion="true"] .kb-scene-answer[data-feedback="correct"] { animation: kb-scene-pop .4s ease; }
 .kb-scene-layer[data-motion="true"] .kb-scene-answer[data-feedback="retry"] { animation: kb-scene-retry .35s ease; }
-.kb-scene-question:focus-visible, .kb-scene-answer:focus-visible { outline: 3px solid #435f31; outline-offset: 3px; }
-.kb-scene-answer-bubble { position: absolute; left: 50%; bottom: 85%; transform: translateX(-50%); width: max-content; max-width: min(290px, 70vw); padding: 10px 14px; border: 2px solid #bccfa2; border-radius: 18px 18px 18px 3px; color: #344e28; background: #fffdf5; box-shadow: 0 8px 28px #435f3130; font-size: clamp(16px, 2vw, 24px); font-weight: 750; line-height: 1.4; pointer-events: none; z-index: 4; }
+.kb-scene-question:focus-visible, .kb-scene-answer:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+.kb-scene-answer-bubble { position: absolute; left: 50%; bottom: 85%; transform: translateX(-50%); width: max-content; max-width: min(290px, 70vw); padding: 10px 14px; border: 2px solid var(--primary-soft-border); border-radius: 18px 18px 18px 3px; color: var(--ink); background: var(--surface); box-shadow: 0 8px 28px rgba(var(--ink-rgb), 0.188); font-size: clamp(16px, 2vw, 24px); font-weight: 750; line-height: 1.4; pointer-events: none; z-index: 4; }
 .kb-scene-answer-bubble small { display: block; font-size: 12px; font-weight: 500; margin-top: 5px; }
 .kb-scene-layer .kb-correct-celebration { z-index: 3; }
 .kb-scene-layer .kb-correct-badge { top: 54%; }

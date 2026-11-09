@@ -1,6 +1,6 @@
 .kb-game, .kb-game-finish { position: relative; isolation: isolate; }
 .kb-correct-celebration { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; pointer-events: none; z-index: 5; }
-.kb-correct-badge { position: absolute; top: 38%; left: 50%; display: flex; align-items: center; gap: 12px; white-space: nowrap; background: #fff9e7; color: #886727; border: 2px solid #e5c675; border-radius: 999px; padding: 15px 24px; box-shadow: 0 10px 32px #657a3e26; animation: kb-correct-badge 1.7s ease both; }
+.kb-correct-badge { position: absolute; top: 38%; left: 50%; display: flex; align-items: center; gap: 12px; white-space: nowrap; background: var(--accent-soft); color: var(--accent-ink); border: 2px solid var(--accent); border-radius: 999px; padding: 15px 24px; box-shadow: 0 10px 32px rgba(var(--ink-rgb), 0.149); animation: kb-correct-badge 1.7s ease both; }
 .kb-correct-badge strong { font-size: 25px; }
 .kb-correct-celebration > i { position: absolute; left: 50%; top: 43%; width: 9px; height: 15px; border-radius: 3px; animation: kb-correct-confetti 1.15s cubic-bezier(.2,.65,.35,1) both; animation-delay: var(--piece-delay); }
 .kb-game[data-correct] .kb-choice.answer-right { animation: kb-correct-choice .55s ease both; }

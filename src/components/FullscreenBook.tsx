@@ -40,15 +40,15 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
     if (document.fullscreenElement) void document.exitFullscreen().catch(() => {});
     onClose();
   };
-  return createPortal(<dialog ref={dialog} className="kb-fullscreen-book" aria-label="全屏电子课本点读" onCancel={(event) => { event.preventDefault(); close(); }}>
+  return createPortal(<dialog ref={dialog} className="kb-fullscreen-book" aria-label="Fullscreen talking book" onCancel={(event) => { event.preventDefault(); close(); }}>
     <div className="kb-fullscreen-navigation">
-      <select aria-label="跳转课本单元" value={unitId} onChange={(event) => jump(unitStartPages[Number(event.target.value) - 1])}>
+      <select aria-label="Go to book unit" value={unitId} onChange={(event) => jump(unitStartPages[Number(event.target.value) - 1])}>
         {courseUnits.map((unit) => <option key={unit.id} value={unit.id}>Unit {unit.id} · {unit.title}</option>)}
       </select>
-      <label>第 <input key={page} aria-label="原书页码" type="number" min={4} max={95} defaultValue={page}
+      <label>Page <input key={page} aria-label="Book page number" type="number" min={4} max={95} defaultValue={page}
         onBlur={(event) => { const next=Number(event.currentTarget.value); if (Number.isInteger(next) && next >= 4 && next <= 95) jump(next); else event.currentTarget.value=String(page); }}
-        onKeyDown={(event) => { if (event.key === "Enter") event.currentTarget.blur(); }} /> 页</label>
-      <button className="kb-fullscreen-close" onClick={close} aria-label="退出课本点读"><X size={20} /></button>
+        onKeyDown={(event) => { if (event.key === "Enter") event.currentTarget.blur(); }} />  </label>
+      <button className="kb-fullscreen-close" onClick={close} aria-label="Close talking book"><X size={20} /></button>
     </div>
     <BookPageReader printedPage={startPage} onPageChange={rememberPage} audio={audio} fitPage minimal />
   </dialog>, document.body);

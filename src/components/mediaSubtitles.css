@@ -1,9 +1,9 @@
-.kb-media-subtitles { max-width: 960px; min-width: 0; margin: 8px auto; padding: 12px 20px; border-radius: 12px; background: #203022f2; color: #fffefa; font-family: "Nunito Variable", sans-serif; font-size: clamp(28px, 3.8vw, 40px); font-weight: 700; line-height: 1.4; text-align: center; text-wrap: pretty; overflow-wrap: anywhere; }
-.kb-caption-current { color: #ffe498; }
+.kb-media-subtitles { max-width: 960px; min-width: 0; margin: 8px auto; padding: 12px 20px; border-radius: 12px; background: rgba(var(--ink-rgb), 0.95); color: var(--surface); font-family: "Nunito Variable", sans-serif; font-size: clamp(28px, 3.8vw, 40px); font-weight: 700; line-height: 1.4; text-align: center; text-wrap: pretty; overflow-wrap: anywhere; }
+.kb-caption-current { color: #ffe2a5; }
 .kb-reader-playback { display: flex; justify-content: center; align-items: center; gap: 12px; }
 .kb-reader-minimal .kb-reader-playback { position: absolute; left: 64px; right: 64px; bottom: max(8px, env(safe-area-inset-bottom)); min-height: 48px; padding-left: 60px; z-index: 7; pointer-events: none; }
 .kb-reader-playback .kb-media-subtitles { margin: 0; pointer-events: none; }
-.kb-reader-pause { display: grid; place-items: center; flex-shrink: 0; width: 48px; height: 48px; border: 1px solid #c7d6b7; border-radius: 50%; color: #435f31; background: #fffefaf2; cursor: pointer; touch-action: manipulation; pointer-events: auto; }
+.kb-reader-pause { display: grid; place-items: center; flex-shrink: 0; width: 48px; height: 48px; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); background: rgba(var(--surface-rgb), 0.949); cursor: pointer; touch-action: manipulation; pointer-events: auto; }
 .kb-reader-minimal .kb-reader-pause { position: absolute; left: 0; bottom: 0; }
 .kb-reader-playback [hidden] { display: none; }
 @media (max-width: 480px) { .kb-reader-minimal .kb-reader-playback { left: 12px; right: 12px; bottom: 8px; gap: 8px; } .kb-media-subtitles { padding: 10px 14px; font-size: 26px; } }

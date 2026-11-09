@@ -46,11 +46,11 @@ export default function MediaSubtitles({ file, mediaRef }: { file?: string; medi
   }, [mediaRef, file]);
   if (!playing || !path) return null;
   const cue = document && visibleSubtitle(document.cues, time);
-  if (failed) return <div className="kb-media-subtitles" role="status">字幕未能加载</div>;
+  if (failed) return <div className="kb-media-subtitles" role="status">Captions could not load</div>;
   if (!cue) return null;
   const timedText = cue.words?.map((word) => word.text).join(" ").replace(/\s+/g, " ").trim();
   const completeTimings = timedText === cue.text.replace(/\s+/g, " ").trim();
-  return <div className="kb-media-subtitles" lang="en" aria-label="英文自动字幕" title="语音自动识别字幕">
+  return <div className="kb-media-subtitles" lang="en" aria-label="English captions" title="Automatically transcribed captions">
     {completeTimings && cue.words?.length ? cue.words.map((word, index) => <span key={index} className={time >= word.start && time < word.end ? "kb-caption-current" : undefined}>{word.text}{" "}</span>) : cue.text}
   </div>;
 }

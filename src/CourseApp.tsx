@@ -40,6 +40,8 @@ import BookLibrary from "./components/BookLibrary";
 import BookMedia from "./components/BookMedia";
 import FullscreenBook from "./components/FullscreenBook";
 import AppUpdate from "./components/AppUpdate";
+import BookShelf from "./components/BookShelf";
+import LearningCount from "./components/LearningCount";
 import { pauseOtherMedia } from "./data/media";
 import SpellingInput from "./components/SpellingInput";
 import {
@@ -84,22 +86,22 @@ type Game = {
 const stages = [
   {
     id: 1,
-    title: "第一程 · 认识身边",
-    subtitle: "你好、课堂、玩具与家人",
+    title: "Part 1 · Around us",
+    subtitle: "Hello, school, toys and family",
     from: 1,
     to: 4,
   },
   {
     id: 2,
-    title: "第二程 · 发现世界",
-    subtitle: "宠物、身体、动物与衣服",
+    title: "Part 2 · Discover the world",
+    subtitle: "Pets, bodies, animals and clothes",
     from: 5,
     to: 8,
   },
   {
     id: 3,
-    title: "第三程 · 快乐生活",
-    subtitle: "运动、出行、房间与食物",
+    title: "Part 3 · Everyday adventures",
+    subtitle: "Sports, transport, rooms and food",
     from: 9,
     to: 12,
   },
@@ -135,7 +137,6 @@ export default function CourseApp() {
   const [bookGroup, setBookGroup] = useState("CLIL");
   const [wordIndex, setWordIndex] = useState(0);
   const [activity, setActivity] = useState<Activity>("book");
-  const [showTranslation, setShowTranslation] = useState(false);
   const [query, setQuery] = useState("");
   const [dialog, setDialog] = useState<"help" | "reset" | null>(null);
   const [game, setGame] = useState<Game | null>(null);
@@ -187,7 +188,6 @@ export default function CourseApp() {
 
   useEffect(() => {
     audio.stop();
-    setShowTranslation(false);
   }, [view, unitId, wordIndex, activity, audio.stop]);
   useEffect(() => {
     if (!notice) return;
@@ -277,7 +277,7 @@ export default function CourseApp() {
     learn(currentEntry);
     if (wordIndex + 1 < unit.words.length) setWordIndex(wordIndex + 1);
     else {
-      setNotice("这一单元的单词都认识啦，听音游戏再挑战一下！");
+      setNotice("You've explored every word in this unit. Try a listening game!");
       startGame("listen");
     }
   };
@@ -293,9 +293,9 @@ export default function CourseApp() {
         <div className="kb-legacy-bar">
           <button onClick={() => navigate("map")}>
             <ArrowLeft size={18} />
-            返回整册课程
+            Back to Book 1
           </button>
-          <span>动物拼读小站 · 原有进度保留</span>
+          <span>Animal sound safari · Your progress is saved</span>
         </div>
         <App />
       </>
@@ -306,18 +306,18 @@ export default function CourseApp() {
     if (game.finished)
       return (
         <section className="kb-game-finish">
-          {motion.canAnimate && <CorrectCelebration message="完成挑战！" />}
+          {motion.canAnimate && <CorrectCelebration message="Challenge complete!" />}
           <span className="kb-finish-star">
             <Star size={45} fill="currentColor" />
           </span>
           <span className="kb-eyebrow">LITTLE STEPS, BIG PROGRESS</span>
-          <h2>这一段探险，完成啦！</h2>
+          <h2>You finished this adventure!</h2>
           <p>
-            完成 {game.questions.length} 道
-            {activity === "spell" ? "拼写" : "听音"}练习，其中 {game.firstTry}{" "}
-            道一次就答对。
+            Completed {game.questions.length}
+            {activity === "spell" ? "spelling" : "listening"} questions, with {game.firstTry}{" "}
+            right on the first try.
           </p>
-          <p className="kb-finish-note">多听一次、多试一次，都是进步。</p>
+          <p className="kb-finish-note">Every listen and every try helps you grow.</p>
           <div className="kb-finish-friends">
             {game.questions.slice(0, 6).map((entry) => (
               <WordArt
@@ -338,13 +338,13 @@ export default function CourseApp() {
               }
             >
               <RotateCcw size={18} />
-              再玩一遍
+              Play again
             </button>
             <button
               className="kb-btn kb-btn-secondary"
               onClick={() => navigate("map")}
             >
-              回到课程地图
+              Back to course map
               <ArrowRight size={18} />
             </button>
           </div>
@@ -355,7 +355,7 @@ export default function CourseApp() {
       <section
         className="kb-game"
         data-correct={game.correct || undefined}
-        aria-label={activity === "listen" ? "听音找朋友" : "字母拼拼乐"}
+        aria-label={activity === "listen" ? "Listen and find" : "Spelling play"}
       >
         {game.correct && motion.canAnimate && <CorrectCelebration key={`${activity}:${game.round}:${entryKey(question)}`} />}
         <div className="kb-game-top">
@@ -368,25 +368,25 @@ export default function CourseApp() {
         </div>
         <h2>
           {activity === "listen"
-            ? "小耳朵，听见了谁？"
+            ? "What can you hear?"
             : spellingHints
-              ? "小字母，排排队。"
-              : "听一听，自己拼出来。"}
+              ? "Put the letters in order."
+              : "Listen and spell it yourself."}
         </h2>
         <p>
           {activity === "listen"
-            ? "先听声音，再点选对应的图片和意思。"
+            ? "Listen, then choose the matching picture."
             : spellingHints
-              ? "先听一听，再把字母放进正确的位置。"
-              : "没有字母提示，试着写出你听到的单词。"}
+              ? "Listen, then put each letter in its place."
+              : "No letter hints. Write the word you hear."}
         </p>
         <button
           className={`kb-big-audio ${audio.playingText ? "is-playing" : ""}`}
           onClick={() => void audio.play(question.word.en)}
-          aria-label="播放题目发音"
+          aria-label="Play the question word"
         >
           <Volume2 size={27} />
-          {audio.playingText ? "仔细听…" : "再听一次"}
+          {audio.playingText ? "Listen closely…" : "Listen again"}
           <span className="kb-audio-waves">
             <i />
             <i />
@@ -395,7 +395,7 @@ export default function CourseApp() {
         </button>
         {activity === "listen" ? (
           <div className="kb-choices">
-            {game.options.map((option) => (
+            {game.options.map((option, index) => (
               <button
                 key={entryKey(option)}
                 onClick={() => answerGame(option)}
@@ -404,10 +404,9 @@ export default function CourseApp() {
                 style={themeStyle(
                   courseUnits.find((unit) => unit.id === option.unitId)!,
                 )}
-                aria-label={`选择${option.word.zh}`}
+                aria-label={`Choose picture ${index + 1}`}
               >
                 <WordArt id={option.word.id} unitId={option.unitId} />
-                <span>{option.word.zh}</span>
                 {game.correct && entryKey(option) === entryKey(question) && (
                   <strong>
                     {option.word.en}
@@ -415,7 +414,7 @@ export default function CourseApp() {
                   </strong>
                 )}
                 {game.wrong.includes(entryKey(option)) && (
-                  <small>再听听看</small>
+                  <small>Listen again</small>
                 )}
               </button>
             ))}
@@ -424,13 +423,13 @@ export default function CourseApp() {
           <div className="kb-spelling">
             <label className="kb-spelling-toggle">
               <span>
-                字母提示
-                <small>{spellingHints ? "选字母拼写" : "自己输入单词"}</small>
+                Letter hints
+                <small>{spellingHints ? "Choose letter tiles" : "Type the word yourself"}</small>
               </span>
               <input
                 type="checkbox"
                 role="switch"
-                aria-label="字母提示"
+                aria-label="Letter hints"
                 checked={spellingHints}
                 disabled={game.correct}
                 onChange={(event) => {
@@ -444,18 +443,17 @@ export default function CourseApp() {
                       enabled ? "on" : "off",
                     );
                   } catch {
-                    setNotice("切换成功，但这个设置暂时无法保存。");
+                    setNotice("Setting changed, but it could not be saved.");
                   }
                 }}
               />
             </label>
             <div className="kb-spell-clue">
               <WordArt id={question.word.id} unitId={question.unitId} />
-              <strong>{question.word.zh}</strong>
             </div>
             {spellingHints ? (
               <>
-                <div className="kb-spell-slots" aria-label="已选字母">
+                <div className="kb-spell-slots" aria-label="Selected letters">
                   {spellingLetters(question.word.en).map((_, index) => (
                     <button
                       key={index}
@@ -464,8 +462,8 @@ export default function CourseApp() {
                       }
                       aria-label={
                         game.selected[index] === undefined
-                          ? `第 ${index + 1} 格`
-                          : `移除第 ${index + 1} 个字母`
+                          ? `Empty slot ${index + 1}`
+                          : `Remove letter ${index + 1}`
                       }
                       onClick={() =>
                         setGame({
@@ -483,7 +481,7 @@ export default function CourseApp() {
                     </button>
                   ))}
                 </div>
-                <div className="kb-letter-bank" aria-label="可选字母">
+                <div className="kb-letter-bank" aria-label="Available letters">
                   {game.tiles.map((tile) => (
                     <button
                       key={tile.id}
@@ -495,7 +493,7 @@ export default function CourseApp() {
                           wrong: [],
                         })
                       }
-                      aria-label={`字母 ${tile.letter}`}
+                      aria-label={`Letter ${tile.letter}`}
                     >
                       {tile.letter}
                     </button>
@@ -527,7 +525,7 @@ export default function CourseApp() {
                 }}
               >
                 <RotateCcw size={17} />
-                {spellingHints ? "重新排列" : "清空重写"}
+                {spellingHints ? "Start over" : "Clear and try again"}
               </button>
               <button
                 className="kb-btn"
@@ -539,16 +537,16 @@ export default function CourseApp() {
                 onClick={checkSpelling}
               >
                 <Check size={18} />
-                {spellingHints ? "拼好啦" : "检查答案"}
+                {spellingHints ? "Check spelling" : "Check answer"}
               </button>
             </div>
             <p className="kb-spell-hint">
               {!spellingHints
-                ? "可以直接输入，不区分大小写。空格和连字符可省略。"
+                ? "Use upper or lower case. Spaces and hyphens are optional."
                 : question.word.en.includes(" ") ||
                     question.word.en.includes("-")
-                  ? "这里只拼字母，空格和连字符不用放进格子。"
-                  : "点一下已放好的字母，就能把它拿回来。"}
+                  ? "Only letters go in the slots. Leave out spaces and hyphens."
+                  : "Tap a placed letter to take it back."}
             </p>
           </div>
         )}
@@ -560,20 +558,20 @@ export default function CourseApp() {
             <>
               <span>
                 <Check size={20} />
-                答对啦！{question.word.en} · {question.word.zh}
+                That's right! {question.word.en}
               </span>
               <RewardButton animated={motion.canAnimate} className="kb-btn kb-reward-next" onClick={nextQuestion}>
                 {game.round === game.questions.length - 1
-                  ? "完成挑战"
-                  : "下一题"}
+                  ? "Finish challenge"
+                  : "Next question"}
                 <ArrowRight size={18} />
               </RewardButton>
             </>
           ) : (
             <span>
               {game.wrong.length
-                ? "没关系，再听一次，换个办法试试看。"
-                : "不计时，不着急。想听几遍都可以。"}
+                ? "Listen again and give it another try."
+                : "No timer. Take your time and listen again."}
             </span>
           )}
         </div>
@@ -583,7 +581,7 @@ export default function CourseApp() {
 
   return (
     <ClickSpark
-      sparkColor={["#d2ad58", "#90a577", "#c49bba"]}
+      sparkColor={["#f2a54a", "#69bce8", "#8d89e8"]}
       sparkSize={7}
       sparkRadius={22}
       sparkCount={6}
@@ -594,24 +592,24 @@ export default function CourseApp() {
     >
       <div className="kb-shell" data-motion={motion.canAnimate ? "on" : "off"}>
         <a className="skip-link" href="#course-main">
-          跳到学习内容
+          Skip to learning
         </a>
         <header className="kb-header">
           <button
             className="kb-brand"
             onClick={() => navigate("map")}
-            aria-label="Kid's Box 课程首页"
+            aria-label="Kids Box home"
           >
             <span>
               <Sprout size={28} />
             </span>
             <div>
-              little learners<span>.</span>
-              <small>Kid’s Box · 第 1 册配套练习</small>
+              Kids Box<span>.</span>
+              <small>Kids Box · Book 1 activities</small>
             </div>
           </button>
-          <nav aria-label="课程导航">
-            <button onClick={() => openReader()}><BookOpen size={18} /><span>课本点读</span></button>
+          <nav aria-label="Course navigation">
+            <button onClick={() => openReader()}><BookOpen size={18} /><span>Talking book</span></button>
             <button
               aria-current={
                 view === "map" || view === "lesson" ? "page" : undefined
@@ -619,14 +617,14 @@ export default function CourseApp() {
               onClick={() => navigate("map")}
             >
               <Compass size={18} />
-              <span>课程地图</span>
+              <span>Course map</span>
             </button>
             <button
               aria-current={view === "review" ? "page" : undefined}
               onClick={() => navigate("review")}
             >
               <Layers3 size={18} />
-              <span>错词背包</span>
+              <span>Practice bag</span>
               {mistakes.length > 0 && <b>{mistakes.length}</b>}
             </button>
             <button
@@ -634,16 +632,16 @@ export default function CourseApp() {
               onClick={() => navigate("passport")}
             >
               <Footprints size={18} />
-              <span>我的足迹</span>
+              <span>My progress</span>
             </button>
           </nav>
           <button
             className="kb-help"
-            aria-label="家长指南"
+            aria-label="Parent guide"
             onClick={() => setDialog("help")}
           >
             <HelpCircle size={21} />
-            <span>给家长的话</span>
+            <span>For parents</span>
           </button>
         </header>
         <main ref={top} id="course-main">
@@ -656,21 +654,21 @@ export default function CourseApp() {
                       <span /> A WHOLE BOOK OF LITTLE DISCOVERIES
                     </span>
                     <h1>
-                      跟着课本，<span>一起听、说、唱。</span>
+                      Open your book.{" "}<span>Listen, speak and sing.</span>
                     </h1>
-                    <p>课本活动与课后练习，一步一步，按你手里的教材来。</p>
+                    <p>Explore your book and practise, one little step at a time.</p>
                     <div className="kb-welcome-tags">
                       <span>
                         <BookOpen size={14} />
-                        第二版 · 第 1 册
+                        Second edition · Book 1
                       </span>
                       <span>
                         <Headphones size={14} />
-                        12 个主题单元
+                        12 themed units
                       </span>
                       <span>
                         <Heart size={14} />
-                        按自己的节奏学
+                        Learn at your own pace
                       </span>
                     </div>
                     <button
@@ -678,8 +676,8 @@ export default function CourseApp() {
                       onClick={() => openUnit(progress.lastUnit)}
                     >
                       {progress.learned.length
-                        ? "继续我的探险"
-                        : "从 Hello 开始"}
+                        ? "Continue exploring"
+                        : "Start with Hello"}
                       <ArrowRight size={18} />
                     </button>
                   </div>
@@ -702,17 +700,17 @@ export default function CourseApp() {
                   </div>
                 </section>
               </AnimatedContent>
-              <section className="kb-overview" aria-label="整册学习进度">
+              <section className="kb-overview" aria-label="Book progress">
                 <div>
                   <span className="kb-stat-icon">
                     <Footprints size={23} />
                   </span>
                   <div>
                     <strong>
-                      {progress.learned.length}
+                      <LearningCount value={progress.learned.length} animated={motion.canAnimate} />
                       <small> / {allWordEntries.length}</small>
                     </strong>
-                    <span>认识的词语</span>
+                    <span>Words explored</span>
                   </div>
                 </div>
                 <div>
@@ -721,19 +719,17 @@ export default function CourseApp() {
                   </span>
                   <div>
                     <strong>
-                      {complete}
+                      <LearningCount value={complete} animated={motion.canAnimate} />
                       <small> / 12</small>
                     </strong>
-                    <span>词语练习完成单元</span>
+                    <span>Units explored</span>
                   </div>
                 </div>
                 <div className="kb-overview-progress">
                   <div>
-                    <span>一整册的小脚印</span>
+                    <span>A book full of discoveries</span>
                     <strong>
-                      {Math.round(
-                        (progress.learned.length / allWordEntries.length) * 100,
-                      )}
+                      <LearningCount value={Math.round((progress.learned.length / allWordEntries.length) * 100)} animated={motion.canAnimate} />
                       %
                     </strong>
                   </div>
@@ -741,27 +737,28 @@ export default function CourseApp() {
                     value={progress.learned.length}
                     max={allWordEntries.length}
                   />
-                  <small>每认识一个新词，都算一点新进步。</small>
+                  <small>Every new word is a little step forward.</small>
                 </div>
                 <span className="kb-overview-doodle">
                   <Sprout size={38} />
                 </span>
               </section>
+              <BookShelf animated={motion.canAnimate} onOpen={() => openUnit(progress.lastUnit)} />
               <div className="kb-map-heading">
                 <div>
                   <span className="kb-eyebrow">YOUR LEARNING MAP</span>
-                  <h2>今天，去哪里发现？</h2>
+                  <h2>Where will you explore today?</h2>
                 </div>
                 <label className="kb-search">
                   <Search size={17} />
                   <input
                     value={query}
                     onChange={(event) => setQuery(event.target.value)}
-                    placeholder="找单元或单词"
-                    aria-label="搜索单元或单词"
+                    placeholder="Find a unit or word"
+                    aria-label="Search units or words"
                   />
                   {query && (
-                    <button onClick={() => setQuery("")} aria-label="清空搜索">
+                    <button onClick={() => setQuery("")} aria-label="Clear search">
                       <X size={16} />
                     </button>
                   )}
@@ -773,7 +770,7 @@ export default function CourseApp() {
                     unit.id >= stage.from &&
                     unit.id <= stage.to &&
                     (!query ||
-                      `${unit.title} ${unit.zh} ${unit.words.map((word) => `${word.en} ${word.zh}`).join(" ")}`
+                      `${unit.title} ${unit.words.map((word) => word.en).join(" ")}`
                         .toLowerCase()
                         .includes(query.trim().toLowerCase())),
                 );
@@ -795,7 +792,7 @@ export default function CourseApp() {
                               className={`kb-unit-card ${count === unit.words.length ? "unit-complete" : ""}`}
                               style={themeStyle(unit)}
                               onClick={() => openUnit(unit.id)}
-                              aria-label={`进入单元 ${unit.id} ${unit.title} ${unit.zh}`}
+                              aria-label={`Open unit ${unit.id}: ${unit.title}`}
                             >
                               <div className="kb-unit-top">
                                 <span>
@@ -811,16 +808,15 @@ export default function CourseApp() {
                               </div>
                               <img className="kb-unit-picture" src={mediaUrl(originalUnitArt[unit.id].file)} width={originalUnitArt[unit.id].width} height={originalUnitArt[unit.id].height} alt="" loading="lazy" decoding="async" />
                               <h3>{unit.title}</h3>
-                              <strong>{unit.zh}</strong>
                               <p>{unit.description}</p>
                               <div className="kb-unit-bottom">
                                 <span>
                                   {verifiedBookActivities[unit.id]
-                                    ? "12 项课本活动已核对"
-                                    : "课本活动待核对"}
+                                    ? "12 book activities"
+                                    : "Book activities coming soon"}
                                 </span>
                                 <span>
-                                  词语 {count}/{unit.words.length}
+                                  words {count}/{unit.words.length}
                                 </span>
                               </div>
                               <Progress value={count} max={unit.words.length} />
@@ -852,12 +848,12 @@ export default function CourseApp() {
                         </span>
                         <div>
                           <strong>
-                            第 {stage.from}–{stage.to} 单元 · 小小复习站
+                            Units {stage.from}–{stage.to} · Practice stop
                           </strong>
-                          <p>把几个单元的朋友放在一起，再用耳朵认识一次。</p>
+                          <p>Listen again to words from these units.</p>
                         </div>
                         <span className="kb-review-banner-action">
-                          去挑战
+                          Let's play
                           <ArrowRight size={17} />
                         </span>
                       </button>
@@ -867,18 +863,18 @@ export default function CourseApp() {
               })}
               {query &&
                 !courseUnits.some((unit) =>
-                  `${unit.title} ${unit.zh} ${unit.words.map((word) => `${word.en} ${word.zh}`).join(" ")}`
+                  `${unit.title} ${unit.words.map((word) => word.en).join(" ")}`
                     .toLowerCase()
                     .includes(query.trim().toLowerCase()),
                 ) && (
                   <div className="kb-empty">
                     <Search size={35} />
-                    <h3>暂时没有找到这个词</h3>
-                    <p>试试中文意思、英文单词或单元名称。</p>
+                    <h3>No matching words yet</h3>
+                    <p>Try an English word or a unit title.</p>
                   </div>
                 )}
               <section className="kb-additional-sections">
-                <h2>课本不止词语，还有这些学习板块。</h2>
+                <h2>There's more to explore in your book.</h2>
                 <div className="kb-additional-section-grid">
                   {additionalBookSections.map((section) => (
                     <button
@@ -891,7 +887,7 @@ export default function CourseApp() {
                       <strong>{section.title}</strong>
                       <span>{section.en}</span>
                       <p>{section.description}</p>
-                      <small>打开原书活动 →</small>
+                      <small>Open book activities →</small>
                     </button>
                   ))}
                 </div>
@@ -899,13 +895,12 @@ export default function CourseApp() {
               <aside className="kb-source-note">
                 <BookOpen size={20} />
                 <div>
-                  <strong>按课本活动学习，配套练习帮助巩固。</strong>
+                  <strong>Follow the book, then practise what you've discovered.</strong>
                   <p>
-                    已按你提供的电子书核对全部 12 个单元的 144
-                    项活动，并整理跨学科、价值观、复习和语法参考页。原版音频、视频和闪卡已内置，可直接打开课本点读。
+                    Explore 144 activities across 12 units, plus CLIL, values, reviews and grammar pages. Book recordings, videos and flashcards are included.
                   </p>
                   <a href={courseSource} target="_blank" rel="noreferrer">
-                    查看第二版单元目录
+                    Second edition unit list
                     <ArrowRight size={13} />
                   </a>
                   <a
@@ -913,7 +908,7 @@ export default function CourseApp() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    外研社官方样张与资源
+                    Publisher samples and resources
                     <ArrowRight size={13} />
                   </a>
                 </div>
@@ -935,7 +930,7 @@ export default function CourseApp() {
               <div className="kb-lesson-breadcrumb">
                 <button onClick={() => navigate("map")}>
                   <ArrowLeft size={17} />
-                  课程地图
+                  Course map
                 </button>
                 <span>/</span>
                 <span>UNIT {String(unit.id).padStart(2, "0")}</span>
@@ -943,14 +938,14 @@ export default function CourseApp() {
                   <button
                     disabled={unitId === 1}
                     onClick={() => openUnit(unitId - 1)}
-                    aria-label="上一个单元"
+                    aria-label="Previous unit"
                   >
                     <ChevronLeft size={19} />
                   </button>
                   <button
                     disabled={unitId === 12}
                     onClick={() => openUnit(unitId + 1)}
-                    aria-label="下一个单元"
+                    aria-label="Next unit"
                   >
                     <ChevronRight size={19} />
                   </button>
@@ -966,7 +961,6 @@ export default function CourseApp() {
                   </span>
                   <h1>
                     {unit.title}
-                    <span>{unit.zh}</span>
                   </h1>
                   <p>{unit.description}</p>
                 </div>
@@ -975,23 +969,23 @@ export default function CourseApp() {
                     {learnedIn(unit)}
                     <span> / {unit.words.length}</span>
                   </strong>
-                  <small>小小脚印</small>
+                  <small>Footprints</small>
                   <Progress value={learnedIn(unit)} max={unit.words.length} />
                 </div>
               </section>
               <div
                 className="kb-activity-tabs"
                 role="group"
-                aria-label="选择学习活动"
+                aria-label="Choose an activity"
               >
                 {(
                   [
-                    { id: "book", title: "课本活动", Icon: BookOpen },
-                    { id: "media", title: "视频与闪卡", Icon: Layers3 },
-                    { id: "words", title: "词语探险", Icon: Ear },
-                    { id: "sentences", title: "情景说一说", Icon: AudioLines },
-                    { id: "listen", title: "听音找朋友", Icon: Headphones },
-                    { id: "spell", title: "字母拼拼乐", Icon: Sparkles },
+                    { id: "book", title: "Book activities", Icon: BookOpen },
+                    { id: "media", title: "Videos and flashcards", Icon: Layers3 },
+                    { id: "words", title: "Word explorer", Icon: Ear },
+                    { id: "sentences", title: "Let's talk", Icon: AudioLines },
+                    { id: "listen", title: "Listen and find", Icon: Headphones },
+                    { id: "spell", title: "Spelling play", Icon: Sparkles },
                   ] as const
                 ).map((tab, index) => (
                   <button
@@ -1012,7 +1006,7 @@ export default function CourseApp() {
                   </button>
                 ))}
               </div>
-              <button className="kb-btn kb-btn-secondary" onClick={() => openReader(unitStartPages[unit.id - 1])}><BookOpen size={18} />全屏课本点读</button>
+              <button className="kb-btn kb-btn-secondary" onClick={() => openReader(unitStartPages[unit.id - 1])}><BookOpen size={18} />Open talking book</button>
               {activity === "book" ? (
                 <BookActivities
                   key={unit.id}
@@ -1028,14 +1022,8 @@ export default function CourseApp() {
                 <section className="kb-sentences">
                   <div className="kb-section-intro">
                     <span className="kb-eyebrow">SAY IT IN YOUR OWN WAY</span>
-                    <h2>把单词，放进生活里。</h2>
-                    <p>听一句，跟着说一句。把人物和物品换成你自己的。</p>
-                    <button
-                      className="kb-btn kb-btn-secondary"
-                      onClick={() => setShowTranslation(!showTranslation)}
-                    >
-                      {showTranslation ? "藏起中文提示" : "看看中文提示"}
-                    </button>
+                    <h2>Bring words to life.</h2>
+                    <p>Listen and repeat. Try your own names and objects.</p>
                   </div>
                   {unit.sentences.map((sentence, index) => (
                     <article
@@ -1046,9 +1034,6 @@ export default function CourseApp() {
                       <span className="kb-sentence-number">0{index + 1}</span>
                       <div>
                         <h3 lang="en">{sentence.en}</h3>
-                        {showTranslation && (
-                          <p className="kb-sentence-zh">{sentence.zh}</p>
-                        )}
                         <p className="kb-sentence-tip">
                           <Lightbulb size={16} />
                           {sentence.tip}
@@ -1060,15 +1045,15 @@ export default function CourseApp() {
                           >
                             <Volume2 size={18} />
                             {audio.playingText === sentence.en
-                              ? "仔细听…"
-                              : "听一句，跟我说"}
+                              ? "Listen closely…"
+                              : "Listen and repeat"}
                           </button>
                           <button
                             className="kb-btn kb-btn-secondary"
                             onClick={() => void audio.play(sentence.en, true)}
                           >
                             <Turtle size={18} />
-                            慢一点
+                            Slower
                           </button>
                         </div>
                       </div>
@@ -1089,11 +1074,11 @@ export default function CourseApp() {
                       </span>
                       <WordArt id={word.id} unitId={unit.id} />
                       <span className="kb-word-scene-caption">
-                        看一看，听一听，再说一说。
+                        Look, listen and say it.
                       </span>
                       <button
                         onClick={() => void audio.play(word.en)}
-                        aria-label={`播放 ${word.en} 发音`}
+                        aria-label={`Play ${word.en} pronunciation`}
                       >
                         <Volume2 size={25} />
                       </button>
@@ -1109,24 +1094,23 @@ export default function CourseApp() {
                       </div>
                       <LearningWord text={word.en} animated={motion.canAnimate} color={unit.color} replay={wordAnimationReplay} onRead={() => void audio.play(word.en)} />
                       <div className="kb-motion-tools">
-                        <button disabled={!motion.canAnimate} onClick={() => { setWordAnimationReplay((value) => value + 1); void audio.play(word.en); }}><Sparkles size={16} />再看一次</button>
-                        <button aria-pressed={motion.enabled} onClick={motion.toggle}>动态效果{motion.enabled ? "开" : "关"}</button>
+                        <button disabled={!motion.canAnimate} onClick={() => { setWordAnimationReplay((value) => value + 1); void audio.play(word.en); }}><Sparkles size={16} />Replay animation</button>
+                        <button aria-pressed={motion.enabled} onClick={motion.toggle}>Motion effects: {motion.enabled ? "On" : "Off"}</button>
                       </div>
                       <p
                         className="kb-word-ipa"
-                        aria-label={`英式音标 /${word.ipa}/`}
+                        aria-label={`British pronunciation /${word.ipa}/`}
                       >
                         /{word.ipa}/
                       </p>
                       <div className="kb-word-translation">
-                        <span>{word.zh}</span>
                         {progress.learned.includes(entryKey(currentEntry)) && (
                           <small>
                             <Check size={13} />
-                            已认识
+                            Explored
                           </small>
                         )}
-                        <span className="kb-voice-tag">英式发音</span>
+                        <span className="kb-voice-tag">British pronunciation</span>
                       </div>
                       <div className="kb-button-row">
                         <button
@@ -1135,8 +1119,8 @@ export default function CourseApp() {
                         >
                           <Volume2 size={21} />
                           {audio.playingText === word.en
-                            ? "正在发音…"
-                            : "听一听，跟我读"}
+                            ? "Playing…"
+                            : "Listen and repeat"}
                           <span className="kb-audio-waves">
                             <i />
                             <i />
@@ -1148,17 +1132,17 @@ export default function CourseApp() {
                           onClick={() => void audio.play(word.en, true)}
                         >
                           <Turtle size={20} />
-                          慢一点
+                          Slower
                         </button>
                       </div>
                       <div className="kb-chunk-heading">
                         <AudioLines size={16} />
                         {word.chunkType === "音节"
-                          ? "拍拍手，听声音节拍"
+                          ? "Clap the syllables"
                           : word.chunkType === "整词"
-                            ? "特别的词，一起听记"
-                            : "声音小搭档"}
-                        <span>{word.chunkType}</span>
+                            ? "Listen to this special word"
+                            : "Sound partners"}
+                        <span>{word.chunkType === "音节" ? "Syllables" : word.chunkType === "整词" ? "Whole word" : "Sound parts"}</span>
                       </div>
                       <div className="kb-word-chunks">
                         {word.chunks.map((chunk, index) =>
@@ -1174,8 +1158,8 @@ export default function CourseApp() {
                               }
                               aria-label={
                                 word.sounds[index]
-                                  ? `播放 ${word.en} 中 ${chunk} 的读音 /${word.sounds[index]}/`
-                                  : `${chunk} 在 ${word.en} 中不发音`
+                                  ? `Play ${chunk} in ${word.en}: /${word.sounds[index]}/`
+                                  : `${chunk} in ${word.en} is silent`
                               }
                               aria-pressed={
                                 audio.playingText === `${word.id}:${index}`
@@ -1189,7 +1173,7 @@ export default function CourseApp() {
                                 else {
                                   audio.stop();
                                   setNotice(
-                                    `${chunk} 在 ${word.en} 中不发音。`,
+                                    `${chunk} in ${word.en} is silent.`,
                                   );
                                 }
                               }}
@@ -1198,7 +1182,7 @@ export default function CourseApp() {
                               <small>
                                 {word.sounds[index]
                                   ? `/${word.sounds[index]}/`
-                                  : "不发音"}
+                                  : "silent"}
                               </small>
                               {word.sounds[index] ? (
                                 <Volume2 size={13} aria-hidden="true" />
@@ -1215,11 +1199,11 @@ export default function CourseApp() {
                           audio.blending ? audio.stop() : audio.blend(word)
                         }
                         aria-label={
-                          audio.blending ? "停止连读" : "分块后连读完整单词"
+                          audio.blending ? "Stop blending" : "Hear the parts, then the whole word"
                         }
                       >
                         <Volume2 size={19} />
-                        {audio.blending ? "正在连读 · 点击停止" : "连起来读"}
+                        {audio.blending ? "Blending · Tap to stop" : "Blend it together"}
                         <ArrowRight size={17} />
                       </button>
                       <div className="kb-word-tip">
@@ -1227,7 +1211,7 @@ export default function CourseApp() {
                         <p>{word.tip}</p>
                       </div>
                       <p className="kb-chunk-note">
-                        点击分块听读音，再连起来听完整单词。分块数不一定等于音节数；分块声音为合成示范。
+                        Tap a part, then blend the word. Sound parts are not always syllables. Part sounds use a synthesized voice.
                       </p>
                       <RewardButton animated={motion.canAnimate}
                         className="kb-btn kb-learn-next"
@@ -1235,15 +1219,15 @@ export default function CourseApp() {
                       >
                         <Check size={19} />
                         {progress.learned.includes(entryKey(currentEntry))
-                          ? "复习好啦，继续"
-                          : "我认识它啦"}
+                          ? "Practised! Keep going"
+                          : "I know this word!"}
                         <ArrowRight size={18} />
                       </RewardButton>
                       <div className="kb-word-pager">
                         <button
                           disabled={wordIndex === 0}
                           onClick={() => setWordIndex(wordIndex - 1)}
-                          aria-label="上一个词语"
+                          aria-label="Previous word"
                         >
                           <ChevronLeft size={20} />
                         </button>
@@ -1254,7 +1238,7 @@ export default function CourseApp() {
                         <button
                           disabled={wordIndex === unit.words.length - 1}
                           onClick={() => setWordIndex(wordIndex + 1)}
-                          aria-label="下一个词语"
+                          aria-label="Next word"
                         >
                           <ChevronRight size={20} />
                         </button>
@@ -1263,8 +1247,8 @@ export default function CourseApp() {
                   </section>
                   <section className="kb-unit-words">
                     <div className="kb-small-section-heading">
-                      <h2>这一单元的小伙伴</h2>
-                      <span>点选一个词语，慢慢认识它</span>
+                      <h2>Words in this unit</h2>
+                      <span>Choose a word to explore.</span>
                     </div>
                     <div className="kb-mini-word-grid">
                       {unit.words.map((item, index) => (
@@ -1273,11 +1257,10 @@ export default function CourseApp() {
                           aria-pressed={wordIndex === index}
                           onClick={() => setWordIndex(index)}
                           style={themeStyle(unit)}
-                          aria-label={`学习 ${item.en} ${item.zh}`}
+                          aria-label={`Learn ${item.en}`}
                         >
                           <WordArt id={item.id} unitId={unit.id} />
                           <strong lang="en">{item.en}</strong>
-                          <span>{item.zh}</span>
                           {progress.learned.includes(
                             entryKey({ unitId: unit.id, word: item }),
                           ) && (
@@ -1296,8 +1279,8 @@ export default function CourseApp() {
                     >
                       <Footprints size={20} />
                       <span>
-                        <strong>想去原来的动物拼读小站？</strong>
-                        <small>7 位动物朋友和之前的足迹都还在。</small>
+                        <strong>Visit the animal sound safari</strong>
+                        <small>Your seven animal friends and footprints are waiting.</small>
                       </span>
                       <ArrowRight size={18} />
                     </button>
@@ -1311,8 +1294,8 @@ export default function CourseApp() {
             <>
               <PageHeading
                 eyebrow="A LITTLE PRACTICE, A LITTLE PROGRESS"
-                title="再见面，就更熟悉一点。"
-                description="答错过的词语住在这里。再认真听一次，答对后它就会离开错词背包。"
+                title="A little more familiar each time."
+                description="Words to practise live here. Listen again. A correct answer takes a word out of your practice bag."
               />
               {game ? (
                 renderGame()
@@ -1321,7 +1304,7 @@ export default function CourseApp() {
                   <div className="kb-review-actions">
                     <span>
                       <Layers3 size={20} />
-                      {mistakes.length} 个词语等你再认识
+                      {mistakes.length} words to practise
                     </span>
                     <div className="kb-button-row">
                       <button
@@ -1329,14 +1312,14 @@ export default function CourseApp() {
                         onClick={() => startGame("listen", mistakes)}
                       >
                         <Headphones size={18} />
-                        听音复习
+                        Listening practice
                       </button>
                       <button
                         className="kb-btn kb-btn-secondary"
                         onClick={() => startGame("spell", mistakes)}
                       >
                         <Sparkles size={18} />
-                        拼写复习
+                        Spelling practice
                       </button>
                     </div>
                   </div>
@@ -1361,7 +1344,6 @@ export default function CourseApp() {
                         <WordArt id={entry.word.id} unitId={entry.unitId} />
                         <div>
                           <strong>{entry.word.en}</strong>
-                          <span>{entry.word.zh}</span>
                           <small>Unit {entry.unitId}</small>
                         </div>
                         <ArrowRight size={18} />
@@ -1374,11 +1356,11 @@ export default function CourseApp() {
                   <span>
                     <Sprout size={45} />
                   </span>
-                  <h2>背包轻轻的，真好。</h2>
+                  <h2>Your bag is all clear!</h2>
                   <p>
-                    遇到需要再练习的词语，会自动收在这里。
+                    Words that need practice will appear here.
                     <br />
-                    也可以主动挑战整册的听音游戏。
+                    Try a listening challenge from the whole book.
                   </p>
                   <button
                     className="kb-btn"
@@ -1386,7 +1368,7 @@ export default function CourseApp() {
                       startGame("listen", shuffled(allWordEntries).slice(0, 12))
                     }
                   >
-                    随机听音挑战
+                    Random listening challenge
                     <Sparkles size={18} />
                   </button>
                 </div>
@@ -1397,7 +1379,7 @@ export default function CourseApp() {
                   onClick={() => setGame(null)}
                 >
                   <ArrowLeft size={17} />
-                  返回错词背包
+                  Back to practice bag
                 </button>
               )}
             </>
@@ -1407,8 +1389,8 @@ export default function CourseApp() {
             <>
               <PageHeading
                 eyebrow="MY BOOK OF LITTLE DISCOVERIES"
-                title="每一枚足迹，都算数。"
-                description={`已经认识 ${progress.learned.length} 个词语，走过 ${complete} 个完整单元。`}
+                title="Every footprint counts."
+                description={`You've explored ${progress.learned.length} words and completed ${complete} units.`}
               />
               <section className="kb-passport-grid">
                 {courseUnits.map((unit) => {
@@ -1432,10 +1414,9 @@ export default function CourseApp() {
                       </span>
                       <small>UNIT {String(unit.id).padStart(2, "0")}</small>
                       <strong>{unit.title}</strong>
-                      <span>{unit.zh}</span>
                       <Progress value={count} max={unit.words.length} />
                       <p>
-                        {count}/{unit.words.length} 个词语
+                        {count}/{unit.words.length} words
                       </p>
                     </button>
                   );
@@ -1444,14 +1425,14 @@ export default function CourseApp() {
               <div className="kb-passport-footer">
                 <p>
                   <Heart size={17} />
-                  不用和别人比，今天比昨天多认识一点就很好。
+                  Follow your own pace. A little progress each day is enough.
                 </p>
                 <button
                   className="kb-text-button"
                   onClick={() => setDialog("reset")}
                 >
                   <RotateCcw size={16} />
-                  重置词语练习进度
+                  Reset word practice
                 </button>
               </div>
             </>
@@ -1459,14 +1440,14 @@ export default function CourseApp() {
           <aside className="kb-gentle-note">
             <Heart size={19} />
             <p>
-              <strong>小小的进步，也值得被看见。</strong>{" "}
-              每天听一点，不用一次学完整本。
+              <strong>Little steps deserve a smile.</strong>{" "}
+              Listen a little each day. There's no rush.
             </p>
             <Sprout size={26} />
           </aside>
           {storageError && (
             <p className="kb-storage-error" role="status">
-              当前浏览器无法保存进度，仍然可以继续学习。
+              Progress could not be saved in this browser. You can keep learning.
             </p>
           )}
         </main>
@@ -1475,7 +1456,7 @@ export default function CourseApp() {
             <Sprout size={15} />
             little steps, wild discoveries.
           </span>
-          <span>{courseEdition} · 原创配套练习 · 非出版社官方应用</span>
+          <span>{courseEdition} · Independent practice app · Not an official publisher app</span>
         </footer>
         {notice && (
           <div className="toast" role="status">
@@ -1487,29 +1468,29 @@ export default function CourseApp() {
           <div className="kb-audio-error" role="alert">
             <Volume2 size={18} />
             {audio.error}
-            <button onClick={audio.retry}>重试</button>
+            <button onClick={audio.retry}>Retry</button>
           </div>
         )}
         {dialog && (
           <CourseDialog
             title={
               dialog === "help"
-                ? "陪孩子，听见学习的声音。"
-                : "重置本册词语练习进度？"
+                ? "Help your child learn through sound."
+                : "Reset Book 1 word practice?"
             }
             close={() => setDialog(null)}
           >
             {dialog === "reset" ? (
               <>
                 <p>
-                  将清空本册的词语足迹和错词背包。课本活动记录、已添加的教材资源和原动物小站的旧进度会保留。
+                  This clears Book 1 word progress and the practice bag. Book activity records, added resources and animal safari progress will be kept.
                 </p>
                 <div className="kb-button-row">
                   <button
                     className="kb-btn kb-btn-secondary"
                     onClick={() => setDialog(null)}
                   >
-                    保留足迹
+                    Keep my progress
                   </button>
                   <button
                     className="kb-btn"
@@ -1517,10 +1498,10 @@ export default function CourseApp() {
                       reset();
                       setDialog(null);
                       navigate("map");
-                      setNotice("新的一次探险开始啦。");
+                      setNotice("A new adventure begins!");
                     }}
                   >
-                    重新开始
+                    Start again
                     <RotateCcw size={17} />
                   </button>
                 </div>
@@ -1528,31 +1509,30 @@ export default function CourseApp() {
             ) : (
               <>
                 <p>
-                  这是一份跟着第 1 册主题走的配套练习。可以自由选择单元，每次
-                  5–10 分钟就很好。
+                  These activities follow Book 1 themes. Choose any unit and enjoy 5–10 minutes at a time.
                 </p>
                 <p>
-                  「课本点读」全屏显示原书页面，点蓝色 CD 图标听原版录音。单元内可查看视频、歌曲伴奏和原版闪卡。跨学科、价值观、复习和语法参考在课程地图底部。
+                  The talking book shows the original pages. Tap blue CD icons for recordings. Each unit includes videos, karaoke and flashcards. Find CLIL, values, reviews and grammar below the course map.
                 </p>
                 <div className="kb-parent-steps">
                   <p>
                     <Ear size={23} />
                     <span>
-                      <strong>先听声音，再看字母</strong>
-                      完整听读、慢速模仿，再看拼读搭档。特殊读音会单独提醒。
+                      <strong>Sounds first, then letters</strong>
+                      Listen to the word, repeat slowly and explore its sound partners. Look out for special sound patterns.
                     </span>
                   </p>
                   <p>
                     <Sparkles size={23} />
                     <span>
-                      <strong>用游戏巩固，不用催着背</strong>
-                      听音和拼写游戏不计时。错了可以再试，词语会放进复习背包。
+                      <strong>Practise through play</strong>
+                      Listening and spelling games have no timer. Try again whenever you need. Tricky words go into the practice bag.
                     </span>
                   </p>
                   <p>
                     <BookOpen size={23} />
                     <span>
-                      <strong>和家里的教材一起学</strong>
+                      <strong>Use with your book</strong>
                       {contentNote}
                     </span>
                   </p>
@@ -1563,20 +1543,20 @@ export default function CourseApp() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    外研社官方样张与配套资源
+                    Publisher samples and resources
                     <ArrowRight size={15} />
                   </a>
                   <a href={courseSource} target="_blank" rel="noreferrer">
-                    核对第二版第 1 册单元目录
+                    Second edition Book 1 contents
                     <ArrowRight size={15} />
                   </a>
                 </div>
                 <p className="kb-parent-small">
-                  词语音频为词典英式发音，情景句为英式合成语音；都随应用打包。网页版需要联网加载资源，安卓安装包可离线使用。学习进度只保存在当前设备，不使用麦克风。
+                  Word audio uses British dictionary pronunciation; practice sentences use a British synthesized voice. Both are included in the app. The website needs internet for resources; the Android app works offline. Progress stays on this device. No microphone is used.
                 </p>
                 <AppUpdate />
                 <button className="kb-btn" onClick={() => setDialog(null)}>
-                  一起开始探险
+                  Let's explore
                   <ArrowRight size={18} />
                 </button>
               </>
@@ -1594,7 +1574,7 @@ function Progress({ value, max }: { value: number; max: number }) {
     <div
       className="kb-progress"
       role="progressbar"
-      aria-label="学习进度"
+      aria-label="Learning progress"
       aria-valuenow={value}
       aria-valuemin={0}
       aria-valuemax={max}
@@ -1645,7 +1625,7 @@ function CourseDialog({
       }}
       aria-labelledby="kb-dialog-title"
     >
-      <button className="kb-dialog-close" onClick={close} aria-label="关闭">
+      <button className="kb-dialog-close" onClick={close} aria-label="Close">
         <X size={22} />
       </button>
       <span className="kb-dialog-icon">

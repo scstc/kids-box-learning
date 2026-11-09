@@ -517,24 +517,24 @@ for (const [unit, sequence] of Object.entries(unitSequences)) {
 
 export const additionalBookSections = [
   {
-    title: "跨学科学习",
+    title: "Across subjects",
     en: "CLIL",
-    description: "数学、艺术、科学、地理和运动。",
+    description: "Explore maths, art, science, geography and sports.",
   },
   {
-    title: "价值观活动",
+    title: "Growing together",
     en: "Values",
-    description: "交朋友、友善、照顾宠物、爱护自然、合作与清洁。",
+    description: "Friendship, kindness, pets, nature, teamwork and keeping clean.",
   },
   {
-    title: "阶段复习",
+    title: "Practice stops",
     en: "Review",
-    description: "每四个单元一次，听、说、读、玩中复习。",
+    description: "Listen, speak, read and play after every four units.",
   },
   {
-    title: "语法参考",
+    title: "Grammar reference",
     en: "Grammar reference",
-    description: "对照原书回顾全册句型。",
+    description: "Revisit the sentence patterns in your book.",
   },
 ];
 
@@ -705,7 +705,7 @@ export const bookSections: BookSection[] = [
     id: "grammar",
     group: "Grammar reference",
     title: "Grammar reference",
-    zh: "语法参考",
+    zh: "Grammar reference",
     page: 94,
     endPage: 95,
     activities: [],

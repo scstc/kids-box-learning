@@ -37,16 +37,16 @@ export default function SpellingInput({
   return (
     <div className="kb-spelling-entry">
       <label className="kb-spelling-input">
-        写出听到的单词
+        Write the word you hear
         <input
           ref={input}
-          aria-label="输入单词"
+          aria-label="Enter the word"
           type="text"
           value={value}
           readOnly
           inputMode="none"
           disabled={disabled}
-          placeholder="使用下面的字母键盘"
+          placeholder="Use the letter keyboard below"
           autoCapitalize="none"
           autoCorrect="off"
           autoComplete="off"
@@ -75,14 +75,14 @@ export default function SpellingInput({
       <div
         className="kb-plain-keyboard"
         role="group"
-        aria-label="应用内字母键盘"
+        aria-label="Letter keyboard"
       >
         {Array.from("abcdefghijklmnopqrstuvwxyz").map((letter) => (
           <button
             key={letter}
             type="button"
             disabled={disabled}
-            aria-label={`输入字母 ${letter}`}
+            aria-label={`Type letter ${letter}`}
             onPointerDown={(event) => event.preventDefault()}
             onClick={() => edit(letter)}
           >
@@ -93,27 +93,27 @@ export default function SpellingInput({
           type="button"
           className="kb-keyboard-space"
           disabled={disabled}
-          aria-label="输入空格"
+          aria-label="Type a space"
           onPointerDown={(event) => event.preventDefault()}
           onClick={() => edit(" ")}
         >
           <Space size={19} />
-          空格
+          Space
         </button>
         <button
           type="button"
           className="kb-keyboard-delete"
           disabled={disabled}
-          aria-label="删除一个字母"
+          aria-label="Delete one letter"
           onPointerDown={(event) => event.preventDefault()}
           onClick={() => edit("", "back")}
         >
           <Delete size={19} />
-          删除
+          Delete
         </button>
       </div>
       <p className="kb-spell-hint">
-        完整 A–Z 键盘，无候选词和拼写联想。也支持实体键盘。
+        Use the A–Z keyboard without word suggestions. A physical keyboard works too.
       </p>
     </div>
   );

@@ -15,12 +15,12 @@ export default function BookSceneActivity({ page, speak }: { page: number; speak
   if (!scene) return null;
   return <div className="kb-scene-layer" data-motion={motion.canAnimate}>
     {scene.questions.map(item => <button key={item.id} className="kb-scene-question" style={regionStyle(item.rect)}
-      aria-label={`提问 ${item.text}`} aria-pressed={touched && question === item.id} onClick={() => { setQuestion(item.id); setTouched(true); setFeedback(null); speak(item.text); }} />)}
+      aria-label={`Ask: ${item.text}`} aria-pressed={touched && question === item.id} onClick={() => { setQuestion(item.id); setTouched(true); setFeedback(null); speak(item.text); }} />)}
     {scene.answers.map(item => <button key={item.id} className="kb-scene-answer" style={regionStyle(item.rect)}
-      aria-label={`点击 ${item.label} 回答问题`} data-feedback={feedback?.id === item.id ? feedback.correct ? "correct" : "retry" : undefined}
+      aria-label={`Tap ${item.label} to answer the question`} data-feedback={feedback?.id === item.id ? feedback.correct ? "correct" : "retry" : undefined}
       onClick={() => { const reply=sceneReply(page,question,item.id); if (!reply) return; setFeedback({id:item.id,...reply,turn:Date.now()}); speak(reply.text); }}>
-      {feedback?.id === item.id && <span key={feedback.turn} className="kb-scene-answer-bubble" lang="en">{feedback.text}<small lang="zh">{feedback.correct ? "一起说一说" : "再看一看，试试另一幅图"}</small></span>}
+      {feedback?.id === item.id && <span key={feedback.turn} className="kb-scene-answer-bubble" lang="en">{feedback.text}<small lang="en">{feedback.correct ? "Say it together" : "Look again and try another picture."}</small></span>}
     </button>)}
-    {feedback?.correct && motion.canAnimate && <CorrectCelebration key={feedback.turn} message={scene.questions.find(q=>q.id===question)?.correct ? "找到了！" : "一起说一说"} />}
+    {feedback?.correct && motion.canAnimate && <CorrectCelebration key={feedback.turn} message={scene.questions.find(q=>q.id===question)?.correct ? "Found it!" : "Say it together"} />}
   </div>;
 }

@@ -66,7 +66,7 @@ export function useBookResources(resourceKey: string) {
       })
       .catch(() => {
         if (active)
-          setError("无法读取本设备的教材资源，请检查浏览器存储权限。");
+          setError("Resources on this device could not be read. Check browser storage permissions.");
       })
       .finally(() => {
         if (active) setLoading(false);
@@ -89,8 +89,8 @@ export function useBookResources(resourceKey: string) {
     if (file.size > (kind === "image" ? 15 : 60) * 1024 * 1024) {
       setError(
         kind === "image"
-          ? "图片请控制在 15 MB 以内。"
-          : "单条音频请控制在 60 MB 以内。",
+          ? "Please choose an image smaller than 15 MB."
+          : "Please choose an audio file smaller than 60 MB.",
       );
       return;
     }
@@ -104,7 +104,7 @@ export function useBookResources(resourceKey: string) {
       });
       setRevision((value) => value + 1);
     } catch {
-      setError("没有保存成功，可能是设备存储空间不足。原有资源未被清空。");
+      setError("Could not save. The device may be out of storage. Existing resources were kept.");
     } finally {
       setSaving(false);
     }

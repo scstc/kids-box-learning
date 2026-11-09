@@ -61,7 +61,7 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal 
     audio.stop();
     if (selected?.activity === track.activity && selected.file === track.file && player.current?.src) {
       if (!player.current.paused) player.current.pause();
-      else void player.current.play().catch(() => setMediaError("录音未能播放，请重试。"));
+      else void player.current.play().catch(() => setMediaError("This recording could not play. Please try again."));
       return;
     }
     player.current?.pause();
@@ -71,7 +71,7 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal 
     player.current.src = mediaUrl(track.file);
     void player.current.play().catch((error: unknown) => {
       if (!(error instanceof DOMException && error.name === "AbortError"))
-        setMediaError("录音未能播放，请检查音量后重试。");
+        setMediaError("This recording could not play. Check the volume and try again.");
     });
   };
   const speakerSide = (index: number) => {
@@ -115,19 +115,19 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal 
     setError(false);
   };
   return (
-    <section className={`kb-book-reader${fitPage ? " kb-reader-fit" : ""}${minimal ? " kb-reader-minimal" : ""}`} aria-label="原书页面">
+    <section className={`kb-book-reader${fitPage ? " kb-reader-fit" : ""}${minimal ? " kb-reader-minimal" : ""}`} aria-label="Book page">
       <div className="kb-book-page-toolbar">
         <button
-          aria-label="原书上一页"
+          aria-label="Previous book page"
           disabled={page <= 4}
           onClick={() => go(page - 1)}
         >
           <ChevronLeft size={20} />
         </button>
         {!minimal && <label>
-          第{" "}
+          Page{" "}
           <input
-            aria-label="原书页码"
+            aria-label="Book page number"
             type="number"
             min={4}
             max={95}
@@ -137,17 +137,17 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal 
               if (Number.isInteger(next)) go(next);
             }}
           />{" "}
-          页
+
         </label>}
         <button
-          aria-label="原书下一页"
+          aria-label="Next book page"
           disabled={page >= 95}
           onClick={() => go(page + 1)}
         >
           <ChevronRight size={20} />
         </button>
         {!minimal && <><button
-          aria-label="缩小原书"
+          aria-label="Zoom out"
           disabled={zoom <= 1}
           onClick={() => setZoom(Math.max(1, zoom - 0.25))}
         >
@@ -155,39 +155,39 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal 
         </button>
         <span>{Math.round(zoom * 100)}%</span>
         <button
-          aria-label="放大原书"
+          aria-label="Zoom in"
           disabled={zoom >= 2}
           onClick={() => setZoom(Math.min(2, zoom + 0.25))}
         >
           <ZoomIn size={19} />
         </button></>}
       </div>
-      {!minimal && <div className="kb-reader-tracks" aria-label="本页原版录音">
+      {!minimal && <div className="kb-reader-tracks" aria-label="Page recordings">
         {tracks.map((track) => (
           <button
             key={track.activity}
             aria-pressed={selected?.activity === track.activity}
             onClick={() => playTrack(track)}
           >
-            <Volume2 size={17} />活动 {track.activity} · CD{track.disc}/{track.track}
-            {!track.file && "（缺少录音）"}
+            <Volume2 size={17} />Activity {track.activity} · CD{track.disc}/{track.track}
+            {!track.file && "(recording missing)"}
           </button>
         ))}
-        {tracks.length > 0 && <label><input type="checkbox" checked={loop} onChange={(event) => setLoop(event.target.checked)} />循环</label>}
+        {tracks.length > 0 && <label><input type="checkbox" checked={loop} onChange={(event) => setLoop(event.target.checked)} />Loop</label>}
       </div>}
       <div className="kb-reader-audio" hidden={minimal || !selected?.file}>
         <audio ref={player} controls={!minimal} preload="none" loop={loop}
-          aria-label="课本点读播放器"
+          aria-label="Book recording player"
           onPlay={() => { audio.stop(); setIsPlaying(true); }}
           onPause={() => setIsPlaying(false)} onEnded={() => setIsPlaying(false)}
-          onError={() => setMediaError("录音未能加载，请重试。")} />
+          onError={() => setMediaError("This recording could not load. Please try again.")} />
       </div>
-      {selected && !selected.file && <p role="status">配套文件中缺少 CD{selected.disc} 第 {selected.track} 轨（本页活动 {selected.activity}）。</p>}
-      {mediaError && <p role="alert">{mediaError}<button onClick={() => selected && playTrack(selected)}>重试录音</button></p>}
-      {!loaded && !error && <p role="status">正在打开原书页面…</p>}
+      {selected && !selected.file && <p role="status">The supplied files are missing CD{selected.disc}, track {selected.track} (activity {selected.activity}).</p>}
+      {mediaError && <p role="alert">{mediaError}<button onClick={() => selected && playTrack(selected)}>Retry recording</button></p>}
+      {!loaded && !error && <p role="status">Opening the book page…</p>}
       {error && (
         <p role="alert">
-          这一页没有加载成功。
+          This page could not load.
           <button
             onClick={() => {
               setError(false);
@@ -195,7 +195,7 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal 
               setRetry((value) => value + 1);
             }}
           >
-            重试
+            Retry
           </button>
         </p>
       )}
@@ -216,7 +216,7 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal 
             <img
               key={`${page}:${retry}`}
               src={`${import.meta.env.BASE_URL}book-pages/page-${String(page).padStart(3, "0")}.jpg`}
-              alt={`原书第 ${page} 页`}
+              alt={`Book page ${page}`}
               decoding="async"
               draggable={false}
               onLoad={() => setLoaded(true)}
@@ -237,7 +237,7 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal 
                   width: `${hotspot.width}%`,
                   height: `${hotspot.height}%`,
                 }}
-                aria-label={hotspot.kind === "text" ? `朗读 ${hotspot.word}` : `播放 ${hotspot.word} 单词发音（${hotspot.kind === "label" ? "词语标签" : "图片区域"}）`}
+                aria-label={hotspot.kind === "text" ? `Read aloud: ${hotspot.word}` : `Play ${hotspot.word} pronunciation (${hotspot.kind === "label" ? "word label" : "picture area"})`}
                 aria-pressed={audio.playingText === hotspot.word}
                 onClick={() => {
                   beforeSpeak?.();
@@ -251,7 +251,7 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal 
           {loaded && !error && tracks.map((track) => (
             <button key={`cd:${track.activity}`} className="kb-book-cd-hotspot"
               style={{ left: `${track.x}%`, top: `${track.y}%`, width: `${track.width}%`, height: `${track.height}%` }}
-              aria-label={`播放本页活动 ${track.activity}，CD${track.disc} 第 ${track.track} 轨${track.file ? "" : "，缺少录音"}`}
+              aria-label={`Play page activity ${track.activity}, CD${track.disc} track ${track.track}${track.file ? "" : ", recording missing"}`}
               aria-pressed={selected?.activity === track.activity && isPlaying}
               data-missing={!track.file || undefined}
               onClick={() => playTrack(track)} />
@@ -266,13 +266,13 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal 
         </div>
       </div>
       <div className="kb-reader-playback">
-        {minimal && selected?.file && <button className="kb-reader-pause" aria-label={isPlaying ? "暂停课本录音" : "继续课本录音"} onClick={() => playTrack(selected)}>{isPlaying ? <Pause size={22} /> : <Play size={22} />}</button>}
+        {minimal && selected?.file && <button className="kb-reader-pause" aria-label={isPlaying ? "Pause recording" : "Resume recording"} onClick={() => playTrack(selected)}>{isPlaying ? <Pause size={22} /> : <Play size={22} />}</button>}
         {audio.playingText ? <div className="kb-media-subtitles" lang="en">{audio.playingText}</div> : <MediaSubtitles file={selected?.file} mediaRef={player} />}
       </div>
       {!minimal && <p className="kb-book-page-note">
-        {tracks.length ? "点书上的蓝色 CD 图标，听本项原版录音。" : "本页没有 CD 录音标记。"}
-        {hotspots.length > 0 && " 点带边框的词语可听配套英式发音。"}
-        放大后可左右滑动查看。
+        {tracks.length ? "Tap a blue CD icon to hear the activity recording." : "This page has no CD recording markers."}
+        {hotspots.length > 0 && "Tap an outlined word or phrase to hear it."}
+        Swipe sideways after zooming in.
       </p>}
     </section>
   );

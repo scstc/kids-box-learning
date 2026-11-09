@@ -46,37 +46,37 @@ export default function AppUpdate() {
   }, [active]);
   const run = async (action: () => Promise<void>) => {
     setBusy(true); setError(""); setMessage("");
-    try { await action(); } catch (error) { setError(error instanceof Error ? error.message : "操作未完成，请重试。"); }
+    try { await action(); } catch (error) { setError(error instanceof Error ? error.message : "That did not finish. Please try again."); }
     finally { setBusy(false); }
   };
   const check = () => void run(async () => {
     const next = await updater.check(); setRelease(next);
-    setMessage(next.available ? `发现新版本 ${next.version}` : "已经是最新版本。");
+    setMessage(next.available ? `New version available: ${next.version}` : "You are up to date.");
   });
   const install = () => void run(async () => {
     const result = await updater.install();
-    setMessage(result.state === "permission-required" ? "请允许小小英语安装更新，再点继续安装。" : "已打开系统安装页面，请确认更新；学习进度会保留。");
+    setMessage(result.state === "permission-required" ? "Allow Kids Box to install updates, then tap Install again." : "Confirm the update in the system installer. Your learning progress will be kept.");
   });
   const progress = Math.max(0, Math.min(100, Math.floor((download.downloaded ?? 0) / Math.max(1, download.total ?? 1) * 100)));
-  return <section className="kb-app-update" aria-label="应用版本与更新">
-    <div className="kb-update-heading"><Download size={21} /><strong>应用更新</strong><span>当前 {info.version}</span></div>
-    {!native ? <p>安卓安装包可从 <a href={releasesUrl} target="_blank" rel="noreferrer">GitHub Releases 下载</a>。网页版会随网站发布更新。</p> : <>
-      <p>更新会保留学习进度。下载完成后，需要在系统页面确认安装。</p>
-      {release?.available && <div className="kb-update-release"><strong>{release.version} · {mb(release.size)}</strong><p>{release.notes || "改进学习体验。"}</p></div>}
+  return <section className="kb-app-update" aria-label="App version and updates">
+    <div className="kb-update-heading"><Download size={21} /><strong>App updates</strong><span>Current version {info.version}</span></div>
+    {!native ? <p>Get the Android app from <a href={releasesUrl} target="_blank" rel="noreferrer">GitHub Releases</a>. The website updates automatically when a new version is published.</p> : <>
+      <p>Updates keep your progress. Confirm installation when the download finishes.</p>
+      {release?.available && <div className="kb-update-release"><strong>{release.version} · {mb(release.size)}</strong><p>{release.notes || "Learning experience improvements."}</p></div>}
       {active && <div className="kb-update-progress" role="status">
-        <span>{download.state === "verifying" ? "正在校验安装包…" : download.state === "paused" ? "等待网络，连接后会继续下载…" : `正在下载 ${download.version ?? ""} · ${progress}%`}</span>
-        <progress aria-label="更新下载进度" max={100} value={progress} />
+        <span>{download.state === "verifying" ? "Verifying download…" : download.state === "paused" ? "Waiting for a connection. The download will resume automatically…" : `Downloading ${download.version ?? ""} · ${progress}%`}</span>
+        <progress aria-label="Update download progress" max={100} value={progress} />
         {download.state !== "verifying" && <small>{mb(download.downloaded)} / {mb(download.total)}</small>}
       </div>}
       {(error || download.message) && <p className="kb-update-error" role="alert">{error || download.message}</p>}
       {message && <p role="status">{message}</p>}
       <div className="kb-update-actions">
-        <button className="kb-btn kb-btn-secondary" disabled={busy || active} onClick={check}><RefreshCw size={17} />{busy ? "请稍候…" : "检查更新"}</button>
-        {release?.available && !active && download.state !== "ready" && <button className="kb-btn" disabled={busy} onClick={() => void run(async () => setDownload(await updater.download()))}>下载更新（{mb(release.size)}）</button>}
-        {download.state === "ready" && <button className="kb-btn" disabled={busy} onClick={install}>安装 {download.version}</button>}
-        {active && <button className="kb-update-cancel" disabled={busy} onClick={() => void run(async () => { await updater.cancel(); setDownload({ state: "idle" }); })}>取消下载</button>}
+        <button className="kb-btn kb-btn-secondary" disabled={busy || active} onClick={check}><RefreshCw size={17} />{busy ? "Please wait…" : "Check for updates"}</button>
+        {release?.available && !active && download.state !== "ready" && <button className="kb-btn" disabled={busy} onClick={() => void run(async () => setDownload(await updater.download()))}>Download update ({mb(release.size)})</button>}
+        {download.state === "ready" && <button className="kb-btn" disabled={busy} onClick={install}>Install {download.version}</button>}
+        {active && <button className="kb-update-cancel" disabled={busy} onClick={() => void run(async () => { await updater.cancel(); setDownload({ state: "idle" }); })}>Cancel download</button>}
       </div>
-      <a className="kb-update-history" href={release?.releaseUrl ?? releasesUrl} target="_blank" rel="noreferrer">查看 GitHub 版本记录</a>
+      <a className="kb-update-history" href={release?.releaseUrl ?? releasesUrl} target="_blank" rel="noreferrer">View release history on GitHub</a>
     </>}
   </section>;
 }

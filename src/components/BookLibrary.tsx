@@ -27,12 +27,12 @@ export default function BookLibrary({
     <section className="kb-book-library">
       <button className="kb-btn kb-btn-secondary" onClick={onBack}>
         <ArrowLeft size={17} />
-        返回课程地图
+        Back to course map
       </button>
       <h1>{group}</h1>
-      <p>这些也是本册的一部分。打开对应原书页，按页面里的活动练习。</p>
+      <p>Explore more of your book. Open a page and try its activities.</p>
       <div className="kb-book-library-layout">
-        <nav className="kb-book-chapters" aria-label="教材补充板块目录">
+        <nav className="kb-book-chapters" aria-label="More book sections">
           {sections.map((item) => (
             <button
               key={item.id}
@@ -41,8 +41,8 @@ export default function BookLibrary({
             >
               <strong>{item.title}</strong>
               <small>
-                {item.zh} · 第 {item.page}
-                {item.endPage !== item.page ? `–${item.endPage}` : ""} 页
+                Page {item.page}
+                {item.endPage !== item.page ? `–${item.endPage}` : ""}
               </small>
             </button>
           ))}
@@ -50,8 +50,8 @@ export default function BookLibrary({
         <article className="kb-book-section-detail">
           <h2>{section.title}</h2>
           <p>
-            {section.zh} · 书上第 {section.page}
-            {section.endPage !== section.page ? `–${section.endPage}` : ""} 页
+            Page {section.page}
+            {section.endPage !== section.page ? `–${section.endPage}` : ""}
           </p>
           {section.activities.length > 0 && (
             <ol>
@@ -60,13 +60,13 @@ export default function BookLibrary({
               ))}
             </ol>
           )}
-          <details className="kb-book-parent-tools"><summary>家长：补充本板块录音</summary>
+          <details className="kb-book-parent-tools"><summary>For parents: add section audio</summary>
           <div className="kb-book-resource-buttons">
             <label>
               <FileAudio size={18} />
-              添加本板块原版音频
+              Add section recording
               <input
-                aria-label="添加板块音频"
+                aria-label="Add section audio"
                 type="file"
                 accept="audio/*,.mp3,.m4a,.wav,.ogg"
                 disabled={resources.loading || resources.saving}
@@ -92,7 +92,7 @@ export default function BookLibrary({
             />
           ) : (
             <p>
-              点击下方书页上的蓝色 CD 图标，播放对应原版录音。
+              Tap a blue CD icon on the book page to hear its recording.
             </p>
           )}
           <BookPageReader

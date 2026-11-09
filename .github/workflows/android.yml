@@ -71,6 +71,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" --verify-tag --draft --title "小小英语 $GITHUB_REF_NAME" --notes-file releases/notes.md
+          gh release create "$GITHUB_REF_NAME" --verify-tag --draft --title "Kids Box $GITHUB_REF_NAME" --notes-file releases/notes.md
           gh release upload "$GITHUB_REF_NAME" downloads/kids-box-learning-*.apk downloads/kids-box-learning-*.apk.sha256 downloads/update.json
           gh release edit "$GITHUB_REF_NAME" --draft=false --latest

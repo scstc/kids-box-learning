@@ -1,7 +1,12 @@
-使用重新提供的无水印01.pdf，替换全部92张课本正文图页、封面、12张单元场景与21张PDF词语配图。
+Kids Box 26.4.3
 
-保持原书页码和点读位置，保留整册文字点读、情景问答、字幕与离线音视频资源。
+- New Ocean-inspired theme: warm white, blue controls and apricot rewards.
+- English throughout the app, including the parent guide, phonics tips and update messages. Learning activities use pictures, sounds and English context without Chinese translations.
+- The Android app is now named Kids Box. Updates keep the existing package, signature and learning progress.
+- Your library includes Book 1, with Book 2–6 marked Coming soon.
+- More React Bits effects: progress counters, a touch-friendly book-card sheen and a shimmer for correct answers. Effects follow the motion setting and the system's reduced-motion preference.
+- Improved phone navigation, tablet activity tabs and caption contrast.
 
-修正P75活动12与P76活动1的音频映射：文件U10_pb_p75_12.mp3实际是CD4第18轨、P76活动1，原版音频已找到；P75活动12改用CD4第17轨。课本144处CD标记现有139处匹配，仍缺5段原版录音。
+Book 1 pages, recordings, videos, flashcards and offline pronunciation remain included. Five original CD recordings are still missing from the supplied resources and remain clearly marked.
 
-在“家长指南 → 应用更新”检查并安装26.4.2，覆盖更新保留本机学习进度。
+To update on Android, open Parent guide → App updates. Confirm installation after the download finishes.

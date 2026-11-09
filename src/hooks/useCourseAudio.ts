@@ -43,7 +43,7 @@ export function useCourseAudio() {
         if (request.current !== current) return;
         setPlayingText("");
         setBlending(false);
-        setError("声音没有加载成功，检查音量或网络后再试一次。");
+        setError("Audio could not load. Check the volume or connection and try again.");
       };
       audio.onerror = fail;
       audio.onended = () => {

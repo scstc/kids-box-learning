@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">小小英语</string>
-    <string name="title_activity_main">小小英语</string>
+    <string name="app_name">Kids Box</string>
+    <string name="title_activity_main">Kids Box</string>
     <string name="package_name">com.scstc.kidsboxlearning</string>
     <string name="custom_url_scheme">com.scstc.kidsboxlearning</string>
 </resources>

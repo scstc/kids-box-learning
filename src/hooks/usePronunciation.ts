@@ -31,7 +31,7 @@ export function usePronunciation() {
       audio.onerror = () => {
         if (request !== sequence.current) return;
         setPlaying(false);
-        setAudioError("声音暂时没有加载成功，请再点一次小喇叭。");
+        setAudioError("Audio could not load. Tap the speaker to try again.");
       };
       try {
         setPlaying(true);
@@ -43,7 +43,7 @@ export function usePronunciation() {
         )
           return;
         setPlaying(false);
-        setAudioError("暂时无法播放声音，请检查设备音量后重试。");
+        setAudioError("Audio could not play. Check the device volume and try again.");
       }
     },
     [stop],

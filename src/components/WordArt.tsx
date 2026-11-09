@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { courseUnits } from "../data/course";
 import { originalWordArt } from "../data/originalArt";
 import { mediaUrl } from "../data/media";
 
@@ -10,7 +9,13 @@ export default function WordArt({ id, unitId, className = "" }: {
 }) {
   const image = originalWordArt[`${unitId}:${id}`];
   const [failedFile, setFailedFile] = useState("");
-  const meaning = courseUnits.find((unit) => unit.id === unitId)?.words.find((word) => word.id === id)?.zh ?? "看图听音";
+  const clues: Record<string, string> = {
+    hello: "👋 Meet a friend", goodbye: "👋 See you soon!", baby: "👶 A little one",
+    dress: "👗 Something to wear", play: "🧸 Have some fun!", run: "🏃 Move fast!",
+    jump: "🦘 Up in the air!", dance: "💃 Move to the music", funny: "😆 It makes you laugh",
+    hungry: "🍽️ Time to eat!", garden: "🌷 Flowers grow here",
+  };
+  const meaning = clues[id] ?? "🎧 Look and listen";
   if (!image || failedFile === image.file)
     return <span className={`word-art kb-original-word-art kb-word-meaning ${className}`} aria-hidden="true">{meaning}</span>;
   return <img key={image.file} className={`word-art kb-original-word-art ${className}`} src={mediaUrl(image.file)}
