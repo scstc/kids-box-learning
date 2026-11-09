@@ -32,7 +32,7 @@ export default function Starter({ audio }: { audio: CourseAudio }) {
           <button className="kb-sound-example" aria-label={`Hear example ${example}`} onClick={() => void audio.play(example)}>{example}<Volume2 size={14} /></button>
         </article>)}</div>
       </section>)}
-      <aside className="kb-starter-note">Listen, then try it yourself. Short sound clips are synthesized demonstrations. Accents vary: some speakers say /ɔː/ in words with /ʊə/.</aside>
+      <aside className="kb-starter-note">Listen, then try it yourself. Short sounds use a separate phonics voice; example words use natural British speech. Accents vary: some speakers say /ɔː/ in words with /ʊə/.</aside>
     </>}
   </section>;
 }

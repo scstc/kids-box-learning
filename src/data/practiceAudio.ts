@@ -2,7 +2,7 @@ import { allWordEntries, audioKey } from "./course.ts";
 import { soundKey } from "./pronunciations.ts";
 import { starterLetters, starterSounds } from "./starter.ts";
 
-// Starter examples outside the course vocabulary still share the phonics voice.
+// Starter examples outside the course vocabulary use the natural word voice.
 const extraExamples: Record<string, string> = {
   pure: "pjʊə",
   television: "ˈtelɪvɪʒən",
@@ -31,7 +31,11 @@ export function practiceAudioItems() {
     ...starterSounds.map(({ ipa }) => ipa),
   ]);
   return [
-    ...practiceWords.map(({ text, ipa }) => ({ text, ipa, path: wordAudioPath(text) })),
-    ...[...sounds].map(ipa => ({ text: ipa, ipa, path: soundAudioPath(ipa) })),
+    ...practiceWords.map(({ text, ipa }) => ({ kind: "word" as const, text, ipa, path: wordAudioPath(text) })),
+    ...[...sounds].map(ipa => {
+      const letter = starterLetters.find(item => item.ipa === ipa);
+      return { kind: letter ? "letter" as const : "phonics" as const,
+        text: letter?.letter ?? ipa, ipa, path: soundAudioPath(ipa) };
+    }),
   ];
 }

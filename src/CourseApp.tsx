@@ -1217,7 +1217,7 @@ export default function CourseApp() {
                         <p>{word.tip}</p>
                       </div>
                       <p className="kb-chunk-note">
-                        Tap a part, then blend the word. Sound parts are not always syllables. Parts and words use the same synthesized British voice.
+                        Tap a part, then blend the word. Sound parts are not always syllables. Short sounds use a phonics voice; whole words use natural British speech.
                       </p>
                       <RewardButton animated={motion.canAnimate}
                         className="kb-btn kb-learn-next"
@@ -1558,7 +1558,7 @@ export default function CourseApp() {
                   </a>
                 </div>
                 <p className="kb-parent-small">
-                  Word audio uses British dictionary pronunciation; practice sentences use a British synthesized voice. Both are included in the app. The website needs internet for resources; the Android app works offline. Progress stays on this device. No microphone is used.
+                  Words, letter names and practice sentences use natural British speech. Short sounds use a separate phonics voice. Original book recordings keep their own speakers. All recordings are included in the app. The website needs internet for resources; the Android app works offline. Progress stays on this device. No microphone is used.
                 </p>
                 <AppUpdate />
                 <button className="kb-btn" onClick={() => setDialog(null)}>

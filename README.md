@@ -19,7 +19,7 @@ React + TypeScript + React Bits 制作的全英文、平板友好学习应用，
 - 首页书本使用PDF原封面并保持原比例，12个单元卡片、单元标题和足迹使用对应原书场景。190个词语练习项使用原版闪卡或PDF裁图，词语大图、小卡片、听音选择、拼写提示和错词背包共用原图。单复数使用不同数量的原书物体图；听音题避免同一题重复图片。其余14项使用图标和简短英文语境提示，不直接显示拼写答案。图片来源、书页与裁图坐标记录在 `src/data/originalArt.ts`，补充图可通过`node scripts/expand-vocabulary-art.mjs`重建。
 - 词语页接入React Bits官方TechText：0.85秒正确字母逐个入场，点击有轮廓和轻微弹跳并播放整词；原版图片支持SpotlightCard触控聚光，当前发音的拼读块同步高亮，学习确认/下一题按钮使用StarBorder。提供「再看一次」和可记忆的动态开关，尊重系统「减少动态效果」。动画不随机替换字母、不自动拖动字母，不影响音标与读音。
 - 「听音找朋友」「字母拼拼乐」答对后出现星星彩纸和「答对啦」，下一题清除特效；答错时保持重试提示。特效不拦截点击、不添加声音，关闭动态或系统减少动态时保留静态正确反馈。
-- 全部词卡显示英式IPA音标。拼读块可逐块点击，播放词内实际声音；静音e只提示不发音，不读成字母名。分块、字母名与音标合成示范音频随应用打包，不依赖设备TTS或在线服务。
+- 全部词卡显示英式IPA音标。拼读块可逐块点击；静音e只提示不发音，不读成字母名。181段整词与26个字母名使用与句子相同的Sonia英式自然女声；其余174段分块/音标使用eSpeak NG英式女声音素示范，音色与整词略有不同。381段练习音频均随应用离线打包，不依赖设备TTS或在线服务。
 - 分块后有「连起来读」按钮，依次播放有声分块，再播放完整单词。可随时停止；切换词语或点击其他声音会取消连读。
 - 字母拼拼乐提供「字母提示」开关：开启时使用字母按钮，关闭后隐藏字母库和长度格子，使用完整A–Z应用内键盘自行拼写，不唤起系统输入法或显示联想候选词；也支持实体键盘。设置保存在本设备；忽略大小写、空格和连字符，保留拼错重试与错词复习。
 - 12个单元主要词语页的全部标签已配置点读，另包含数字、颜色、形容词、身体部位、栖息地和复习等页面的词语区域。第34页宠物、第48页野生动物以及第7页颜色还支持点图片，播放配套英式词语/短语音频。
@@ -40,6 +40,8 @@ React + TypeScript + React Bits 制作的全英文、平板友好学习应用，
 - 原动物拼读小站仍可从 Unit 7 进入，原进度保留。
 
 ## 本地开发
+
+练习音频生成：先按`scripts/phonics-requirements.txt`安装Python构建依赖，并按`scripts/render-phonics-audio.mjs`顶部命令安装构建专用eSpeak NG，再运行`node scripts/render-phonics-audio.mjs`。整词/字母由纯英文文本生成，音素使用显式音素记号；不再用Kokoro直接合成短音标。生成时需要联网获取自然语音，运行应用时不需要。全部文件先在`artifacts/practice-audio/staged`生成并核对完整性，再写入public；来源、输入与哈希记录在`public/word-audio/manifest.json`。自动测试验证来源、覆盖和文件完整性，不能代替人工听辨发音。
 
 React Bits MCP已按[官网说明](https://reactbits.dev/get-started/mcp)配置：`components.json`声明`@react-bits`注册表，项目级`.codex/config.toml`启动shadcn MCP。项目需受信任；重新打开Codex会话后加载。已验证STDIO握手、工具列表及React Bits组件查询。此连接只用于开发，不随网页或APK运行，也不要求学习者登录。项目仍使用普通CSS，添加组件时选择TS-CSS版本。
 
@@ -128,10 +130,10 @@ git push origin v26.4.1
 - src/data/bookSubtitles.ts、public/subtitles/、src/components/MediaSubtitles.tsx：离线英文字幕索引、时间轴与播放器同步。重新识别：用项目uv环境安装 `scripts/speech-requirements.txt`，运行 `node scripts/prepare-book-speech.mjs`，再运行 `.venv/Scripts/python.exe scripts/transcribe-book-audio.py`（默认使用本机NVIDIA GPU；CPU可加 `--device cpu`）。
 - src/components/LearningWord.tsx、CorrectCelebration.tsx：单词互动、触控聚光与答对庆祝；useLearningMotion.ts管理设备内动态设置。
 - src/components/FullscreenBook.tsx、src/components/BookMedia.tsx：全屏课本和单元原版资源。
-- scripts/download-course-audio.mjs：保留课本点读的词典英式录音；少数 WAV 响应通过 ffmpeg 转为 MP3。单词练习优先播放下方同声线合成资源。
+- scripts/download-course-audio.mjs：保留课本点读的词典英式录音；少数 WAV 响应通过 ffmpeg 转为 MP3。单词练习优先播放下方自然英式语音资源。
 - scripts/render-sentence-audio.py：使用 edge-tts 的 en-GB-SoniaNeural 生成原创例句音频。
 - src/data/pronunciations.ts：已核对的英式IPA和逐块发音；双写字母只发一次音，静音字母不生成声音。
-- src/data/practiceAudio.ts、public/word-audio/、public/phonics-audio/：Word explorer、拼读、连读、慢速和Starter例词统一使用Kokoro英式女声bf_emma。两类音频都直接输入已核对IPA，分块读实际音素，整词保持词内重音；慢速播放使用同一文件并保留音高。课本长句及原版CD不重新合成。
+- src/data/practiceAudio.ts、public/word-audio/、public/phonics-audio/：Word explorer、Starter例词和字母名使用Sonia自然英式女声，分块/音标使用eSpeak NG英式女声音素示范。两种音色有所区别；整词和字母输入英文文本，分块输入显式音素记号。慢速播放使用同一文件并保留音高。课本长句及原版CD不重新合成。
 - scripts/render-phonics-audio.mjs、render-practice-audio.py：同声线离线资源制作工具。用 `uv pip install --python .venv/Scripts/python.exe -r scripts/phonics-requirements.txt` 安装构建依赖，再执行 `node scripts/render-phonics-audio.mjs`。首次下载固定版本模型和voice到ignored artifacts并核对SHA-256；模型、Python及推理库不进入网页或APK。`public/word-audio/manifest.json`记录voice、IPA和每个MP3哈希；匹配才跳过，`--force`重建全部，旧eSpeak资源不会被误当作已生成的新音色。
 - src/data/bookHotspots.ts：按原图坐标核对的点读区域，随图片缩放；原书活动播放器与单词/分块播放器互斥，防止声音叠加。
 
@@ -145,7 +147,7 @@ git push origin v26.4.1
 - Lucide 图标：https://lucide.dev/ （ISC）
 - Nunito、DM Sans：Fontsource 本地字体（OFL）
 - 词语录音：有道词典英式发音接口。对外商业发布前需确认音频授权或替换为已授权录音。
-- 单词与拼读合成示范：[Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M)及[ONNX转换模型](https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX)（Apache-2.0），固定bf_emma英式女声，只在制作离线MP3时运行。
+- 单词及字母名：[edge-tts](https://github.com/rany2/edge-tts)（LGPL-3.0），使用en-GB-SoniaNeural。拼读音素示范：[eSpeak NG](https://github.com/espeak-ng/espeak-ng)与[Emscripten构建](https://github.com/echogarden-project/espeak-ng-emscripten)（GPL-3.0），使用en+f3。工具仅在制作离线MP3时运行，不随网页或APK分发。
 - 旧动物小站保留原美式音频，整册新增练习使用英式音频。
 
 原始PDF和OCR中间文件留在本机。根据用户提供的电子书处理后的正文图页放在public/book-pages，随网页与APK打包。官方样张与音频链接保留为补充资源入口。
