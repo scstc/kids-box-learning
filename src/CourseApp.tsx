@@ -1217,7 +1217,7 @@ export default function CourseApp() {
                         <p>{word.tip}</p>
                       </div>
                       <p className="kb-chunk-note">
-                        Tap a part, then blend the word. Sound parts are not always syllables. Part sounds use a synthesized voice.
+                        Tap a part, then blend the word. Sound parts are not always syllables. Parts and words use the same synthesized British voice.
                       </p>
                       <RewardButton animated={motion.canAnimate}
                         className="kb-btn kb-learn-next"

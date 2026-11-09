@@ -126,10 +126,11 @@ git push origin v26.4.1
 - src/data/bookSubtitles.ts、public/subtitles/、src/components/MediaSubtitles.tsx：离线英文字幕索引、时间轴与播放器同步。重新识别：用项目uv环境安装 `scripts/speech-requirements.txt`，运行 `node scripts/prepare-book-speech.mjs`，再运行 `.venv/Scripts/python.exe scripts/transcribe-book-audio.py`（默认使用本机NVIDIA GPU；CPU可加 `--device cpu`）。
 - src/components/LearningWord.tsx、CorrectCelebration.tsx：单词互动、触控聚光与答对庆祝；useLearningMotion.ts管理设备内动态设置。
 - src/components/FullscreenBook.tsx、src/components/BookMedia.tsx：全屏课本和单元原版资源。
-- scripts/download-course-audio.mjs：获取词语英式发音；少数 WAV 响应通过 ffmpeg 转为 MP3。
+- scripts/download-course-audio.mjs：保留课本点读的词典英式录音；少数 WAV 响应通过 ffmpeg 转为 MP3。单词练习优先播放下方同声线合成资源。
 - scripts/render-sentence-audio.py：使用 edge-tts 的 en-GB-SoniaNeural 生成原创例句音频。
-- src/data/pronunciations.ts：与词典英式录音口音对应的IPA和逐块发音；双写字母只发一次音，静音字母不生成声音。
-- scripts/render-phonics-audio.mjs：通过eSpeak NG英式音素输入生成分块合成示范，再转为本地MP3。仅为离线资源制作工具，不随应用运行。工具依赖安装方式见脚本开头。
+- src/data/pronunciations.ts：已核对的英式IPA和逐块发音；双写字母只发一次音，静音字母不生成声音。
+- src/data/practiceAudio.ts、public/word-audio/、public/phonics-audio/：Word explorer、拼读、连读、慢速和Starter例词统一使用Kokoro英式女声bf_emma。两类音频都直接输入已核对IPA，分块读实际音素，整词保持词内重音；慢速播放使用同一文件并保留音高。课本长句及原版CD不重新合成。
+- scripts/render-phonics-audio.mjs、render-practice-audio.py：同声线离线资源制作工具。用 `uv pip install --python .venv/Scripts/python.exe -r scripts/phonics-requirements.txt` 安装构建依赖，再执行 `node scripts/render-phonics-audio.mjs`。首次下载固定版本模型和voice到ignored artifacts并核对SHA-256；模型、Python及推理库不进入网页或APK。`public/word-audio/manifest.json`记录voice、IPA和每个MP3哈希；匹配才跳过，`--force`重建全部，旧eSpeak资源不会被误当作已生成的新音色。
 - src/data/bookHotspots.ts：按原图坐标核对的点读区域，随图片缩放；原书活动播放器与单词/分块播放器互斥，防止声音叠加。
 
 ### 来源
@@ -142,6 +143,7 @@ git push origin v26.4.1
 - Lucide 图标：https://lucide.dev/ （ISC）
 - Nunito、DM Sans：Fontsource 本地字体（OFL）
 - 词语录音：有道词典英式发音接口。对外商业发布前需确认音频授权或替换为已授权录音。
+- 单词与拼读合成示范：[Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M)及[ONNX转换模型](https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX)（Apache-2.0），固定bf_emma英式女声，只在制作离线MP3时运行。
 - 旧动物小站保留原美式音频，整册新增练习使用英式音频。
 
 原始PDF和OCR中间文件留在本机。根据用户提供的电子书处理后的正文图页放在public/book-pages，随网页与APK打包。官方样张与音频链接保留为补充资源入口。

@@ -1,0 +1,2298 @@
+{
+  "recipe": {
+    "engine": "Kokoro-82M-v1.0-ONNX/q8",
+    "voice": "bf_emma",
+    "accent": "en-GB",
+    "revision": "1939ad2a8e416c0acfeecc08a694d14ef25f2231",
+    "speed": 0.85,
+    "renderer": 2
+  },
+  "files": {
+    "word-audio/hello.mp3": {
+      "ipa": "həˈləʊ",
+      "phonemes": "həlˈəʊ",
+      "sha256": "60fa479d27389782038754fcbff2890ce34820657c8ddea5de2609c8caf073a5",
+      "seconds": 0.826
+    },
+    "word-audio/goodbye.mp3": {
+      "ipa": "ˌɡʊdˈbaɪ",
+      "phonemes": "ɡˌʊdbˈaɪ",
+      "sha256": "8faa420527ae868f4bffa131dd9930df1105750d88d1beaca1afb1cf72ed7948",
+      "seconds": 0.974
+    },
+    "word-audio/red.mp3": {
+      "ipa": "red",
+      "phonemes": "ɹˈɛd",
+      "sha256": "ef932f19a6a6acc934338f0ff342ad5bc08782c69bd41d7bdfea49e882b57db8",
+      "seconds": 0.722
+    },
+    "word-audio/yellow.mp3": {
+      "ipa": "ˈjeləʊ",
+      "phonemes": "jˈɛləʊ",
+      "sha256": "a822450315c23e986bddfec13d19636d45b80c946dc3ef62c612bf7be1b136a2",
+      "seconds": 0.782
+    },
+    "word-audio/pink.mp3": {
+      "ipa": "pɪŋk",
+      "phonemes": "pˈɪŋk",
+      "sha256": "61cbb329550696d3200d4128c859e8270645e9645e284565cfae35318fe6a790",
+      "seconds": 0.716
+    },
+    "word-audio/green.mp3": {
+      "ipa": "ɡriːn",
+      "phonemes": "ɡɹˈiːn",
+      "sha256": "71d9d0752970a5df6765c959befa62229188fa6c32b16e93348e6e6e29f2c54b",
+      "seconds": 0.787
+    },
+    "word-audio/orange.mp3": {
+      "ipa": "ˈɒrɪndʒ",
+      "phonemes": "ˈɒɹɪndʒ",
+      "sha256": "89ce8cdafd18bb66c77c2e5f75124dd6979db606bf560b6a1e91a343385604ca",
+      "seconds": 0.931
+    },
+    "word-audio/purple.mp3": {
+      "ipa": "ˈpɜːpəl",
+      "phonemes": "pˈɜːpəl",
+      "sha256": "824a3948a7943964b2c1e24e53382e3510a6279a512152dad87af48b5e953d89",
+      "seconds": 0.834
+    },
+    "word-audio/blue.mp3": {
+      "ipa": "bluː",
+      "phonemes": "blˈuː",
+      "sha256": "79a3212d6a78d95bba2b8a008bcd24974ce0aef8bc337b06f26ab080e78aaf9b",
+      "seconds": 0.674
+    },
+    "word-audio/one.mp3": {
+      "ipa": "wʌn",
+      "phonemes": "wˈʌn",
+      "sha256": "07601a0177d33323cfe6647c5d4cd79f4abe166f61fb57b57b80398114678313",
+      "seconds": 0.657
+    },
+    "word-audio/two.mp3": {
+      "ipa": "tuː",
+      "phonemes": "tˈuː",
+      "sha256": "2de1ba406058c30d6fe8c860276e85f0bb6627fce04799e516139af25ddb65be",
+      "seconds": 0.698
+    },
+    "word-audio/three.mp3": {
+      "ipa": "θriː",
+      "phonemes": "θɹˈiː",
+      "sha256": "a2d1f4f183ca41224a3443d397e3d7a130fce6fec01c3f511a2796a6011ac33c",
+      "seconds": 0.787
+    },
+    "word-audio/four.mp3": {
+      "ipa": "fɔː",
+      "phonemes": "fˈɔː",
+      "sha256": "68a3c66342e593df2b75fb745b1bd4afb0a3ca50c42eb31a00f3bd42e2973723",
+      "seconds": 0.672
+    },
+    "word-audio/five.mp3": {
+      "ipa": "faɪv",
+      "phonemes": "fˈaɪv",
+      "sha256": "0c0657b1a4095e9bf9fef62f1f55d7398bbbe7195dda1dca666582e778bdd887",
+      "seconds": 0.742
+    },
+    "word-audio/six.mp3": {
+      "ipa": "sɪks",
+      "phonemes": "sˈɪks",
+      "sha256": "863b58e342d18e4744d9001730ceaefaadda841f38940dcdcbc9f86d2d3a96b8",
+      "seconds": 0.757
+    },
+    "word-audio/seven.mp3": {
+      "ipa": "ˈsevən",
+      "phonemes": "sˈɛvən",
+      "sha256": "9e41e99a6d0c6c96d0c51fff149d0d1a5b650c87971c4968d3954db8aacd9c1c",
+      "seconds": 0.802
+    },
+    "word-audio/eight.mp3": {
+      "ipa": "eɪt",
+      "phonemes": "ˈeɪt",
+      "sha256": "949647da886b75d4192e1933b727929e0f956803d5d5664e27c20396e417f48f",
+      "seconds": 0.684
+    },
+    "word-audio/nine.mp3": {
+      "ipa": "naɪn",
+      "phonemes": "nˈaɪn",
+      "sha256": "83381abcad4481b87300717cc29d403758ed816adc2377d6d8ad73179023975f",
+      "seconds": 0.757
+    },
+    "word-audio/ten.mp3": {
+      "ipa": "ten",
+      "phonemes": "tˈɛn",
+      "sha256": "b36f490b888d4285c73fcd8cb01755c6c64623f7b1b7a3e46d3cf872a5adef98",
+      "seconds": 0.699
+    },
+    "word-audio/suzy.mp3": {
+      "ipa": "ˈsuːzi",
+      "phonemes": "sˈuːzi",
+      "sha256": "eb48f16af8e39af7429620aeda90f6c1f4ede4e9d76cf9a564098a50c8ce34c0",
+      "seconds": 0.799
+    },
+    "word-audio/simon.mp3": {
+      "ipa": "ˈsaɪmən",
+      "phonemes": "sˈaɪmən",
+      "sha256": "1199b43df83d309472a6851ab49a7b96246d71c338df216bde1fecd3c645d8ce",
+      "seconds": 0.887
+    },
+    "word-audio/stella.mp3": {
+      "ipa": "ˈstelə",
+      "phonemes": "stˈɛlə",
+      "sha256": "823cc43adc94b0630fba78b6cbbd1c9c2d89ad21c63a2fb7869e441f52e9c7dd",
+      "seconds": 0.779
+    },
+    "word-audio/mrs-star.mp3": {
+      "ipa": "ˌmɪsɪz ˈstɑː",
+      "phonemes": "mˌɪsɪz stˈɑː",
+      "sha256": "f36f472a4aaf2ebbf71202a0f983c2280656aff431a3ab424e06cb47b5632ab1",
+      "seconds": 1.226
+    },
+    "word-audio/mr-star.mp3": {
+      "ipa": "ˌmɪstə ˈstɑː",
+      "phonemes": "mˌɪstə stˈɑː",
+      "sha256": "8698056a8ef3097c20b2633a786fa359fa7dc5f323422402634eb35e5c8c36ba",
+      "seconds": 1.226
+    },
+    "word-audio/maskman.mp3": {
+      "ipa": "ˈmɑːskmæn",
+      "phonemes": "mˈɑːskmæn",
+      "sha256": "f934b4e2e8e1d842e32a4a23037a803ce4ae5b3aabf5ac9951f56b04b4346794",
+      "seconds": 1.014
+    },
+    "word-audio/marie.mp3": {
+      "ipa": "məˈriː",
+      "phonemes": "məɹˈiː",
+      "sha256": "1b87a07f9b099baf4af03153dd710110df628a2f93cee90e01b18e87659f2c60",
+      "seconds": 0.849
+    },
+    "word-audio/monty.mp3": {
+      "ipa": "ˈmɒnti",
+      "phonemes": "mˈɒnti",
+      "sha256": "6e5854e845a783c785e57c5281808935c3a672e655c2c12f8546fd3240178961",
+      "seconds": 0.847
+    },
+    "word-audio/meera.mp3": {
+      "ipa": "ˈmɪərə",
+      "phonemes": "mˈɪəɹə",
+      "sha256": "2e59b18508cc09346ee6aa8859b1e8d52cefc04af1f29e54f52fb7aa48a17719",
+      "seconds": 0.848
+    },
+    "word-audio/star.mp3": {
+      "ipa": "stɑː",
+      "phonemes": "stˈɑː",
+      "sha256": "bc17e95b6b688cba52267c140887db41a8f4f077023d643e39e33c21b5a8a3f6",
+      "seconds": 0.692
+    },
+    "word-audio/book.mp3": {
+      "ipa": "bʊk",
+      "phonemes": "bˈʊk",
+      "sha256": "0053723742c570615d460f25e9700622326e9032964a4fa42b3cbc35e1f8d8d3",
+      "seconds": 0.594
+    },
+    "word-audio/chair.mp3": {
+      "ipa": "tʃeə",
+      "phonemes": "tʃˈeə",
+      "sha256": "fd4c8dd5e83f8a2932ac5abf79dc2392a9179a30146f71146cf145c7c1ee94f7",
+      "seconds": 0.669
+    },
+    "word-audio/table.mp3": {
+      "ipa": "ˈteɪbəl",
+      "phonemes": "tˈeɪbəl",
+      "sha256": "b6a5e9ca6fb584da75a17dbf0452adb7363f13e4e1151c396e5637aebf3c87fc",
+      "seconds": 0.83
+    },
+    "word-audio/pen.mp3": {
+      "ipa": "pen",
+      "phonemes": "pˈɛn",
+      "sha256": "c4b63a3a2c0654c0f13457aa61705a3f016d52921080c3db91299ee72a719007",
+      "seconds": 0.681
+    },
+    "word-audio/pencil.mp3": {
+      "ipa": "ˈpensəl",
+      "phonemes": "pˈɛnsəl",
+      "sha256": "232b425abb5eb691694c1e356bcc265ac92d86ad8f98072437d2656e70e9f81e",
+      "seconds": 0.834
+    },
+    "word-audio/eraser.mp3": {
+      "ipa": "ɪˈreɪzə",
+      "phonemes": "ɪɹˈeɪzə",
+      "sha256": "e990c717fd1075b236817a32fc7859407817e046eae3a2512be39de1432a1678",
+      "seconds": 0.95
+    },
+    "word-audio/bag.mp3": {
+      "ipa": "bæɡ",
+      "phonemes": "bˈæɡ",
+      "sha256": "c04b744418ba6f1867046223be7178acf64a6f862aa6516adb57e143d70349f3",
+      "seconds": 0.706
+    },
+    "word-audio/school.mp3": {
+      "ipa": "skuːl",
+      "phonemes": "skˈuːl",
+      "sha256": "5d522053e69e0c8443550f75bcf11ada07cbb6e074647acf6f632543d650a73d",
+      "seconds": 0.78
+    },
+    "word-audio/alex.mp3": {
+      "ipa": "ˈælɪks",
+      "phonemes": "ˈælɪks",
+      "sha256": "b9428ddcc7d63bda333f4f327948c797b58ed1b3c1fa8aa0522979c061d10c9d",
+      "seconds": 0.779
+    },
+    "word-audio/lenny.mp3": {
+      "ipa": "ˈleni",
+      "phonemes": "lˈɛni",
+      "sha256": "4602c27ebae962f829f030e331bbf0c50ba57ca93f9f4566815e6e545fe96249",
+      "seconds": 0.772
+    },
+    "word-audio/ball.mp3": {
+      "ipa": "bɔːl",
+      "phonemes": "bˈɔːl",
+      "sha256": "e2dda45a0dd86bf97aa1215ea96ed1d260191e6df5d7e4a63d66e7d1ed001e0f",
+      "seconds": 0.738
+    },
+    "word-audio/bike.mp3": {
+      "ipa": "baɪk",
+      "phonemes": "bˈaɪk",
+      "sha256": "7f63221c41a75442480f74f537975e55fb68b23f2d0eb880ff74b16f756c4349",
+      "seconds": 0.704
+    },
+    "word-audio/car.mp3": {
+      "ipa": "kɑː",
+      "phonemes": "kˈɑː",
+      "sha256": "7970d524d7db9aa302587ae64d297e298cfddafb07a58fc6d947e990d18f4de6",
+      "seconds": 0.678
+    },
+    "word-audio/doll.mp3": {
+      "ipa": "dɒl",
+      "phonemes": "dˈɒl",
+      "sha256": "5af9e1e3b95196c3862fd5b7f25e59c82da06f711af54362ff813351cf31c03b",
+      "seconds": 0.738
+    },
+    "word-audio/train.mp3": {
+      "ipa": "treɪn",
+      "phonemes": "tɹˈeɪn",
+      "sha256": "8a90a0cb181cf3ac3b6ff287f3e8ae79c89f2e29603be34cb32f34c997f77b1f",
+      "seconds": 0.827
+    },
+    "word-audio/computer.mp3": {
+      "ipa": "kəmˈpjuːtə",
+      "phonemes": "kəmpjˈuːtə",
+      "sha256": "6bb939c26a843978994dc4bbe5769d5c9f72958b0cfd12e888e7abe31025c44f",
+      "seconds": 1.062
+    },
+    "word-audio/black.mp3": {
+      "ipa": "blæk",
+      "phonemes": "blˈæk",
+      "sha256": "e48d8025364b43da0c2cdfebf27e360b8f1fda853ada3f920dd86fa445cab223",
+      "seconds": 0.684
+    },
+    "word-audio/white.mp3": {
+      "ipa": "waɪt",
+      "phonemes": "wˈaɪt",
+      "sha256": "4f4d0a68970732bdad1618c12fb02a942aca1251d039d662686edf6d7df6345c",
+      "seconds": 0.784
+    },
+    "word-audio/brown.mp3": {
+      "ipa": "braʊn",
+      "phonemes": "bɹˈaʊn",
+      "sha256": "1d4a07dc6d54c40a50ecc51324bb66cf791606c78f1be95c19a3ea91f5fa4403",
+      "seconds": 0.786
+    },
+    "word-audio/grey.mp3": {
+      "ipa": "ɡreɪ",
+      "phonemes": "ɡɹˈeɪ",
+      "sha256": "5a4875fcb5f9328e901935a158913e1c04c249178e1efe02329c7b5eb8aaf7a5",
+      "seconds": 0.739
+    },
+    "word-audio/on.mp3": {
+      "ipa": "ɒn",
+      "phonemes": "ˈɒn",
+      "sha256": "7eee40d061cc80a47c25f268c67ac608a98d24e9c56e963ba97e63e8b1b7274f",
+      "seconds": 0.677
+    },
+    "word-audio/under.mp3": {
+      "ipa": "ˈʌndə",
+      "phonemes": "ˈʌndə",
+      "sha256": "e3779ea6261719ffab969557a822308f75f9fda055dab92cb0be349d46f2084c",
+      "seconds": 0.784
+    },
+    "word-audio/in.mp3": {
+      "ipa": "ɪn",
+      "phonemes": "ˈɪn",
+      "sha256": "eaf701128ac5fae0ef92a77f8178d5bbad03de196519ea13328f030ec671ffeb",
+      "seconds": 0.637
+    },
+    "word-audio/next-to.mp3": {
+      "ipa": "ˈnekst tə",
+      "phonemes": "nˈɛkst tə",
+      "sha256": "4bd68fc81560d5e7c15b97080e2d7e52147713a77df07dd32973f27aef38968b",
+      "seconds": 0.9
+    },
+    "word-audio/mother.mp3": {
+      "ipa": "ˈmʌðə",
+      "phonemes": "mˈʌðə",
+      "sha256": "e278893825db16e7fcf9dd543823a5dae0e00c31b2a008455be6e8d86a7885e0",
+      "seconds": 0.707
+    },
+    "word-audio/father.mp3": {
+      "ipa": "ˈfɑːðə",
+      "phonemes": "fˈɑːðə",
+      "sha256": "ecc8ff00c168d7b52598f854a482a80f6920b401242602315a4e09f032c9770b",
+      "seconds": 0.787
+    },
+    "word-audio/brother.mp3": {
+      "ipa": "ˈbrʌðə",
+      "phonemes": "bɹˈʌðə",
+      "sha256": "8abb6310305aa2331c3163b534e2ea139c4e045307b45635d8aae3ea6a081c4b",
+      "seconds": 0.738
+    },
+    "word-audio/sister.mp3": {
+      "ipa": "ˈsɪstə",
+      "phonemes": "sˈɪstə",
+      "sha256": "15f85d80b763dd0e5e7ef4e4af965a9d0c7590d969d2c3d23587b0d21ff5abb1",
+      "seconds": 0.822
+    },
+    "word-audio/grandmother.mp3": {
+      "ipa": "ˈɡrænmʌðə",
+      "phonemes": "ɡɹˈænmʌðə",
+      "sha256": "c9ec70f6cf696770f4693194bd34970238a301ddd7db50903d8998537af6120e",
+      "seconds": 0.954
+    },
+    "word-audio/grandfather.mp3": {
+      "ipa": "ˈɡrænfɑːðə",
+      "phonemes": "ɡɹˈænfɑːðə",
+      "sha256": "badb2d4735c9dbec80bf1b17f301e1dd0c173264d9b35fb8e8a0ec2f0e9c9e40",
+      "seconds": 1.035
+    },
+    "word-audio/family.mp3": {
+      "ipa": "ˈfæməli",
+      "phonemes": "fˈæməli",
+      "sha256": "e6b2aaa720ddceda643a986c3de007af660faf706ab97d4f55331ccb9d21d624",
+      "seconds": 0.787
+    },
+    "word-audio/baby.mp3": {
+      "ipa": "ˈbeɪbi",
+      "phonemes": "bˈeɪbi",
+      "sha256": "637d169e25105764034ed3de05a88ebd33d1beb275d17247a65f1350b51aaebc",
+      "seconds": 0.791
+    },
+    "word-audio/happy.mp3": {
+      "ipa": "ˈhæpi",
+      "phonemes": "hˈæpi",
+      "sha256": "d6647be2b9b00d71c4bcc34c79bd86ef9aef7ef5fbf2e9239db07b00a1e56851",
+      "seconds": 0.825
+    },
+    "word-audio/sad.mp3": {
+      "ipa": "sæd",
+      "phonemes": "sˈæd",
+      "sha256": "01ae934df7abff98421e39612d0150779820a8cc938c13a8d1103a6036d32e40",
+      "seconds": 0.689
+    },
+    "word-audio/ugly.mp3": {
+      "ipa": "ˈʌɡli",
+      "phonemes": "ˈʌɡli",
+      "sha256": "642c9fc19a17b4170de21a01de4074b8061c4509cf1b1c00421241e6ead92380",
+      "seconds": 0.788
+    },
+    "word-audio/old.mp3": {
+      "ipa": "əʊld",
+      "phonemes": "ˈəʊld",
+      "sha256": "71b6a4bef998a3ab17688f58b954e04286863452112e78ebcfa08f71275873ed",
+      "seconds": 0.763
+    },
+    "word-audio/young.mp3": {
+      "ipa": "jʌŋ",
+      "phonemes": "jˈʌŋ",
+      "sha256": "142fe86d096c05eebe478d9d9e41558e92e151d4a88fecf8cf3f48e19bdb5b4e",
+      "seconds": 0.74
+    },
+    "word-audio/beautiful.mp3": {
+      "ipa": "ˈbjuːtɪfəl",
+      "phonemes": "bjˈuːtɪfəl",
+      "sha256": "3067c683e9c98ec6a81518dd45a05fd63b4c3faf32f4cb9c0b89f7d51281d994",
+      "seconds": 0.934
+    },
+    "word-audio/cat.mp3": {
+      "ipa": "kæt",
+      "phonemes": "kˈæt",
+      "sha256": "b104b054b5b6cad8dc56304d1f95b25cde0d80a51a98f4e4486c60e5caa9cf81",
+      "seconds": 0.674
+    },
+    "word-audio/dog.mp3": {
+      "ipa": "dɒɡ",
+      "phonemes": "dˈɒɡ",
+      "sha256": "5e3ac76ca2b9d72e7bc0e2e7d27c19ee0769bc7137e7f21c98977cf09fb73673",
+      "seconds": 0.725
+    },
+    "word-audio/bird.mp3": {
+      "ipa": "bɜːd",
+      "phonemes": "bˈɜːd",
+      "sha256": "a6a346d7ff5eef1ef909b317f165ac825b821a452142748209e44adee80d8b36",
+      "seconds": 0.788
+    },
+    "word-audio/fish.mp3": {
+      "ipa": "fɪʃ",
+      "phonemes": "fˈɪʃ",
+      "sha256": "73603e06a0347a1d67e7e9a3df31023e77f33cc097a8dacd42c4839f40c50d43",
+      "seconds": 0.68
+    },
+    "word-audio/horse.mp3": {
+      "ipa": "hɔːs",
+      "phonemes": "hˈɔːs",
+      "sha256": "d1e63bf0068c06ac98b4c8feac6e0ba1582e3443ceb0d0f8b5a5b767b701e3d6",
+      "seconds": 0.779
+    },
+    "word-audio/mouse.mp3": {
+      "ipa": "maʊs",
+      "phonemes": "mˈaʊs",
+      "sha256": "64d1eac40fdc1aebe2887befcb4e86a701e22167d2a7285f5dbcd0a60e729b1f",
+      "seconds": 0.802
+    },
+    "word-audio/big.mp3": {
+      "ipa": "bɪɡ",
+      "phonemes": "bˈɪɡ",
+      "sha256": "0f531666b51cc3cf24ff9dfcf9bf214f2c957c8df46ee3e71680e23966bd30a8",
+      "seconds": 0.685
+    },
+    "word-audio/small.mp3": {
+      "ipa": "smɔːl",
+      "phonemes": "smˈɔːl",
+      "sha256": "537916dd013c51a029174f1a434e02235d43939b192a062addf1cd818575f6fa",
+      "seconds": 0.785
+    },
+    "word-audio/long.mp3": {
+      "ipa": "lɒŋ",
+      "phonemes": "lˈɒŋ",
+      "sha256": "ef5cc0d6d4a6ad481271a4ec55fb4f934f5e33d396a687b0c1d3d130a62206e1",
+      "seconds": 0.725
+    },
+    "word-audio/short.mp3": {
+      "ipa": "ʃɔːt",
+      "phonemes": "ʃˈɔːt",
+      "sha256": "eef8ee580b863f0d6868e5dcf7b25aad55df891086027ec24cad886c3b255676",
+      "seconds": 0.735
+    },
+    "word-audio/dirty.mp3": {
+      "ipa": "ˈdɜːti",
+      "phonemes": "dˈɜːti",
+      "sha256": "b1a237ef3b828b28fd0fe46f5c1e4ced2cf6aa625128cc3e8a01fd921b5d9444",
+      "seconds": 0.845
+    },
+    "word-audio/clean.mp3": {
+      "ipa": "kliːn",
+      "phonemes": "klˈiːn",
+      "sha256": "08837b883619870b36334307a64066f29065807b6539842d9df497798293e87f",
+      "seconds": 0.809
+    },
+    "word-audio/face.mp3": {
+      "ipa": "feɪs",
+      "phonemes": "fˈeɪs",
+      "sha256": "4b5a30263851c27b4ba37ab33ae20166573183f08fa018186bdf71842355c859",
+      "seconds": 0.786
+    },
+    "word-audio/eye.mp3": {
+      "ipa": "aɪ",
+      "phonemes": "ˈaɪ",
+      "sha256": "c92344ba8427d1dd8f8f6036e29b67cfbff6a7a71096414564cb3f7fd2a347eb",
+      "seconds": 0.696
+    },
+    "word-audio/ear.mp3": {
+      "ipa": "ɪə",
+      "phonemes": "ˈɪə",
+      "sha256": "20669c8c2faec1e1289e665dbcb5cc250acd02482749ac920dcf9c3168232d2e",
+      "seconds": 0.629
+    },
+    "word-audio/nose.mp3": {
+      "ipa": "nəʊz",
+      "phonemes": "nˈəʊz",
+      "sha256": "5850fa2f033ff22507a209053f7291c3dc69572cfbcc8b60766dcc825c492d6d",
+      "seconds": 0.799
+    },
+    "word-audio/mouth.mp3": {
+      "ipa": "maʊθ",
+      "phonemes": "mˈaʊθ",
+      "sha256": "f6f19cd405b2fdacb7ca123c4cd9b4062be4e6e42f815f8df538f83e4de83fcb",
+      "seconds": 0.742
+    },
+    "word-audio/hair.mp3": {
+      "ipa": "heə",
+      "phonemes": "hˈeə",
+      "sha256": "babbdf86b27cc8fa6f3bed25da235c4c7148398e4b879e5cb8bd21c9f6ba89a5",
+      "seconds": 0.714
+    },
+    "word-audio/head.mp3": {
+      "ipa": "hed",
+      "phonemes": "hˈɛd",
+      "sha256": "5a4fcb4706c3d4fc537a8f5d7476a793908f04771015b22dfec5061e6abccb1d",
+      "seconds": 0.698
+    },
+    "word-audio/tooth.mp3": {
+      "ipa": "tuːθ",
+      "phonemes": "tˈuːθ",
+      "sha256": "8044fd781151fa2b982cbb5a9013f676d627e337229f06a51b2c4e4180c89e4b",
+      "seconds": 0.765
+    },
+    "word-audio/hand.mp3": {
+      "ipa": "hænd",
+      "phonemes": "hˈænd",
+      "sha256": "a6d4e12e03081387dbbb0a7f99e4c2c70a76009ed2b65165a2337a7e357db8a5",
+      "seconds": 0.741
+    },
+    "word-audio/foot.mp3": {
+      "ipa": "fʊt",
+      "phonemes": "fˈʊt",
+      "sha256": "1b5196cd66310815f87635e65e7a073cdae64c28bf2d08ced7a9c82c8192140e",
+      "seconds": 0.663
+    },
+    "word-audio/body.mp3": {
+      "ipa": "ˈbɒdi",
+      "phonemes": "bˈɒdi",
+      "sha256": "e8c167bcbe0bd837ec1cfd022ff697cfb6d58aa220db62807b6f7926aca080f1",
+      "seconds": 0.701
+    },
+    "word-audio/teeth.mp3": {
+      "ipa": "tiːθ",
+      "phonemes": "tˈiːθ",
+      "sha256": "230a9b4a3caf74faa34493ca453f3f185784d0eb80d598b1d376ab327deae5c5",
+      "seconds": 0.785
+    },
+    "word-audio/ears.mp3": {
+      "ipa": "ɪəz",
+      "phonemes": "ˈɪəz",
+      "sha256": "32e0d08749154fe271f73a07a509a6ef6e9e90348798c4f20a97c5cee60f845e",
+      "seconds": 0.839
+    },
+    "word-audio/eyes.mp3": {
+      "ipa": "aɪz",
+      "phonemes": "ˈaɪz",
+      "sha256": "f7cba3b3c3b138cf2c577d746c78f0302ec7a6912ab5368efb9ac8d953c4438c",
+      "seconds": 0.777
+    },
+    "word-audio/frog.mp3": {
+      "ipa": "frɒɡ",
+      "phonemes": "fɹˈɒɡ",
+      "sha256": "e1f8ed7219fc382b6ea4e8dc18d56ceaf44dde2fe09dea35722b12aeede0104e",
+      "seconds": 0.756
+    },
+    "word-audio/giraffe.mp3": {
+      "ipa": "dʒəˈrɑːf",
+      "phonemes": "dʒəɹˈɑːf",
+      "sha256": "3915a23ea2399d2fb27a0bcc0254eaa93670910d6a067dcddfd48c6f5a9bc55d",
+      "seconds": 0.886
+    },
+    "word-audio/elephant.mp3": {
+      "ipa": "ˈelɪfənt",
+      "phonemes": "ˈɛlɪfənt",
+      "sha256": "d8403f5302f3d6a0199cb09bfdd38668e1c1411d16b72dc68aafa3d8cd0c3f4d",
+      "seconds": 0.934
+    },
+    "word-audio/snake.mp3": {
+      "ipa": "sneɪk",
+      "phonemes": "snˈeɪk",
+      "sha256": "cc8a4f8a9046c7821af1de9fe687d8117863a83eff99cb13a5aad4c9162836be",
+      "seconds": 0.779
+    },
+    "word-audio/hippo.mp3": {
+      "ipa": "ˈhɪpəʊ",
+      "phonemes": "hˈɪpəʊ",
+      "sha256": "beb33b0766ee3d9eb9c5180f7f445b0d0b7c751cad14e3c377a0e71b81c3f863",
+      "seconds": 0.805
+    },
+    "word-audio/crocodile.mp3": {
+      "ipa": "ˈkrɒkədaɪl",
+      "phonemes": "kɹˈɒkədaɪl",
+      "sha256": "503e55feab252d184ad287cabda22bb4b7ae62d25270e80574234cf8c751b488",
+      "seconds": 0.998
+    },
+    "word-audio/monkey.mp3": {
+      "ipa": "ˈmʌŋki",
+      "phonemes": "mˈʌŋki",
+      "sha256": "088336996f90c33cce9b21fe70325732d029d7dcad1a700c17a01480a2d492c0",
+      "seconds": 0.846
+    },
+    "word-audio/tiger.mp3": {
+      "ipa": "ˈtaɪɡə",
+      "phonemes": "tˈaɪɡə",
+      "sha256": "4ca373da81d1e89d7b5e2eb09fba60d9b040a193a59483b78db1244c6ea35f7a",
+      "seconds": 0.826
+    },
+    "word-audio/tail.mp3": {
+      "ipa": "teɪl",
+      "phonemes": "tˈeɪl",
+      "sha256": "53fb4a2061cae1ba8fd54836d769e37f2a510db1b724c30eb6747ca1c87b3320",
+      "seconds": 0.783
+    },
+    "word-audio/leg.mp3": {
+      "ipa": "leɡ",
+      "phonemes": "lˈɛɡ",
+      "sha256": "f962f3eb3ef08fddb6a6c9a802a415a9ef49778c8c133bb28009903ccdc78bd6",
+      "seconds": 0.727
+    },
+    "word-audio/arm.mp3": {
+      "ipa": "ɑːm",
+      "phonemes": "ˈɑːm",
+      "sha256": "f11b02466b08bf115c0433734597a5e0a79897493961dad9804fed83f1c92cb5",
+      "seconds": 0.718
+    },
+    "word-audio/feet.mp3": {
+      "ipa": "fiːt",
+      "phonemes": "fˈiːt",
+      "sha256": "81485ba041bc803e26bfd2722c09470bb0949a7b382ac35823f281b1524067d1",
+      "seconds": 0.746
+    },
+    "word-audio/arms.mp3": {
+      "ipa": "ɑːmz",
+      "phonemes": "ˈɑːmz",
+      "sha256": "74371aaf0916d9ef27e1a035898175a53ccbf008c6b3b01a28912ca71a98ffd1",
+      "seconds": 0.82
+    },
+    "word-audio/hands.mp3": {
+      "ipa": "hændz",
+      "phonemes": "hˈændz",
+      "sha256": "22bf08e32fef4639f429b2d36a75191cf9079088c7d4e194d11b910def6efe55",
+      "seconds": 0.843
+    },
+    "word-audio/legs.mp3": {
+      "ipa": "leɡz",
+      "phonemes": "lˈɛɡz",
+      "sha256": "a6127ff74b45a53abf76a856da64ded0462259ab398a1dbd9492f0f31a816b68",
+      "seconds": 0.804
+    },
+    "word-audio/tails.mp3": {
+      "ipa": "teɪlz",
+      "phonemes": "tˈeɪlz",
+      "sha256": "21449793b45b2cf2643c20a3dca3cde08bf34f50a1f6067c74cb671fac4b16d6",
+      "seconds": 0.846
+    },
+    "word-audio/heads.mp3": {
+      "ipa": "hedz",
+      "phonemes": "hˈɛdz",
+      "sha256": "995a43c89f276de395d4972c88f070499de609c1fd3ab39b7b8cbd38a9001974",
+      "seconds": 0.784
+    },
+    "word-audio/mouths.mp3": {
+      "ipa": "maʊðz",
+      "phonemes": "mˈaʊðz",
+      "sha256": "b6384fcfad4befe350baafa7179d4f99390442fcccacb46e3f39a6d25da3e55d",
+      "seconds": 0.907
+    },
+    "word-audio/noses.mp3": {
+      "ipa": "ˈnəʊzɪz",
+      "phonemes": "nˈəʊzɪz",
+      "sha256": "1f43e304447159667fbafb227ad055a6330a43c7e3ba20941ac76c5c13364f85",
+      "seconds": 0.97
+    },
+    "word-audio/shirt.mp3": {
+      "ipa": "ʃɜːt",
+      "phonemes": "ʃˈɜːt",
+      "sha256": "28bb76bafc37603b22380ef3a9d722db98d2da7626654df8b485b3a47e4d0507",
+      "seconds": 0.778
+    },
+    "word-audio/t-shirt.mp3": {
+      "ipa": "ˈtiː ʃɜːt",
+      "phonemes": "tˈiː ʃɜːt",
+      "sha256": "e9da16d7d3ff5a1e81853ec8e11cd156eece541276bd571647dd424bce34a484",
+      "seconds": 0.971
+    },
+    "word-audio/skirt.mp3": {
+      "ipa": "skɜːt",
+      "phonemes": "skˈɜːt",
+      "sha256": "ee788b3813c1d46995d4868f396d0bcc47eecb50cd34cec6672887cff32eaa99",
+      "seconds": 0.8
+    },
+    "word-audio/dress.mp3": {
+      "ipa": "dres",
+      "phonemes": "dɹˈɛs",
+      "sha256": "f7c1eadaf8235d0d5e8c87f5be313995c19a2df8786d410b71b874d1f583e172",
+      "seconds": 0.78
+    },
+    "word-audio/trousers.mp3": {
+      "ipa": "ˈtraʊzəz",
+      "phonemes": "tɹˈaʊzəz",
+      "sha256": "ce67409af0d70e0369104c69f37b997de2d569db4b160e6fbff19c959ad24ef4",
+      "seconds": 0.995
+    },
+    "word-audio/shoes.mp3": {
+      "ipa": "ʃuːz",
+      "phonemes": "ʃˈuːz",
+      "sha256": "2de9babb11c31c1ff60203861abf964b0110c4d300e441d485b54f6297d0da5e",
+      "seconds": 0.839
+    },
+    "word-audio/socks.mp3": {
+      "ipa": "sɒks",
+      "phonemes": "sˈɒks",
+      "sha256": "d0ad57891693e09320523d7d28f12e7ed39130e3872f5b94173a00744b6011f6",
+      "seconds": 0.758
+    },
+    "word-audio/jacket.mp3": {
+      "ipa": "ˈdʒækɪt",
+      "phonemes": "dʒˈækɪt",
+      "sha256": "cb06ca43de7468575bcd28140bb2328dff4df1a6a4f545103eecf5e61ce10e5d",
+      "seconds": 0.909
+    },
+    "word-audio/play.mp3": {
+      "ipa": "pleɪ",
+      "phonemes": "plˈeɪ",
+      "sha256": "30bc656a7d1c0cbf9ba068a424c4520a180260f11c14035826b16dc40b5906f4",
+      "seconds": 0.699
+    },
+    "word-audio/swim.mp3": {
+      "ipa": "swɪm",
+      "phonemes": "swˈɪm",
+      "sha256": "3b38bf9497b49bfed2d4300e1a1e82362070373e4fb1dd8f831dc8fa08b49430",
+      "seconds": 0.735
+    },
+    "word-audio/run.mp3": {
+      "ipa": "rʌn",
+      "phonemes": "ɹˈʌn",
+      "sha256": "4e2b914539b956884454a309d1015ee600bd47f8eb2d4d87bca4ace48a16e02b",
+      "seconds": 0.742
+    },
+    "word-audio/jump.mp3": {
+      "ipa": "dʒʌmp",
+      "phonemes": "dʒˈʌmp",
+      "sha256": "74690f4e9d27923f7cb32230d78384e13e1b5a6f2be3cef3528d3a97ba24782a",
+      "seconds": 0.76
+    },
+    "word-audio/sing.mp3": {
+      "ipa": "sɪŋ",
+      "phonemes": "sˈɪŋ",
+      "sha256": "fa93823d440fa10e4c4a3f7550aca9b146ff5270a675a0522dd03c84a69c2c61",
+      "seconds": 0.714
+    },
+    "word-audio/dance.mp3": {
+      "ipa": "dɑːns",
+      "phonemes": "dˈɑːns",
+      "sha256": "15f18833da8c7419f227e96d6d00f7af8d0b34874d266513c7cb28ccf8cd8008",
+      "seconds": 0.806
+    },
+    "word-audio/ride.mp3": {
+      "ipa": "raɪd",
+      "phonemes": "ɹˈaɪd",
+      "sha256": "20fda57355b903af4c3ab58517f5354f860a6e4b02d8e20bc5eb8df45b45adcf",
+      "seconds": 0.779
+    },
+    "word-audio/football.mp3": {
+      "ipa": "ˈfʊtbɔːl",
+      "phonemes": "fˈʊtbɔːl",
+      "sha256": "4d9f83cfb741d8e46b71095f377c42635e81d11d530a52cb067b9815fe099b50",
+      "seconds": 0.914
+    },
+    "word-audio/tennis.mp3": {
+      "ipa": "ˈtenɪs",
+      "phonemes": "tˈɛnɪs",
+      "sha256": "240d9c8b0fb8b1f557d9baad0abdfd4ff5fc6d9a90b8e91d1aafa65efa2bf6e9",
+      "seconds": 0.77
+    },
+    "word-audio/basketball.mp3": {
+      "ipa": "ˈbɑːskɪtbɔːl",
+      "phonemes": "bˈɑːskɪtbɔːl",
+      "sha256": "30c5c5ef23ca1914706d93fd92c67aef3da83c0ed13961d4c211efd209b665fb",
+      "seconds": 1.099
+    },
+    "word-audio/play-football.mp3": {
+      "ipa": "ˌpleɪ ˈfʊtbɔːl",
+      "phonemes": "plˌeɪ fˈʊtbɔːl",
+      "sha256": "3f53aaddd0ba86808e097322a2bf2084fdca7c819f07d9b667a33c4721929fd5",
+      "seconds": 1.232
+    },
+    "word-audio/play-basketball.mp3": {
+      "ipa": "ˌpleɪ ˈbɑːskɪtbɔːl",
+      "phonemes": "plˌeɪ bˈɑːskɪtbɔːl",
+      "sha256": "94fff59d2ba1cb634b93e51b25613e6af85e2ccc8aec880b40d6b50a667e04c7",
+      "seconds": 1.595
+    },
+    "word-audio/play-tennis.mp3": {
+      "ipa": "ˌpleɪ ˈtenɪs",
+      "phonemes": "plˌeɪ tˈɛnɪs",
+      "sha256": "64a68ab7558161e016e48cd382a9cfafb291a65ef6ac250267f6def214d762f3",
+      "seconds": 1.125
+    },
+    "word-audio/play-the-guitar.mp3": {
+      "ipa": "ˌpleɪ ðə ɡɪˈtɑː",
+      "phonemes": "plˌeɪ ðə ɡɪtˈɑː",
+      "sha256": "2eec1b952f9e5edfb108e77ff3f18bbdcbe404aef1a1ef2e67d9d266f3541240",
+      "seconds": 1.415
+    },
+    "word-audio/play-the-piano.mp3": {
+      "ipa": "ˌpleɪ ðə piˈænəʊ",
+      "phonemes": "plˌeɪ ðə piˈænəʊ",
+      "sha256": "d2b03d1b4be0a7e731921f5a0ea15aa621987d0d3bffda47e13c84cb0e26e269",
+      "seconds": 1.449
+    },
+    "word-audio/ride-a-bike.mp3": {
+      "ipa": "ˌraɪd ə ˈbaɪk",
+      "phonemes": "ɹˌaɪd ə bˈaɪk",
+      "sha256": "574c09f3045fad8b1727f6b399b97f4cd7a3dcfcdfa76a4428882046316bd46c",
+      "seconds": 1.205
+    },
+    "word-audio/piano.mp3": {
+      "ipa": "piˈænəʊ",
+      "phonemes": "piˈænəʊ",
+      "sha256": "f922171395da98ad863e6eeef37c02cbd1d5633f8d54c41964a25678a5f17f00",
+      "seconds": 0.87
+    },
+    "word-audio/lily.mp3": {
+      "ipa": "ˈlɪli",
+      "phonemes": "lˈɪli",
+      "sha256": "2b39b91e13bb9e1a65f3bfee186a084ac5143f03d522ea7491328f8658bc52e9",
+      "seconds": 0.699
+    },
+    "word-audio/guitar.mp3": {
+      "ipa": "ɡɪˈtɑː",
+      "phonemes": "ɡɪtˈɑː",
+      "sha256": "c88da8ba7079bc1cd8d96afc6f2c6730b025ffc7dcf7cf64d41fc894bb496327",
+      "seconds": 0.891
+    },
+    "word-audio/draw.mp3": {
+      "ipa": "drɔː",
+      "phonemes": "dɹˈɔː",
+      "sha256": "c33754c317264f882454ae5b746d58f0bfd6a2e9f7dfd532fe6cfeec5491289f",
+      "seconds": 0.693
+    },
+    "word-audio/bus.mp3": {
+      "ipa": "bʌs",
+      "phonemes": "bˈʌs",
+      "sha256": "0053d88b6dcc3cf580e74d2c1fdf11e4e3a853799839ff9ebd4b4750ba5d35f4",
+      "seconds": 0.691
+    },
+    "word-audio/boat.mp3": {
+      "ipa": "bəʊt",
+      "phonemes": "bˈəʊt",
+      "sha256": "6fde710dc22f3aa7bbebf05920390bfb0b6c12e02c50191b0e592e9b33eedf3d",
+      "seconds": 0.764
+    },
+    "word-audio/plane.mp3": {
+      "ipa": "pleɪn",
+      "phonemes": "plˈeɪn",
+      "sha256": "acfd30b2974a517c1ae11d7df7fb0ae8e00a2f9f86581d90c695a06750b1db8d",
+      "seconds": 0.749
+    },
+    "word-audio/helicopter.mp3": {
+      "ipa": "ˈhelɪkɒptə",
+      "phonemes": "hˈɛlɪkɒptə",
+      "sha256": "898bb014c52c246820f7ebe180e80d555f5f67392cfa16d61807951d360d8bd9",
+      "seconds": 1.034
+    },
+    "word-audio/lorry.mp3": {
+      "ipa": "ˈlɒri",
+      "phonemes": "lˈɒɹi",
+      "sha256": "54ac88acc953bdb5e1027d75a4620e4d075af4c4e747fc37c3eb29cce4e899cc",
+      "seconds": 0.8
+    },
+    "word-audio/motorbike.mp3": {
+      "ipa": "ˈməʊtəbaɪk",
+      "phonemes": "mˈəʊtəbaɪk",
+      "sha256": "0fe2dd20fa58375dedbeddbf423024273edc69e88f734af511260600ad706843",
+      "seconds": 1.082
+    },
+    "word-audio/funny.mp3": {
+      "ipa": "ˈfʌni",
+      "phonemes": "fˈʌni",
+      "sha256": "80ea891c77130256ad6e75c5d9440d06d629b29faad1bcf71dd7e4693f5cc75e",
+      "seconds": 0.789
+    },
+    "word-audio/hungry.mp3": {
+      "ipa": "ˈhʌŋɡri",
+      "phonemes": "hˈʌŋɡɹi",
+      "sha256": "888ec85cd426d3261c1499842c2466cbc805011ee5c5f8f64b179ba9cd71b6f5",
+      "seconds": 0.808
+    },
+    "word-audio/school-bus.mp3": {
+      "ipa": "ˈskuːl bʌs",
+      "phonemes": "skˈuːl bʌs",
+      "sha256": "919b9230e509c5bacc7f21a2e00d241bf773ee8cab674d434db5d4786fe4fe28",
+      "seconds": 1.012
+    },
+    "word-audio/flying.mp3": {
+      "ipa": "ˈflaɪɪŋ",
+      "phonemes": "flˈaɪɪŋ",
+      "sha256": "811d9e497159e4bb0f3f8b65b642a0053a532848b044a36986d18bc7fcd0f33f",
+      "seconds": 0.843
+    },
+    "word-audio/riding.mp3": {
+      "ipa": "ˈraɪdɪŋ",
+      "phonemes": "ɹˈaɪdɪŋ",
+      "sha256": "351022f73b5cc2570718b80df4750d17809da999032ede79ccc542c62e3346eb",
+      "seconds": 0.827
+    },
+    "word-audio/walking.mp3": {
+      "ipa": "ˈwɔːkɪŋ",
+      "phonemes": "wˈɔːkɪŋ",
+      "sha256": "19f15cfb77afde647fd50a7c894ef2acaff182288ae86601351d47b74090e03e",
+      "seconds": 0.866
+    },
+    "word-audio/duck.mp3": {
+      "ipa": "dʌk",
+      "phonemes": "dˈʌk",
+      "sha256": "e9221f53752a0ad514b193c1e772bca0b248d1bbb12dc7288bae77027553219b",
+      "seconds": 0.662
+    },
+    "word-audio/driving.mp3": {
+      "ipa": "ˈdraɪvɪŋ",
+      "phonemes": "dɹˈaɪvɪŋ",
+      "sha256": "16d30a7fb818185c923dfd7b27be41bbcf603227c008564b2d0cec31fb5305de",
+      "seconds": 0.844
+    },
+    "word-audio/house.mp3": {
+      "ipa": "haʊs",
+      "phonemes": "hˈaʊs",
+      "sha256": "d66a908da1fbffb01a954f3fff761b5699f36779be3238cf42382be5ce0fcb03",
+      "seconds": 0.821
+    },
+    "word-audio/living-room.mp3": {
+      "ipa": "ˈlɪvɪŋ ruːm",
+      "phonemes": "lˈɪvɪŋ ɹuːm",
+      "sha256": "9bffe9a250cea8200601c16bef8e5da39829ed8490bde0b1d7aa2121c129129f",
+      "seconds": 1.294
+    },
+    "word-audio/bedroom.mp3": {
+      "ipa": "ˈbedruːm",
+      "phonemes": "bˈɛdɹuːm",
+      "sha256": "70f19bfa925b0c8c62077fcbfb6254d8bf86319631b50b9ad5d44fe1624e8cd0",
+      "seconds": 0.995
+    },
+    "word-audio/bathroom.mp3": {
+      "ipa": "ˈbɑːθruːm",
+      "phonemes": "bˈɑːθɹuːm",
+      "sha256": "bb39ccfa0bdf853a4e3f87102995c5277edc211c4749a193c8e1019d91c27e38",
+      "seconds": 0.971
+    },
+    "word-audio/kitchen.mp3": {
+      "ipa": "ˈkɪtʃɪn",
+      "phonemes": "kˈɪtʃɪn",
+      "sha256": "07e05e0b3b8e07de90e60599093723d7b3877c7f4b4cd21648341a86a2ee905e",
+      "seconds": 0.873
+    },
+    "word-audio/garden.mp3": {
+      "ipa": "ˈɡɑːdən",
+      "phonemes": "ɡˈɑːdən",
+      "sha256": "ca46eecd8160553c0e8f0ecb3d8153cd265517da231007cbbc3d530b5a9025c3",
+      "seconds": 0.827
+    },
+    "word-audio/door.mp3": {
+      "ipa": "dɔː",
+      "phonemes": "dˈɔː",
+      "sha256": "98ec4368a4f61f314edb02cdd90353f2478ab4c89ecdce78c51e1fe1af84b582",
+      "seconds": 0.66
+    },
+    "word-audio/window.mp3": {
+      "ipa": "ˈwɪndəʊ",
+      "phonemes": "wˈɪndəʊ",
+      "sha256": "8f53acf42e757f1aecdfb0459559b76a0e1cd35653e8f625ac1acf54a0757d72",
+      "seconds": 0.806
+    },
+    "word-audio/dining-room.mp3": {
+      "ipa": "ˈdaɪnɪŋ ruːm",
+      "phonemes": "dˈaɪnɪŋ ɹuːm",
+      "sha256": "3323847dc3d390489aee800467d8f22cdfc01c91bad21dc065a20df87d4534b5",
+      "seconds": 1.275
+    },
+    "word-audio/hall.mp3": {
+      "ipa": "hɔːl",
+      "phonemes": "hˈɔːl",
+      "sha256": "eb0b7ea4a364aa02d9f073e65299c1d57ea88463a248e8b6553fb97f4ef1a1a8",
+      "seconds": 0.762
+    },
+    "word-audio/playing.mp3": {
+      "ipa": "ˈpleɪɪŋ",
+      "phonemes": "plˈeɪɪŋ",
+      "sha256": "0a1a77cfdb3625e85831945dcd9031d24851e91fadaab2b2b202fed8afed9044",
+      "seconds": 0.788
+    },
+    "word-audio/eating.mp3": {
+      "ipa": "ˈiːtɪŋ",
+      "phonemes": "ˈiːtɪŋ",
+      "sha256": "f7deaeca1d43b076d2e86f65921e8bcbca267f7cf0a0b99ab3a61e1129091cde",
+      "seconds": 0.827
+    },
+    "word-audio/reading.mp3": {
+      "ipa": "ˈriːdɪŋ",
+      "phonemes": "ɹˈiːdɪŋ",
+      "sha256": "03b0814ebc324879f70c4623f71490a6179a77691b90affe689e9c6d45dd3e94",
+      "seconds": 0.848
+    },
+    "word-audio/swimming.mp3": {
+      "ipa": "ˈswɪmɪŋ",
+      "phonemes": "swˈɪmɪŋ",
+      "sha256": "24f813ef8a890f2fba65a446493ddfc293339348d8bdb84177dcdf89133481e4",
+      "seconds": 0.805
+    },
+    "word-audio/watching.mp3": {
+      "ipa": "ˈwɒtʃɪŋ",
+      "phonemes": "wˈɒtʃɪŋ",
+      "sha256": "ba8afcceb90fad53a0864418bf8421b7a4b138334f8d1dbfa6e0d7a35ac1651e",
+      "seconds": 0.823
+    },
+    "word-audio/apple.mp3": {
+      "ipa": "ˈæpəl",
+      "phonemes": "ˈæpəl",
+      "sha256": "7eaf5cd965b5aebba2b4728b99852c67e5090ca6dfc90facc82e307a154a4e01",
+      "seconds": 0.805
+    },
+    "word-audio/banana.mp3": {
+      "ipa": "bəˈnɑːnə",
+      "phonemes": "bənˈɑːnə",
+      "sha256": "24a9a9796b4f7c8b36b5b8c3ed4a31a64f1151dfb197dc19c3fbafb68118c9f8",
+      "seconds": 0.914
+    },
+    "word-audio/pear.mp3": {
+      "ipa": "peə",
+      "phonemes": "pˈeə",
+      "sha256": "0ed0d314a31a610baaba851eeef9abfe86bf92e307cb90dd4bb64741beacdc29",
+      "seconds": 0.725
+    },
+    "word-audio/cake.mp3": {
+      "ipa": "keɪk",
+      "phonemes": "kˈeɪk",
+      "sha256": "c8bb45d986d8267c32c3d57d4fbf4156349b8e9d766a0a4f1b7c6b773e22e225",
+      "seconds": 0.7
+    },
+    "word-audio/chocolate.mp3": {
+      "ipa": "ˈtʃɒklət",
+      "phonemes": "tʃˈɒklət",
+      "sha256": "ced9486c3dab4bc537c7ef0f3799c93604e657596be310ded42984287985f886",
+      "seconds": 0.891
+    },
+    "word-audio/ice-cream.mp3": {
+      "ipa": "ˈaɪs kriːm",
+      "phonemes": "ˈaɪs kɹiːm",
+      "sha256": "d2ed23f7eee98344e07e111b75ca89b81de0aade8cc0b24111276b0e58827bd3",
+      "seconds": 1.126
+    },
+    "word-audio/party.mp3": {
+      "ipa": "ˈpɑːti",
+      "phonemes": "pˈɑːti",
+      "sha256": "3cb42425508b6527adf896e940fd4630f8c301affd063a16233c67708cf2e581",
+      "seconds": 0.873
+    },
+    "word-audio/burger.mp3": {
+      "ipa": "ˈbɜːɡə",
+      "phonemes": "bˈɜːɡə",
+      "sha256": "5bea69948ab9bae49983841e6c7fdecc623b147ea0363b8e74b26f83c3081061",
+      "seconds": 0.805
+    },
+    "word-audio/like.mp3": {
+      "ipa": "laɪk",
+      "phonemes": "lˈaɪk",
+      "sha256": "93339ccec434ae06166384d3084d73015f61bf251d730ac259484ca1b4346906",
+      "seconds": 0.724
+    },
+    "word-audio/pure.mp3": {
+      "ipa": "pjʊə",
+      "phonemes": "pjˈʊə",
+      "sha256": "bd82bce86aef62cdd09f1ccc52802f0fcd701c760757677aa4fab088e2c86ced",
+      "seconds": 0.7
+    },
+    "word-audio/television.mp3": {
+      "ipa": "ˈtelɪvɪʒən",
+      "phonemes": "tˈɛlɪvɪʒən",
+      "sha256": "e3e16876fcb3392eb27b9ef3464866e3cee30fddea770d3ff67b2e0ff6da28ed",
+      "seconds": 0.996
+    },
+    "word-audio/toy.mp3": {
+      "ipa": "tɔɪ",
+      "phonemes": "tˈɔɪ",
+      "sha256": "93f3242a03648548871e65bd1d425e03e3c2db0b5ca71f998ffdfb5d45c83d8b",
+      "seconds": 0.674
+    },
+    "phonics-audio/68-259.mp3": {
+      "ipa": "hə",
+      "phonemes": "hˈə",
+      "sha256": "eb65af70540722e542611173e3b397d1f7524da6ba6bd370393a3b8591aea4a3",
+      "seconds": 0.597
+    },
+    "phonics-audio/6c-259-28a.mp3": {
+      "ipa": "ləʊ",
+      "phonemes": "lˈəʊ",
+      "sha256": "80207a7747c0dd575f25d95a4f351f316b9fcb4b81f9337f63c01412e833b5aa",
+      "seconds": 0.715
+    },
+    "phonics-audio/261-28a-64.mp3": {
+      "ipa": "ɡʊd",
+      "phonemes": "ɡˈʊd",
+      "sha256": "04d8c932132b6ae841206c4b5a26a7e23b8eb8707ca9bbad21fd3406f64ebff8",
+      "seconds": 0.705
+    },
+    "phonics-audio/62-61-26a.mp3": {
+      "ipa": "baɪ",
+      "phonemes": "bˈaɪ",
+      "sha256": "97f234ef8295b40ec72984da30a9d53f3d884d6bce6a76111e543cf7bb29cb67",
+      "seconds": 0.722
+    },
+    "phonics-audio/72.mp3": {
+      "ipa": "r",
+      "phonemes": "ɹ",
+      "sha256": "36ef1043c2562a2b0ec9b7c714cb108e6c7a578a6b8f883dd8dec0ae09fc8758",
+      "seconds": 0.365
+    },
+    "phonics-audio/65.mp3": {
+      "ipa": "e",
+      "phonemes": "ˈɛ",
+      "sha256": "42c0eea2d12bae48a487df94d391d9e8ba7058b4e6de017864dba9a29647577b",
+      "seconds": 0.499
+    },
+    "phonics-audio/64.mp3": {
+      "ipa": "d",
+      "phonemes": "d",
+      "sha256": "20069d25b3c1a28c8e8e57f2788a1c7be73c5fe49a5ddbab6a3f040e023a7a3e",
+      "seconds": 0.333
+    },
+    "phonics-audio/6a-65-6c.mp3": {
+      "ipa": "jel",
+      "phonemes": "jˈɛl",
+      "sha256": "33e7d8debdeeb3a91ae25b1ce42ebd93bba1bc520c64db3e6126e3e93eb04568",
+      "seconds": 0.718
+    },
+    "phonics-audio/259-28a.mp3": {
+      "ipa": "əʊ",
+      "phonemes": "ˈəʊ",
+      "sha256": "334d02bf7d438c5a11090d180eb585fa2b04bbd750edb6ae3d3c89130c7f4cbf",
+      "seconds": 0.698
+    },
+    "phonics-audio/70.mp3": {
+      "ipa": "p",
+      "phonemes": "p",
+      "sha256": "ca245270e8f7847df8460f956996e03ce6400709648c5dcf8ed50cd8e5d0a2b0",
+      "seconds": 0.332
+    },
+    "phonics-audio/26a.mp3": {
+      "ipa": "ɪ",
+      "phonemes": "ˈɪ",
+      "sha256": "edabcd54f2b3da41df9079641a9a82f9cf995b21463b648d4581cf676fd8c763",
+      "seconds": 0.526
+    },
+    "phonics-audio/14b.mp3": {
+      "ipa": "ŋ",
+      "phonemes": "ŋ",
+      "sha256": "5429c1460bcd1b20bf64dfe8541ae4380fbdf3b2fafac891fdc10037247001a9",
+      "seconds": 0.381
+    },
+    "phonics-audio/6b.mp3": {
+      "ipa": "k",
+      "phonemes": "k",
+      "sha256": "4fbe28c59479f6e7f8225976e851d4c2cf5feaa329238c3aad9a7b27dfc9fb6d",
+      "seconds": 0.341
+    },
+    "phonics-audio/261.mp3": {
+      "ipa": "ɡ",
+      "phonemes": "ɡ",
+      "sha256": "efe3e220b55b08badf2ab2d8c3bff10b6ea33f7d0a262f5271e99dcd7b4dd500",
+      "seconds": 0.339
+    },
+    "phonics-audio/69-2d0.mp3": {
+      "ipa": "iː",
+      "phonemes": "ˈiː",
+      "sha256": "fb7b428fe1922b40a3abd00f1f45beed07b1bc896ddc7a0d877ca1e935ab089d",
+      "seconds": 0.63
+    },
+    "phonics-audio/6e.mp3": {
+      "ipa": "n",
+      "phonemes": "n",
+      "sha256": "4ded4f37983a860ef334a8130b021e57adf2ab0cafa04f1ab81a134c153ada04",
+      "seconds": 0.348
+    },
+    "phonics-audio/252-72.mp3": {
+      "ipa": "ɒr",
+      "phonemes": "ˈɒɹ",
+      "sha256": "b6ca34a5135e3aa2a6065550545fb8a48ae7910b9daa4a559f9219f612ba01b2",
+      "seconds": 0.637
+    },
+    "phonics-audio/26a-6e-64-292.mp3": {
+      "ipa": "ɪndʒ",
+      "phonemes": "ˈɪndʒ",
+      "sha256": "966dd1676b2202b0c1a11d3979ab2c579c54c1680018ccb3c7a58fa47d5a4816",
+      "seconds": 0.756
+    },
+    "phonics-audio/70-25c-2d0.mp3": {
+      "ipa": "pɜː",
+      "phonemes": "pˈɜː",
+      "sha256": "346f70a02f0fcc157f2b976750c4d0fb02218fecbc818bc0bb7933798dd86fb5",
+      "seconds": 0.681
+    },
+    "phonics-audio/70-259-6c.mp3": {
+      "ipa": "pəl",
+      "phonemes": "pˈəl",
+      "sha256": "b2098ee4e8fee8c6bd3229e203deee67da47caa53d28ed272ab2436d30df59b8",
+      "seconds": 0.702
+    },
+    "phonics-audio/62.mp3": {
+      "ipa": "b",
+      "phonemes": "b",
+      "sha256": "1a344b44fc20dd0a752660f2d5cdccc0d8ab4157af214684c941de7293c8737c",
+      "seconds": 0.341
+    },
+    "phonics-audio/6c.mp3": {
+      "ipa": "l",
+      "phonemes": "l",
+      "sha256": "07d2ad3927097373291c0a9685e31530caede61f8354ffd84914a94c204c1fde",
+      "seconds": 0.347
+    },
+    "phonics-audio/75-2d0.mp3": {
+      "ipa": "uː",
+      "phonemes": "ˈuː",
+      "sha256": "7fa5a6888e9f1c4050337d018994098e95a0b412eec6fdb328cc3715caa09e09",
+      "seconds": 0.587
+    },
+    "phonics-audio/77-28c-6e.mp3": {
+      "ipa": "wʌn",
+      "phonemes": "wˈʌn",
+      "sha256": "07601a0177d33323cfe6647c5d4cd79f4abe166f61fb57b57b80398114678313",
+      "seconds": 0.657
+    },
+    "phonics-audio/74-75-2d0.mp3": {
+      "ipa": "tuː",
+      "phonemes": "tˈuː",
+      "sha256": "2de1ba406058c30d6fe8c860276e85f0bb6627fce04799e516139af25ddb65be",
+      "seconds": 0.698
+    },
+    "phonics-audio/3b8.mp3": {
+      "ipa": "θ",
+      "phonemes": "θ",
+      "sha256": "819be738d5c4174c9a20caab119f267979ce82206302009bc318c32d02c5bf96",
+      "seconds": 0.345
+    },
+    "phonics-audio/66.mp3": {
+      "ipa": "f",
+      "phonemes": "f",
+      "sha256": "dfa3599ab5cb13b74fecd0fe5cc46fd733df6092856081bb9fb42a72c969c151",
+      "seconds": 0.336
+    },
+    "phonics-audio/254-2d0.mp3": {
+      "ipa": "ɔː",
+      "phonemes": "ˈɔː",
+      "sha256": "01627abc55063d38669d5469172f1b94a2ef649465f6408a73bf5def14f9429b",
+      "seconds": 0.628
+    },
+    "phonics-audio/61-26a.mp3": {
+      "ipa": "aɪ",
+      "phonemes": "ˈaɪ",
+      "sha256": "c92344ba8427d1dd8f8f6036e29b67cfbff6a7a71096414564cb3f7fd2a347eb",
+      "seconds": 0.696
+    },
+    "phonics-audio/76.mp3": {
+      "ipa": "v",
+      "phonemes": "v",
+      "sha256": "b64fb2a4bda5a1f9ac8e66e3a9420c158fec9baef24e24dfd71db7fc58e05c50",
+      "seconds": 0.345
+    },
+    "phonics-audio/73.mp3": {
+      "ipa": "s",
+      "phonemes": "s",
+      "sha256": "b9abeeee128224ce47714ffe22cdcc147ccb356961c687325928b2b4cc9f0cc4",
+      "seconds": 0.317
+    },
+    "phonics-audio/6b-73.mp3": {
+      "ipa": "ks",
+      "phonemes": "ks",
+      "sha256": "36bbe87eca7a0b750d86854dc68405fdbe16bf780bf596adabf4ddb22da2d501",
+      "seconds": 0.382
+    },
+    "phonics-audio/73-65-76.mp3": {
+      "ipa": "sev",
+      "phonemes": "sˈɛv",
+      "sha256": "9cd1b4cf0c6f1c984d6ef1d3fe5c5d6698feec6e5915b81d5fe2ded74a57d88d",
+      "seconds": 0.666
+    },
+    "phonics-audio/259-6e.mp3": {
+      "ipa": "ən",
+      "phonemes": "ˈən",
+      "sha256": "6382740797b11debe1ed3f827431948ee624fb4b1c1e09407336941f4400264f",
+      "seconds": 0.674
+    },
+    "phonics-audio/65-26a.mp3": {
+      "ipa": "eɪ",
+      "phonemes": "ˈeɪ",
+      "sha256": "9c593f048c2d6aed6f9a1e20eec01dbdac11f6bb1e3f48c25968ffab82b939c4",
+      "seconds": 0.651
+    },
+    "phonics-audio/74.mp3": {
+      "ipa": "t",
+      "phonemes": "t",
+      "sha256": "982820ef139549d729889399feb9614033aae56e46b705855cc7c25441ad3a24",
+      "seconds": 0.345
+    },
+    "phonics-audio/73-75-2d0.mp3": {
+      "ipa": "suː",
+      "phonemes": "sˈuː",
+      "sha256": "007f3a2f31b891075f79e6e4ba704f8ae8fe9756fcf2d56556181d4657ec03f9",
+      "seconds": 0.693
+    },
+    "phonics-audio/7a-69.mp3": {
+      "ipa": "zi",
+      "phonemes": "zˈi",
+      "sha256": "ae30e5e095d38b3c62ab4fdb949d86d293f308a8c99e1aac9a2dde5e4da78e06",
+      "seconds": 0.592
+    },
+    "phonics-audio/73-61-26a.mp3": {
+      "ipa": "saɪ",
+      "phonemes": "sˈaɪ",
+      "sha256": "a52813eab3b1049b84527507fb4a9f41a24c9260916b4315ae2642affac80314",
+      "seconds": 0.698
+    },
+    "phonics-audio/6d-259-6e.mp3": {
+      "ipa": "mən",
+      "phonemes": "mˈən",
+      "sha256": "1e21821cc072320f2d67c0d3d281f07b9d66717d0f141c2ce61f1d9f1fe602e6",
+      "seconds": 0.763
+    },
+    "phonics-audio/73-74-65-6c.mp3": {
+      "ipa": "stel",
+      "phonemes": "stˈɛl",
+      "sha256": "b46541d215e9c5d67ddf2e1b30fb2c805dafb641ff6906a6b63c1492bcb2a9f4",
+      "seconds": 0.714
+    },
+    "phonics-audio/259.mp3": {
+      "ipa": "ə",
+      "phonemes": "ˈə",
+      "sha256": "5cca6d94273cc052925545d352ad2fabe612f68f87b15e9b5f50c448758de873",
+      "seconds": 0.519
+    },
+    "phonics-audio/6d-26a-73-26a-7a.mp3": {
+      "ipa": "mɪsɪz",
+      "phonemes": "mˈɪsɪz",
+      "sha256": "9a775d8d66ec8a9441071e54025a35003bf7e02d470dc924defb7d2658ab4ce5",
+      "seconds": 0.864
+    },
+    "phonics-audio/73-74-251-2d0.mp3": {
+      "ipa": "stɑː",
+      "phonemes": "stˈɑː",
+      "sha256": "bc17e95b6b688cba52267c140887db41a8f4f077023d643e39e33c21b5a8a3f6",
+      "seconds": 0.692
+    },
+    "phonics-audio/6d-26a-73-74-259.mp3": {
+      "ipa": "mɪstə",
+      "phonemes": "mˈɪstə",
+      "sha256": "b81bb1cf49ce78c05731792bbfe151b1376dd47fa1217a672af9f44f47333d0a",
+      "seconds": 0.825
+    },
+    "phonics-audio/6d-251-2d0-73-6b.mp3": {
+      "ipa": "mɑːsk",
+      "phonemes": "mˈɑːsk",
+      "sha256": "e2a2bbec3bc2587325c822da08e18fb96a9387e9958e64b547fce053a54ef175",
+      "seconds": 0.824
+    },
+    "phonics-audio/6d-e6-6e.mp3": {
+      "ipa": "mæn",
+      "phonemes": "mˈæn",
+      "sha256": "86b7cead784a3a44eab39d936d131b94bd40549fbc9fe715aacffe883847329c",
+      "seconds": 0.72
+    },
+    "phonics-audio/6d-259.mp3": {
+      "ipa": "mə",
+      "phonemes": "mˈə",
+      "sha256": "84fa80f5d4b8a0d7a614def82a42a097965cf2ef58c470e8adfd93248d9b996c",
+      "seconds": 0.632
+    },
+    "phonics-audio/72-69-2d0.mp3": {
+      "ipa": "riː",
+      "phonemes": "ɹˈiː",
+      "sha256": "da449a18dd553fd7292b19d4cc7cf306210eedc65106704428d95fd86606ac10",
+      "seconds": 0.702
+    },
+    "phonics-audio/6d-252-6e.mp3": {
+      "ipa": "mɒn",
+      "phonemes": "mˈɒn",
+      "sha256": "c6e7a8a8ef85b885c256b169d6183f5d5ad69792b693bffe309ad116336ec38e",
+      "seconds": 0.699
+    },
+    "phonics-audio/74-69.mp3": {
+      "ipa": "ti",
+      "phonemes": "tˈi",
+      "sha256": "eb7ff59bb42e0b9a7eddfce81f38432663701ddeb7d00fbfed2bcf0e3e301891",
+      "seconds": 0.626
+    },
+    "phonics-audio/6d-26a-259.mp3": {
+      "ipa": "mɪə",
+      "phonemes": "mˈɪə",
+      "sha256": "48267b9a9be7349308c8ca00672a0999cf8d2f1b1b4dcd42b9bc34f93d0ac4d1",
+      "seconds": 0.72
+    },
+    "phonics-audio/72-259.mp3": {
+      "ipa": "rə",
+      "phonemes": "ɹˈə",
+      "sha256": "434d254b35fc520f4b3a92c0e7d298b0f594048658fb1ee263f64c452a1e37ff",
+      "seconds": 0.635
+    },
+    "phonics-audio/251-2d0.mp3": {
+      "ipa": "ɑː",
+      "phonemes": "ˈɑː",
+      "sha256": "c3f677e8175a94b39e986a41bee12e25d3d5583cd62eef7fad86cc81beb5e597",
+      "seconds": 0.633
+    },
+    "phonics-audio/28a.mp3": {
+      "ipa": "ʊ",
+      "phonemes": "ˈʊ",
+      "sha256": "6dc2a73be9c8e96af6ea7c2482ab33db11666d6e0a696bc94f5b467725b1a199",
+      "seconds": 0.524
+    },
+    "phonics-audio/74-283.mp3": {
+      "ipa": "tʃ",
+      "phonemes": "tʃ",
+      "sha256": "50dc3ff207fc99dab1a781542b29f9a55465ff69d607118232aa31b5d2a8920f",
+      "seconds": 0.42
+    },
+    "phonics-audio/65-259.mp3": {
+      "ipa": "eə",
+      "phonemes": "ˈeə",
+      "sha256": "9a6e28b9554e36a3bf87e2c363575d985374dbf4b6c25fa3c7d8fc578056f6f9",
+      "seconds": 0.636
+    },
+    "phonics-audio/74-65-26a.mp3": {
+      "ipa": "teɪ",
+      "phonemes": "tˈeɪ",
+      "sha256": "dfc466cb9e24d13bfd982bb6ad0c60073bf204c0037c9af44a87eb2fadf1b82b",
+      "seconds": 0.674
+    },
+    "phonics-audio/62-259-6c.mp3": {
+      "ipa": "bəl",
+      "phonemes": "bˈəl",
+      "sha256": "7d3d7cd156b8633c26c6e9c49f13b4f51ca45020d0f566f8672baad72c0d3480",
+      "seconds": 0.699
+    },
+    "phonics-audio/70-65-6e.mp3": {
+      "ipa": "pen",
+      "phonemes": "pˈɛn",
+      "sha256": "c4b63a3a2c0654c0f13457aa61705a3f016d52921080c3db91299ee72a719007",
+      "seconds": 0.681
+    },
+    "phonics-audio/73-259-6c.mp3": {
+      "ipa": "səl",
+      "phonemes": "sˈəl",
+      "sha256": "ab6428e568cd1dfe7846600efd68e52095ee16ac858db0bbbb185d0846b98ec4",
+      "seconds": 0.678
+    },
+    "phonics-audio/72-65-26a.mp3": {
+      "ipa": "reɪ",
+      "phonemes": "ɹˈeɪ",
+      "sha256": "3a77d4a89e4da6260696d095af7c8e41b16bd142caea63323d119101cd76b750",
+      "seconds": 0.715
+    },
+    "phonics-audio/7a-259.mp3": {
+      "ipa": "zə",
+      "phonemes": "zˈə",
+      "sha256": "ca977b76b55135f331a87427cde3d9c36dbf7e4b05cfdfb4e5e73f66584a0efa",
+      "seconds": 0.591
+    },
+    "phonics-audio/e6.mp3": {
+      "ipa": "æ",
+      "phonemes": "ˈæ",
+      "sha256": "50bcb53af164c6e94160f71baff88da3c7badc0d5dd1eef6f6e4464fc7c1e774",
+      "seconds": 0.543
+    },
+    "phonics-audio/e6-6c.mp3": {
+      "ipa": "æl",
+      "phonemes": "ˈæl",
+      "sha256": "c453aca586cd0916d9678806e724c40935ad2de1c13cfcb3159c8201f5d5b5bd",
+      "seconds": 0.651
+    },
+    "phonics-audio/26a-6b-73.mp3": {
+      "ipa": "ɪks",
+      "phonemes": "ˈɪks",
+      "sha256": "5a5e49c8002986ba34f22fe7229d98b152a9e76d15e1d24c0dd982834bbe497b",
+      "seconds": 0.66
+    },
+    "phonics-audio/6c-65-6e.mp3": {
+      "ipa": "len",
+      "phonemes": "lˈɛn",
+      "sha256": "e067442716cbe973a609e2d85062105f531e458e9fa2c91094ff0cdc0a9d89bc",
+      "seconds": 0.741
+    },
+    "phonics-audio/69.mp3": {
+      "ipa": "i",
+      "phonemes": "ˈi",
+      "sha256": "89c8b40c48ffb509e3976deb21bc961008dfaaedc34f6fc54081eb352af96fcf",
+      "seconds": 0.521
+    },
+    "phonics-audio/254-2d0-6c.mp3": {
+      "ipa": "ɔːl",
+      "phonemes": "ˈɔːl",
+      "sha256": "544e08a5ca202f675bb296a83b495589e3826051b3c93ee6212c6be409307f89",
+      "seconds": 0.763
+    },
+    "phonics-audio/252.mp3": {
+      "ipa": "ɒ",
+      "phonemes": "ˈɒ",
+      "sha256": "fc2e3a4136bcde64aabe8e79c7620552f435f3b273cb9b66551a8f597d267f96",
+      "seconds": 0.5
+    },
+    "phonics-audio/6b-259-6d.mp3": {
+      "ipa": "kəm",
+      "phonemes": "kˈəm",
+      "sha256": "60d2a3becea833e18014d2e5344a931cac89a007d9a801c7e5b7a3faa7f53ee5",
+      "seconds": 0.763
+    },
+    "phonics-audio/70-6a-75-2d0.mp3": {
+      "ipa": "pjuː",
+      "phonemes": "pjˈuː",
+      "sha256": "7c9890f237b484fc92fd162194d8e9697eed3c5d8caeee8c3410b35f71bb0bdc",
+      "seconds": 0.66
+    },
+    "phonics-audio/74-259.mp3": {
+      "ipa": "tə",
+      "phonemes": "tˈə",
+      "sha256": "9b95232a96f3f35b4d83742fb0cf36f553ee1c21b5ff1302fa77958db7dfdbf7",
+      "seconds": 0.65
+    },
+    "phonics-audio/77.mp3": {
+      "ipa": "w",
+      "phonemes": "w",
+      "sha256": "cc27463650d27c0b1b298a7fbbfdd395d3248bca2c2bb1d09a58c76af87e43a6",
+      "seconds": 0.338
+    },
+    "phonics-audio/61-28a.mp3": {
+      "ipa": "aʊ",
+      "phonemes": "ˈaʊ",
+      "sha256": "1556251b276f300c7e3dda1d02a297b0975db71b3b65a30f31b1642826c13aaf",
+      "seconds": 0.65
+    },
+    "phonics-audio/28c-6e.mp3": {
+      "ipa": "ʌn",
+      "phonemes": "ˈʌn",
+      "sha256": "caf280001cb74ea098d04da78e43b2d4f81cc373c12d2b6b515129b9690ce7b4",
+      "seconds": 0.699
+    },
+    "phonics-audio/64-259.mp3": {
+      "ipa": "də",
+      "phonemes": "dˈə",
+      "sha256": "c3092626948d1ad69c8197f2dce236141121e0d75a9c67591c6f1c721d67ce98",
+      "seconds": 0.608
+    },
+    "phonics-audio/6e-65-6b-73-74.mp3": {
+      "ipa": "nekst",
+      "phonemes": "nˈɛkst",
+      "sha256": "f461ff9d5451cbecfb9097b8abfc77cc31003406518afb6f5ef8af09e1d100d4",
+      "seconds": 0.805
+    },
+    "phonics-audio/6d-28c.mp3": {
+      "ipa": "mʌ",
+      "phonemes": "mˈʌ",
+      "sha256": "0c367fef89e952518e5cefc4b8bf4294751c2e4e6d0157686de735ea937ee426",
+      "seconds": 0.6
+    },
+    "phonics-audio/f0-259.mp3": {
+      "ipa": "ðə",
+      "phonemes": "ðˈə",
+      "sha256": "040bbf22b8cf75963627a76aeaf2d0ee923aaa2c77d0f1f52cf3555e4dd5b778",
+      "seconds": 0.578
+    },
+    "phonics-audio/66-251-2d0.mp3": {
+      "ipa": "fɑː",
+      "phonemes": "fˈɑː",
+      "sha256": "cd9f9fc5698bafd32131e8e1b1c55ff5f0e77100aa6ce9cfa87bfa0607745dbc",
+      "seconds": 0.671
+    },
+    "phonics-audio/62-72-28c.mp3": {
+      "ipa": "brʌ",
+      "phonemes": "bɹˈʌ",
+      "sha256": "87052a4b0703e5ca171212f283ebfa101ba13cddc4f7e23088488f90d2e0fb29",
+      "seconds": 0.608
+    },
+    "phonics-audio/73-26a-73.mp3": {
+      "ipa": "sɪs",
+      "phonemes": "sˈɪs",
+      "sha256": "315faa15ffe21accb28cf593c87886187530ede3b642e6e3388764a730fc386d",
+      "seconds": 0.67
+    },
+    "phonics-audio/261-72-e6-6e.mp3": {
+      "ipa": "ɡræn",
+      "phonemes": "ɡɹˈæn",
+      "sha256": "0e4b8b8c15297ceea720ebcd338f62501dc1d2ef4319ba663ea792d0ced3517f",
+      "seconds": 0.737
+    },
+    "phonics-audio/66-e6-6d.mp3": {
+      "ipa": "fæm",
+      "phonemes": "fˈæm",
+      "sha256": "59b86b0d4ac322906236c81335cffa250a8539d1e03ba21eee73c5a917096424",
+      "seconds": 0.722
+    },
+    "phonics-audio/6c-69.mp3": {
+      "ipa": "li",
+      "phonemes": "lˈi",
+      "sha256": "045dad7adb4e8d2f87cbbcf546e4247e825f0e499d141dbfaf8c9d9ed9fdb006",
+      "seconds": 0.654
+    },
+    "phonics-audio/62-65-26a.mp3": {
+      "ipa": "beɪ",
+      "phonemes": "bˈeɪ",
+      "sha256": "c8d2668b127f6d112969cadf5f406959560fda7ec89599fb71a048533679ecbd",
+      "seconds": 0.674
+    },
+    "phonics-audio/62-69.mp3": {
+      "ipa": "bi",
+      "phonemes": "bˈi",
+      "sha256": "6617403def962bcae0deabda032d54473c7d5a7246b992f4c1a57d7a4a45da09",
+      "seconds": 0.586
+    },
+    "phonics-audio/68-e6-70.mp3": {
+      "ipa": "hæp",
+      "phonemes": "hˈæp",
+      "sha256": "beff73cd94ffd8af8165be4caf0954986f08a3fa7a0a36784f0b30d70c8b0105",
+      "seconds": 0.653
+    },
+    "phonics-audio/28c-261.mp3": {
+      "ipa": "ʌɡ",
+      "phonemes": "ˈʌɡ",
+      "sha256": "4ef52a6fd7be36fcfc4465dc236ee9e59b63c1f5299be97a72ba73af12944a9b",
+      "seconds": 0.662
+    },
+    "phonics-audio/6a.mp3": {
+      "ipa": "j",
+      "phonemes": "j",
+      "sha256": "0dcf5262a1ddd197c968104d3e71603f3614fce2087336db6876a8a7a50e5456",
+      "seconds": 0.331
+    },
+    "phonics-audio/28c.mp3": {
+      "ipa": "ʌ",
+      "phonemes": "ˈʌ",
+      "sha256": "3c6edde14bfa1b55af1b7299345ebd6a5412fd6924409ff85c05012fb06fdeef",
+      "seconds": 0.498
+    },
+    "phonics-audio/62-6a-75-2d0.mp3": {
+      "ipa": "bjuː",
+      "phonemes": "bjˈuː",
+      "sha256": "a7155966486a6ff2e4fdb6f60fa8d30435fafcc26b5a9c5a7bf685003edadd09",
+      "seconds": 0.676
+    },
+    "phonics-audio/74-26a.mp3": {
+      "ipa": "tɪ",
+      "phonemes": "tˈɪ",
+      "sha256": "eead3babaecd3490edb7f879d1be4c2cd7bf4ed2ca8c870231d4b18971bfd16e",
+      "seconds": 0.58
+    },
+    "phonics-audio/66-259-6c.mp3": {
+      "ipa": "fəl",
+      "phonemes": "fˈəl",
+      "sha256": "c72ee83a270156d6ef0e5fbd6192c07683038c19b0c19a0a319fa2075d4f3b25",
+      "seconds": 0.68
+    },
+    "phonics-audio/25c-2d0.mp3": {
+      "ipa": "ɜː",
+      "phonemes": "ˈɜː",
+      "sha256": "474164104b58a5a81c8b15b2dc3d4f85a04e6d02b74330758adaf8227c2c762c",
+      "seconds": 0.609
+    },
+    "phonics-audio/283.mp3": {
+      "ipa": "ʃ",
+      "phonemes": "ʃ",
+      "sha256": "24d40355084bc8aa7c3ab8edc8b9fbddfcf87a41bd06baf538e882136d03887b",
+      "seconds": 0.347
+    },
+    "phonics-audio/68.mp3": {
+      "ipa": "h",
+      "phonemes": "h",
+      "sha256": "768a49beda4279566ce75258c54e68f5d4a657a56ff55312be1ac54caed2f285",
+      "seconds": 0.333
+    },
+    "phonics-audio/6d.mp3": {
+      "ipa": "m",
+      "phonemes": "m",
+      "sha256": "e70269b0ffdfd816c8b44c0a205030801813748d0d70468778739a8f57013f23",
+      "seconds": 0.357
+    },
+    "phonics-audio/64-25c-2d0.mp3": {
+      "ipa": "dɜː",
+      "phonemes": "dˈɜː",
+      "sha256": "9a3775661f4593cf1f14d9705d86cbc29df54af59d573d671a5e901c7ec8bd5c",
+      "seconds": 0.651
+    },
+    "phonics-audio/26a-259.mp3": {
+      "ipa": "ɪə",
+      "phonemes": "ˈɪə",
+      "sha256": "20669c8c2faec1e1289e665dbcb5cc250acd02482749ac920dcf9c3168232d2e",
+      "seconds": 0.629
+    },
+    "phonics-audio/7a.mp3": {
+      "ipa": "z",
+      "phonemes": "z",
+      "sha256": "914cafb9781bbe800263d09f8a3994c51ce544c9d1f1ea654f339cc4a192dad2",
+      "seconds": 0.348
+    },
+    "phonics-audio/62-252-64.mp3": {
+      "ipa": "bɒd",
+      "phonemes": "bˈɒd",
+      "sha256": "00f43bc1043ed53d982b2b8c31899165ffe4b454191e55386f25367e7099513b",
+      "seconds": 0.696
+    },
+    "phonics-audio/64-292-259.mp3": {
+      "ipa": "dʒə",
+      "phonemes": "dʒˈə",
+      "sha256": "614db0339c79f85aacedaae29c7ff93041e41195811846a2c9c1835312310503",
+      "seconds": 0.677
+    },
+    "phonics-audio/72-251-2d0-66.mp3": {
+      "ipa": "rɑːf",
+      "phonemes": "ɹˈɑːf",
+      "sha256": "3e485cff83c2111f8612967037c641cacceafcebef7bce6a2999d089cd0c9aea",
+      "seconds": 0.78
+    },
+    "phonics-audio/65-6c.mp3": {
+      "ipa": "el",
+      "phonemes": "ˈɛl",
+      "sha256": "4e6baba720cf8329ffe7d5faf36d83dff75150b5cc04e120add276fff4c47e19",
+      "seconds": 0.651
+    },
+    "phonics-audio/66-259-6e-74.mp3": {
+      "ipa": "fənt",
+      "phonemes": "fˈənt",
+      "sha256": "fca0281b25adfe03d166e9ffdaf0d7b9d586eea9131c7361ddaf971d7a4430a2",
+      "seconds": 0.742
+    },
+    "phonics-audio/68-26a-70.mp3": {
+      "ipa": "hɪp",
+      "phonemes": "hˈɪp",
+      "sha256": "b58902497bde70caa43112f4635eaf9b5143f34e56e060d0d1a60f16169d6c1a",
+      "seconds": 0.661
+    },
+    "phonics-audio/6b-72-252-6b.mp3": {
+      "ipa": "krɒk",
+      "phonemes": "kɹˈɒk",
+      "sha256": "2d3bbc9ea1208be84196e076cd9274c58460df75a0b01d162debee696998bf64",
+      "seconds": 0.763
+    },
+    "phonics-audio/64-61-26a-6c.mp3": {
+      "ipa": "daɪl",
+      "phonemes": "dˈaɪl",
+      "sha256": "8164b55faf78b4d811f7ccaad6c97e1c174c4ba71eb796aa8d1509deedc0c582",
+      "seconds": 0.715
+    },
+    "phonics-audio/6d-28c-14b.mp3": {
+      "ipa": "mʌŋ",
+      "phonemes": "mˈʌŋ",
+      "sha256": "5554c36b23d90e160e6d72d3161790faab492698120608b5a5ad1e6fec69f027",
+      "seconds": 0.766
+    },
+    "phonics-audio/6b-69.mp3": {
+      "ipa": "ki",
+      "phonemes": "kˈi",
+      "sha256": "dcaeedb0fa3c7fb9fdd142aabdbaa9aece54fd9219171cfef9714c8d3d7615d8",
+      "seconds": 0.644
+    },
+    "phonics-audio/74-61-26a.mp3": {
+      "ipa": "taɪ",
+      "phonemes": "tˈaɪ",
+      "sha256": "14189ce3d3264e06b4919e3a9bb14ce3eb1e2310fa402e5190d9349411c74d8a",
+      "seconds": 0.716
+    },
+    "phonics-audio/261-259.mp3": {
+      "ipa": "ɡə",
+      "phonemes": "ɡˈə",
+      "sha256": "1fb66a563f4d4228f74c1992c25884e29caad002c9dc55fec3a952a1666815d8",
+      "seconds": 0.637
+    },
+    "phonics-audio/f0.mp3": {
+      "ipa": "ð",
+      "phonemes": "ð",
+      "sha256": "3018ee843f39d93c39247ef262398e102ead8e69ea2178b0642d48c450b70821",
+      "seconds": 0.333
+    },
+    "phonics-audio/6e-259-28a-7a.mp3": {
+      "ipa": "nəʊz",
+      "phonemes": "nˈəʊz",
+      "sha256": "5850fa2f033ff22507a209053f7291c3dc69572cfbcc8b60766dcc825c492d6d",
+      "seconds": 0.799
+    },
+    "phonics-audio/26a-7a.mp3": {
+      "ipa": "ɪz",
+      "phonemes": "ˈɪz",
+      "sha256": "d1837d27aa578b89fd1c966be241902c0669ba8e804f473730c506dd85eb381e",
+      "seconds": 0.674
+    },
+    "phonics-audio/74-69-2d0.mp3": {
+      "ipa": "tiː",
+      "phonemes": "tˈiː",
+      "sha256": "f6263b4ee04787e949229b05b0ca2aa7a0bfbcf024c9f81f117e2baf366dacd6",
+      "seconds": 0.678
+    },
+    "phonics-audio/283-25c-2d0-74.mp3": {
+      "ipa": "ʃɜːt",
+      "phonemes": "ʃˈɜːt",
+      "sha256": "28bb76bafc37603b22380ef3a9d722db98d2da7626654df8b485b3a47e4d0507",
+      "seconds": 0.778
+    },
+    "phonics-audio/74-72-61-28a.mp3": {
+      "ipa": "traʊ",
+      "phonemes": "tɹˈaʊ",
+      "sha256": "fff5b3b3b7d68a5ccf577851cef2705a931b03270583456e67f8e8c5936831b5",
+      "seconds": 0.716
+    },
+    "phonics-audio/7a-259-7a.mp3": {
+      "ipa": "zəz",
+      "phonemes": "zˈəz",
+      "sha256": "50c092074b07261890796464e3a5513f55b8dfcdee34735a3775b84bfb4b9d6d",
+      "seconds": 0.757
+    },
+    "phonics-audio/64-292-e6-6b.mp3": {
+      "ipa": "dʒæk",
+      "phonemes": "dʒˈæk",
+      "sha256": "2d56fe107fb5188493fd0eea751e0b10093a36704a50bf65574c1057c089fd02",
+      "seconds": 0.72
+    },
+    "phonics-audio/26a-74.mp3": {
+      "ipa": "ɪt",
+      "phonemes": "ˈɪt",
+      "sha256": "91cfb32bd2b928d47ffbfd6d55121c58341c2edbd5c3feed4b6924dec3e44f57",
+      "seconds": 0.642
+    },
+    "phonics-audio/64-292.mp3": {
+      "ipa": "dʒ",
+      "phonemes": "dʒ",
+      "sha256": "e33ea982a7f87a9d0cf249bb8ad408e4aaed99dd9025f8f4b3c85247d8f842f5",
+      "seconds": 0.437
+    },
+    "phonics-audio/66-28a-74.mp3": {
+      "ipa": "fʊt",
+      "phonemes": "fˈʊt",
+      "sha256": "1b5196cd66310815f87635e65e7a073cdae64c28bf2d08ced7a9c82c8192140e",
+      "seconds": 0.663
+    },
+    "phonics-audio/62-254-2d0-6c.mp3": {
+      "ipa": "bɔːl",
+      "phonemes": "bˈɔːl",
+      "sha256": "e2dda45a0dd86bf97aa1215ea96ed1d260191e6df5d7e4a63d66e7d1ed001e0f",
+      "seconds": 0.738
+    },
+    "phonics-audio/74-65-6e.mp3": {
+      "ipa": "ten",
+      "phonemes": "tˈɛn",
+      "sha256": "b36f490b888d4285c73fcd8cb01755c6c64623f7b1b7a3e46d3cf872a5adef98",
+      "seconds": 0.699
+    },
+    "phonics-audio/26a-73.mp3": {
+      "ipa": "ɪs",
+      "phonemes": "ˈɪs",
+      "sha256": "f07eeca3233199ca33b91efdda04885da903756e44c674264a9b3cd2513a1684",
+      "seconds": 0.658
+    },
+    "phonics-audio/62-251-2d0-73.mp3": {
+      "ipa": "bɑːs",
+      "phonemes": "bˈɑːs",
+      "sha256": "f9a6a0c893a0fbf3d6579e61bca4403683194703d6e04d5780f0d1c06c9e9803",
+      "seconds": 0.781
+    },
+    "phonics-audio/6b-26a-74.mp3": {
+      "ipa": "kɪt",
+      "phonemes": "kˈɪt",
+      "sha256": "3c05b9ebe59c51860224fde75a488db6e0fde7dcdcefcd41383d477ee9ede770",
+      "seconds": 0.704
+    },
+    "phonics-audio/70-6c-65-26a.mp3": {
+      "ipa": "pleɪ",
+      "phonemes": "plˈeɪ",
+      "sha256": "30bc656a7d1c0cbf9ba068a424c4520a180260f11c14035826b16dc40b5906f4",
+      "seconds": 0.699
+    },
+    "phonics-audio/261-26a.mp3": {
+      "ipa": "ɡɪ",
+      "phonemes": "ɡˈɪ",
+      "sha256": "bbc27a95458479e296ce983213b0d95d20b8bc16b65db9ffd5b2476a96548c42",
+      "seconds": 0.614
+    },
+    "phonics-audio/74-251-2d0.mp3": {
+      "ipa": "tɑː",
+      "phonemes": "tˈɑː",
+      "sha256": "61fd069d03b2ddf47f771a916c65c92294f4025826a27a1d87e3cccd85ee3d9a",
+      "seconds": 0.672
+    },
+    "phonics-audio/70-69.mp3": {
+      "ipa": "pi",
+      "phonemes": "pˈi",
+      "sha256": "63a0374c6c71f15a71f1276f853c72e8c6fe3cee87cd3189f3a80ef7b89c5421",
+      "seconds": 0.656
+    },
+    "phonics-audio/6e-259-28a.mp3": {
+      "ipa": "nəʊ",
+      "phonemes": "nˈəʊ",
+      "sha256": "8e8f1a0aaa94cc1fba8483d5d68f2191bda8c85adb33923031f35710d4b0b4a6",
+      "seconds": 0.738
+    },
+    "phonics-audio/72-61-26a-64.mp3": {
+      "ipa": "raɪd",
+      "phonemes": "ɹˈaɪd",
+      "sha256": "20fda57355b903af4c3ab58517f5354f860a6e4b02d8e20bc5eb8df45b45adcf",
+      "seconds": 0.779
+    },
+    "phonics-audio/62-61-26a-6b.mp3": {
+      "ipa": "baɪk",
+      "phonemes": "bˈaɪk",
+      "sha256": "7f63221c41a75442480f74f537975e55fb68b23f2d0eb880ff74b16f756c4349",
+      "seconds": 0.704
+    },
+    "phonics-audio/6c-26a.mp3": {
+      "ipa": "lɪ",
+      "phonemes": "lˈɪ",
+      "sha256": "73614e0ced4b4fce973a24120610103d71f2cdb502e284cc189b4444b95082fe",
+      "seconds": 0.583
+    },
+    "phonics-audio/68-65-6c.mp3": {
+      "ipa": "hel",
+      "phonemes": "hˈɛl",
+      "sha256": "5c58bd478206a038458fd64aa0b169587527945c37599001d8963fdddd0a3188",
+      "seconds": 0.674
+    },
+    "phonics-audio/6b-252-70.mp3": {
+      "ipa": "kɒp",
+      "phonemes": "kˈɒp",
+      "sha256": "2c9841682625893ebe98367e9457fabc3f9720b4a4788a9a53ee6a9b05a9626a",
+      "seconds": 0.658
+    },
+    "phonics-audio/6c-252.mp3": {
+      "ipa": "lɒ",
+      "phonemes": "lˈɒ",
+      "sha256": "135133444a0f6d2c10a6bdacaa889211fadf27acf179ad5aeab26ef4c9e853d5",
+      "seconds": 0.63
+    },
+    "phonics-audio/72-69.mp3": {
+      "ipa": "ri",
+      "phonemes": "ɹˈi",
+      "sha256": "a9281cd9cc6713e7e93b8d6fe1a3724dddc713d37528dea33f5f93869f6565a5",
+      "seconds": 0.699
+    },
+    "phonics-audio/6d-259-28a.mp3": {
+      "ipa": "məʊ",
+      "phonemes": "mˈəʊ",
+      "sha256": "319d9efcce9c2aa7722f261adef7967dc168c380fd5c807e3080ba5bec5b159c",
+      "seconds": 0.689
+    },
+    "phonics-audio/66-28c-6e.mp3": {
+      "ipa": "fʌn",
+      "phonemes": "fˈʌn",
+      "sha256": "09cfdc5987788d6aae71013336a242f5dc1c97a257524d7dd3960dcf2af171c3",
+      "seconds": 0.702
+    },
+    "phonics-audio/68-28c-14b.mp3": {
+      "ipa": "hʌŋ",
+      "phonemes": "hˈʌŋ",
+      "sha256": "6fcc154b5a25d046ed074abe47f8fa795257ebb6bea03efc11573cc3038145b3",
+      "seconds": 0.699
+    },
+    "phonics-audio/261-72-69.mp3": {
+      "ipa": "ɡri",
+      "phonemes": "ɡɹˈi",
+      "sha256": "c71f74795a93d27fb62fdf7444f2959366ca4cf73299c81ee1e0e00c75ccf16a",
+      "seconds": 0.719
+    },
+    "phonics-audio/73-6b-75-2d0-6c.mp3": {
+      "ipa": "skuːl",
+      "phonemes": "skˈuːl",
+      "sha256": "5d522053e69e0c8443550f75bcf11ada07cbb6e074647acf6f632543d650a73d",
+      "seconds": 0.78
+    },
+    "phonics-audio/62-28c-73.mp3": {
+      "ipa": "bʌs",
+      "phonemes": "bˈʌs",
+      "sha256": "0053d88b6dcc3cf580e74d2c1fdf11e4e3a853799839ff9ebd4b4750ba5d35f4",
+      "seconds": 0.691
+    },
+    "phonics-audio/66-6c-61-26a.mp3": {
+      "ipa": "flaɪ",
+      "phonemes": "flˈaɪ",
+      "sha256": "7dab979646f9ed56b53522236d4fc18c9395f5afd2dfbebb621a59e15dac0137",
+      "seconds": 0.754
+    },
+    "phonics-audio/26a-14b.mp3": {
+      "ipa": "ɪŋ",
+      "phonemes": "ˈɪŋ",
+      "sha256": "34c70ede2abebfe4ed5882b3b7986cd07094f6481c29837b7978611dc39d2458",
+      "seconds": 0.659
+    },
+    "phonics-audio/77-254-2d0-6b.mp3": {
+      "ipa": "wɔːk",
+      "phonemes": "wˈɔːk",
+      "sha256": "c3097ec433f6a841e3cafc193d0f2e91a36027457cb46ddc694d968b5932c833",
+      "seconds": 0.698
+    },
+    "phonics-audio/64-72-61-26a-76.mp3": {
+      "ipa": "draɪv",
+      "phonemes": "dɹˈaɪv",
+      "sha256": "27020ff6e83be6e7b6656da9672c44266d321370084034bafd629b9840466694",
+      "seconds": 0.801
+    },
+    "phonics-audio/6c-26a-76.mp3": {
+      "ipa": "lɪv",
+      "phonemes": "lˈɪv",
+      "sha256": "b2ce38bfa1006e8ed43a7d686717019766c26333d339b892b4373fa9c294151e",
+      "seconds": 0.679
+    },
+    "phonics-audio/72-75-2d0-6d.mp3": {
+      "ipa": "ruːm",
+      "phonemes": "ɹˈuːm",
+      "sha256": "02dfefe2d63b37091d164de77e3541a0fd6e3134496c678c139b030d139b6a84",
+      "seconds": 0.805
+    },
+    "phonics-audio/62-65-64.mp3": {
+      "ipa": "bed",
+      "phonemes": "bˈɛd",
+      "sha256": "0d41168095edea3e4243690299400a0ce6cb18998043731665d12d4456d5b61b",
+      "seconds": 0.765
+    },
+    "phonics-audio/62-251-2d0-3b8.mp3": {
+      "ipa": "bɑːθ",
+      "phonemes": "bˈɑːθ",
+      "sha256": "edfe76f20b6c7cc1b49bfa6aecd7285fd29193ba3a96969dc8e3905f763ef34f",
+      "seconds": 0.746
+    },
+    "phonics-audio/6b-26a-74-283.mp3": {
+      "ipa": "kɪtʃ",
+      "phonemes": "kˈɪtʃ",
+      "sha256": "ded3fc4cd98dd4e2197a755230d7815406df16521bd9783743815f6a3abe0508",
+      "seconds": 0.751
+    },
+    "phonics-audio/26a-6e.mp3": {
+      "ipa": "ɪn",
+      "phonemes": "ˈɪn",
+      "sha256": "eaf701128ac5fae0ef92a77f8178d5bbad03de196519ea13328f030ec671ffeb",
+      "seconds": 0.637
+    },
+    "phonics-audio/261-251-2d0.mp3": {
+      "ipa": "ɡɑː",
+      "phonemes": "ɡˈɑː",
+      "sha256": "bf2f5e3d9a4215795e05a88885507eb1a022c4e13012856b5a757e86b1788a77",
+      "seconds": 0.674
+    },
+    "phonics-audio/64-259-6e.mp3": {
+      "ipa": "dən",
+      "phonemes": "dˈən",
+      "sha256": "56af71afea29d6ba122043ef57c8b31ae74ea29409aca66a667e1cfeff3572a8",
+      "seconds": 0.723
+    },
+    "phonics-audio/77-26a-6e.mp3": {
+      "ipa": "wɪn",
+      "phonemes": "wˈɪn",
+      "sha256": "49a9ae43efdce1129e616b463e01e4b72c292dff2e202e5e1a8a7e0180e9892a",
+      "seconds": 0.704
+    },
+    "phonics-audio/64-259-28a.mp3": {
+      "ipa": "dəʊ",
+      "phonemes": "dˈəʊ",
+      "sha256": "0aa5f78d73b61b3da2a8d52f43869db3259ac52b8a29ba35e1058a288adc70bf",
+      "seconds": 0.674
+    },
+    "phonics-audio/64-61-26a-6e.mp3": {
+      "ipa": "daɪn",
+      "phonemes": "dˈaɪn",
+      "sha256": "43921c43de2d9e8fdef0339890fc22cc9d2c86828657d473a02e73a5a9740339",
+      "seconds": 0.739
+    },
+    "phonics-audio/69-2d0-74.mp3": {
+      "ipa": "iːt",
+      "phonemes": "ˈiːt",
+      "sha256": "9af3bc1a444179b9a13fabce32a7df3aa3813865ecd9c68bd7f09412ab9adec9",
+      "seconds": 0.704
+    },
+    "phonics-audio/72-69-2d0-64.mp3": {
+      "ipa": "riːd",
+      "phonemes": "ɹˈiːd",
+      "sha256": "29b71f199ef7cd24e61b39439158586895c99b67fb082aa0ae0f1b2d12594de9",
+      "seconds": 0.742
+    },
+    "phonics-audio/73-77-26a-6d.mp3": {
+      "ipa": "swɪm",
+      "phonemes": "swˈɪm",
+      "sha256": "3b38bf9497b49bfed2d4300e1a1e82362070373e4fb1dd8f831dc8fa08b49430",
+      "seconds": 0.735
+    },
+    "phonics-audio/77-252-74-283.mp3": {
+      "ipa": "wɒtʃ",
+      "phonemes": "wˈɒtʃ",
+      "sha256": "8c56bbe0a315c51ffaff36bdf768a413ac270b4f4a2a52921f465c05052d1b4b",
+      "seconds": 0.716
+    },
+    "phonics-audio/e6-70.mp3": {
+      "ipa": "æp",
+      "phonemes": "ˈæp",
+      "sha256": "aee95a311c4fc9b94efadb9520486544a5b9319583a73af680ec9e2961ba3c05",
+      "seconds": 0.608
+    },
+    "phonics-audio/259-6c.mp3": {
+      "ipa": "əl",
+      "phonemes": "ˈəl",
+      "sha256": "a5095ed1064441a56aa07c5c8196d4808f17f27466661b22b32dd517146f1419",
+      "seconds": 0.638
+    },
+    "phonics-audio/62-259.mp3": {
+      "ipa": "bə",
+      "phonemes": "bˈə",
+      "sha256": "5ea8a17713fe2c399943af64538c220ffc70a19d99fa4e0946e8a37a22add8ae",
+      "seconds": 0.588
+    },
+    "phonics-audio/6e-251-2d0.mp3": {
+      "ipa": "nɑː",
+      "phonemes": "nˈɑː",
+      "sha256": "16509b208533c4a00c855afb344b9d8e67df0c5d7f21f9929744bb51a3bbec4f",
+      "seconds": 0.656
+    },
+    "phonics-audio/6e-259.mp3": {
+      "ipa": "nə",
+      "phonemes": "nˈə",
+      "sha256": "8a3ee9a816129a233f49a9286c723b881ac477e60665040160c05a07e1f89d56",
+      "seconds": 0.658
+    },
+    "phonics-audio/74-283-252-6b.mp3": {
+      "ipa": "tʃɒk",
+      "phonemes": "tʃˈɒk",
+      "sha256": "2c86bad16c38b956d1cd3f4d1ef3dbecd424c5c67447163b330d982507a7f0ac",
+      "seconds": 0.674
+    },
+    "phonics-audio/6c-259-74.mp3": {
+      "ipa": "lət",
+      "phonemes": "lˈət",
+      "sha256": "e386f35e85ddfe96927be65c6cbc34f8c79af88733a0d3f258c2d3b745ab468d",
+      "seconds": 0.723
+    },
+    "phonics-audio/61-26a-73.mp3": {
+      "ipa": "aɪs",
+      "phonemes": "ˈaɪs",
+      "sha256": "c3e671df38a517398f588624ba6e709c6e7f528f21425814a8ae00f0bb4bb482",
+      "seconds": 0.715
+    },
+    "phonics-audio/6b-72-69-2d0-6d.mp3": {
+      "ipa": "kriːm",
+      "phonemes": "kɹˈiːm",
+      "sha256": "8575e1687af91434128e2243f94bdd0c4f59b0abcb9c54f02dac9ea67ab822d2",
+      "seconds": 0.845
+    },
+    "phonics-audio/70-251-2d0.mp3": {
+      "ipa": "pɑː",
+      "phonemes": "pˈɑː",
+      "sha256": "9f0c1a5d3b5cd1877fd0625801e49f5e4ec7f17c38cc63a514503a1c32ece04e",
+      "seconds": 0.678
+    },
+    "phonics-audio/62-25c-2d0.mp3": {
+      "ipa": "bɜː",
+      "phonemes": "bˈɜː",
+      "sha256": "2bff27b67ed408dc562fca226c03b01654867e34522352b853597d011f9502bc",
+      "seconds": 0.656
+    },
+    "phonics-audio/62-69-2d0.mp3": {
+      "ipa": "biː",
+      "phonemes": "bˈiː",
+      "sha256": "a1cdcb56e3fbedbcf2db4511e8f3e132f3cc64dbc54e1b89188cf3dc709ac4a3",
+      "seconds": 0.676
+    },
+    "phonics-audio/73-69-2d0.mp3": {
+      "ipa": "siː",
+      "phonemes": "sˈiː",
+      "sha256": "2667674c9bb5a64a71ef978723574d092be360cbd7f8a0f6410e0e0a13563133",
+      "seconds": 0.646
+    },
+    "phonics-audio/64-69-2d0.mp3": {
+      "ipa": "diː",
+      "phonemes": "dˈiː",
+      "sha256": "3983eba17a9b5a1c20c3e64d9c6a5bb5a3ccd96f88bf400f69e1e4a6bbe528bd",
+      "seconds": 0.655
+    },
+    "phonics-audio/65-66.mp3": {
+      "ipa": "ef",
+      "phonemes": "ˈɛf",
+      "sha256": "b9cc10c144f629d23c80e1611aefef2461587c9e40e52e53ffe2e530284154b2",
+      "seconds": 0.652
+    },
+    "phonics-audio/64-292-69-2d0.mp3": {
+      "ipa": "dʒiː",
+      "phonemes": "dʒˈiː",
+      "sha256": "69f4962c1aae89df0235d4c64bb9fbf9fe19615ff90dc8f10e66edd97d0f7619",
+      "seconds": 0.723
+    },
+    "phonics-audio/65-26a-74-283.mp3": {
+      "ipa": "eɪtʃ",
+      "phonemes": "ˈeɪtʃ",
+      "sha256": "de5082dd5296c1926a384b6ab4cd5a41c9fa8fbf11664849e7cb873feffe0389",
+      "seconds": 0.78
+    },
+    "phonics-audio/64-292-65-26a.mp3": {
+      "ipa": "dʒeɪ",
+      "phonemes": "dʒˈeɪ",
+      "sha256": "33a3d6062cb849db5c40c1b4c0f0d4f391a549060fd17ab143983b93cdaf9f1e",
+      "seconds": 0.723
+    },
+    "phonics-audio/6b-65-26a.mp3": {
+      "ipa": "keɪ",
+      "phonemes": "kˈeɪ",
+      "sha256": "e543661ccba4557bebcbe3f24611126d1fadb62bce109d75e6f7712d573af782",
+      "seconds": 0.701
+    },
+    "phonics-audio/65-6d.mp3": {
+      "ipa": "em",
+      "phonemes": "ˈɛm",
+      "sha256": "ef1212a58eaab8e9b2f4382bb2b4d9c75ac3427bdb8664a80ecff6fc94606abf",
+      "seconds": 0.674
+    },
+    "phonics-audio/65-6e.mp3": {
+      "ipa": "en",
+      "phonemes": "ˈɛn",
+      "sha256": "fd3e7f196f9fc0d5c4c3d8ca76415c60780e25c7aaec2b2cd3e85c25902d6114",
+      "seconds": 0.651
+    },
+    "phonics-audio/70-69-2d0.mp3": {
+      "ipa": "piː",
+      "phonemes": "pˈiː",
+      "sha256": "20b8d3eef72ca900bda9162c9ce1ec7a871e7e77f07f3459a91c990cccbc6c11",
+      "seconds": 0.681
+    },
+    "phonics-audio/6b-6a-75-2d0.mp3": {
+      "ipa": "kjuː",
+      "phonemes": "kjˈuː",
+      "sha256": "0f523f7a293f2d7d4ba2014dda8a5758dbfd0484e69b2195c043a9a505032c6a",
+      "seconds": 0.674
+    },
+    "phonics-audio/65-73.mp3": {
+      "ipa": "es",
+      "phonemes": "ˈɛs",
+      "sha256": "68244b97032e457c43bfc16b259710ead607af36007b4a25c9b61e80e1bcaa8a",
+      "seconds": 0.658
+    },
+    "phonics-audio/6a-75-2d0.mp3": {
+      "ipa": "juː",
+      "phonemes": "jˈuː",
+      "sha256": "f52b94c13fe5bb2f79a8416d913cf68012c3e91bb8098993ac345daa66d1e1a0",
+      "seconds": 0.597
+    },
+    "phonics-audio/76-69-2d0.mp3": {
+      "ipa": "viː",
+      "phonemes": "vˈiː",
+      "sha256": "ad9d7d73b7062d66942aab02e660cda179c292c56361d650a63af58b9f68aaef",
+      "seconds": 0.597
+    },
+    "phonics-audio/64-28c-62-259-6c-6a-75-2d0.mp3": {
+      "ipa": "dʌbəljuː",
+      "phonemes": "dˈʌbəljuː",
+      "sha256": "43e1327d28f67b8a9b8c4e364eec279e4dc25d0071b1a32616d475cb8eef8a78",
+      "seconds": 0.811
+    },
+    "phonics-audio/65-6b-73.mp3": {
+      "ipa": "eks",
+      "phonemes": "ˈɛks",
+      "sha256": "31a12340a8022cfa5577f6e107d96121f5ac91d44affb5654a6dcbae6d6fefad",
+      "seconds": 0.562
+    },
+    "phonics-audio/77-61-26a.mp3": {
+      "ipa": "waɪ",
+      "phonemes": "wˈaɪ",
+      "sha256": "f9f0546118e6be035c40867219d0a411d8865961eaedd04a078ee4dd8866b69b",
+      "seconds": 0.683
+    },
+    "phonics-audio/7a-65-64.mp3": {
+      "ipa": "zed",
+      "phonemes": "zˈɛd",
+      "sha256": "02a0ad77472246ab5a2fcff6584e12be08db26a380001ffb1eca422d0aabea40",
+      "seconds": 0.64
+    },
+    "phonics-audio/254-26a.mp3": {
+      "ipa": "ɔɪ",
+      "phonemes": "ˈɔɪ",
+      "sha256": "dfee7c6771b8c651afe6562320f82cbb8027b0463748be90150939a4d8d1a004",
+      "seconds": 0.661
+    },
+    "phonics-audio/28a-259.mp3": {
+      "ipa": "ʊə",
+      "phonemes": "ˈʊə",
+      "sha256": "ec7a9dd07d9d530018b4d738afa5eb8d88b6a8e01bd21399d333f5217ca8ee11",
+      "seconds": 0.533
+    },
+    "phonics-audio/292.mp3": {
+      "ipa": "ʒ",
+      "phonemes": "ʒ",
+      "sha256": "eb2e57aea7f5cb770b0791c5bc533b7eaf642dc4dadb84fb91a0f3fae6e749be",
+      "seconds": 0.283
+    }
+  }
+}

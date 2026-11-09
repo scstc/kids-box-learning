@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { audioKey, type CourseWord } from "../data/course";
-import { soundKey } from "../data/pronunciations";
+import type { CourseWord } from "../data/course";
+import { wordAudioPath, soundAudioPath } from "../data/practiceAudio";
 import { pauseOtherMedia } from "../data/media";
+import appVersion from "../../app-version.json";
 
 export function useCourseAudio() {
   const player = useRef<HTMLAudioElement | null>(null);
@@ -35,7 +36,7 @@ export function useCourseAudio() {
       setError("");
       setLastText(text);
       lastRequest.current = { text, path, slow };
-      const audio = new Audio(`${import.meta.env.BASE_URL}${path}`);
+      const audio = new Audio(`${import.meta.env.BASE_URL}${path}?v=${appVersion.version}`);
       player.current = audio;
       audio.playbackRate = slow ? 0.75 : 1;
       audio.preservesPitch = true;
@@ -64,12 +65,12 @@ export function useCourseAudio() {
   );
   const play = useCallback(
     (text: string, slow = false) =>
-      playFile(text, `course-audio/${audioKey(text)}.mp3`, slow),
+      playFile(text, wordAudioPath(text), slow),
     [playFile],
   );
   const playSound = useCallback(
     (ipa: string, label: string) =>
-      playFile(label, `phonics-audio/${soundKey(ipa)}.mp3`),
+      playFile(label, soundAudioPath(ipa)),
     [playFile],
   );
   const retry = useCallback(() => {
@@ -86,14 +87,14 @@ export function useCourseAudio() {
           ? [
               {
                 text: `${word.id}:${index}`,
-                path: `phonics-audio/${soundKey(sound)}.mp3`,
+                path: soundAudioPath(sound),
               },
             ]
           : [],
       );
       const steps = [
         ...(parts.length > 1 ? parts : []),
-        { text: word.en, path: `course-audio/${word.id}.mp3` },
+        { text: word.en, path: wordAudioPath(word.en) },
       ];
       const next = (index: number) => {
         if (request.current !== id) return;

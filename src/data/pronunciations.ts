@@ -6,7 +6,7 @@ const p = (ipa: string, sounds: string): WordPronunciation => ({
   sounds: sounds.split("|"),
 });
 
-// British pronunciations checked against the dictionary used by course-audio.
+// Reviewed British pronunciations used by both word and phonics synthesis.
 // Sounds follow this course's spelling chunks; an empty sound is silent or a separator.
 // Consonants shared across spelling chunks are sounded once (hip|po → hɪp|əʊ).
 export const wordPronunciations: Record<string, WordPronunciation> = {
