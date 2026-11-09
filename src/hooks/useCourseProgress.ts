@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { allWordEntries, entryKey, type WordEntry } from "../data/course";
+import { clearLearningRecords } from "../data/learningRecords";
 
 export type CourseProgress = {
   learned: string[];
@@ -100,7 +101,16 @@ export function useCourseProgress() {
     }));
   const visit = (unit: number) =>
     update((previous) => ({ ...previous, lastUnit: unit }));
-  const reset = () =>
-    update(() => ({ learned: [], mistakes: [], lastUnit: 1 }));
+  const reset = () => {
+    try {
+      const next = clearLearningRecords(localStorage);
+      setProgress(next);
+      setStorageError(false);
+      return true;
+    } catch {
+      setStorageError(true);
+      return false;
+    }
+  };
   return { progress, learn, incorrect, correct, visit, reset, storageError };
 }

@@ -23,6 +23,8 @@ React + TypeScript + React Bits 制作的全英文、平板友好学习应用，
 - 全部词卡显示英式IPA音标。拼读块可逐块点击；静音e只提示不发音，不读成字母名。181段整词与26个字母名使用与句子相同的Sonia英式自然女声；其余174段分块/音标使用eSpeak NG英式女声音素示范，音色与整词略有不同。381段练习音频均随应用离线打包，不依赖设备TTS或在线服务。
 - 分块后有「连起来读」按钮，依次播放有声分块，再播放完整单词。可随时停止；切换词语或点击其他声音会取消连读。
 - 字母拼拼乐提供「字母提示」开关：开启时使用字母按钮，关闭后隐藏字母库和长度格子，使用完整A–Z应用内键盘自行拼写，不唤起系统输入法或显示联想候选词；也支持实体键盘。设置保存在本设备；忽略大小写、空格和连字符，保留拼错重试与错词复习。
+- 每个单元增加 Ask & answer：12个单元各3道固定句型问答选择题，共36题。姓名、年龄、颜色、位置、have got、can、进行时和喜好等句型均有覆盖，每题A/B/C只有一个合适回答。题目和三个选项各有独立语音按钮，试听不判题；答错可重试，答对有解释与庆祝，显示本轮结果。81条独立语音全部内置，复用62条已有资源、补齐19条Sonia英式例句语音。练习结果仅保留在当前一轮。
+- 家长入口 For parents → Learning records → Clear learning records，以及 My progress 页，可打开清空确认。确认后清除已学词汇、错词袋、课本活动完成标记、旧动物小站进度和上次阅读页码，回到初始地图。拼写提示、动态效果、CD速度设置和自行添加的图片/音频保留；取消不清空，存储失败明确提示并允许重试。
 - 12个单元主要词语页的全部标签已配置点读，另包含数字、颜色、形容词、身体部位、栖息地和复习等页面的词语区域。第34页宠物、第48页野生动物以及第7页颜色还支持点图片，播放配套英式词语/短语音频。
 - 单独的「课本活动」入口，保留 Listen and point、Listen and repeat、Sing the song、Say the chant、Monty’s phonics、故事等活动类型。
 - **12个单元、144项课本活动的标题、顺序和页码已按用户提供的93页电子书核对。**另外包含6个跨学科、6个价值观、3个阶段复习和语法参考入口，覆盖书上第4–95页。
@@ -127,6 +129,8 @@ git push origin v26.4.1
 - src/data/bookReadingRegions.ts、bookFooterRegions.ts、bookPrintedText.ts：对照扫描本补充的对白与35页页脚点读位置；`scripts/build-book-reading.mjs` 从本机OCR资料生成活动标题，页脚以人工核对的词组边界为准。
 - scripts/import-book-pdf.mjs：使用Poppler读取已核对的93页无水印扫描本，按现有坐标系重新生成正文图页和PDF配图。运行 `node scripts/import-book-pdf.mjs <01.pdf路径>` 后，再运行 `npm run art:transparent` 刷新含PDF裁图的对比卡；不同版式应先重新核对热点，脚本会拒绝页数或原图尺寸不一致的文件。
 - src/data/bookScenes.ts、src/components/BookSceneActivity.tsx：13处场景的问答、图片目标和反馈；新增点读/问答后运行 `node scripts/prepare-reading-audio.mjs`，再用 `scripts/render-sentence-audio.py artifacts/reading-audio-missing.json`生成缺少的离线语音。
+- src/data/grammarQuestions.ts、src/components/GrammarPractice.tsx：各单元的固定句型问答选择题；问题与所有选项也由上述音频准备脚本收集，测试检查实际播放路径完整。
+- src/data/learningRecords.ts、src/hooks/useCourseProgress.ts：按确切的四类记录处理完整清空，保留明确的空主进度记录，避免旧动物进度再次迁入；不清理整个localStorage或资源IndexedDB。
 - src/components/AppUpdate.tsx、android/.../AppUpdaterPlugin.java：安卓原生版本检查、后台下载、完整性与签名校验及系统安装。
 - src/data/bookSubtitles.ts、public/subtitles/、src/components/MediaSubtitles.tsx：离线英文字幕索引、时间轴与播放器同步。重新识别：用项目uv环境安装 `scripts/speech-requirements.txt`，运行 `node scripts/prepare-book-speech.mjs`，再运行 `.venv/Scripts/python.exe scripts/transcribe-book-audio.py`（默认使用本机NVIDIA GPU；CPU可加 `--device cpu`）。
 - src/components/LearningWord.tsx、CorrectCelebration.tsx：单词互动、触控聚光与答对庆祝；useLearningMotion.ts管理设备内动态设置。

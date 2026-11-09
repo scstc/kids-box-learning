@@ -44,6 +44,7 @@ import BookShelf from "./components/BookShelf";
 import LearningCount from "./components/LearningCount";
 import Starter from "./components/Starter";
 import WordSounds from "./components/WordSounds";
+import GrammarPractice from "./components/GrammarPractice";
 import { recordedWordGuide } from "./data/cambridgePronunciation";
 import { pauseOtherMedia } from "./data/media";
 import SpellingInput from "./components/SpellingInput";
@@ -73,7 +74,7 @@ import "./course.css";
 import { matchesSpelling } from "./data/spelling";
 
 type View = "map" | "lesson" | "review" | "passport" | "legacy" | "library" | "starter";
-type Activity = "book" | "words" | "sentences" | "listen" | "spell" | "media";
+type Activity = "book" | "words" | "sentences" | "grammar" | "listen" | "spell" | "media";
 type Game = {
   questions: WordEntry[];
   round: number;
@@ -142,6 +143,7 @@ export default function CourseApp() {
   const [activity, setActivity] = useState<Activity>("book");
   const [query, setQuery] = useState("");
   const [dialog, setDialog] = useState<"help" | "reset" | null>(null);
+  const [resetError, setResetError] = useState("");
   const [game, setGame] = useState<Game | null>(null);
   const [notice, setNotice] = useState("");
   const [typedSpelling, setTypedSpelling] = useState("");
@@ -153,6 +155,7 @@ export default function CourseApp() {
     }
   });
   const top = useRef<HTMLElement>(null);
+  const resetCancel = useRef<HTMLButtonElement>(null);
   const { progress, learn, incorrect, correct, visit, reset, storageError } =
     useCourseProgress();
   const audio = useCourseAudio();
@@ -198,6 +201,11 @@ export default function CourseApp() {
     const timer = window.setTimeout(() => setNotice(""), 3000);
     return () => window.clearTimeout(timer);
   }, [notice]);
+  useEffect(() => {
+    if (dialog !== "reset") return;
+    const frame = requestAnimationFrame(() => resetCancel.current?.focus());
+    return () => cancelAnimationFrame(frame);
+  }, [dialog]);
   const scrollTop = () => {
     top.current?.scrollIntoView({
       behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -210,6 +218,10 @@ export default function CourseApp() {
     setView(next);
     setGame(null);
     scrollTop();
+  };
+  const openReset = () => {
+    setResetError("");
+    setDialog("reset");
   };
   const openUnit = (id: number) => {
     setUnitId(id);
@@ -993,6 +1005,7 @@ export default function CourseApp() {
                     { id: "media", title: "Videos and flashcards", Icon: Layers3 },
                     { id: "words", title: "Word explorer", Icon: Ear },
                     { id: "sentences", title: "Let's talk", Icon: AudioLines },
+                    { id: "grammar", title: "Ask & answer", Icon: HelpCircle },
                     { id: "listen", title: "Listen and find", Icon: Headphones },
                     { id: "spell", title: "Spelling play", Icon: Sparkles },
                   ] as const
@@ -1025,6 +1038,8 @@ export default function CourseApp() {
                 />
               ) : activity === "media" ? (
                 <BookMedia key={unit.id} unitId={unit.id} audio={audio} />
+              ) : activity === "grammar" ? (
+                <GrammarPractice unitId={unit.id} audio={audio} animated={motion.canAnimate} />
               ) : activity === "listen" || activity === "spell" ? (
                 renderGame()
               ) : activity === "sentences" ? (
@@ -1440,10 +1455,10 @@ export default function CourseApp() {
                 </p>
                 <button
                   className="kb-text-button"
-                  onClick={() => setDialog("reset")}
+                  onClick={openReset}
                 >
                   <RotateCcw size={16} />
-                  Reset word practice
+                  Clear learning records
                 </button>
               </div>
             </>
@@ -1484,35 +1499,50 @@ export default function CourseApp() {
         )}
         {dialog && (
           <CourseDialog
+            key={dialog}
             title={
               dialog === "help"
                 ? "Help your child learn through sound."
-                : "Reset Book 1 word practice?"
+                : "Clear learning records?"
             }
             close={() => setDialog(null)}
           >
             {dialog === "reset" ? (
               <>
                 <p>
-                  This clears Book 1 word progress and the practice bag. Book activity records, added resources and animal safari progress will be kept.
+                  This clears explored words, the practice bag, completed book activities, animal safari progress and your last reading page on this device. This cannot be undone.
                 </p>
+                <p>Your settings and added pictures and audio will be kept.</p>
+                {resetError && <p className="kb-reset-error" role="alert">{resetError}</p>}
                 <div className="kb-button-row">
                   <button
                     className="kb-btn kb-btn-secondary"
+                    ref={resetCancel}
                     onClick={() => setDialog(null)}
                   >
                     Keep my progress
                   </button>
                   <button
-                    className="kb-btn"
+                    className="kb-btn kb-btn-danger"
                     onClick={() => {
-                      reset();
+                      if (!reset()) {
+                        setResetError("Learning records could not be fully cleared. Please try again.");
+                        return;
+                      }
+                      audio.stop();
+                      pauseOtherMedia();
+                      setUnitId(1);
+                      setWordIndex(0);
+                      setActivity("book");
+                      setTypedSpelling("");
+                      setQuery("");
+                      setReaderPage(null);
                       setDialog(null);
                       navigate("map");
-                      setNotice("A new adventure begins!");
+                      setNotice("Learning records cleared. A new adventure begins!");
                     }}
                   >
-                    Start again
+                    Clear records
                     <RotateCcw size={17} />
                   </button>
                 </div>
@@ -1566,6 +1596,13 @@ export default function CourseApp() {
                   Words, letter names and practice sentences use natural British speech. Short sounds use a separate phonics voice. Original book recordings keep their own speakers. All recordings are included in the app. The website needs internet for resources; the Android app works offline. Progress stays on this device. No microphone is used.
                 </p>
                 <AppUpdate />
+                <section className="kb-parent-reset" aria-label="Learning records">
+                  <h3>Learning records</h3>
+                  <p>Start a fresh learning journey on this device.</p>
+                  <button className="kb-btn kb-btn-secondary" onClick={openReset}>
+                    <RotateCcw size={18} />Clear learning records
+                  </button>
+                </section>
                 <button className="kb-btn" onClick={() => setDialog(null)}>
                   Let's explore
                   <ArrowRight size={18} />

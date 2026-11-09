@@ -2214,6 +2214,16 @@
 .kb-dialog > .kb-btn {
   width: 100%;
 }
+.kb-parent-reset {
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+  margin-block: 24px;
+}
+.kb-parent-reset h3 { font-size: 16px; margin-bottom: 8px; }
+.kb-parent-reset p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom: 14px; }
+.kb-parent-reset .kb-btn { min-height: 48px; }
+.kb-btn.kb-btn-danger { background: var(--danger); color: var(--surface); }
+.kb-dialog > p.kb-reset-error { color: var(--danger); }
 .kb-storage-error {
   font-size: 12px;
   line-height: 1.8;

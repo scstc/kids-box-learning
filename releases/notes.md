@@ -1,10 +1,10 @@
-Kids Box 26.4.10
+Kids Box 26.4.11
 
-- Added original Cambridge Dictionary UK recordings for 149 exact vocabulary entries, including the seven animals. Whole words, slow playback, book word hotspots and listening games share the same source.
-- All 169 non-name entries now have recorded sound-by-sound practice and sequential blending, followed by the complete word. For example, giraffe uses /dʒ/ /ɪ/ /r/ /ɑː/ /f/ with UK /dʒɪˈrɑːf/.
-- The 20 entries without a valid exact whole-word recording keep their existing practice voice, labelled in Word explorer. Plurals and complete phrases are never replaced by singular or partial-word audio.
-- All twelve book character names and all 26 alphabet names are unchanged. Starter's 44 IPA buttons use the approved recorded teaching demonstrations.
-- The 196 Cambridge MP3s are publisher originals, without trimming, splicing or resynthesis, and are packaged for offline Android use. Original CD and sentence recordings are unchanged.
-- All existing learning progress, book pages and offline media are preserved.
+- Added Ask & answer to all twelve units: 36 three-choice response questions for names, ages, colours, places, descriptions, have got, can, actions and preferences.
+- Every question and every A/B/C option has its own speaker. Listening to an option does not submit an answer. Wrong answers allow retry; correct answers show an explanation and celebration.
+- All 81 spoken texts are packaged for offline use, including 19 additional British practice recordings. Cambridge word recordings and original book media are unchanged.
+- Added Clear learning records in For parents and My progress. A confirmation lists the records to clear: explored words, the practice bag, book activity completion, animal safari progress and the last reading page.
+- Clearing keeps settings and added pictures/audio. Cancellation leaves records untouched, storage failures show a retry message, and successful clearing returns to the course map.
+- Updating preserves existing learning records until Clear records is explicitly confirmed.
 
 To update on Android, open Parent guide → App updates. Confirm installation after the download finishes.
