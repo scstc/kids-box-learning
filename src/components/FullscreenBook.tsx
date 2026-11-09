@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import type { CSSProperties } from "react";
 import { createPortal } from "react-dom";
 import { BookOpen, Check, ChevronDown, Gauge, X } from "lucide-react";
 import { pauseOtherMedia } from "../data/media";
@@ -12,8 +13,10 @@ const playbackSpeeds = [0.5, 0.75, 1, 1.25, 1.5];
 export default function FullscreenBook({ initialPage, audio, onClose }: { initialPage: number; audio: CourseAudio; onClose: () => void }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const unitButton = useRef<HTMLButtonElement>(null);
+  const pageButton = useRef<HTMLButtonElement>(null);
   const speedButton = useRef<HTMLButtonElement>(null);
-  const [panel, setPanel] = useState<"units" | "speed" | null>(null);
+  const scrubbing = useRef(false);
+  const [panel, setPanel] = useState<"units" | "pages" | "speed" | null>(null);
   const [playbackRate, setPlaybackRate] = useState(() => {
     try {
       const saved = Number(localStorage.getItem("kids-box-reader-speed-v1"));
@@ -21,7 +24,8 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
     } catch { return 1; }
   });
   const [page, setPage] = useState(initialPage);
-  const [startPage, setStartPage] = useState(initialPage);
+  const [previewPage, setPreviewPage] = useState(initialPage);
+  const [pageRequest, setPageRequest] = useState({ page: initialPage, revision: 0 });
   const unitId = unitStartPages.reduce((unit, start, index) => page >= start ? index + 1 : unit, 1);
   const unit = courseUnits.find(unit => unit.id === unitId)!;
   const rememberPage = (next: number) => {
@@ -29,11 +33,11 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
     try { localStorage.setItem("kids-box-reader-page-v1", String(next)); } catch { /* Reading still works without storage. */ }
   };
   const jump = (next: number) => {
-    if (!Number.isInteger(next) || next < 4 || next > 95) return;
+    if (!Number.isInteger(next) || next < 4 || next > 95 || next === page) return;
     audio.stop();
     pauseOtherMedia();
     rememberPage(next);
-    setStartPage(next);
+    setPageRequest(current => ({ page: next, revision: current.revision + 1 }));
   };
   useEffect(() => {
     const node = dialog.current;
@@ -56,7 +60,7 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
     onPointerDown={(event) => { if (!(event.target as Element).closest(".kb-fullscreen-navigation")) setPanel(null); }}
     onCancel={(event) => {
       event.preventDefault();
-      if (panel) { (panel === "units" ? unitButton : speedButton).current?.focus(); setPanel(null); }
+      if (panel) { (panel === "units" ? unitButton : panel === "pages" ? pageButton : speedButton).current?.focus(); setPanel(null); }
       else close();
     }}>
     <header className="kb-fullscreen-navigation" aria-label="Book controls">
@@ -76,10 +80,23 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
             </button>)}</div>
           </section>}
         </div>
-        <label className="kb-reader-page-field"><span>Page</span><input key={page} aria-label="Book page number" type="number" inputMode="numeric" min={4} max={95} defaultValue={page}
-          onFocus={() => setPanel(null)}
-          onBlur={(event) => { const next=Number(event.currentTarget.value); if (Number.isInteger(next) && next >= 4 && next <= 95) jump(next); else event.currentTarget.value=String(page); }}
-          onKeyDown={(event) => { if (event.key === "Enter") event.currentTarget.blur(); }} /><span className="kb-reader-page-total">/ 95</span></label>
+        <div className="kb-reader-page-picker">
+          <button ref={pageButton} className="kb-reader-page-button" aria-label={`Choose book page, current page ${page}`} aria-expanded={panel === "pages"} aria-controls="kb-reader-page-list"
+            onClick={() => { scrubbing.current = false; setPreviewPage(page); setPanel(panel === "pages" ? null : "pages"); }}>
+            <span>Page</span><strong>{page}</strong><span className="kb-reader-page-total">/ 95</span><ChevronDown size={13} />
+          </button>
+          {panel === "pages" && <section id="kb-reader-page-list" className="kb-reader-popover kb-reader-page-menu" aria-label="Choose a page">
+            <div className="kb-reader-page-preview"><span>Page</span><output htmlFor="kb-reader-page-slider">{previewPage}</output><span>/ 95</span></div>
+            <p id="kb-reader-page-help">Slide to choose a page. Release to open it.</p>
+            <input id="kb-reader-page-slider" className="kb-reader-page-slider" aria-label="Book page" aria-describedby="kb-reader-page-help" aria-valuetext={`Page ${previewPage} of 95`}
+              type="range" min={4} max={95} step={1} value={previewPage} style={{ "--page-progress": `${(previewPage - 4) / 91 * 100}%` } as CSSProperties}
+              onPointerDown={() => { scrubbing.current = true; }}
+              onChange={(event) => { const next = Number(event.currentTarget.value); setPreviewPage(next); if (!scrubbing.current) jump(next); }}
+              onPointerUp={(event) => { scrubbing.current = false; jump(Number(event.currentTarget.value)); }}
+              onPointerCancel={() => { scrubbing.current = false; setPreviewPage(page); }} />
+            <div className="kb-reader-page-limits" aria-hidden="true"><span>4</span><span>95</span></div>
+          </section>}
+        </div>
         <div className="kb-reader-speed-picker">
           <button ref={speedButton} className="kb-reader-speed-button" aria-label="CD playback speed" aria-expanded={panel === "speed"} aria-controls="kb-reader-speed-list" data-adjusted={playbackRate !== 1 || undefined}
             onClick={() => setPanel(panel === "speed" ? null : "speed")}><Gauge size={19} /><span>{playbackRate}×</span><ChevronDown size={13} /></button>
@@ -94,6 +111,6 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
         <button className="kb-fullscreen-close" onClick={close} aria-label="Close talking book"><X size={21} /></button>
       </div>
     </header>
-    <BookPageReader printedPage={startPage} onPageChange={rememberPage} audio={audio} playbackRate={playbackRate} fitPage minimal />
+    <BookPageReader key={pageRequest.revision} printedPage={pageRequest.page} onPageChange={rememberPage} audio={audio} playbackRate={playbackRate} fitPage minimal />
   </dialog>, document.body);
 }
