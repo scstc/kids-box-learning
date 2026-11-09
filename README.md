@@ -15,6 +15,7 @@ React + TypeScript + React Bits 制作的全英文、平板友好学习应用，
 
 - 12 个主题单元入口；204 个词语/词组练习项、36 组原创情景句。词表对齐原书单词标签、闪卡、自然拼读目标和活动词汇栏，来源页码见`src/data/unitVocabulary.ts`；保留原119项的ID和学习足迹。
 - 独立Starter栏目，副标题Alphabet & Sounds：A–Z大小写、英式字母名，以及传统英式44音的短元音、长元音、双元音和辅音。字母名、单音和例词均支持离线点击发音。
+- Starter的44个音标示范单独使用真人教学录音选段，来源为[Pronunciation Studio English IPA Chart](https://pronunciationstudio.com/English-IPA-chart/)，与A–Z字母名和词内拼读块分开存放在`public/ipa-audio`。`scripts/ipa-recordings.json`记录原图表按钮、对应例词、源MP3哈希和切分时间；`scripts/render-ipa-audio.py`只提取开头的单音，不带入后面的例词，也不重新生成已确认的整词和字母音频。图表采用传统44音符号，真人录音中的现代英式元音存在正常变体。
 - 词语英式发音、慢速听读、拼读提示、听音选择、字母拼写、错词背包和设备内进度。
 - 首页书本使用PDF原封面并保持原比例，12个单元卡片、单元标题和足迹使用对应原书场景。190个词语练习项使用原版闪卡或PDF裁图，词语大图、小卡片、听音选择、拼写提示和错词背包共用原图。单复数使用不同数量的原书物体图；听音题避免同一题重复图片。其余14项使用图标和简短英文语境提示，不直接显示拼写答案。图片来源、书页与裁图坐标记录在 `src/data/originalArt.ts`，补充图可通过`node scripts/expand-vocabulary-art.mjs`重建。
 - 词语页接入React Bits官方TechText：0.85秒正确字母逐个入场，点击有轮廓和轻微弹跳并播放整词；原版图片支持SpotlightCard触控聚光，当前发音的拼读块同步高亮，学习确认/下一题按钮使用StarBorder。提供「再看一次」和可记忆的动态开关，尊重系统「减少动态效果」。动画不随机替换字母、不自动拖动字母，不影响音标与读音。
@@ -130,10 +131,12 @@ git push origin v26.4.1
 - src/data/bookSubtitles.ts、public/subtitles/、src/components/MediaSubtitles.tsx：离线英文字幕索引、时间轴与播放器同步。重新识别：用项目uv环境安装 `scripts/speech-requirements.txt`，运行 `node scripts/prepare-book-speech.mjs`，再运行 `.venv/Scripts/python.exe scripts/transcribe-book-audio.py`（默认使用本机NVIDIA GPU；CPU可加 `--device cpu`）。
 - src/components/LearningWord.tsx、CorrectCelebration.tsx：单词互动、触控聚光与答对庆祝；useLearningMotion.ts管理设备内动态设置。
 - src/components/FullscreenBook.tsx、src/components/BookMedia.tsx：全屏课本和单元原版资源。
-- scripts/download-course-audio.mjs：保留课本点读的词典英式录音；少数 WAV 响应通过 ffmpeg 转为 MP3。单词练习优先播放下方自然英式语音资源。
+- scripts/download-course-audio.mjs：保留旧词典英式录音；少数 WAV 响应通过 ffmpeg 转为 MP3。实际单词播放优先使用上面核对的剑桥录音，再使用已有备用资源。
 - scripts/render-sentence-audio.py：使用 edge-tts 的 en-GB-SoniaNeural 生成原创例句音频。
 - src/data/pronunciations.ts：已核对的英式IPA和逐块发音；双写字母只发一次音，静音字母不生成声音。
-- src/data/practiceAudio.ts、public/word-audio/、public/phonics-audio/：Word explorer、Starter例词和字母名使用Sonia自然英式女声，分块/音标使用eSpeak NG英式女声音素示范。两种音色有所区别；整词和字母输入英文文本，分块输入显式音素记号。慢速播放使用同一文件并保留音高。课本长句及原版CD不重新合成。
+- src/data/cambridgePronunciation.ts、public/cambridge-audio/：169个非人名词条使用剑桥逐音录音，其中149个有精确对应的英式整词录音；其余20个保留现有Sonia整词配音，界面标注Practice voice。47种逐音录音包含 /i/、/əl/、/ən/ 等辅助音，并不表示英语有47个基本音素。人名12项保留原音频和分块，原版CD及课本长句不重新合成。运行 `.venv/Scripts/python.exe -B scripts/download-cambridge-audio.py` 按已核对清单下载，解码检查全部通过后写入public；原始音频不裁切、不拼接、不转码，manifest记录来源URL、时长和SHA-256。
+- src/data/practiceAudio.ts、public/word-audio/、public/phonics-audio/：保留Sonia英式整词备用录音和26个字母名；旧eSpeak分块文件仅供未改动的人名及旧资源兼容，普通词汇不再播放。备用生成清单独立于实际播放路径，避免生成工具覆盖剑桥原始录音。慢速播放使用同一文件并保留音高。
+- src/components/Starter.tsx、public/ipa-audio/：44个音标使用已试听认可的Pronunciation Studio真人教学示范，例词按上面的词汇来源播放；字母名保持不变。`scripts/ipa-recordings.json`和本地manifest记录来源、教学音区间与哈希，`scripts/render-ipa-audio.py`可重建独立教学音示范。
 - scripts/render-phonics-audio.mjs、render-practice-audio.py：同声线离线资源制作工具。用 `uv pip install --python .venv/Scripts/python.exe -r scripts/phonics-requirements.txt` 安装构建依赖，再执行 `node scripts/render-phonics-audio.mjs`。首次下载固定版本模型和voice到ignored artifacts并核对SHA-256；模型、Python及推理库不进入网页或APK。`public/word-audio/manifest.json`记录voice、IPA和每个MP3哈希；匹配才跳过，`--force`重建全部，旧eSpeak资源不会被误当作已生成的新音色。
 - src/data/bookHotspots.ts：按原图坐标核对的点读区域，随图片缩放；原书活动播放器与单词/分块播放器互斥，防止声音叠加。
 
@@ -147,7 +150,8 @@ git push origin v26.4.1
 - Lucide 图标：https://lucide.dev/ （ISC）
 - Nunito、DM Sans：Fontsource 本地字体（OFL）
 - 词语录音：有道词典英式发音接口。对外商业发布前需确认音频授权或替换为已授权录音。
+- 新词汇整词及逐音录音：[Cambridge Dictionary](https://dictionary.cambridge.org/pronunciation/english/giraffe)（© Cambridge University Press）；44个独立音标教学示范：[Pronunciation Studio](https://pronunciationstudio.com/English-IPA-chart/)。已记录出处，未确认开放再分发许可，不将这些录音视为开源资源。
 - 单词及字母名：[edge-tts](https://github.com/rany2/edge-tts)（LGPL-3.0），使用en-GB-SoniaNeural。拼读音素示范：[eSpeak NG](https://github.com/espeak-ng/espeak-ng)与[Emscripten构建](https://github.com/echogarden-project/espeak-ng-emscripten)（GPL-3.0），使用en+f3。工具仅在制作离线MP3时运行，不随网页或APK分发。
-- 旧动物小站保留原美式音频，整册新增练习使用英式音频。
+- 旧动物小站与整册新增练习均优先使用相同的英式整词音频。
 
 原始PDF和OCR中间文件留在本机。根据用户提供的电子书处理后的正文图页放在public/book-pages，随网页与APK打包。官方样张与音频链接保留为补充资源入口。

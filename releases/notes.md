@@ -1,10 +1,10 @@
-Kids Box 26.4.9
+Kids Box 26.4.10
 
-- Replaced the previous Kokoro practice recordings across all 181 words, 26 letter names and 174 other phonics clips.
-- Whole words and alphabet names now use the same natural British female voice as the supplementary sentences. British Z is pronounced zed.
-- Short sounds and spelling chunks use a dedicated British female phoneme synthesizer. Their timbre differs from natural word speech; no letter-name text or extra vowel is added to the phoneme input.
-- Preserved the natural onset of word recordings and added a silent lead-in to short sounds. Removed leading silence trimming and per-clip loudness boosting from practice audio generation.
-- All 381 practice recordings remain offline in the APK. Original CD recordings and existing sentence recordings are unchanged.
+- Added original Cambridge Dictionary UK recordings for 149 exact vocabulary entries, including the seven animals. Whole words, slow playback, book word hotspots and listening games share the same source.
+- All 169 non-name entries now have recorded sound-by-sound practice and sequential blending, followed by the complete word. For example, giraffe uses /dʒ/ /ɪ/ /r/ /ɑː/ /f/ with UK /dʒɪˈrɑːf/.
+- The 20 entries without a valid exact whole-word recording keep their existing practice voice, labelled in Word explorer. Plurals and complete phrases are never replaced by singular or partial-word audio.
+- All twelve book character names and all 26 alphabet names are unchanged. Starter's 44 IPA buttons use the approved recorded teaching demonstrations.
+- The 196 Cambridge MP3s are publisher originals, without trimming, splicing or resynthesis, and are packaged for offline Android use. Original CD and sentence recordings are unchanged.
 - All existing learning progress, book pages and offline media are preserved.
 
 To update on Android, open Parent guide → App updates. Confirm installation after the download finishes.

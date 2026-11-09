@@ -28,11 +28,11 @@ export default function Starter({ audio }: { audio: CourseAudio }) {
       <p>Tap a symbol to hear the sound. Tap its example word to hear it in a word. British pronunciation.</p>
       {[...new Set(starterSounds.map(sound => sound.group))].map(name => <section key={name} className="kb-sound-group" aria-label={name}>
         <h3>{name}</h3><div className="kb-sound-chart">{starterSounds.filter(sound => sound.group === name).map(({ ipa, example }) => <article key={ipa}>
-          <button className="kb-sound-symbol" aria-label={`Hear sound /${ipa}/`} aria-pressed={audio.playingText === `starter-sound-${ipa}`} onClick={() => void audio.playSound(ipa, `starter-sound-${ipa}`)}><strong>/{ipa}/</strong><Volume2 size={17} /></button>
+          <button className="kb-sound-symbol" aria-label={`Hear sound /${ipa}/`} aria-pressed={audio.playingText === `starter-sound-${ipa}`} onClick={() => void audio.playIpa(ipa, `starter-sound-${ipa}`)}><strong>/{ipa}/</strong><Volume2 size={17} /></button>
           <button className="kb-sound-example" aria-label={`Hear example ${example}`} onClick={() => void audio.play(example)}>{example}<Volume2 size={14} /></button>
         </article>)}</div>
       </section>)}
-      <aside className="kb-starter-note">Listen, then try it yourself. Short sounds use a separate phonics voice; example words use natural British speech. Accents vary: some speakers say /ɔː/ in words with /ʊə/.</aside>
+      <aside className="kb-starter-note">Listen, then try it yourself. Sounds use recorded teaching demonstrations; example words keep their own voice. These 44 symbols follow a traditional British chart; contemporary British vowels can vary. Sound recordings: <a href="https://pronunciationstudio.com/English-IPA-chart/" target="_blank" rel="noreferrer">Pronunciation Studio</a>.</aside>
     </>}
   </section>;
 }

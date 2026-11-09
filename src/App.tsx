@@ -33,6 +33,7 @@ import AnimatedContent from "./components/reactbits/AnimatedContent";
 import ClickSpark from "./components/reactbits/ClickSpark";
 import { usePronunciation } from "./hooks/usePronunciation";
 import { useProgress } from "./hooks/useProgress";
+import { recordedWordGuide } from "./data/cambridgePronunciation";
 
 type Page = "explore" | "lab" | "passport";
 type Mode = "listen" | "sounds" | "quiz";
@@ -554,7 +555,7 @@ export default function App() {
                           )}
                         </div>
                         <div className="phonetic">
-                          <span>{animal.ipa}</span>
+                          <span>/{recordedWordGuide(animal.id)?.ipa ?? animal.ipa.replaceAll("/", "")}/</span>
                           <span className="pronunciation-tag">American pronunciation</span>
                         </div>
 

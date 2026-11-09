@@ -5,14 +5,22 @@ import { allWordEntries } from "./course";
 import { starterLetters, starterSounds } from "./starter";
 import { practiceAudioItems, wordAudioPath, soundAudioPath } from "./practiceAudio";
 import { phonicsInput, copyPhonicsSamples } from "../../scripts/phonics-input";
+import { recordedWordGuide } from "./cambridgePronunciation";
 
 describe("offline pronunciation sources", () => {
-  it("routes course words and Starter examples to natural speech, preserving conversations", () => {
+  it("prefers exact Cambridge words while preserving names, fallback forms and conversations", () => {
     for (const text of [
       ...allWordEntries.map(({ word }) => word.en),
       ...starterSounds.map(({ example }) => example),
-    ]) expect(wordAudioPath(text), text).toMatch(/^word-audio\//);
-    expect(wordAudioPath("foot")).toBe("word-audio/foot.mp3");
+    ]) {
+      const key = text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      expect(wordAudioPath(text), text).toBe(recordedWordGuide(key)?.audio ?? `word-audio/${key}.mp3`);
+    }
+    expect(wordAudioPath("foot")).toBe("cambridge-audio/words/foot.mp3");
+    expect(wordAudioPath("feet")).toBe("cambridge-audio/words/feet.mp3");
+    expect(wordAudioPath("Meera")).toBe("word-audio/meera.mp3");
+    expect(wordAudioPath("eyes")).toBe("word-audio/eyes.mp3");
+    expect(wordAudioPath("play the piano")).toBe("word-audio/play-the-piano.mp3");
     // Longer book conversations keep their existing recordings.
     expect(wordAudioPath("Who's that?")).toBe("course-audio/who-s-that.mp3");
   });

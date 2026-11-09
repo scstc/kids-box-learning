@@ -1,0 +1,446 @@
+{
+  "sourcePage": "https://pronunciationstudio.com/English-IPA-chart/",
+  "credit": "Pronunciation Studio · English IPA Chart. Recorded sound excerpts; original example words are excluded.",
+  "recordings": [
+    {
+      "ipa": "iː",
+      "chartButton": 1,
+      "sourceKeyword": "bean",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%201.mp3",
+      "sourceSha256": "937491142f81ed89aa4358375b777f9b1e5f29664ba231dfe05351c8a3dd50bb",
+      "start": 0.52,
+      "end": 1.45,
+      "exampleStart": 3.46
+    },
+    {
+      "ipa": "ɪ",
+      "chartButton": 2,
+      "sourceKeyword": "tip",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%202.mp3",
+      "sourceSha256": "0049a93999167689e50dca2c860ff89a167cb1093fde93cec5fa09e605151cf7",
+      "start": 0.41,
+      "end": 0.92,
+      "exampleStart": 2.78
+    },
+    {
+      "ipa": "e",
+      "chartButton": 3,
+      "sourceKeyword": "met",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%203.mp3",
+      "sourceSha256": "520fe86c1102453269335d54740d39237f99643e45eb8e17a8aae18c51351d13",
+      "start": 0.38,
+      "end": 0.91,
+      "exampleStart": 2.66
+    },
+    {
+      "ipa": "eə",
+      "chartButton": 4,
+      "sourceKeyword": "hair",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%204.mp3",
+      "sourceSha256": "1b443fbc768d0e4b4cbbcde57a1e75589bdee4d99c4930295e734715d85196dc",
+      "start": 0.45,
+      "end": 1.15,
+      "exampleStart": 2.99
+    },
+    {
+      "ipa": "æ",
+      "chartButton": 5,
+      "sourceKeyword": "pan",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%205.mp3",
+      "sourceSha256": "62d1c2aa67248f9c58fe554055304d3118c362f29967b171672816c97b28f635",
+      "start": 0.15,
+      "end": 0.66,
+      "exampleStart": 2.72
+    },
+    {
+      "ipa": "uː",
+      "chartButton": 6,
+      "sourceKeyword": "moon",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%206.mp3",
+      "sourceSha256": "4be5438dcdf779540f4700350e92ae0abbbe084d2e5f44ecc5ceb511463d1a37",
+      "start": 0.47,
+      "end": 1.31,
+      "exampleStart": 3.66
+    },
+    {
+      "ipa": "ə",
+      "chartButton": 7,
+      "sourceKeyword": "the",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%207.mp3",
+      "sourceSha256": "ab66581c3f54699118e61bb72eacac978fdbeaeef8e1eea78ef91ff75bb15935",
+      "start": 0.47,
+      "end": 0.96,
+      "exampleStart": 2.89
+    },
+    {
+      "ipa": "ɜː",
+      "chartButton": 8,
+      "sourceKeyword": "sir",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%208.mp3",
+      "sourceSha256": "093b364bef0c419e45caa8c25aaa741e3a090656aedbdcc3d34263122ea19e7e",
+      "start": 0.18,
+      "end": 1.08,
+      "exampleStart": 3.07
+    },
+    {
+      "ipa": "ʌ",
+      "chartButton": 9,
+      "sourceKeyword": "fun",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%209.mp3",
+      "sourceSha256": "56cd34fd042ffe55dcd56ee55250a46d5161db5489f3ebc2768d5e3d4f07c848",
+      "start": 0.21,
+      "end": 0.68,
+      "exampleStart": 2.67
+    },
+    {
+      "ipa": "ɑː",
+      "chartButton": 10,
+      "sourceKeyword": "card",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2010.mp3",
+      "sourceSha256": "f2d20fccb656a8aa542793904593f1b2d518cc665266d4f9fa8b663adb654057",
+      "start": 0.07,
+      "end": 0.94,
+      "exampleStart": 2.61
+    },
+    {
+      "ipa": "ʊ",
+      "chartButton": 11,
+      "sourceKeyword": "shook",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2011.mp3",
+      "sourceSha256": "4963929cbcb278f15606601cdb43e6376c9134930408937939cf2179cbb4977d",
+      "start": 0.35,
+      "end": 0.84,
+      "exampleStart": 2.69
+    },
+    {
+      "ipa": "ɔː",
+      "chartButton": 12,
+      "sourceKeyword": "shore",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2012.mp3",
+      "sourceSha256": "616f58be8e3e1746001ab6234f071e57bcd363adb51640f6daa99ef745491f00",
+      "start": 0.14,
+      "end": 1.09,
+      "exampleStart": 3.25
+    },
+    {
+      "ipa": "ɒ",
+      "chartButton": 13,
+      "sourceKeyword": "lock",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2013a.mp3",
+      "sourceSha256": "59f6feb319b1c2ae5d0ad51b64c782ec3930f721ff6454e74ff0395cd950d9ff",
+      "start": 0.05,
+      "end": 0.55,
+      "exampleStart": 2.69
+    },
+    {
+      "ipa": "ɪə",
+      "chartButton": 14,
+      "sourceKeyword": "dear",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2014.mp3",
+      "sourceSha256": "576fee1c767c4a823f73fe2188255b93f4a498bec330a69edc560212bf5de645",
+      "start": 0.15,
+      "end": 0.74,
+      "exampleStart": 2.93
+    },
+    {
+      "ipa": "eɪ",
+      "chartButton": 15,
+      "sourceKeyword": "same",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2015.mp3",
+      "sourceSha256": "d4cac6f5cbc69525d3956c29cd34cd55e6dde39c10e98f9d663707384fd74993",
+      "start": 0.07,
+      "end": 0.82,
+      "exampleStart": 2.97
+    },
+    {
+      "ipa": "aʊ",
+      "chartButton": 16,
+      "sourceKeyword": "loud",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2016.mp3",
+      "sourceSha256": "88b5d0305338e51e4420a6988b6fd93ce67abba4a01f0f9426dbe95dfc527292",
+      "start": 0.13,
+      "end": 0.94,
+      "exampleStart": 2.76
+    },
+    {
+      "ipa": "əʊ",
+      "chartButton": 17,
+      "sourceKeyword": "go",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2017.mp3",
+      "sourceSha256": "b04342759c5abbaa09327beed3b7eff8a73fd59b4eef06c66c7b066387fc0de8",
+      "start": 0.19,
+      "end": 0.94,
+      "exampleStart": 2.6
+    },
+    {
+      "ipa": "aɪ",
+      "chartButton": 18,
+      "sourceKeyword": "hide",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2018.mp3",
+      "sourceSha256": "3da614875f3032419b8db5f93c87c4d3f63e94976bf23a37ebca2fb21bc2a337",
+      "start": 0.21,
+      "end": 0.95,
+      "exampleStart": 3.05
+    },
+    {
+      "ipa": "ʊə",
+      "chartButton": 19,
+      "sourceKeyword": "curious",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2020.mp3",
+      "sourceSha256": "303810a47649c5fe9835d8ab8c428f335fcf020c490c4900b6a9f93ad76dd9bb",
+      "start": 0.24,
+      "end": 0.8,
+      "exampleStart": 2.79
+    },
+    {
+      "ipa": "ɔɪ",
+      "chartButton": 20,
+      "sourceKeyword": "choice",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2019.mp3",
+      "sourceSha256": "187af248dac2868fd85c3003e57bacb3ae015896f7d6ff71a69959e5792176c4",
+      "start": 0.05,
+      "end": 0.73,
+      "exampleStart": 2.6
+    },
+    {
+      "ipa": "f",
+      "chartButton": 21,
+      "sourceKeyword": "first",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2021.mp3",
+      "sourceSha256": "3e99f8fe3e21b4e7d84081653da49de97ef229eade0bb5a5d27e699e73cbcb46",
+      "start": 0.19,
+      "end": 0.99,
+      "exampleStart": 2.38
+    },
+    {
+      "ipa": "v",
+      "chartButton": 22,
+      "sourceKeyword": "van",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2022.mp3",
+      "sourceSha256": "655a174aacdf7917a50180e19445dc6eba615670d347b8ec65f5394b0223a8b4",
+      "start": 0.16,
+      "end": 0.97,
+      "exampleStart": 2.52
+    },
+    {
+      "ipa": "θ",
+      "chartButton": 23,
+      "sourceKeyword": "thick",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2023.mp3",
+      "sourceSha256": "d829aa539f2333537ca1b3d4a775bcdedd2a91f8d0fd77ff361f23d49de38f44",
+      "start": 0.13,
+      "end": 0.91,
+      "exampleStart": 2.62
+    },
+    {
+      "ipa": "ð",
+      "chartButton": 24,
+      "sourceKeyword": "these",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2024.mp3",
+      "sourceSha256": "2bf45bf33ef2408d8d65b33cb234161bbd622c31c30c7c38ae59bfea6b7a8369",
+      "start": 0.16,
+      "end": 1.07,
+      "exampleStart": 3.02
+    },
+    {
+      "ipa": "s",
+      "chartButton": 25,
+      "sourceKeyword": "saw",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2025.mp3",
+      "sourceSha256": "60c76c7baf24038e423d84450706483af4de294d917b8e1e75b943e29137b012",
+      "start": 0.25,
+      "end": 1.02,
+      "exampleStart": 2.73
+    },
+    {
+      "ipa": "z",
+      "chartButton": 26,
+      "sourceKeyword": "zen",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2026.mp3",
+      "sourceSha256": "baa2400eba584e2f4246e3c1d1632bb9251a11a7d2ac2044504a00c80544cc47",
+      "start": 0.5,
+      "end": 1.37,
+      "exampleStart": 3.72
+    },
+    {
+      "ipa": "ʃ",
+      "chartButton": 27,
+      "sourceKeyword": "she",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2027.mp3",
+      "sourceSha256": "a12e5e9930d16f309bcf900a64abf5f8536574db70c39bcd19b6161d80f7ecd5",
+      "start": 0.55,
+      "end": 1.43,
+      "exampleStart": 3.48
+    },
+    {
+      "ipa": "ʒ",
+      "chartButton": 28,
+      "sourceKeyword": "casual",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2028.mp3",
+      "sourceSha256": "7d6e49361753b1a37f8e7d8e9d69d914007451f1823c4badc1fff263b063e5e3",
+      "start": 0.34,
+      "end": 1.19,
+      "exampleStart": 3.2
+    },
+    {
+      "ipa": "h",
+      "chartButton": 29,
+      "sourceKeyword": "hard",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2029.mp3",
+      "sourceSha256": "d4640ca9bab3df4bfb5f8bd4ec64e0ae98d1703d82da974d300bcddef91b23ca",
+      "start": 0.24,
+      "end": 0.69,
+      "exampleStart": 1.92
+    },
+    {
+      "ipa": "p",
+      "chartButton": 30,
+      "sourceKeyword": "pick",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2030.mp3",
+      "sourceSha256": "2cf47cfbe96b220c3856ddd6299fbd2fdc315fb5901ddf2b567cd46832c182fd",
+      "start": 0.23,
+      "end": 0.65,
+      "exampleStart": 2.28
+    },
+    {
+      "ipa": "b",
+      "chartButton": 31,
+      "sourceKeyword": "bed",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2031.mp3",
+      "sourceSha256": "279b973111f3ed7452cd65d0255e3e4a70cc84b62cd0b05981263bb8ad37456e",
+      "start": 0.22,
+      "end": 0.76,
+      "exampleStart": 2.58
+    },
+    {
+      "ipa": "t",
+      "chartButton": 32,
+      "sourceKeyword": "team",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2032.mp3",
+      "sourceSha256": "3a315a5cef7752fea877052a86f2c3e7c9ad1dc9bc15fbf8f754ae041f43f9a7",
+      "start": 0.3,
+      "end": 0.77,
+      "exampleStart": 3.15
+    },
+    {
+      "ipa": "d",
+      "chartButton": 33,
+      "sourceKeyword": "dine",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2033.mp3",
+      "sourceSha256": "6f3e42ddfec7ec0ca5dac12a3759c841a30fde18716fa499b79281c20640eac9",
+      "start": 0.15,
+      "end": 0.68,
+      "exampleStart": 2.51
+    },
+    {
+      "ipa": "k",
+      "chartButton": 34,
+      "sourceKeyword": "code",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2034.mp3",
+      "sourceSha256": "8b338cfec9f81858ee266a9ae351aef22e2548470cb646dc41a4f6442d327b7b",
+      "start": 0.38,
+      "end": 0.87,
+      "exampleStart": 3.39
+    },
+    {
+      "ipa": "ɡ",
+      "chartButton": 35,
+      "sourceKeyword": "get",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2035.mp3",
+      "sourceSha256": "330ede5dbab97e55fc3cb23792a36ad17a3a6dca264986e242890ea5bae360af",
+      "start": 0.28,
+      "end": 0.82,
+      "exampleStart": 3.27
+    },
+    {
+      "ipa": "w",
+      "chartButton": 37,
+      "sourceKeyword": "watch",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2038.mp3",
+      "sourceSha256": "b2ccd67c728c175ca303b1b84c59febae1e9a950e987ee84bfb0e018a9e415b8",
+      "start": 0.2,
+      "end": 0.84,
+      "exampleStart": 2.76
+    },
+    {
+      "ipa": "r",
+      "chartButton": 38,
+      "sourceKeyword": "rug",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2039.mp3",
+      "sourceSha256": "e554d6154dcda253f723056fc4ce081c57b6f13601b22834943c08de4782ef5e",
+      "start": 0.23,
+      "end": 0.9,
+      "exampleStart": 3.19
+    },
+    {
+      "ipa": "j",
+      "chartButton": 39,
+      "sourceKeyword": "yet",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2040.mp3",
+      "sourceSha256": "d610a4b3c792f262568fddb7b372294774a57117bf19692ed12b9db9c218f9d2",
+      "start": 0.11,
+      "end": 0.66,
+      "exampleStart": 2.4
+    },
+    {
+      "ipa": "l",
+      "chartButton": 40,
+      "sourceKeyword": "look",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2041.mp3",
+      "sourceSha256": "4cff363e20b28341333ce901d9fd38a274f2d260322dd952cef0c081002e875d",
+      "start": 0.29,
+      "end": 0.91,
+      "exampleStart": 2.56
+    },
+    {
+      "ipa": "tʃ",
+      "chartButton": 42,
+      "sourceKeyword": "choose",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2036.mp3",
+      "sourceSha256": "69e2e670b13736916e2d0e1496d3aa621ee19e9cd870fb7f00c6fd11112214a7",
+      "start": 0.21,
+      "end": 0.76,
+      "exampleStart": 2.96
+    },
+    {
+      "ipa": "dʒ",
+      "chartButton": 43,
+      "sourceKeyword": "jet",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2037.mp3",
+      "sourceSha256": "fb087fc969f7011905f4869058f01541d0d5abb6ed6f446254b45d5f53706f01",
+      "start": 0.33,
+      "end": 1.07,
+      "exampleStart": 3.34
+    },
+    {
+      "ipa": "m",
+      "chartButton": 44,
+      "sourceKeyword": "mode",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2042.mp3",
+      "sourceSha256": "1c4791c57f1bacb426be169d78868a5c54624b1034f483fa51cd8dc2360ca123",
+      "start": 0.23,
+      "end": 1.09,
+      "exampleStart": 2.59
+    },
+    {
+      "ipa": "n",
+      "chartButton": 45,
+      "sourceKeyword": "neck",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2043.mp3",
+      "sourceSha256": "9b02ba5c5626982392c689646e5d8a6acff2c5c23d8ce0689b19c0ba9ba3c5a4",
+      "start": 0.31,
+      "end": 1.12,
+      "exampleStart": 2.69
+    },
+    {
+      "ipa": "ŋ",
+      "chartButton": 46,
+      "sourceKeyword": "song",
+      "sourceUrl": "https://pronunciationstudio.com/wp-content/uploads/in5-archives/interactive-ipa-chart-22-1/Interactive%20IPA%20Chart%2022/assets/media/SOUND%2044.mp3",
+      "sourceSha256": "8863d94108c024889654df739ea36682e77b069e29d32256d9a059b5f94924ae",
+      "start": 0.11,
+      "end": 1.01,
+      "exampleStart": 2.53
+    }
+  ]
+}

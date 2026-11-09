@@ -5,7 +5,7 @@ import { soundKey } from "./pronunciations";
 import { bookHotspots } from "./bookHotspots";
 
 describe("按实际发音学习，而不是朗读字母名", () => {
-  it("每个词的拼读块都对应词内声音，连起来保留完整英式发音", () => {
+  it("保留旧拼写分块的数据完整性，供人名与备用音频生成使用", () => {
     for (const { word } of allWordEntries) {
       expect(word.ipa, word.en).toBeTruthy();
       expect(word.sounds, word.en).toHaveLength(word.chunks.length);
@@ -13,14 +13,8 @@ describe("按实际发音学习，而不是朗读字母名", () => {
         word.ipa.replace(/[ˈˌ ]/g, ""),
       );
     }
-    const giraffe = allWordEntries.find(
-      ({ word }) => word.en === "giraffe",
-    )!.word;
-    expect(giraffe.ipa).toBe("dʒəˈrɑːf");
-    expect(giraffe.sounds).toEqual(["dʒə", "rɑːf"]);
-    expect(
-      allWordEntries.find(({ word }) => word.en === "hippo")!.word.sounds,
-    ).toEqual(["hɪp", "əʊ"]);
+    // Active non-name pronunciation is checked against the Cambridge guide in
+    // cambridgePronunciation.test.ts, not these legacy spelling chunks.
   });
   it("静音e和拼写分隔符没有虚构读音", () => {
     for (const en of ["snake", "cake", "bike", "five", "nose", "plane"])

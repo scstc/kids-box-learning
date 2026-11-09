@@ -1,0 +1,1967 @@
+{
+  "publisher": "Cambridge Dictionary · © Cambridge University Press",
+  "accent": "en-GB",
+  "processing": "Original publisher bytes; no trimming, synthesis, or re-encoding",
+  "files": {
+    "cambridge-audio/words/arm.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uka/ukarg/ukargyb018.mp3",
+      "kind": "word",
+      "word": "arm",
+      "ipa": "ɑːm",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/arm",
+      "sha256": "86f5adaebf690d50e7bc6e08b8b7815ac8b4734f858ae85750af6a69c744f003",
+      "bytes": 8301,
+      "seconds": 0.996
+    },
+    "cambridge-audio/words/apple.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uka/ukapp/ukappen014.mp3",
+      "kind": "word",
+      "word": "apple",
+      "ipa": "ˈæpəl",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/apple",
+      "sha256": "cecd017a67db6f1c4972f044cf270cdd8af29c1775dd3fa4a16bd67c1590ee4a",
+      "bytes": 5229,
+      "seconds": 0.612
+    },
+    "cambridge-audio/words/bag.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukbag/ukbag__001.mp3",
+      "kind": "word",
+      "word": "bag",
+      "ipa": "bæɡ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bag",
+      "sha256": "b97c4e9fafebb754ed731fc1641ee29ace2130caf4fe346d1f576cec03c6c6a3",
+      "bytes": 5613,
+      "seconds": 0.66
+    },
+    "cambridge-audio/words/baby.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uka/ukazt/ukazt__013.mp3",
+      "kind": "word",
+      "word": "baby",
+      "ipa": "ˈbeɪbi",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/baby",
+      "sha256": "7e8a2a5c42d14781714040f719d9a6c9b88a95cdba4583a1f4b9b102fc3975d2",
+      "bytes": 7533,
+      "seconds": 0.9
+    },
+    "cambridge-audio/words/ball.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukbal/ukbalal014.mp3",
+      "kind": "word",
+      "word": "ball",
+      "ipa": "bɔːl",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/ball",
+      "sha256": "53f7c0955268200b6dcecd9e0bd72a75d04cc0edf41027bd1d0ac6ded15162bc",
+      "bytes": 6189,
+      "seconds": 0.732
+    },
+    "cambridge-audio/words/arms.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uka/ukall/ukally_008.mp3",
+      "kind": "word",
+      "word": "arms",
+      "ipa": "ɑːmz",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/arms",
+      "sha256": "ccf1e9267d786a06397757beac934043794ab9c0a4c25b9329cf11b7b391b89a",
+      "bytes": 6573,
+      "seconds": 0.78
+    },
+    "cambridge-audio/words/basketball.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukbas/ukbashf013.mp3",
+      "kind": "word",
+      "word": "basketball",
+      "ipa": "ˈbɑːskɪtbɔːl",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/basketball",
+      "sha256": "68844b79527ae1f2dfb0c5308337c1b65a9c0e89d33b5fcac08901355bfd75bd",
+      "bytes": 7533,
+      "seconds": 0.9
+    },
+    "cambridge-audio/words/banana.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukbal/ukballs018.mp3",
+      "kind": "word",
+      "word": "banana",
+      "ipa": "bəˈnɑːnə",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/banana",
+      "sha256": "8e246d6ae82bde77a50191c483c9ed1cf8ba2309e86e22a551a501c1176da04c",
+      "bytes": 6189,
+      "seconds": 0.732
+    },
+    "cambridge-audio/words/big.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukbif/ukbiff_005.mp3",
+      "kind": "word",
+      "word": "big",
+      "ipa": "bɪɡ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/big",
+      "sha256": "997017764d049fc268f298f2cbe5c7404cd96d373f0aaebc7b33ae8303120c58",
+      "bytes": 4269,
+      "seconds": 0.492
+    },
+    "cambridge-audio/words/bedroom.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukbed/ukbeddi013.mp3",
+      "kind": "word",
+      "word": "bedroom",
+      "ipa": "ˈbedruːm",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bedroom",
+      "sha256": "e83c6f0c16ba9d2e725f717a3edd825263841be457f0022c3506f1315c61553f",
+      "bytes": 5229,
+      "seconds": 0.612
+    },
+    "cambridge-audio/words/beautiful.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukbea/ukbeau_009.mp3",
+      "kind": "word",
+      "word": "beautiful",
+      "ipa": "ˈbjuːtɪfəl",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/beautiful",
+      "sha256": "e6b74e0bc37c57af347b372ecf1a03b73efc3a43cacc2e0a3c034114d4d0ed6f",
+      "bytes": 5613,
+      "seconds": 0.66
+    },
+    "cambridge-audio/words/bathroom.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukbat/ukbatch009.mp3",
+      "kind": "word",
+      "word": "bathroom",
+      "ipa": "ˈbɑːθruːm",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bathroom",
+      "sha256": "d7f95f25a07bb5ee1410c7d43607acfd9be22c22b5691c12090445c9bdefcda2",
+      "bytes": 6573,
+      "seconds": 0.78
+    },
+    "cambridge-audio/words/bike.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukbif/ukbiff_020.mp3",
+      "kind": "word",
+      "word": "bike",
+      "ipa": "baɪk",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bike",
+      "sha256": "275efcfde4d1c9391559f6dd1a51c0baa203c6ef36a1fd1b70d81697b457a486",
+      "bytes": 4845,
+      "seconds": 0.564
+    },
+    "cambridge-audio/words/bird.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukbip/ukbipla004.mp3",
+      "kind": "word",
+      "word": "bird",
+      "ipa": "bɜːd",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bird",
+      "sha256": "fd486c95c8756fd6e0bb0ea42864ec170867d2c1ef141716e14d348e66e02f30",
+      "bytes": 5229,
+      "seconds": 0.612
+    },
+    "cambridge-audio/words/black.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukbit/ukbitch026.mp3",
+      "kind": "word",
+      "word": "black",
+      "ipa": "blæk",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/black",
+      "sha256": "da7ab932101e3c4034171d6997c86d62487a1d202e0d199f2538aa5675b8ce8f",
+      "bytes": 5421,
+      "seconds": 0.636
+    },
+    "cambridge-audio/words/boat.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukboa/ukboat_001.mp3",
+      "kind": "word",
+      "word": "boat",
+      "ipa": "bəʊt",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/boat",
+      "sha256": "a00a21269141016b0ccde88ac786a6cf379089a7d960a176fa7f3766a33483d5",
+      "bytes": 6573,
+      "seconds": 0.78
+    },
+    "cambridge-audio/words/body.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukboa/ukboat_026.mp3",
+      "kind": "word",
+      "word": "body",
+      "ipa": "ˈbɒdi",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/body",
+      "sha256": "d2edd5e63a0396af542dc754269aab84c9b4c9e8afe96472cbaeb78ad32e968d",
+      "bytes": 5229,
+      "seconds": 0.612
+    },
+    "cambridge-audio/words/blue.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukble/ukbleep012.mp3",
+      "kind": "word",
+      "word": "blue",
+      "ipa": "bluː",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/blue",
+      "sha256": "44a0bd952fbd498e99519998a7ce5864c17ebc77ee6dfc1735728fe091602b0b",
+      "bytes": 6765,
+      "seconds": 0.804
+    },
+    "cambridge-audio/words/brother.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukbro/ukbroke027.mp3",
+      "kind": "word",
+      "word": "brother",
+      "ipa": "ˈbrʌðə",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/brother",
+      "sha256": "10d3b3aa7b2dcf4078985926276d4484b6f7a7988521dbc090a9ad9f7008f098",
+      "bytes": 5421,
+      "seconds": 0.636
+    },
+    "cambridge-audio/words/book.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukbon/ukbonfi028.mp3",
+      "kind": "word",
+      "word": "book",
+      "ipa": "bʊk",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/book",
+      "sha256": "4e921c4f4d28f3f28dcdde8365eba7887735c7914b3b2443323b91fc174cc0f4",
+      "bytes": 4461,
+      "seconds": 0.516
+    },
+    "cambridge-audio/words/brown.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukbro/ukbroug006.mp3",
+      "kind": "word",
+      "word": "brown",
+      "ipa": "braʊn",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/brown",
+      "sha256": "b34a01d8f0d7e6a2cc448a180d94eb026bbc373e408938cf76ad32d67acf2995",
+      "bytes": 6957,
+      "seconds": 0.828
+    },
+    "cambridge-audio/words/bus.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukbur/ukburle024.mp3",
+      "kind": "word",
+      "word": "bus",
+      "ipa": "bʌs",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bus",
+      "sha256": "592baf2ff06cabda0f34a55b08512796583a006698d1734646563e07f7c3bbfc",
+      "bytes": 5613,
+      "seconds": 0.66
+    },
+    "cambridge-audio/words/cake.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukc/ukcaj/ukcajun002.mp3",
+      "kind": "word",
+      "word": "cake",
+      "ipa": "keɪk",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/cake",
+      "sha256": "b5872779312d7813ca18a80dcea6e4bd428aada330935ddb2bec970c65bb3ba3",
+      "bytes": 4653,
+      "seconds": 0.54
+    },
+    "cambridge-audio/words/burger.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukb/ukbun/ukbunny021.mp3",
+      "kind": "word",
+      "word": "burger",
+      "ipa": "ˈbɜːɡə",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/burger",
+      "sha256": "02a82194073ff6ed2a56e00d5f81ae53c030af6d37d55064838f0c1b82697901",
+      "bytes": 6573,
+      "seconds": 0.78
+    },
+    "cambridge-audio/words/car.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukc/ukcap/ukcapit027.mp3",
+      "kind": "word",
+      "word": "car",
+      "ipa": "kɑː",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/car",
+      "sha256": "b1bc8b4dfa0703ff20fb08583b8603c75b94c9e2f44922aba3a971eb39678532",
+      "bytes": 6381,
+      "seconds": 0.756
+    },
+    "cambridge-audio/words/cat.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukc/ukcas/ukcaste011.mp3",
+      "kind": "word",
+      "word": "cat",
+      "ipa": "kæt",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/cat",
+      "sha256": "f7dc394909c7dd8caefae4fb421613da742c4dcc456ab3d6c6e299a61d58fe99",
+      "bytes": 3693,
+      "seconds": 0.42
+    },
+    "cambridge-audio/words/chair.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukc/ukcey/ukceylo014.mp3",
+      "kind": "word",
+      "word": "chair",
+      "ipa": "tʃeə",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/chair",
+      "sha256": "c8344d7d7cce211b8f356c5aea4cf145b2817bdadfdb10410febacae6f56612f",
+      "bytes": 5229,
+      "seconds": 0.612
+    },
+    "cambridge-audio/words/chocolate.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukc/ukcho/ukchock003.mp3",
+      "kind": "word",
+      "word": "chocolate",
+      "ipa": "ˈtʃɒklət",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/chocolate",
+      "sha256": "33b406c5d7e5d77f63e4fcc870effb7efa2988dc39bbae654f788660e6187419",
+      "bytes": 6957,
+      "seconds": 0.828
+    },
+    "cambridge-audio/words/computer.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukc/ukcom/ukcompr014.mp3",
+      "kind": "word",
+      "word": "computer",
+      "ipa": "kəmˈpjuːtə",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/computer",
+      "sha256": "7f24ccef804bf18ab4c1ea729557426ac785d80aa557e129c3a40cf81f8284ae",
+      "bytes": 6957,
+      "seconds": 0.828
+    },
+    "cambridge-audio/words/clean.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukc/ukcla/ukclass014.mp3",
+      "kind": "word",
+      "word": "clean",
+      "ipa": "kliːn",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/clean",
+      "sha256": "c41c222226d379735edf16dd20a613a6eb04bc8bf44d1b97e9b5850746ffdedc",
+      "bytes": 5997,
+      "seconds": 0.708
+    },
+    "cambridge-audio/words/dance.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukd/ukdam/ukdamne011.mp3",
+      "kind": "word",
+      "word": "dance",
+      "ipa": "dɑːns",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/dance",
+      "sha256": "c162b345455dda029bcd8c3af51c5a4d974ed0e8275e76f86b83d4d2f63549f3",
+      "bytes": 6189,
+      "seconds": 0.732
+    },
+    "cambridge-audio/words/crocodile.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukc/ukcri/ukcripp029.mp3",
+      "kind": "word",
+      "word": "crocodile",
+      "ipa": "ˈkrɒkədaɪl",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/crocodile",
+      "sha256": "a8f9fe1f4014e80af78c40ed65f9d403cc9ec12c441b998e46c57e93d7aa5bc8",
+      "bytes": 8301,
+      "seconds": 0.996
+    },
+    "cambridge-audio/words/doll.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukd/ukdog/ukdogge025.mp3",
+      "kind": "word",
+      "word": "doll",
+      "ipa": "dɒl",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/doll",
+      "sha256": "b3197afaa41f1186e2bfd653f99436cd6239becdc514e4f83077297794532c42",
+      "bytes": 5997,
+      "seconds": 0.708
+    },
+    "cambridge-audio/words/dog.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukd/ukdoc/ukdocud022.mp3",
+      "kind": "word",
+      "word": "dog",
+      "ipa": "dɒɡ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/dog",
+      "sha256": "c5b0ed2bd8b4318905921d28aa92e25c1fc6ac852b53d7fa4f4840e228ada712",
+      "bytes": 5229,
+      "seconds": 0.612
+    },
+    "cambridge-audio/words/dining-room.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukc/ukcld/ukcld00339.mp3",
+      "kind": "word",
+      "word": "dining room",
+      "ipa": "ˈdaɪnɪŋ ˌruːm",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/dining-room",
+      "sha256": "925042653c9d7caf469103fe0e139ca8d61cece18ca6ceec20d39b934e9cea66",
+      "bytes": 7725,
+      "seconds": 0.924
+    },
+    "cambridge-audio/words/dirty.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukd/ukdir/ukdirnd004.mp3",
+      "kind": "word",
+      "word": "dirty",
+      "ipa": "ˈdɜːti",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/dirty",
+      "sha256": "24e7738ebc4e590e7bd26530792422143b46299ae3f756219694544257ae666a",
+      "bytes": 5421,
+      "seconds": 0.636
+    },
+    "cambridge-audio/words/door.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukd/ukdon/ukdonke014.mp3",
+      "kind": "word",
+      "word": "door",
+      "ipa": "dɔː",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/door",
+      "sha256": "23b4d109962b62fb9bec18fcdc509aa6c2f4a0ed1b561802aa3e9bab751b2fe4",
+      "bytes": 5613,
+      "seconds": 0.66
+    },
+    "cambridge-audio/words/draw.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukd/ukdra/ukdram_020.mp3",
+      "kind": "word",
+      "word": "draw",
+      "ipa": "drɔː",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/draw",
+      "sha256": "17e6d10bfeeff8f2b0a8a8aa34740ef23c8037a0d17a1480367b87e8b9a0e04e",
+      "bytes": 6381,
+      "seconds": 0.756
+    },
+    "cambridge-audio/words/driving.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukd/ukdri/ukdrive005.mp3",
+      "kind": "word",
+      "word": "driving",
+      "ipa": "ˈdraɪvɪŋ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/driving",
+      "sha256": "e5d5dcfa1fae1ca2c53d425f965d2bf09ca1abc596061453c13fe9817d59167a",
+      "bytes": 6573,
+      "seconds": 0.78
+    },
+    "cambridge-audio/words/ear.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukd/ukdyn/ukdynam018.mp3",
+      "kind": "word",
+      "word": "ear",
+      "ipa": "ɪə",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/ear",
+      "sha256": "4a96d910968b5cb59839397b6c79a548970c09bbaa26c27836b7c317d337a32e",
+      "bytes": 5229,
+      "seconds": 0.612
+    },
+    "cambridge-audio/words/dress.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukd/ukdre/ukdread025.mp3",
+      "kind": "word",
+      "word": "dress",
+      "ipa": "dres",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/dress",
+      "sha256": "3f5a135156476fcd2eddcefd376aa2baa8b0cf768c8c7c84b0f6eef6ee7e4cc8",
+      "bytes": 6381,
+      "seconds": 0.756
+    },
+    "cambridge-audio/words/duck.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukd/ukdub/ukdubio005.mp3",
+      "kind": "word",
+      "word": "duck",
+      "ipa": "dʌk",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/duck",
+      "sha256": "81f8149bf16d89bb5347845127da3e9270cbdf350789306969d1bdb981ceaa8d",
+      "bytes": 4845,
+      "seconds": 0.564
+    },
+    "cambridge-audio/words/eight.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uke/ukeff/ukeffor030.mp3",
+      "kind": "word",
+      "word": "eight",
+      "ipa": "eɪt",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/eight",
+      "sha256": "657a1932ece77cbd18acc8064638addedd860d16f5794697250fa3858e3a4a68",
+      "bytes": 4845,
+      "seconds": 0.564
+    },
+    "cambridge-audio/words/elephant.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uke/ukele/ukelect016.mp3",
+      "kind": "word",
+      "word": "elephant",
+      "ipa": "ˈelɪfənt",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/elephant",
+      "sha256": "2929d457e474dcf7fd36c72026cbe7a2a9d7cf31f9ef7296e8632334379edf2c",
+      "bytes": 7341,
+      "seconds": 0.876
+    },
+    "cambridge-audio/words/eraser.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/c/cal/cald4/cald4uk0508.mp3",
+      "kind": "word",
+      "word": "eraser",
+      "ipa": "ɪˈreɪzə",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/eraser",
+      "sha256": "ca7d042bc566ea693cfff056f4bae6848219acd12c86e429db330130e8bb58dc",
+      "bytes": 14061,
+      "seconds": 1.716
+    },
+    "cambridge-audio/words/eye.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uka/ukawe/ukawein027.mp3",
+      "kind": "word",
+      "word": "eye",
+      "ipa": "aɪ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/eye",
+      "sha256": "daa3ba037e7bb78cbe9779b16acfcdff08aadcca81a340f7437eccd55189c0d0",
+      "bytes": 5421,
+      "seconds": 0.636
+    },
+    "cambridge-audio/words/family.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukf/ukfal/ukfalsi012.mp3",
+      "kind": "word",
+      "word": "family",
+      "ipa": "ˈfæməli",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/family",
+      "sha256": "656c2e6c3c2975fd77d8798c491806e62d478c0da7c2e1ccfea52281bb633cc5",
+      "bytes": 7917,
+      "seconds": 0.948
+    },
+    "cambridge-audio/words/face.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uke/ukeye/ukeyeto017.mp3",
+      "kind": "word",
+      "word": "face",
+      "ipa": "feɪs",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/face",
+      "sha256": "fcde8c80cab97fb458c51e75baa8e0c4ed61fc2817c4fdd16558eaf0f18df833",
+      "bytes": 7917,
+      "seconds": 0.948
+    },
+    "cambridge-audio/words/father.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/c/cdo/cdo03/cdo0317fathuk4615.mp3",
+      "kind": "word",
+      "word": "father",
+      "ipa": "ˈfɑːðə",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/father",
+      "sha256": "96ee5c4981761894ea7e4b571953ef8d7129787dc120e0abdc4b7ae1aa406f84",
+      "bytes": 7533,
+      "seconds": 0.9
+    },
+    "cambridge-audio/words/feet.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukf/ukfea/ukfeast002.mp3",
+      "kind": "word",
+      "word": "feet",
+      "ipa": "fiːt",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/feet",
+      "sha256": "fc6deaa664222a198fb9dea79f693ddbd5d32f5bb3023e180b90c3edca81a841",
+      "bytes": 7533,
+      "seconds": 0.9
+    },
+    "cambridge-audio/words/five.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukf/ukfis/ukfistf012.mp3",
+      "kind": "word",
+      "word": "five",
+      "ipa": "faɪv",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/five",
+      "sha256": "ba81f8ac9ace24ea0886d8cd97ee28f08773ad1311edcfd721cbec40d104bb5b",
+      "bytes": 6957,
+      "seconds": 0.828
+    },
+    "cambridge-audio/words/foot.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukf/ukfol/ukfolks026.mp3",
+      "kind": "word",
+      "word": "foot",
+      "ipa": "fʊt",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/foot",
+      "sha256": "29791f4349c53ce433d8f3358e009e8761282a53cf2d98ab36a4ea9224cc9466",
+      "bytes": 8109,
+      "seconds": 0.972
+    },
+    "cambridge-audio/words/flying.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukf/ukflu/ukflush015.mp3",
+      "kind": "word",
+      "word": "flying",
+      "ipa": "ˈflaɪɪŋ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/flying",
+      "sha256": "9db8051f6120a80cbd8c26d0bc0b7c0dfaf7c5c43e2f81305fd5ff5c476415eb",
+      "bytes": 8877,
+      "seconds": 1.068
+    },
+    "cambridge-audio/words/fish.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukf/ukfir/ukfirew013.mp3",
+      "kind": "word",
+      "word": "fish",
+      "ipa": "fɪʃ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/fish",
+      "sha256": "5038753191d5f14b9db4289f355886e1732eb50e745cb5c207577aab093b4382",
+      "bytes": 7533,
+      "seconds": 0.9
+    },
+    "cambridge-audio/words/four.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukf/ukfoo/ukfootf026.mp3",
+      "kind": "word",
+      "word": "four",
+      "ipa": "fɔː",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/four",
+      "sha256": "9898ee2d964c76f1008455f9db235258972b20ab22edd8280ada11a86e245e63",
+      "bytes": 5421,
+      "seconds": 0.636
+    },
+    "cambridge-audio/words/football.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukf/ukfol/ukfolks028.mp3",
+      "kind": "word",
+      "word": "football",
+      "ipa": "ˈfʊtbɔːl",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/football",
+      "sha256": "b018d4e7fba992756453d209b10fe72623535215d3c8ff04a35b5146bb720bff",
+      "bytes": 8301,
+      "seconds": 0.996
+    },
+    "cambridge-audio/words/frog.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukf/ukfri/ukfrill022.mp3",
+      "kind": "word",
+      "word": "frog",
+      "ipa": "frɒɡ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/frog",
+      "sha256": "4095974da689ee8d04e69d1c64ee2a184bce87db0ebc0b42d793eb3a5e013ffd",
+      "bytes": 11373,
+      "seconds": 1.38
+    },
+    "cambridge-audio/words/garden.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukg/ukgan/ukganja019.mp3",
+      "kind": "word",
+      "word": "garden",
+      "ipa": "ˈɡɑːdən",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/garden",
+      "sha256": "6236acd50123c77d4fb2b9e211bd904b267ebe2c7a848fe82856d26f88e96e00",
+      "bytes": 5613,
+      "seconds": 0.66
+    },
+    "cambridge-audio/words/funny.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukf/ukfun/ukfunk_006.mp3",
+      "kind": "word",
+      "word": "funny",
+      "ipa": "ˈfʌni",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/funny",
+      "sha256": "1d115361ad8434a8519b3931d01880090a3e8213bca96636710787b47c9b243c",
+      "bytes": 6765,
+      "seconds": 0.804
+    },
+    "cambridge-audio/words/giraffe.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukg/ukgir/ukgiraf001.mp3",
+      "kind": "word",
+      "word": "giraffe",
+      "ipa": "dʒɪˈrɑːf",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/giraffe",
+      "sha256": "807c946dda5fce9eeb99505e4de58e9071870545a5c61c028c769ecdf4365a18",
+      "bytes": 6189,
+      "seconds": 0.732
+    },
+    "cambridge-audio/words/green.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukg/ukgra/ukgravi025.mp3",
+      "kind": "word",
+      "word": "green",
+      "ipa": "ɡriːn",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/green",
+      "sha256": "004eacbf9c1c99798e714ed2c799b9f6009c310900a078c77789a49fd99c915f",
+      "bytes": 5613,
+      "seconds": 0.66
+    },
+    "cambridge-audio/words/goodbye.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukg/ukgon/ukgonad012.mp3",
+      "kind": "word",
+      "word": "goodbye",
+      "ipa": "ɡʊdˈbaɪ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/goodbye",
+      "sha256": "869a780de0216a30fc2de9e4c2b01e4f07931cbd1c45af75b5fbf3c70d37273a",
+      "bytes": 5997,
+      "seconds": 0.708
+    },
+    "cambridge-audio/words/grandmother.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukg/ukgra/ukgrand017.mp3",
+      "kind": "word",
+      "word": "grandmother",
+      "ipa": "ˈɡrænmʌðə",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/grandmother",
+      "sha256": "b139829fd8716cfda0b7ce98e90585ed7a77bafb64946771c7e0939718979dbe",
+      "bytes": 6189,
+      "seconds": 0.732
+    },
+    "cambridge-audio/words/grandfather.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukg/ukgra/ukgrand009.mp3",
+      "kind": "word",
+      "word": "grandfather",
+      "ipa": "ˈɡrænfɑːðə",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/grandfather",
+      "sha256": "a0a20a4c23df59332b8b4939fe1614bda984cf9a381a96f99f8a472164181550",
+      "bytes": 7725,
+      "seconds": 0.924
+    },
+    "cambridge-audio/words/grey.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukg/ukgra/ukgravi003.mp3",
+      "kind": "word",
+      "word": "grey",
+      "ipa": "ɡreɪ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/grey",
+      "sha256": "14c4ad6a2c578ab12aae93b06c3f688623d02b56081a5698a01e4e8adfdaead7",
+      "bytes": 5997,
+      "seconds": 0.708
+    },
+    "cambridge-audio/words/guitar.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukg/ukgui/ukguime006.mp3",
+      "kind": "word",
+      "word": "guitar",
+      "ipa": "ɡɪˈtɑː",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/guitar",
+      "sha256": "a15921c90fc8fa262e3937c24ae6cde445d03de2c9b4b7908f5ba172261abbdc",
+      "bytes": 6189,
+      "seconds": 0.732
+    },
+    "cambridge-audio/words/hair.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukh/ukhae/ukhaema018.mp3",
+      "kind": "word",
+      "word": "hair",
+      "ipa": "heə",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/hair",
+      "sha256": "a638b211e6eabcda8947b9f3f21a1a475d2513ac14e7b5d02b079e28e68fe99d",
+      "bytes": 7341,
+      "seconds": 0.876
+    },
+    "cambridge-audio/words/hall.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukh/ukhai/ukhairp020.mp3",
+      "kind": "word",
+      "word": "hall",
+      "ipa": "hɔːl",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/hall",
+      "sha256": "9f5fcece5a75dcf385d88a7f36fb6ddcca4e1ebebbeb0120303206f37861bf9a",
+      "bytes": 7917,
+      "seconds": 0.948
+    },
+    "cambridge-audio/words/hand.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukh/ukhal/ukhallw029.mp3",
+      "kind": "word",
+      "word": "hand",
+      "ipa": "hænd",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/hand",
+      "sha256": "33cb6418b7811fe3d36965ab7c4bb6f4e470fe966a5ad50e30658a25e9ed650d",
+      "bytes": 8493,
+      "seconds": 1.02
+    },
+    "cambridge-audio/words/happy.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukh/ukhap/ukhapha010.mp3",
+      "kind": "word",
+      "word": "happy",
+      "ipa": "ˈhæpi",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/happy",
+      "sha256": "c3eea8996cb3ac46e66ddee1c9e14011a5b00d451af022a7c28c76ba94c53cc2",
+      "bytes": 8301,
+      "seconds": 0.996
+    },
+    "cambridge-audio/words/helicopter.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukh/ukhef/ukheft_017.mp3",
+      "kind": "word",
+      "word": "helicopter",
+      "ipa": "ˈhelɪˌkɒptə",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/helicopter",
+      "sha256": "50dcd37d58c660a17c74f19302f1a809993fdb8d58ddc91e472797faa0ba2fbc",
+      "bytes": 7917,
+      "seconds": 0.948
+    },
+    "cambridge-audio/words/head.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukh/ukhea/ukhead_001.mp3",
+      "kind": "word",
+      "word": "head",
+      "ipa": "hed",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/head",
+      "sha256": "f1123d264814ae5a3b9f9d0ceec6655c85cda0588eadba20620c68a18365046b",
+      "bytes": 9645,
+      "seconds": 1.164
+    },
+    "cambridge-audio/words/hello.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukh/ukhef/ukheft_029.mp3",
+      "kind": "word",
+      "word": "hello",
+      "ipa": "heˈləʊ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/hello",
+      "sha256": "d94f5a99089eca9c11769e75e2e406a6de4ab67a095f7ecccb91c71a22b10236",
+      "bytes": 6189,
+      "seconds": 0.732
+    },
+    "cambridge-audio/words/hippo.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukh/ukhim/ukhimal025.mp3",
+      "kind": "word",
+      "word": "hippo",
+      "ipa": "ˈhɪpəʊ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/hippo",
+      "sha256": "0204de9911cddfc1405ba5e981c89f44ad4edaf40c496e3e276dd793ec740091",
+      "bytes": 5229,
+      "seconds": 0.612
+    },
+    "cambridge-audio/words/horse.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukh/ukhiv/ukhive_017.mp3",
+      "kind": "word",
+      "word": "horse",
+      "ipa": "hɔːs",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/horse",
+      "sha256": "b0704adcc91be858663a9e1f887cd7fa3a919b44103355478c5f9331134b9f22",
+      "bytes": 6957,
+      "seconds": 0.828
+    },
+    "cambridge-audio/words/ice-cream.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukc/ukcld/ukcld00700.mp3",
+      "kind": "word",
+      "word": "ice cream",
+      "ipa": "ˌaɪs ˈkriːm",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/ice-cream",
+      "sha256": "3330f3744e20b812da8e399c3d943140a61129d84c4c30f8c3d7b3de2b7dcf99",
+      "bytes": 6765,
+      "seconds": 0.804
+    },
+    "cambridge-audio/words/house.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukh/ukhot/ukhotfo023.mp3",
+      "kind": "word",
+      "word": "house",
+      "ipa": "haʊs",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/house",
+      "sha256": "295a8474535f66ce8dcdb50cff3dbd53e09edfcdb95cc348c72a3e1c27be7811",
+      "bytes": 11373,
+      "seconds": 1.38
+    },
+    "cambridge-audio/words/hungry.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukh/ukhun/ukhunch015.mp3",
+      "kind": "word",
+      "word": "hungry",
+      "ipa": "ˈhʌŋɡri",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/hungry",
+      "sha256": "2ecadf3d775a93e699ce6873c87a798ce3c2b52f4bdee7efc05b5e148dcdc11c",
+      "bytes": 10797,
+      "seconds": 1.308
+    },
+    "cambridge-audio/words/in.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uki/ukimp/ukimpro019.mp3",
+      "kind": "word",
+      "word": "in",
+      "ipa": "ɪn",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/in",
+      "sha256": "02a7e177de70e0b724e1338c349b859ef54f120f1d8536423ec8e6cdf8520ba0",
+      "bytes": 4461,
+      "seconds": 0.516
+    },
+    "cambridge-audio/words/jacket.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uki/ukiti/ukitine026.mp3",
+      "kind": "word",
+      "word": "jacket",
+      "ipa": "ˈdʒækɪt",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/jacket",
+      "sha256": "d6404be90bbacfff1bbf4b94e9d4a0a2071e8a1d07699f389898a1f908285741",
+      "bytes": 5421,
+      "seconds": 0.636
+    },
+    "cambridge-audio/words/kitchen.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukk/ukkit/ukkit__002.mp3",
+      "kind": "word",
+      "word": "kitchen",
+      "ipa": "ˈkɪtʃən",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/kitchen",
+      "sha256": "e663f40f149024c99e9674759e73a25fa2b7a2b6572df5801cb11ca5b00e7497",
+      "bytes": 6573,
+      "seconds": 0.78
+    },
+    "cambridge-audio/words/jump.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukj/ukjud/ukjudic027.mp3",
+      "kind": "word",
+      "word": "jump",
+      "ipa": "dʒʌmp",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/jump",
+      "sha256": "e6d80da10224e0de059634dfcd35d0ca6f1ca60316bab8cbaf66455d413076aa",
+      "bytes": 4077,
+      "seconds": 0.468
+    },
+    "cambridge-audio/words/like.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukl/uklif/uklifes017.mp3",
+      "kind": "word",
+      "word": "like",
+      "ipa": "laɪk",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/like",
+      "sha256": "d72606eb73907fbf72fe15aa291a658c001f3a3e807c78f2eaa611326b60bc3e",
+      "bytes": 4653,
+      "seconds": 0.54
+    },
+    "cambridge-audio/words/leg.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukl/ukled/ukledge021.mp3",
+      "kind": "word",
+      "word": "leg",
+      "ipa": "leɡ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/leg",
+      "sha256": "fe364d33c8a5fe261343c0b714a5e97b6ca74b22eb1c87545c3335f226935346",
+      "bytes": 5037,
+      "seconds": 0.588
+    },
+    "cambridge-audio/words/living-room.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukc/ukcld/ukcld00823.mp3",
+      "kind": "word",
+      "word": "living room",
+      "ipa": "ˈlɪvɪŋ ˌruːm",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/living-room",
+      "sha256": "cbd0a8267915553265b8d70a97d7a59acb2aace94a13bec5b9c15cc51a94522a",
+      "bytes": 6765,
+      "seconds": 0.804
+    },
+    "cambridge-audio/words/lorry.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukl/ukloo/ukloose016.mp3",
+      "kind": "word",
+      "word": "lorry",
+      "ipa": "ˈlɒri",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/lorry",
+      "sha256": "5476104970160c440a77658c0f8e8eb173a3e8c01bae3eebc7391bfc03a987c4",
+      "bytes": 6189,
+      "seconds": 0.732
+    },
+    "cambridge-audio/words/long.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukl/uklon/uklonel004.mp3",
+      "kind": "word",
+      "word": "long",
+      "ipa": "lɒŋ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/long",
+      "sha256": "06199c351c732159469f6db75004c9b614c677aee70d94ba27dc311e118444d1",
+      "bytes": 6573,
+      "seconds": 0.78
+    },
+    "cambridge-audio/words/mother.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukm/ukmot/ukmothe001.mp3",
+      "kind": "word",
+      "word": "mother",
+      "ipa": "ˈmʌðə",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/mother",
+      "sha256": "bea678c6f6badb629459e2c93949094b24dbfc392c89ce269e204925c5a05e63",
+      "bytes": 4845,
+      "seconds": 0.564
+    },
+    "cambridge-audio/words/monkey.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukm/ukmon/ukmonk_002.mp3",
+      "kind": "word",
+      "word": "monkey",
+      "ipa": "ˈmʌŋki",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/monkey",
+      "sha256": "aa2dbf32856d7eaf5af74fa19686c536619f5c45133e1d4f0c40ad8975e388aa",
+      "bytes": 6573,
+      "seconds": 0.78
+    },
+    "cambridge-audio/words/motorbike.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukm/ukmot/ukmothe026.mp3",
+      "kind": "word",
+      "word": "motorbike",
+      "ipa": "ˈməʊtəbaɪk",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/motorbike",
+      "sha256": "48dffaf1f853249481c722ed4e5bcfda3747d64623b9853d8569773461044a16",
+      "bytes": 8109,
+      "seconds": 0.972
+    },
+    "cambridge-audio/words/mouse.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukm/ukmou/ukmourn002.mp3",
+      "kind": "word",
+      "word": "mouse",
+      "ipa": "maʊs",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/mouse",
+      "sha256": "ed14bb2331b13fb1f141f0280dcaba1cff5c793fd7c0f29d78649bcd078e59db",
+      "bytes": 6189,
+      "seconds": 0.732
+    },
+    "cambridge-audio/words/mouth.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukm/ukmou/ukmourn011.mp3",
+      "kind": "word",
+      "word": "mouth",
+      "ipa": "maʊθ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/mouth",
+      "sha256": "c83dd977d0b17280798432333f73986c2469dfc9ed2a9510c9faa57a08469fe2",
+      "bytes": 6957,
+      "seconds": 0.828
+    },
+    "cambridge-audio/words/nine.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukn/uknig/uknight021.mp3",
+      "kind": "word",
+      "word": "nine",
+      "ipa": "naɪn",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/nine",
+      "sha256": "91229b66b7ca2f920287df82b4372b0846a46c18309cf9f551aa818f50aa55f0",
+      "bytes": 7533,
+      "seconds": 0.9
+    },
+    "cambridge-audio/words/on.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uka/ukad5/ukad5014.mp3",
+      "kind": "word",
+      "word": "on",
+      "ipa": "ɒn",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/on",
+      "sha256": "454ecfcb3d5dcde624a7666c2f701c7ac58e6c9f88908bfef341fe156809735e",
+      "bytes": 4077,
+      "seconds": 0.468
+    },
+    "cambridge-audio/words/nose.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukn/uknoc/uknoctu011.mp3",
+      "kind": "word",
+      "word": "nose",
+      "ipa": "nəʊz",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/nose",
+      "sha256": "2b3c7e21934ed787195c5214300dfa00a98fe0cab901d4adbe63da6e9a964c5d",
+      "bytes": 9261,
+      "seconds": 1.116
+    },
+    "cambridge-audio/words/old.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uko/ukoff/ukoffst030.mp3",
+      "kind": "word",
+      "word": "old",
+      "ipa": "əʊld",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/old",
+      "sha256": "6cb45d229af22ac6c430d5bb002f7992ad8ef07218c6c2c768faf8c5b4e11baa",
+      "bytes": 7533,
+      "seconds": 0.9
+    },
+    "cambridge-audio/words/one.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uko/ukomn/ukomniv007.mp3",
+      "kind": "word",
+      "word": "one",
+      "ipa": "wʌn",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/one",
+      "sha256": "febc10b87fc5b68fa59629306448dc3edfec6ca7e1b266928455fe00bb16bfc2",
+      "bytes": 6765,
+      "seconds": 0.804
+    },
+    "cambridge-audio/words/orange.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uko/ukora/ukorang001.mp3",
+      "kind": "word",
+      "word": "orange",
+      "ipa": "ˈɒrɪndʒ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/orange",
+      "sha256": "f2eebdde08c7c6771f4989b894598e9a1ff6afe2954584364879aba1bbcbc4c7",
+      "bytes": 8109,
+      "seconds": 0.972
+    },
+    "cambridge-audio/words/pen.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukp/ukpee/ukpeewe016.mp3",
+      "kind": "word",
+      "word": "pen",
+      "ipa": "pen",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/pen",
+      "sha256": "d2d5905c5a1268043d4fb9a782d3b430944de16610907030e7b6a5fb0808148a",
+      "bytes": 5997,
+      "seconds": 0.708
+    },
+    "cambridge-audio/words/pear.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukp/ukpai/ukpaink014.mp3",
+      "kind": "word",
+      "word": "pear",
+      "ipa": "peə",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/pear",
+      "sha256": "21dd3b91c592c89a4a2fab95d4bfd44cf3601674b2e1b944ea6d9c1e9c44b39c",
+      "bytes": 6381,
+      "seconds": 0.756
+    },
+    "cambridge-audio/words/party.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukp/ukpar/ukparti012.mp3",
+      "kind": "word",
+      "word": "party",
+      "ipa": "ˈpɑːti",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/party",
+      "sha256": "df703d66952d0649d3467c6bebffe999462e915a3194f7068267e13191783055",
+      "bytes": 5997,
+      "seconds": 0.708
+    },
+    "cambridge-audio/words/pencil.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukp/ukpee/ukpeewe023.mp3",
+      "kind": "word",
+      "word": "pencil",
+      "ipa": "ˈpensəl",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/pencil",
+      "sha256": "ef19a6a265de7bbc3c523b5becfc9bcb0c94c043639649fa1d205c3182950fa6",
+      "bytes": 6573,
+      "seconds": 0.78
+    },
+    "cambridge-audio/words/piano.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukp/ukpia/ukpiano001.mp3",
+      "kind": "word",
+      "word": "piano",
+      "ipa": "piˈænəʊ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/piano",
+      "sha256": "7976ccd8dc3e1d72123ca20756d09d2427bbb0b7e155a287710d12f65ef7748b",
+      "bytes": 7917,
+      "seconds": 0.948
+    },
+    "cambridge-audio/words/pink.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukp/ukpil/ukpilot027.mp3",
+      "kind": "word",
+      "word": "pink",
+      "ipa": "pɪŋk",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/pink",
+      "sha256": "3e5f4fea42d85d7bb81d15402087c1a183cf210c4d99a19a9af8650255ff66e2",
+      "bytes": 6189,
+      "seconds": 0.732
+    },
+    "cambridge-audio/words/plane.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukp/ukpkk/ukpkk__023.mp3",
+      "kind": "word",
+      "word": "plane",
+      "ipa": "pleɪn",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/plane",
+      "sha256": "1286508958b48fbd10db9212d138cac072c3f8340511684c5b46d925556c76cb",
+      "bytes": 7725,
+      "seconds": 0.924
+    },
+    "cambridge-audio/words/pure.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukp/ukpun/ukpunst016.mp3",
+      "kind": "word",
+      "word": "pure",
+      "ipa": "pjʊə",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/pure",
+      "sha256": "d3e843605f29fbc17dc302c198bdccb97c7e75432a635c4714cf0d67975c5546",
+      "bytes": 5613,
+      "seconds": 0.66
+    },
+    "cambridge-audio/words/play.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukp/ukpla/ukplate018.mp3",
+      "kind": "word",
+      "word": "play",
+      "ipa": "pleɪ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/play",
+      "sha256": "f164b2b84cfc925efb5b58c68deb2d530064d04bddeebda55b02b32caa8a7822",
+      "bytes": 5997,
+      "seconds": 0.708
+    },
+    "cambridge-audio/words/purple.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukp/ukpur/ukpurit004.mp3",
+      "kind": "word",
+      "word": "purple",
+      "ipa": "ˈpɜːpəl",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/purple",
+      "sha256": "e16ed253da4567c54616f5d925f5a4e8861b72060858923bd78793ae0b631dc4",
+      "bytes": 5421,
+      "seconds": 0.636
+    },
+    "cambridge-audio/words/reading.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukr/ukrea/ukreadi003.mp3",
+      "kind": "word",
+      "word": "reading",
+      "ipa": "ˈriːdɪŋ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/reading",
+      "sha256": "a2767d805ffed8512ae9d34420e71a9239336a963cc86f7e37dff1f1445fec18",
+      "bytes": 6381,
+      "seconds": 0.756
+    },
+    "cambridge-audio/words/red.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukr/ukray/ukrayon024.mp3",
+      "kind": "word",
+      "word": "red",
+      "ipa": "red",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/red",
+      "sha256": "d344a0f3c8a0002a3c4fad250b56ab8bc4de4b73127f976318f32c73e99f1009",
+      "bytes": 5229,
+      "seconds": 0.612
+    },
+    "cambridge-audio/words/run.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukr/ukrum/ukrum__018.mp3",
+      "kind": "word",
+      "word": "run",
+      "ipa": "rʌn",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/run",
+      "sha256": "8546909cd67c6f82cedd0c4385157ba15859bdedd7411cc76d52bdaacbf21e80",
+      "bytes": 6189,
+      "seconds": 0.732
+    },
+    "cambridge-audio/words/ride.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukr/ukrhy/ukrhyth029.mp3",
+      "kind": "word",
+      "word": "ride",
+      "ipa": "raɪd",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/ride",
+      "sha256": "f2c0fa59e8598cb9ce0c70623223340c9785b0bef58849ee55c258789c97c1da",
+      "bytes": 5805,
+      "seconds": 0.684
+    },
+    "cambridge-audio/words/riding.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukr/ukrid/ukrider006.mp3",
+      "kind": "word",
+      "word": "riding",
+      "ipa": "ˈraɪdɪŋ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/riding",
+      "sha256": "4028cd2cc9bd7ec3d9a44c2bcfd4425b145a8ba4cb7147d2cd0e669a60df9560",
+      "bytes": 6189,
+      "seconds": 0.732
+    },
+    "cambridge-audio/words/sad.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uks/uksac/uksacri009.mp3",
+      "kind": "word",
+      "word": "sad",
+      "ipa": "sæd",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/sad",
+      "sha256": "1168bbf13419e121d61298a5fbb6c3ac798d24bf3068117a4c123612c688a39d",
+      "bytes": 6573,
+      "seconds": 0.78
+    },
+    "cambridge-audio/words/school-bus.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uka/uka34/uka34672.mp3",
+      "kind": "word",
+      "word": "school bus",
+      "ipa": "ˈskuːl ˌbʌs",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/school-bus",
+      "sha256": "91885d0b79b00b4f3676582bddf6f6b007a9860e7937c52fe5d83599c7476359",
+      "bytes": 10221,
+      "seconds": 1.236
+    },
+    "cambridge-audio/words/school.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uks/uksch/ukschol005.mp3",
+      "kind": "word",
+      "word": "school",
+      "ipa": "skuːl",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/school",
+      "sha256": "f08e64a2a468bcbeb0b6c4d8ca594f2d67a22678fb904a294499c990c7ff6776",
+      "bytes": 6573,
+      "seconds": 0.78
+    },
+    "cambridge-audio/words/seven.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uks/ukser/ukservi026.mp3",
+      "kind": "word",
+      "word": "seven",
+      "ipa": "ˈsevən",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/seven",
+      "sha256": "c363ae720aa42efa97d60ea51354aa8462661227d5243edff532d460fe3118e5",
+      "bytes": 5997,
+      "seconds": 0.708
+    },
+    "cambridge-audio/words/shirt.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uks/ukshi/ukshine028.mp3",
+      "kind": "word",
+      "word": "shirt",
+      "ipa": "ʃɜːt",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/shirt",
+      "sha256": "5c7f4f8255713546892b5e82911b0eeb0c44e50f28ac76eca65e4615056fcd83",
+      "bytes": 6573,
+      "seconds": 0.78
+    },
+    "cambridge-audio/words/short.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uks/uksho/ukshorn002.mp3",
+      "kind": "word",
+      "word": "short",
+      "ipa": "ʃɔːt",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/short",
+      "sha256": "654b7c589c0f10cd654c66832845de1dbe19274a17caccc72f6d166ddd6ff2a8",
+      "bytes": 6765,
+      "seconds": 0.804
+    },
+    "cambridge-audio/words/sister.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uks/uksin/uksinle020.mp3",
+      "kind": "word",
+      "word": "sister",
+      "ipa": "ˈsɪstə",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/sister",
+      "sha256": "899cf40e035ae4661ea4c2e9525ed6aa563f08af28148887e63a0e0307d6b5db",
+      "bytes": 5805,
+      "seconds": 0.684
+    },
+    "cambridge-audio/words/sing.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uks/uksin/uksineq007.mp3",
+      "kind": "word",
+      "word": "sing",
+      "ipa": "sɪŋ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/sing",
+      "sha256": "f06fb2702d26d8bc7c042c5f5d243d149db9a19fa3afe532ff65fc1e89897139",
+      "bytes": 5805,
+      "seconds": 0.684
+    },
+    "cambridge-audio/words/six.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uks/uksit/uksitua003.mp3",
+      "kind": "word",
+      "word": "six",
+      "ipa": "sɪks",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/six",
+      "sha256": "8ed702fd0e805e826d1284f4a7b068044f53d2d8154588285819cc4c39648f8b",
+      "bytes": 5997,
+      "seconds": 0.708
+    },
+    "cambridge-audio/words/small.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uks/ukslu/ukslutt014.mp3",
+      "kind": "word",
+      "word": "small",
+      "ipa": "smɔːl",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/small",
+      "sha256": "fcf3aef3a5eaa80da8cae9bf0ada62e04ef2df7b6e8b2a2a3165b99f0945e40c",
+      "bytes": 6573,
+      "seconds": 0.78
+    },
+    "cambridge-audio/words/skirt.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uks/ukski/ukskinl010.mp3",
+      "kind": "word",
+      "word": "skirt",
+      "ipa": "skɜːt",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/skirt",
+      "sha256": "ab6477b1ec2440cbcc1ded857032b37571e88fd6a57ed37eebe540ad3fd8fd60",
+      "bytes": 5997,
+      "seconds": 0.708
+    },
+    "cambridge-audio/words/snake.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uks/uksmu/uksmut_009.mp3",
+      "kind": "word",
+      "word": "snake",
+      "ipa": "sneɪk",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/snake",
+      "sha256": "e9995a022070007a8a2029e7e4cc8cfd493d00a4fa2a56fef59e3f588810836a",
+      "bytes": 6381,
+      "seconds": 0.756
+    },
+    "cambridge-audio/words/star.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uks/uksta/ukstand022.mp3",
+      "kind": "word",
+      "word": "star",
+      "ipa": "stɑː",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/star",
+      "sha256": "75f89ecb29f09c684bd6861a9d8f2f47cce109878d60ecc74c0776761e3ecbf1",
+      "bytes": 6381,
+      "seconds": 0.756
+    },
+    "cambridge-audio/words/swim.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uks/ukswe/uksweet015.mp3",
+      "kind": "word",
+      "word": "swim",
+      "ipa": "swɪm",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/swim",
+      "sha256": "49b329f8faf0ca2a31054340f8f31eb2b61b7d51d8d55b57acfc1c6bf2ebc1ad",
+      "bytes": 5421,
+      "seconds": 0.636
+    },
+    "cambridge-audio/words/swimming.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uks/ukswe/uksweet018.mp3",
+      "kind": "word",
+      "word": "swimming",
+      "ipa": "ˈswɪmɪŋ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/swimming",
+      "sha256": "bde76a0f769286354939d8179ecd1265b11a4819ea08b3491716de083defd208",
+      "bytes": 5997,
+      "seconds": 0.708
+    },
+    "cambridge-audio/words/t-shirt.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukt/uktru/uktrust023.mp3",
+      "kind": "word",
+      "word": "T-shirt",
+      "ipa": "ˈtiːʃɜːt",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/t-shirt",
+      "sha256": "a4bf9b04d17bec41fe7c411d8a3a12ca0a7ec2848e6bfc0e5d0b57bd345f31f7",
+      "bytes": 6381,
+      "seconds": 0.756
+    },
+    "cambridge-audio/words/tail.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukt/uktac/uktacti017.mp3",
+      "kind": "word",
+      "word": "tail",
+      "ipa": "teɪl",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/tail",
+      "sha256": "94ce85a12513ddcea5acaa775868ccdd73d041748704a941442d1d200ce0d6ee",
+      "bytes": 4845,
+      "seconds": 0.564
+    },
+    "cambridge-audio/words/television.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukt/uktel/ukteleg028.mp3",
+      "kind": "word",
+      "word": "television",
+      "ipa": "ˈtelɪvɪʒən",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/television",
+      "sha256": "da2c7bb7117575b8593e19fbc434ac93b632619d1e74dd3bfd086f043bac5a19",
+      "bytes": 7149,
+      "seconds": 0.852
+    },
+    "cambridge-audio/words/table.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uks/uksyn/uksynta027.mp3",
+      "kind": "word",
+      "word": "table",
+      "ipa": "ˈteɪbəl",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/table",
+      "sha256": "c9c2f7911d98db4cf9f805f11cecb5a3d31343882fcc2d0f9a99a941381b8905",
+      "bytes": 5613,
+      "seconds": 0.66
+    },
+    "cambridge-audio/words/ten.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukt/uktem/uktempt005.mp3",
+      "kind": "word",
+      "word": "ten",
+      "ipa": "ten",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/ten",
+      "sha256": "971d9d8c858076725a4100f23976d91e84df18ee98a79b298db58b24f39df170",
+      "bytes": 4461,
+      "seconds": 0.516
+    },
+    "cambridge-audio/words/teeth.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukt/uktec/uktechn019.mp3",
+      "kind": "word",
+      "word": "teeth",
+      "ipa": "tiːθ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/teeth",
+      "sha256": "7a2130ac3314e442ab27486de2286be557127773143f92757668e40f42bb4fc5",
+      "bytes": 4845,
+      "seconds": 0.564
+    },
+    "cambridge-audio/words/tennis.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/c/cdo/cdo02/cdo0216tennuk2029.mp3",
+      "kind": "word",
+      "word": "tennis",
+      "ipa": "ˈtenɪs",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/tennis",
+      "sha256": "dc98d62beeb34bde688edba30f5d3b20f14feeb280bf673e911cde58c988786a",
+      "bytes": 7917,
+      "seconds": 0.948
+    },
+    "cambridge-audio/words/tooth.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukt/ukton/uktoned019.mp3",
+      "kind": "word",
+      "word": "tooth",
+      "ipa": "tuːθ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/tooth",
+      "sha256": "d2fbbd4050de8d58f2f4f30204ceb687bc7369cd1df772cdab21b4276f554551",
+      "bytes": 4845,
+      "seconds": 0.564
+    },
+    "cambridge-audio/words/three.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukt/uktho/ukthoug012.mp3",
+      "kind": "word",
+      "word": "three",
+      "ipa": "θriː",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/three",
+      "sha256": "0de55cd35d2e3fb5a5243a44b7eb40d91d42737e083475fab5b434dbab6e62d7",
+      "bytes": 8301,
+      "seconds": 0.996
+    },
+    "cambridge-audio/words/tiger.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukt/uktic/uktickl024.mp3",
+      "kind": "word",
+      "word": "tiger",
+      "ipa": "ˈtaɪɡə",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/tiger",
+      "sha256": "b103673b7362b14d2b65c1df56225aef29bff0ce8a3a4e0dd0a1f376c92e6edf",
+      "bytes": 7149,
+      "seconds": 0.852
+    },
+    "cambridge-audio/words/toy.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukt/uktow/uktowni013.mp3",
+      "kind": "word",
+      "word": "toy",
+      "ipa": "tɔɪ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/toy",
+      "sha256": "6930e106e535137f63028599ab00aa6ecbabe4b096dfc76a138d96807153be71",
+      "bytes": 5997,
+      "seconds": 0.708
+    },
+    "cambridge-audio/words/train.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukt/uktra/uktract028.mp3",
+      "kind": "word",
+      "word": "train",
+      "ipa": "treɪn",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/train",
+      "sha256": "16f0c28a506320f47ccfeffbfe73dc986e9387dc0ea7bea623d5125a2889fb1d",
+      "bytes": 5805,
+      "seconds": 0.684
+    },
+    "cambridge-audio/words/trousers.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukt/uktro/uktropi024.mp3",
+      "kind": "word",
+      "word": "trousers",
+      "ipa": "ˈtraʊzəz",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/trousers",
+      "sha256": "e357d524bfdac4790c8f8c788b07288243c6df8aef998a37f4511f86773dc333",
+      "bytes": 7149,
+      "seconds": 0.852
+    },
+    "cambridge-audio/words/ugly.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uku/ukugl/ukuglin002.mp3",
+      "kind": "word",
+      "word": "ugly",
+      "ipa": "ˈʌɡli",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/ugly",
+      "sha256": "037aeb6b0a8113698fa15babb75d430e6cba4bf2477c238cb98ca4b709123ea8",
+      "bytes": 5421,
+      "seconds": 0.636
+    },
+    "cambridge-audio/words/two.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukt/uktit/uktitil017.mp3",
+      "kind": "word",
+      "word": "two",
+      "ipa": "tuː",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/two",
+      "sha256": "a3419f5e5d418a43eb1a7662924abfd728f677ae3b3244db668ac5915d1d0a65",
+      "bytes": 4653,
+      "seconds": 0.54
+    },
+    "cambridge-audio/words/walking.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukw/ukwai/ukwaist023.mp3",
+      "kind": "word",
+      "word": "walking",
+      "ipa": "ˈwɔːkɪŋ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/walking",
+      "sha256": "5d0e5e55f05beebd4a30ff3b30e609a7cb956b2fddbda9eb27a1aa1530120fb8",
+      "bytes": 5805,
+      "seconds": 0.684
+    },
+    "cambridge-audio/words/under.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uku/ukund/ukundef004.mp3",
+      "kind": "word",
+      "word": "under",
+      "ipa": "ˈʌndə",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/under",
+      "sha256": "1fa1f8b275df1441fbdf09bcacdebd5fc3f31de9258a7cf785e4152388bf7e47",
+      "bytes": 5229,
+      "seconds": 0.612
+    },
+    "cambridge-audio/words/white.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukw/ukwhi/ukwhisk009.mp3",
+      "kind": "word",
+      "word": "white",
+      "ipa": "waɪt",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/white",
+      "sha256": "14952ddb63a1ab8bcf33f0df8a610844a814d9935910a19b2348710f7f134d91",
+      "bytes": 5037,
+      "seconds": 0.588
+    },
+    "cambridge-audio/words/yellow.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uky/ukyd_/ukyd___013.mp3",
+      "kind": "word",
+      "word": "yellow",
+      "ipa": "ˈjeləʊ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/yellow",
+      "sha256": "3ccc8ca6fe5d22f5121c65e04a4408c9be50c47dd71de96443d22af4b99210a5",
+      "bytes": 5613,
+      "seconds": 0.66
+    },
+    "cambridge-audio/words/window.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukw/ukwin/ukwinde007.mp3",
+      "kind": "word",
+      "word": "window",
+      "ipa": "ˈwɪndəʊ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/window",
+      "sha256": "d72709cbc41a298bcc83fe39e580e7b7af2682bde2ef9cf17fef1a4058f2213d",
+      "bytes": 5997,
+      "seconds": 0.708
+    },
+    "cambridge-audio/sounds/e6.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_hat_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "æ",
+      "example": "hat",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/apple",
+      "sha256": "00183f32637a26ca36f32648bca8118ed139fa463ee5cfd63f4f4b6c63f54030",
+      "bytes": 22893,
+      "seconds": 1.404
+    },
+    "cambridge-audio/words/young.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/uky/ukyie/ukyield024.mp3",
+      "kind": "word",
+      "word": "young",
+      "ipa": "jʌŋ",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/young",
+      "sha256": "7ec2216a5ef9c60ec36b523228166e54bad9d6cc4ee76f01224cbfec6358ea41",
+      "bytes": 5421,
+      "seconds": 0.636
+    },
+    "cambridge-audio/sounds/70.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_pen_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "p",
+      "example": "pen",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/apple",
+      "sha256": "252cbc199de20722a121d8269863a6369f980776dbe75bf26379e665d2e32e7b",
+      "bytes": 20589,
+      "seconds": 1.26
+    },
+    "cambridge-audio/sounds/259-6c.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_label_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "əl",
+      "example": "label",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/apple",
+      "sha256": "fc512b94dab07ff6cc06f99018622422efd3dc2b230350998b4894352fbd28e1",
+      "bytes": 25197,
+      "seconds": 1.548
+    },
+    "cambridge-audio/sounds/251-2d0.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_father_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "ɑː",
+      "example": "father",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/arm",
+      "sha256": "b6ba49ad0d90462fa278383222c48900a5045244cb443a7d695bc7ede3837c16",
+      "bytes": 24045,
+      "seconds": 1.476
+    },
+    "cambridge-audio/sounds/7a.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_zoo_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "z",
+      "example": "zoo",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/arms",
+      "sha256": "c07969a5e0d33d93afa06e85cc7f734bdf5df0679ad24b2ed39c56c6534d0de6",
+      "bytes": 23661,
+      "seconds": 1.452
+    },
+    "cambridge-audio/sounds/6d.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_moon_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "m",
+      "example": "moon",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/arm",
+      "sha256": "86b8e470ed517fc853780709abbe1188b658c7136b18a40e7ceebe72da208fb7",
+      "bytes": 23661,
+      "seconds": 1.452
+    },
+    "cambridge-audio/sounds/65-26a.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_day_2023feb_002.mp3",
+      "kind": "sound",
+      "ipa": "eɪ",
+      "example": "day",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/baby",
+      "sha256": "7321fc2b9ecb31ca42fb562c8f7a567a1ca8ed6614ea243c7949412bb9ec9cd3",
+      "bytes": 24045,
+      "seconds": 1.476
+    },
+    "cambridge-audio/sounds/62.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_book_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "b",
+      "example": "book",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/baby",
+      "sha256": "2dda21b55671fa296b719de741d193e45e73cd9ab7ed30e459e284ac717dd118",
+      "bytes": 20973,
+      "seconds": 1.284
+    },
+    "cambridge-audio/sounds/69.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_happy_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "i",
+      "example": "happy",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/baby",
+      "sha256": "2ccdb47d8453e3365428fe21f63b7f317d5c037b81c83f78ceabc20430d50790",
+      "bytes": 22509,
+      "seconds": 1.38
+    },
+    "cambridge-audio/sounds/261.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_give_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "ɡ",
+      "example": "give",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bag",
+      "sha256": "515fc52f6f055a4dca9c44ac354f7060d5fca4cd8ee511e225c2aee8bea84570",
+      "bytes": 22125,
+      "seconds": 1.356
+    },
+    "cambridge-audio/sounds/254-2d0.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_horse_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "ɔː",
+      "example": "horse",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/ball",
+      "sha256": "e9671d7cceabb35ee37fe2aad7e4e2e555c20e72c013cfa0952ea87440158dd3",
+      "bytes": 24045,
+      "seconds": 1.476
+    },
+    "cambridge-audio/sounds/6c.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_look_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "l",
+      "example": "look",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/ball",
+      "sha256": "3933149456955d58cd3b775769a17d30690dad694fa7f97917851d2d3374fdd7",
+      "bytes": 24045,
+      "seconds": 1.476
+    },
+    "cambridge-audio/sounds/259.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_above_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "ə",
+      "example": "above",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/banana",
+      "sha256": "faf82942f194c1b75e35f062eb685034d6b88023224d0ab077a29b358255cc1a",
+      "bytes": 21357,
+      "seconds": 1.308
+    },
+    "cambridge-audio/sounds/6e.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_name_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "n",
+      "example": "name",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/banana",
+      "sha256": "e9d7ca643d039356dbde625652453217983244a0ead97ca3e47850dd229e901c",
+      "bytes": 24429,
+      "seconds": 1.5
+    },
+    "cambridge-audio/sounds/73.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_say_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "s",
+      "example": "say",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/basketball",
+      "sha256": "2cd828e9cc943d8479a735643678fc0fad0e9038e7303a3bb6c9a0f05736cdc2",
+      "bytes": 24045,
+      "seconds": 1.476
+    },
+    "cambridge-audio/sounds/6b.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_cat_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "k",
+      "example": "cat",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/basketball",
+      "sha256": "54663938cda299e55d5f28cd9110173aa2746bb695f325cae26cb28e716330f3",
+      "bytes": 20973,
+      "seconds": 1.284
+    },
+    "cambridge-audio/sounds/26a.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_ship_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "ɪ",
+      "example": "ship",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/basketball",
+      "sha256": "c80dcb7f1633351357999ad747132b6f26d23f3cfee546a1f5b524d003893eea",
+      "bytes": 22509,
+      "seconds": 1.38
+    },
+    "cambridge-audio/sounds/74.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_town_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "t",
+      "example": "town",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/basketball",
+      "sha256": "b0b4dc368558a548775f484634b7980b72f7f1b966ecc9b39dfbb82cf35fee95",
+      "bytes": 21357,
+      "seconds": 1.308
+    },
+    "cambridge-audio/sounds/3b8.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_think_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "θ",
+      "example": "think",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bathroom",
+      "sha256": "42b72a0b466dadfaceab78b434b86dd8912c5fa44268889a12965d8e520c3ba7",
+      "bytes": 22509,
+      "seconds": 1.38
+    },
+    "cambridge-audio/sounds/72.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_run_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "r",
+      "example": "run",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bathroom",
+      "sha256": "e2013d418e55dae80df9cffe2610f70fc50732091108c194b38fc2c1294873c9",
+      "bytes": 22893,
+      "seconds": 1.404
+    },
+    "cambridge-audio/sounds/75-2d0.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_blue_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "uː",
+      "example": "blue",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bathroom",
+      "sha256": "1fded600dbad944747fee036f01de6d4f7367ca3be8bcbc60d0b3b18460ef33a",
+      "bytes": 23661,
+      "seconds": 1.452
+    },
+    "cambridge-audio/sounds/65.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_head_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "e",
+      "example": "head",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bedroom",
+      "sha256": "9af095907616d7cc7de9c254d25831377c31f1ee568b4d6b556ecfad324eac81",
+      "bytes": 21741,
+      "seconds": 1.332
+    },
+    "cambridge-audio/sounds/6a.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_yes_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "j",
+      "example": "yes",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/beautiful",
+      "sha256": "6ef7c5fe3a432e573f9dad7065d9186d03124910d3e688d86e40a3c5e940b4aa",
+      "bytes": 22509,
+      "seconds": 1.38
+    },
+    "cambridge-audio/sounds/66.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_fish_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "f",
+      "example": "fish",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/beautiful",
+      "sha256": "f234413ecf3d5f73526563207cc6044cad330b5328a9c65a950dcacfe6299d42",
+      "bytes": 22893,
+      "seconds": 1.404
+    },
+    "cambridge-audio/sounds/61-26a.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_eye_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "aɪ",
+      "example": "eye",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bike",
+      "sha256": "1ef39c3754f6e9ea502b94af6749b1c66207cf7c83c20c2f6a81d63785b44c9a",
+      "bytes": 24045,
+      "seconds": 1.476
+    },
+    "cambridge-audio/sounds/64.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_day_2023feb_001.mp3",
+      "kind": "sound",
+      "ipa": "d",
+      "example": "day",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bedroom",
+      "sha256": "188e014938c6044f4eeed4705081c97e27e71834bfd6c545b90617d878600a98",
+      "bytes": 20973,
+      "seconds": 1.284
+    },
+    "cambridge-audio/sounds/25c-2d0.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_bird_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "ɜː",
+      "example": "bird",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bird",
+      "sha256": "e066b63b8bc95c5f9fd8ded169e2710351530d6650320c28b43c4864491abc97",
+      "bytes": 24429,
+      "seconds": 1.5
+    },
+    "cambridge-audio/sounds/252.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_sock_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "ɒ",
+      "example": "sock",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/body",
+      "sha256": "43c6965757bcac6f81921120f0f4dd38d1fd530ed942a904b4d0fcc7d717e3a0",
+      "bytes": 21741,
+      "seconds": 1.332
+    },
+    "cambridge-audio/sounds/28a.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_foot_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "ʊ",
+      "example": "foot",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/book",
+      "sha256": "af347a3a2f0ebdaf79fb5453db8b283908bb9f8ab563b815466d75d2516705b7",
+      "bytes": 21741,
+      "seconds": 1.332
+    },
+    "cambridge-audio/sounds/259-28a.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_nose_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "əʊ",
+      "example": "nose",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/boat",
+      "sha256": "de0b42fa20fc7c2fe242173da855d12076104051f42ded7ae33472fb15fa041f",
+      "bytes": 22893,
+      "seconds": 1.404
+    },
+    "cambridge-audio/sounds/f0.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_this_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "ð",
+      "example": "this",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/brother",
+      "sha256": "6ea6330ed8e94e91060e7ee555af6b2dad4bb5e697f4b866226978e497a45ce7",
+      "bytes": 22893,
+      "seconds": 1.404
+    },
+    "cambridge-audio/sounds/28c.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_cup_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "ʌ",
+      "example": "cup",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/brother",
+      "sha256": "f16d967dafb71ffbe09572c028f64f3fd8a3135fb9abfd60f6ccba7c97b3788f",
+      "bytes": 21741,
+      "seconds": 1.332
+    },
+    "cambridge-audio/sounds/61-28a.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_mouth_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "aʊ",
+      "example": "mouth",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/brown",
+      "sha256": "6e393a9c6b3d02a60c94b28ce0032c905984f241dbff8e60eeb1d6002ee3efb9",
+      "bytes": 23277,
+      "seconds": 1.428
+    },
+    "cambridge-audio/sounds/65-259.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_hair_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "eə",
+      "example": "hair",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/chair",
+      "sha256": "2f9ae1324f185de032cd64370554f8da4852a0e9050c2456bee21953465b9b77",
+      "bytes": 25197,
+      "seconds": 1.548
+    },
+    "cambridge-audio/sounds/74-283.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_cheese_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "tʃ",
+      "example": "cheese",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/chair",
+      "sha256": "9df454f6aed12720d151368be6cc5eb0f1a4af83b9fb7ddd533f2303059a2c7d",
+      "bytes": 22125,
+      "seconds": 1.356
+    },
+    "cambridge-audio/sounds/14b.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_sing_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "ŋ",
+      "example": "sing",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/dining-room",
+      "sha256": "ec40e55fd150d8841ef260dedb4381e5a00a7f17ece05346b0519e4a320aca82",
+      "bytes": 24813,
+      "seconds": 1.524
+    },
+    "cambridge-audio/sounds/69-2d0.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_sheep_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "iː",
+      "example": "sheep",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/clean",
+      "sha256": "1099cdcdcbf31461740f7973681b254216c03a5b1f004f013027973603132a4d",
+      "bytes": 23277,
+      "seconds": 1.428
+    },
+    "cambridge-audio/sounds/76.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_very_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "v",
+      "example": "very",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/driving",
+      "sha256": "f12f6873923152326b353669dcb1543a73912da55b27e765736759c88173a6a6",
+      "bytes": 24045,
+      "seconds": 1.476
+    },
+    "cambridge-audio/sounds/26a-259.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_ear_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "ɪə",
+      "example": "ear",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/ear",
+      "sha256": "27be58533077b51d1936a02ba9b8a0b7111786afe75c6eb32f7a5dda36cc5210",
+      "bytes": 23277,
+      "seconds": 1.428
+    },
+    "cambridge-audio/sounds/283.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_she_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "ʃ",
+      "example": "she",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/fish",
+      "sha256": "e10fea51af2a881a274c3c35ecc4c658cd71b2fc6020c656102a28de9edb36c3",
+      "bytes": 22893,
+      "seconds": 1.404
+    },
+    "cambridge-audio/sounds/77.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_we_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "w",
+      "example": "we",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/one",
+      "sha256": "724fdba2a678fd22eb8bca38b1a22b7ab8b29c837e1221975f961b1647f51ab3",
+      "bytes": 22125,
+      "seconds": 1.356
+    },
+    "cambridge-audio/sounds/68.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_hand_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "h",
+      "example": "hand",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/hair",
+      "sha256": "cf9b53d00a6e0c314c93f87d96e64eb48a652632dd43933bbfcb6f7f4e64b7c7",
+      "bytes": 22125,
+      "seconds": 1.356
+    },
+    "cambridge-audio/sounds/259-6e.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_sudden_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "ən",
+      "example": "sudden",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/garden",
+      "sha256": "c118ace927f7c240cb6a603c981dc794332342fc27d7c6d2129ea63b6dc3e376",
+      "bytes": 25965,
+      "seconds": 1.596
+    },
+    "cambridge-audio/sounds/64-292.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_jump_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "dʒ",
+      "example": "jump",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/giraffe",
+      "sha256": "27cc3e61a18e6fc62935766a5b8571bbb0299f3c5783f3b562fa293fc1d24ebd",
+      "bytes": 24813,
+      "seconds": 1.524
+    },
+    "cambridge-audio/sounds/28a-259.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_pure_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "ʊə",
+      "example": "pure",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/pure",
+      "sha256": "1bee1afb521e46aad341df5670d265239d4a8165ba1ae7d0e1b113a18644cfa7",
+      "bytes": 24813,
+      "seconds": 1.524
+    },
+    "cambridge-audio/sounds/292.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_vision_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "ʒ",
+      "example": "vision",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/television",
+      "sha256": "69af6788ebfeda92fa925910a2f55ccca738b9b2e75fef6d624987e3a790a750",
+      "bytes": 23661,
+      "seconds": 1.452
+    },
+    "cambridge-audio/sounds/254-26a.mp3": {
+      "url": "https://dictionary.cambridge.org/media/english/uk_phonetic/uk_phonetics_sound_boy_2023feb.mp3",
+      "kind": "sound",
+      "ipa": "ɔɪ",
+      "example": "boy",
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/toy",
+      "sha256": "69c7340fe7e373026fab9851328de6e47c3be7059f67b3cab171a6ea553177f0",
+      "bytes": 24429,
+      "seconds": 1.5
+    }
+  }
+}

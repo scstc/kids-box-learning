@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CourseWord } from "../data/course";
-import { wordAudioPath, soundAudioPath } from "../data/practiceAudio";
+import { wordAudioPath, soundAudioPath, ipaAudioPath } from "../data/practiceAudio";
 import { pauseOtherMedia } from "../data/media";
+import { recordedWordGuide, recordedSoundPath } from "../data/cambridgePronunciation";
 import appVersion from "../../app-version.json";
 
 export function useCourseAudio() {
@@ -73,6 +74,14 @@ export function useCourseAudio() {
       playFile(label, soundAudioPath(ipa)),
     [playFile],
   );
+  const playIpa = useCallback(
+    (ipa: string, label: string) => playFile(label, ipaAudioPath(ipa)),
+    [playFile],
+  );
+  const playRecordedSound = useCallback(
+    (ipa: string, label: string) => playFile(label, recordedSoundPath(ipa)),
+    [playFile],
+  );
   const retry = useCallback(() => {
     const last = lastRequest.current;
     if (last) void playFile(last.text, last.path, last.slow);
@@ -82,18 +91,19 @@ export function useCourseAudio() {
       stop();
       const id = request.current;
       setBlending(true);
-      const parts = word.sounds.flatMap((sound, index) =>
+      const guide = recordedWordGuide(word.id);
+      const parts = (guide?.sounds ?? word.sounds).flatMap((sound, index) =>
         sound
           ? [
               {
                 text: `${word.id}:${index}`,
-                path: soundAudioPath(sound),
+                path: guide ? recordedSoundPath(sound) : soundAudioPath(sound),
               },
             ]
           : [],
       );
       const steps = [
-        ...(parts.length > 1 ? parts : []),
+        ...(guide || parts.length > 1 ? parts : []),
         { text: word.en, path: wordAudioPath(word.en) },
       ];
       const next = (index: number) => {
@@ -122,6 +132,8 @@ export function useCourseAudio() {
   return {
     play,
     playSound,
+    playIpa,
+    playRecordedSound,
     blend,
     blending,
     retry,

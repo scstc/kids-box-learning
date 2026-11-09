@@ -1,0 +1,2278 @@
+{
+  "publisher": "Cambridge Dictionary · © Cambridge University Press",
+  "accent": "en-GB",
+  "words": {
+    "apple": {
+      "ipa": "ˈæpəl",
+      "sounds": [
+        "æ",
+        "p",
+        "əl"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/apple",
+      "audio": "cambridge-audio/words/apple.mp3",
+      "source": "dictionary"
+    },
+    "arm": {
+      "ipa": "ɑːm",
+      "sounds": [
+        "ɑː",
+        "m"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/arm",
+      "audio": "cambridge-audio/words/arm.mp3",
+      "source": "dictionary"
+    },
+    "arms": {
+      "ipa": "ɑːmz",
+      "sounds": [
+        "ɑː",
+        "m",
+        "z"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/arms",
+      "audio": "cambridge-audio/words/arms.mp3",
+      "source": "dictionary"
+    },
+    "baby": {
+      "ipa": "ˈbeɪbi",
+      "sounds": [
+        "b",
+        "eɪ",
+        "b",
+        "i"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/baby",
+      "audio": "cambridge-audio/words/baby.mp3",
+      "source": "dictionary"
+    },
+    "bag": {
+      "ipa": "bæɡ",
+      "sounds": [
+        "b",
+        "æ",
+        "ɡ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bag",
+      "audio": "cambridge-audio/words/bag.mp3",
+      "source": "dictionary"
+    },
+    "ball": {
+      "ipa": "bɔːl",
+      "sounds": [
+        "b",
+        "ɔː",
+        "l"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/ball",
+      "audio": "cambridge-audio/words/ball.mp3",
+      "source": "dictionary"
+    },
+    "banana": {
+      "ipa": "bəˈnɑːnə",
+      "sounds": [
+        "b",
+        "ə",
+        "n",
+        "ɑː",
+        "n",
+        "ə"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/banana",
+      "audio": "cambridge-audio/words/banana.mp3",
+      "source": "dictionary"
+    },
+    "basketball": {
+      "ipa": "ˈbɑːskɪtbɔːl",
+      "sounds": [
+        "b",
+        "ɑː",
+        "s",
+        "k",
+        "ɪ",
+        "t",
+        "b",
+        "ɔː",
+        "l"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/basketball",
+      "audio": "cambridge-audio/words/basketball.mp3",
+      "source": "dictionary"
+    },
+    "bathroom": {
+      "ipa": "ˈbɑːθruːm",
+      "sounds": [
+        "b",
+        "ɑː",
+        "θ",
+        "r",
+        "uː",
+        "m"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bathroom",
+      "audio": "cambridge-audio/words/bathroom.mp3",
+      "source": "dictionary"
+    },
+    "beautiful": {
+      "ipa": "ˈbjuːtɪfəl",
+      "sounds": [
+        "b",
+        "j",
+        "uː",
+        "t",
+        "ɪ",
+        "f",
+        "əl"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/beautiful",
+      "audio": "cambridge-audio/words/beautiful.mp3",
+      "source": "dictionary"
+    },
+    "bedroom": {
+      "ipa": "ˈbedruːm",
+      "sounds": [
+        "b",
+        "e",
+        "d",
+        "r",
+        "uː",
+        "m"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bedroom",
+      "audio": "cambridge-audio/words/bedroom.mp3",
+      "source": "dictionary"
+    },
+    "big": {
+      "ipa": "bɪɡ",
+      "sounds": [
+        "b",
+        "ɪ",
+        "ɡ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/big",
+      "audio": "cambridge-audio/words/big.mp3",
+      "source": "dictionary"
+    },
+    "bike": {
+      "ipa": "baɪk",
+      "sounds": [
+        "b",
+        "aɪ",
+        "k"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bike",
+      "audio": "cambridge-audio/words/bike.mp3",
+      "source": "dictionary"
+    },
+    "bird": {
+      "ipa": "bɜːd",
+      "sounds": [
+        "b",
+        "ɜː",
+        "d"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bird",
+      "audio": "cambridge-audio/words/bird.mp3",
+      "source": "dictionary"
+    },
+    "black": {
+      "ipa": "blæk",
+      "sounds": [
+        "b",
+        "l",
+        "æ",
+        "k"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/black",
+      "audio": "cambridge-audio/words/black.mp3",
+      "source": "dictionary"
+    },
+    "blue": {
+      "ipa": "bluː",
+      "sounds": [
+        "b",
+        "l",
+        "uː"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/blue",
+      "audio": "cambridge-audio/words/blue.mp3",
+      "source": "dictionary"
+    },
+    "boat": {
+      "ipa": "bəʊt",
+      "sounds": [
+        "b",
+        "əʊ",
+        "t"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/boat",
+      "audio": "cambridge-audio/words/boat.mp3",
+      "source": "dictionary"
+    },
+    "body": {
+      "ipa": "ˈbɒdi",
+      "sounds": [
+        "b",
+        "ɒ",
+        "d",
+        "i"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/body",
+      "audio": "cambridge-audio/words/body.mp3",
+      "source": "dictionary"
+    },
+    "book": {
+      "ipa": "bʊk",
+      "sounds": [
+        "b",
+        "ʊ",
+        "k"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/book",
+      "audio": "cambridge-audio/words/book.mp3",
+      "source": "dictionary"
+    },
+    "brother": {
+      "ipa": "ˈbrʌðə",
+      "sounds": [
+        "b",
+        "r",
+        "ʌ",
+        "ð",
+        "ə"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/brother",
+      "audio": "cambridge-audio/words/brother.mp3",
+      "source": "dictionary"
+    },
+    "brown": {
+      "ipa": "braʊn",
+      "sounds": [
+        "b",
+        "r",
+        "aʊ",
+        "n"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/brown",
+      "audio": "cambridge-audio/words/brown.mp3",
+      "source": "dictionary"
+    },
+    "burger": {
+      "ipa": "ˈbɜːɡə",
+      "sounds": [
+        "b",
+        "ɜː",
+        "ɡ",
+        "ə"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/burger",
+      "audio": "cambridge-audio/words/burger.mp3",
+      "source": "dictionary"
+    },
+    "bus": {
+      "ipa": "bʌs",
+      "sounds": [
+        "b",
+        "ʌ",
+        "s"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/bus",
+      "audio": "cambridge-audio/words/bus.mp3",
+      "source": "dictionary"
+    },
+    "cake": {
+      "ipa": "keɪk",
+      "sounds": [
+        "k",
+        "eɪ",
+        "k"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/cake",
+      "audio": "cambridge-audio/words/cake.mp3",
+      "source": "dictionary"
+    },
+    "car": {
+      "ipa": "kɑː",
+      "sounds": [
+        "k",
+        "ɑː"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/car",
+      "audio": "cambridge-audio/words/car.mp3",
+      "source": "dictionary"
+    },
+    "cat": {
+      "ipa": "kæt",
+      "sounds": [
+        "k",
+        "æ",
+        "t"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/cat",
+      "audio": "cambridge-audio/words/cat.mp3",
+      "source": "dictionary"
+    },
+    "chair": {
+      "ipa": "tʃeə",
+      "sounds": [
+        "tʃ",
+        "eə"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/chair",
+      "audio": "cambridge-audio/words/chair.mp3",
+      "source": "dictionary"
+    },
+    "chocolate": {
+      "ipa": "ˈtʃɒklət",
+      "sounds": [
+        "tʃ",
+        "ɒ",
+        "k",
+        "l",
+        "ə",
+        "t"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/chocolate",
+      "audio": "cambridge-audio/words/chocolate.mp3",
+      "source": "dictionary"
+    },
+    "clean": {
+      "ipa": "kliːn",
+      "sounds": [
+        "k",
+        "l",
+        "iː",
+        "n"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/clean",
+      "audio": "cambridge-audio/words/clean.mp3",
+      "source": "dictionary"
+    },
+    "computer": {
+      "ipa": "kəmˈpjuːtə",
+      "sounds": [
+        "k",
+        "ə",
+        "m",
+        "p",
+        "j",
+        "uː",
+        "t",
+        "ə"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/computer",
+      "audio": "cambridge-audio/words/computer.mp3",
+      "source": "dictionary"
+    },
+    "crocodile": {
+      "ipa": "ˈkrɒkədaɪl",
+      "sounds": [
+        "k",
+        "r",
+        "ɒ",
+        "k",
+        "ə",
+        "d",
+        "aɪ",
+        "l"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/crocodile",
+      "audio": "cambridge-audio/words/crocodile.mp3",
+      "source": "dictionary"
+    },
+    "dance": {
+      "ipa": "dɑːns",
+      "sounds": [
+        "d",
+        "ɑː",
+        "n",
+        "s"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/dance",
+      "audio": "cambridge-audio/words/dance.mp3",
+      "source": "dictionary"
+    },
+    "dining-room": {
+      "ipa": "ˈdaɪnɪŋ ˌruːm",
+      "sounds": [
+        "d",
+        "aɪ",
+        "n",
+        "ɪ",
+        "ŋ",
+        "r",
+        "uː",
+        "m"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/dining-room",
+      "audio": "cambridge-audio/words/dining-room.mp3",
+      "source": "dictionary"
+    },
+    "dirty": {
+      "ipa": "ˈdɜːti",
+      "sounds": [
+        "d",
+        "ɜː",
+        "t",
+        "i"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/dirty",
+      "audio": "cambridge-audio/words/dirty.mp3",
+      "source": "dictionary"
+    },
+    "dog": {
+      "ipa": "dɒɡ",
+      "sounds": [
+        "d",
+        "ɒ",
+        "ɡ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/dog",
+      "audio": "cambridge-audio/words/dog.mp3",
+      "source": "dictionary"
+    },
+    "doll": {
+      "ipa": "dɒl",
+      "sounds": [
+        "d",
+        "ɒ",
+        "l"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/doll",
+      "audio": "cambridge-audio/words/doll.mp3",
+      "source": "dictionary"
+    },
+    "door": {
+      "ipa": "dɔː",
+      "sounds": [
+        "d",
+        "ɔː"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/door",
+      "audio": "cambridge-audio/words/door.mp3",
+      "source": "dictionary"
+    },
+    "draw": {
+      "ipa": "drɔː",
+      "sounds": [
+        "d",
+        "r",
+        "ɔː"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/draw",
+      "audio": "cambridge-audio/words/draw.mp3",
+      "source": "dictionary"
+    },
+    "dress": {
+      "ipa": "dres",
+      "sounds": [
+        "d",
+        "r",
+        "e",
+        "s"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/dress",
+      "audio": "cambridge-audio/words/dress.mp3",
+      "source": "dictionary"
+    },
+    "driving": {
+      "ipa": "ˈdraɪvɪŋ",
+      "sounds": [
+        "d",
+        "r",
+        "aɪ",
+        "v",
+        "ɪ",
+        "ŋ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/driving",
+      "audio": "cambridge-audio/words/driving.mp3",
+      "source": "dictionary"
+    },
+    "duck": {
+      "ipa": "dʌk",
+      "sounds": [
+        "d",
+        "ʌ",
+        "k"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/duck",
+      "audio": "cambridge-audio/words/duck.mp3",
+      "source": "dictionary"
+    },
+    "ear": {
+      "ipa": "ɪə",
+      "sounds": [
+        "ɪə"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/ear",
+      "audio": "cambridge-audio/words/ear.mp3",
+      "source": "dictionary"
+    },
+    "ears": {
+      "ipa": "ɪəz",
+      "sounds": [
+        "ɪə",
+        "z"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "eating": {
+      "ipa": "ˈiːtɪŋ",
+      "sounds": [
+        "iː",
+        "t",
+        "ɪ",
+        "ŋ"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "eight": {
+      "ipa": "eɪt",
+      "sounds": [
+        "eɪ",
+        "t"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/eight",
+      "audio": "cambridge-audio/words/eight.mp3",
+      "source": "dictionary"
+    },
+    "elephant": {
+      "ipa": "ˈelɪfənt",
+      "sounds": [
+        "e",
+        "l",
+        "ɪ",
+        "f",
+        "ə",
+        "n",
+        "t"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/elephant",
+      "audio": "cambridge-audio/words/elephant.mp3",
+      "source": "dictionary"
+    },
+    "eraser": {
+      "ipa": "ɪˈreɪzə",
+      "sounds": [
+        "ɪ",
+        "r",
+        "eɪ",
+        "z",
+        "ə"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/eraser",
+      "audio": "cambridge-audio/words/eraser.mp3",
+      "source": "dictionary"
+    },
+    "eye": {
+      "ipa": "aɪ",
+      "sounds": [
+        "aɪ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/eye",
+      "audio": "cambridge-audio/words/eye.mp3",
+      "source": "dictionary"
+    },
+    "eyes": {
+      "ipa": "aɪz",
+      "sounds": [
+        "aɪ",
+        "z"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "face": {
+      "ipa": "feɪs",
+      "sounds": [
+        "f",
+        "eɪ",
+        "s"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/face",
+      "audio": "cambridge-audio/words/face.mp3",
+      "source": "dictionary"
+    },
+    "family": {
+      "ipa": "ˈfæməli",
+      "sounds": [
+        "f",
+        "æ",
+        "m",
+        "əl",
+        "i"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/family",
+      "audio": "cambridge-audio/words/family.mp3",
+      "source": "dictionary"
+    },
+    "father": {
+      "ipa": "ˈfɑːðə",
+      "sounds": [
+        "f",
+        "ɑː",
+        "ð",
+        "ə"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/father",
+      "audio": "cambridge-audio/words/father.mp3",
+      "source": "dictionary"
+    },
+    "feet": {
+      "ipa": "fiːt",
+      "sounds": [
+        "f",
+        "iː",
+        "t"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/feet",
+      "audio": "cambridge-audio/words/feet.mp3",
+      "source": "dictionary"
+    },
+    "fish": {
+      "ipa": "fɪʃ",
+      "sounds": [
+        "f",
+        "ɪ",
+        "ʃ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/fish",
+      "audio": "cambridge-audio/words/fish.mp3",
+      "source": "dictionary"
+    },
+    "five": {
+      "ipa": "faɪv",
+      "sounds": [
+        "f",
+        "aɪ",
+        "v"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/five",
+      "audio": "cambridge-audio/words/five.mp3",
+      "source": "dictionary"
+    },
+    "flying": {
+      "ipa": "ˈflaɪɪŋ",
+      "sounds": [
+        "f",
+        "l",
+        "aɪ",
+        "ɪ",
+        "ŋ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/flying",
+      "audio": "cambridge-audio/words/flying.mp3",
+      "source": "dictionary"
+    },
+    "foot": {
+      "ipa": "fʊt",
+      "sounds": [
+        "f",
+        "ʊ",
+        "t"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/foot",
+      "audio": "cambridge-audio/words/foot.mp3",
+      "source": "dictionary"
+    },
+    "football": {
+      "ipa": "ˈfʊtbɔːl",
+      "sounds": [
+        "f",
+        "ʊ",
+        "t",
+        "b",
+        "ɔː",
+        "l"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/football",
+      "audio": "cambridge-audio/words/football.mp3",
+      "source": "dictionary"
+    },
+    "four": {
+      "ipa": "fɔː",
+      "sounds": [
+        "f",
+        "ɔː"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/four",
+      "audio": "cambridge-audio/words/four.mp3",
+      "source": "dictionary"
+    },
+    "frog": {
+      "ipa": "frɒɡ",
+      "sounds": [
+        "f",
+        "r",
+        "ɒ",
+        "ɡ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/frog",
+      "audio": "cambridge-audio/words/frog.mp3",
+      "source": "dictionary"
+    },
+    "funny": {
+      "ipa": "ˈfʌni",
+      "sounds": [
+        "f",
+        "ʌ",
+        "n",
+        "i"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/funny",
+      "audio": "cambridge-audio/words/funny.mp3",
+      "source": "dictionary"
+    },
+    "garden": {
+      "ipa": "ˈɡɑːdən",
+      "sounds": [
+        "ɡ",
+        "ɑː",
+        "d",
+        "ən"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/garden",
+      "audio": "cambridge-audio/words/garden.mp3",
+      "source": "dictionary"
+    },
+    "giraffe": {
+      "ipa": "dʒɪˈrɑːf",
+      "sounds": [
+        "dʒ",
+        "ɪ",
+        "r",
+        "ɑː",
+        "f"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/giraffe",
+      "audio": "cambridge-audio/words/giraffe.mp3",
+      "source": "dictionary"
+    },
+    "goodbye": {
+      "ipa": "ɡʊdˈbaɪ",
+      "sounds": [
+        "ɡ",
+        "ʊ",
+        "d",
+        "b",
+        "aɪ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/goodbye",
+      "audio": "cambridge-audio/words/goodbye.mp3",
+      "source": "dictionary"
+    },
+    "grandfather": {
+      "ipa": "ˈɡrænfɑːðə",
+      "sounds": [
+        "ɡ",
+        "r",
+        "æ",
+        "n",
+        "f",
+        "ɑː",
+        "ð",
+        "ə"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/grandfather",
+      "audio": "cambridge-audio/words/grandfather.mp3",
+      "source": "dictionary"
+    },
+    "grandmother": {
+      "ipa": "ˈɡrænmʌðə",
+      "sounds": [
+        "ɡ",
+        "r",
+        "æ",
+        "n",
+        "m",
+        "ʌ",
+        "ð",
+        "ə"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/grandmother",
+      "audio": "cambridge-audio/words/grandmother.mp3",
+      "source": "dictionary"
+    },
+    "green": {
+      "ipa": "ɡriːn",
+      "sounds": [
+        "ɡ",
+        "r",
+        "iː",
+        "n"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/green",
+      "audio": "cambridge-audio/words/green.mp3",
+      "source": "dictionary"
+    },
+    "grey": {
+      "ipa": "ɡreɪ",
+      "sounds": [
+        "ɡ",
+        "r",
+        "eɪ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/grey",
+      "audio": "cambridge-audio/words/grey.mp3",
+      "source": "dictionary"
+    },
+    "guitar": {
+      "ipa": "ɡɪˈtɑː",
+      "sounds": [
+        "ɡ",
+        "ɪ",
+        "t",
+        "ɑː"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/guitar",
+      "audio": "cambridge-audio/words/guitar.mp3",
+      "source": "dictionary"
+    },
+    "hair": {
+      "ipa": "heə",
+      "sounds": [
+        "h",
+        "eə"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/hair",
+      "audio": "cambridge-audio/words/hair.mp3",
+      "source": "dictionary"
+    },
+    "hall": {
+      "ipa": "hɔːl",
+      "sounds": [
+        "h",
+        "ɔː",
+        "l"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/hall",
+      "audio": "cambridge-audio/words/hall.mp3",
+      "source": "dictionary"
+    },
+    "hand": {
+      "ipa": "hænd",
+      "sounds": [
+        "h",
+        "æ",
+        "n",
+        "d"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/hand",
+      "audio": "cambridge-audio/words/hand.mp3",
+      "source": "dictionary"
+    },
+    "hands": {
+      "ipa": "hændz",
+      "sounds": [
+        "h",
+        "æ",
+        "n",
+        "d",
+        "z"
+      ],
+      "sourcePage": null,
+      "audio": null,
+      "source": "practice"
+    },
+    "happy": {
+      "ipa": "ˈhæpi",
+      "sounds": [
+        "h",
+        "æ",
+        "p",
+        "i"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/happy",
+      "audio": "cambridge-audio/words/happy.mp3",
+      "source": "dictionary"
+    },
+    "head": {
+      "ipa": "hed",
+      "sounds": [
+        "h",
+        "e",
+        "d"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/head",
+      "audio": "cambridge-audio/words/head.mp3",
+      "source": "dictionary"
+    },
+    "heads": {
+      "ipa": "hedz",
+      "sounds": [
+        "h",
+        "e",
+        "d",
+        "z"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "helicopter": {
+      "ipa": "ˈhelɪˌkɒptə",
+      "sounds": [
+        "h",
+        "e",
+        "l",
+        "ɪ",
+        "k",
+        "ɒ",
+        "p",
+        "t",
+        "ə"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/helicopter",
+      "audio": "cambridge-audio/words/helicopter.mp3",
+      "source": "dictionary"
+    },
+    "hello": {
+      "ipa": "heˈləʊ",
+      "sounds": [
+        "h",
+        "e",
+        "l",
+        "əʊ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/hello",
+      "audio": "cambridge-audio/words/hello.mp3",
+      "source": "dictionary"
+    },
+    "hippo": {
+      "ipa": "ˈhɪpəʊ",
+      "sounds": [
+        "h",
+        "ɪ",
+        "p",
+        "əʊ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/hippo",
+      "audio": "cambridge-audio/words/hippo.mp3",
+      "source": "dictionary"
+    },
+    "horse": {
+      "ipa": "hɔːs",
+      "sounds": [
+        "h",
+        "ɔː",
+        "s"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/horse",
+      "audio": "cambridge-audio/words/horse.mp3",
+      "source": "dictionary"
+    },
+    "house": {
+      "ipa": "haʊs",
+      "sounds": [
+        "h",
+        "aʊ",
+        "s"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/house",
+      "audio": "cambridge-audio/words/house.mp3",
+      "source": "dictionary"
+    },
+    "hungry": {
+      "ipa": "ˈhʌŋɡri",
+      "sounds": [
+        "h",
+        "ʌ",
+        "ŋ",
+        "ɡ",
+        "r",
+        "i"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/hungry",
+      "audio": "cambridge-audio/words/hungry.mp3",
+      "source": "dictionary"
+    },
+    "ice-cream": {
+      "ipa": "ˌaɪs ˈkriːm",
+      "sounds": [
+        "aɪ",
+        "s",
+        "k",
+        "r",
+        "iː",
+        "m"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/ice-cream",
+      "audio": "cambridge-audio/words/ice-cream.mp3",
+      "source": "dictionary"
+    },
+    "in": {
+      "ipa": "ɪn",
+      "sounds": [
+        "ɪ",
+        "n"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/in",
+      "audio": "cambridge-audio/words/in.mp3",
+      "source": "dictionary"
+    },
+    "jacket": {
+      "ipa": "ˈdʒækɪt",
+      "sounds": [
+        "dʒ",
+        "æ",
+        "k",
+        "ɪ",
+        "t"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/jacket",
+      "audio": "cambridge-audio/words/jacket.mp3",
+      "source": "dictionary"
+    },
+    "jump": {
+      "ipa": "dʒʌmp",
+      "sounds": [
+        "dʒ",
+        "ʌ",
+        "m",
+        "p"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/jump",
+      "audio": "cambridge-audio/words/jump.mp3",
+      "source": "dictionary"
+    },
+    "kitchen": {
+      "ipa": "ˈkɪtʃən",
+      "sounds": [
+        "k",
+        "ɪ",
+        "tʃ",
+        "ən"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/kitchen",
+      "audio": "cambridge-audio/words/kitchen.mp3",
+      "source": "dictionary"
+    },
+    "leg": {
+      "ipa": "leɡ",
+      "sounds": [
+        "l",
+        "e",
+        "ɡ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/leg",
+      "audio": "cambridge-audio/words/leg.mp3",
+      "source": "dictionary"
+    },
+    "legs": {
+      "ipa": "leɡz",
+      "sounds": [
+        "l",
+        "e",
+        "ɡ",
+        "z"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "like": {
+      "ipa": "laɪk",
+      "sounds": [
+        "l",
+        "aɪ",
+        "k"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/like",
+      "audio": "cambridge-audio/words/like.mp3",
+      "source": "dictionary"
+    },
+    "living-room": {
+      "ipa": "ˈlɪvɪŋ ˌruːm",
+      "sounds": [
+        "l",
+        "ɪ",
+        "v",
+        "ɪ",
+        "ŋ",
+        "r",
+        "uː",
+        "m"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/living-room",
+      "audio": "cambridge-audio/words/living-room.mp3",
+      "source": "dictionary"
+    },
+    "long": {
+      "ipa": "lɒŋ",
+      "sounds": [
+        "l",
+        "ɒ",
+        "ŋ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/long",
+      "audio": "cambridge-audio/words/long.mp3",
+      "source": "dictionary"
+    },
+    "lorry": {
+      "ipa": "ˈlɒri",
+      "sounds": [
+        "l",
+        "ɒ",
+        "r",
+        "i"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/lorry",
+      "audio": "cambridge-audio/words/lorry.mp3",
+      "source": "dictionary"
+    },
+    "monkey": {
+      "ipa": "ˈmʌŋki",
+      "sounds": [
+        "m",
+        "ʌ",
+        "ŋ",
+        "k",
+        "i"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/monkey",
+      "audio": "cambridge-audio/words/monkey.mp3",
+      "source": "dictionary"
+    },
+    "mother": {
+      "ipa": "ˈmʌðə",
+      "sounds": [
+        "m",
+        "ʌ",
+        "ð",
+        "ə"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/mother",
+      "audio": "cambridge-audio/words/mother.mp3",
+      "source": "dictionary"
+    },
+    "motorbike": {
+      "ipa": "ˈməʊtəbaɪk",
+      "sounds": [
+        "m",
+        "əʊ",
+        "t",
+        "ə",
+        "b",
+        "aɪ",
+        "k"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/motorbike",
+      "audio": "cambridge-audio/words/motorbike.mp3",
+      "source": "dictionary"
+    },
+    "mouse": {
+      "ipa": "maʊs",
+      "sounds": [
+        "m",
+        "aʊ",
+        "s"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/mouse",
+      "audio": "cambridge-audio/words/mouse.mp3",
+      "source": "dictionary"
+    },
+    "mouth": {
+      "ipa": "maʊθ",
+      "sounds": [
+        "m",
+        "aʊ",
+        "θ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/mouth",
+      "audio": "cambridge-audio/words/mouth.mp3",
+      "source": "dictionary"
+    },
+    "mouths": {
+      "ipa": "maʊðz",
+      "sounds": [
+        "m",
+        "aʊ",
+        "ð",
+        "z"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "next-to": {
+      "ipa": "ˈnekst tə",
+      "sounds": [
+        "n",
+        "e",
+        "k",
+        "s",
+        "t",
+        "t",
+        "ə"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "nine": {
+      "ipa": "naɪn",
+      "sounds": [
+        "n",
+        "aɪ",
+        "n"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/nine",
+      "audio": "cambridge-audio/words/nine.mp3",
+      "source": "dictionary"
+    },
+    "nose": {
+      "ipa": "nəʊz",
+      "sounds": [
+        "n",
+        "əʊ",
+        "z"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/nose",
+      "audio": "cambridge-audio/words/nose.mp3",
+      "source": "dictionary"
+    },
+    "noses": {
+      "ipa": "ˈnəʊzɪz",
+      "sounds": [
+        "n",
+        "əʊ",
+        "z",
+        "ɪ",
+        "z"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "old": {
+      "ipa": "əʊld",
+      "sounds": [
+        "əʊ",
+        "l",
+        "d"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/old",
+      "audio": "cambridge-audio/words/old.mp3",
+      "source": "dictionary"
+    },
+    "on": {
+      "ipa": "ɒn",
+      "sounds": [
+        "ɒ",
+        "n"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/on",
+      "audio": "cambridge-audio/words/on.mp3",
+      "source": "dictionary"
+    },
+    "one": {
+      "ipa": "wʌn",
+      "sounds": [
+        "w",
+        "ʌ",
+        "n"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/one",
+      "audio": "cambridge-audio/words/one.mp3",
+      "source": "dictionary"
+    },
+    "orange": {
+      "ipa": "ˈɒrɪndʒ",
+      "sounds": [
+        "ɒ",
+        "r",
+        "ɪ",
+        "n",
+        "dʒ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/orange",
+      "audio": "cambridge-audio/words/orange.mp3",
+      "source": "dictionary"
+    },
+    "party": {
+      "ipa": "ˈpɑːti",
+      "sounds": [
+        "p",
+        "ɑː",
+        "t",
+        "i"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/party",
+      "audio": "cambridge-audio/words/party.mp3",
+      "source": "dictionary"
+    },
+    "pear": {
+      "ipa": "peə",
+      "sounds": [
+        "p",
+        "eə"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/pear",
+      "audio": "cambridge-audio/words/pear.mp3",
+      "source": "dictionary"
+    },
+    "pen": {
+      "ipa": "pen",
+      "sounds": [
+        "p",
+        "e",
+        "n"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/pen",
+      "audio": "cambridge-audio/words/pen.mp3",
+      "source": "dictionary"
+    },
+    "pencil": {
+      "ipa": "ˈpensəl",
+      "sounds": [
+        "p",
+        "e",
+        "n",
+        "s",
+        "əl"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/pencil",
+      "audio": "cambridge-audio/words/pencil.mp3",
+      "source": "dictionary"
+    },
+    "piano": {
+      "ipa": "piˈænəʊ",
+      "sounds": [
+        "p",
+        "i",
+        "æ",
+        "n",
+        "əʊ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/piano",
+      "audio": "cambridge-audio/words/piano.mp3",
+      "source": "dictionary"
+    },
+    "pink": {
+      "ipa": "pɪŋk",
+      "sounds": [
+        "p",
+        "ɪ",
+        "ŋ",
+        "k"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/pink",
+      "audio": "cambridge-audio/words/pink.mp3",
+      "source": "dictionary"
+    },
+    "plane": {
+      "ipa": "pleɪn",
+      "sounds": [
+        "p",
+        "l",
+        "eɪ",
+        "n"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/plane",
+      "audio": "cambridge-audio/words/plane.mp3",
+      "source": "dictionary"
+    },
+    "play-basketball": {
+      "ipa": "ˌpleɪ ˈbɑːskɪtbɔːl",
+      "sounds": [
+        "p",
+        "l",
+        "eɪ",
+        "b",
+        "ɑː",
+        "s",
+        "k",
+        "ɪ",
+        "t",
+        "b",
+        "ɔː",
+        "l"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "play-football": {
+      "ipa": "ˌpleɪ ˈfʊtbɔːl",
+      "sounds": [
+        "p",
+        "l",
+        "eɪ",
+        "f",
+        "ʊ",
+        "t",
+        "b",
+        "ɔː",
+        "l"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "play-tennis": {
+      "ipa": "ˌpleɪ ˈtenɪs",
+      "sounds": [
+        "p",
+        "l",
+        "eɪ",
+        "t",
+        "e",
+        "n",
+        "ɪ",
+        "s"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "play-the-guitar": {
+      "ipa": "ˌpleɪ ðə ɡɪˈtɑː",
+      "sounds": [
+        "p",
+        "l",
+        "eɪ",
+        "ð",
+        "ə",
+        "ɡ",
+        "ɪ",
+        "t",
+        "ɑː"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "play-the-piano": {
+      "ipa": "ˌpleɪ ðə piˈænəʊ",
+      "sounds": [
+        "p",
+        "l",
+        "eɪ",
+        "ð",
+        "ə",
+        "p",
+        "i",
+        "æ",
+        "n",
+        "əʊ"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "play": {
+      "ipa": "pleɪ",
+      "sounds": [
+        "p",
+        "l",
+        "eɪ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/play",
+      "audio": "cambridge-audio/words/play.mp3",
+      "source": "dictionary"
+    },
+    "playing": {
+      "ipa": "ˈpleɪɪŋ",
+      "sounds": [
+        "p",
+        "l",
+        "eɪ",
+        "ɪ",
+        "ŋ"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "pure": {
+      "ipa": "pjʊə",
+      "sounds": [
+        "p",
+        "j",
+        "ʊə"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/pure",
+      "audio": "cambridge-audio/words/pure.mp3",
+      "source": "dictionary"
+    },
+    "purple": {
+      "ipa": "ˈpɜːpəl",
+      "sounds": [
+        "p",
+        "ɜː",
+        "p",
+        "əl"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/purple",
+      "audio": "cambridge-audio/words/purple.mp3",
+      "source": "dictionary"
+    },
+    "reading": {
+      "ipa": "ˈriːdɪŋ",
+      "sounds": [
+        "r",
+        "iː",
+        "d",
+        "ɪ",
+        "ŋ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/reading",
+      "audio": "cambridge-audio/words/reading.mp3",
+      "source": "dictionary"
+    },
+    "red": {
+      "ipa": "red",
+      "sounds": [
+        "r",
+        "e",
+        "d"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/red",
+      "audio": "cambridge-audio/words/red.mp3",
+      "source": "dictionary"
+    },
+    "ride-a-bike": {
+      "ipa": "ˌraɪd ə ˈbaɪk",
+      "sounds": [
+        "r",
+        "aɪ",
+        "d",
+        "ə",
+        "b",
+        "aɪ",
+        "k"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "ride": {
+      "ipa": "raɪd",
+      "sounds": [
+        "r",
+        "aɪ",
+        "d"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/ride",
+      "audio": "cambridge-audio/words/ride.mp3",
+      "source": "dictionary"
+    },
+    "riding": {
+      "ipa": "ˈraɪdɪŋ",
+      "sounds": [
+        "r",
+        "aɪ",
+        "d",
+        "ɪ",
+        "ŋ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/riding",
+      "audio": "cambridge-audio/words/riding.mp3",
+      "source": "dictionary"
+    },
+    "run": {
+      "ipa": "rʌn",
+      "sounds": [
+        "r",
+        "ʌ",
+        "n"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/run",
+      "audio": "cambridge-audio/words/run.mp3",
+      "source": "dictionary"
+    },
+    "sad": {
+      "ipa": "sæd",
+      "sounds": [
+        "s",
+        "æ",
+        "d"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/sad",
+      "audio": "cambridge-audio/words/sad.mp3",
+      "source": "dictionary"
+    },
+    "school-bus": {
+      "ipa": "ˈskuːl ˌbʌs",
+      "sounds": [
+        "s",
+        "k",
+        "uː",
+        "l",
+        "b",
+        "ʌ",
+        "s"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/school-bus",
+      "audio": "cambridge-audio/words/school-bus.mp3",
+      "source": "dictionary"
+    },
+    "school": {
+      "ipa": "skuːl",
+      "sounds": [
+        "s",
+        "k",
+        "uː",
+        "l"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/school",
+      "audio": "cambridge-audio/words/school.mp3",
+      "source": "dictionary"
+    },
+    "seven": {
+      "ipa": "ˈsevən",
+      "sounds": [
+        "s",
+        "e",
+        "v",
+        "ən"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/seven",
+      "audio": "cambridge-audio/words/seven.mp3",
+      "source": "dictionary"
+    },
+    "shirt": {
+      "ipa": "ʃɜːt",
+      "sounds": [
+        "ʃ",
+        "ɜː",
+        "t"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/shirt",
+      "audio": "cambridge-audio/words/shirt.mp3",
+      "source": "dictionary"
+    },
+    "shoes": {
+      "ipa": "ʃuːz",
+      "sounds": [
+        "ʃ",
+        "uː",
+        "z"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "short": {
+      "ipa": "ʃɔːt",
+      "sounds": [
+        "ʃ",
+        "ɔː",
+        "t"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/short",
+      "audio": "cambridge-audio/words/short.mp3",
+      "source": "dictionary"
+    },
+    "sing": {
+      "ipa": "sɪŋ",
+      "sounds": [
+        "s",
+        "ɪ",
+        "ŋ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/sing",
+      "audio": "cambridge-audio/words/sing.mp3",
+      "source": "dictionary"
+    },
+    "sister": {
+      "ipa": "ˈsɪstə",
+      "sounds": [
+        "s",
+        "ɪ",
+        "s",
+        "t",
+        "ə"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/sister",
+      "audio": "cambridge-audio/words/sister.mp3",
+      "source": "dictionary"
+    },
+    "six": {
+      "ipa": "sɪks",
+      "sounds": [
+        "s",
+        "ɪ",
+        "k",
+        "s"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/six",
+      "audio": "cambridge-audio/words/six.mp3",
+      "source": "dictionary"
+    },
+    "skirt": {
+      "ipa": "skɜːt",
+      "sounds": [
+        "s",
+        "k",
+        "ɜː",
+        "t"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/skirt",
+      "audio": "cambridge-audio/words/skirt.mp3",
+      "source": "dictionary"
+    },
+    "small": {
+      "ipa": "smɔːl",
+      "sounds": [
+        "s",
+        "m",
+        "ɔː",
+        "l"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/small",
+      "audio": "cambridge-audio/words/small.mp3",
+      "source": "dictionary"
+    },
+    "snake": {
+      "ipa": "sneɪk",
+      "sounds": [
+        "s",
+        "n",
+        "eɪ",
+        "k"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/snake",
+      "audio": "cambridge-audio/words/snake.mp3",
+      "source": "dictionary"
+    },
+    "socks": {
+      "ipa": "sɒks",
+      "sounds": [
+        "s",
+        "ɒ",
+        "k",
+        "s"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "star": {
+      "ipa": "stɑː",
+      "sounds": [
+        "s",
+        "t",
+        "ɑː"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/star",
+      "audio": "cambridge-audio/words/star.mp3",
+      "source": "dictionary"
+    },
+    "swim": {
+      "ipa": "swɪm",
+      "sounds": [
+        "s",
+        "w",
+        "ɪ",
+        "m"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/swim",
+      "audio": "cambridge-audio/words/swim.mp3",
+      "source": "dictionary"
+    },
+    "swimming": {
+      "ipa": "ˈswɪmɪŋ",
+      "sounds": [
+        "s",
+        "w",
+        "ɪ",
+        "m",
+        "ɪ",
+        "ŋ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/swimming",
+      "audio": "cambridge-audio/words/swimming.mp3",
+      "source": "dictionary"
+    },
+    "t-shirt": {
+      "ipa": "ˈtiːʃɜːt",
+      "sounds": [
+        "t",
+        "iː",
+        "ʃ",
+        "ɜː",
+        "t"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/t-shirt",
+      "audio": "cambridge-audio/words/t-shirt.mp3",
+      "source": "dictionary"
+    },
+    "table": {
+      "ipa": "ˈteɪbəl",
+      "sounds": [
+        "t",
+        "eɪ",
+        "b",
+        "əl"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/table",
+      "audio": "cambridge-audio/words/table.mp3",
+      "source": "dictionary"
+    },
+    "tail": {
+      "ipa": "teɪl",
+      "sounds": [
+        "t",
+        "eɪ",
+        "l"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/tail",
+      "audio": "cambridge-audio/words/tail.mp3",
+      "source": "dictionary"
+    },
+    "tails": {
+      "ipa": "teɪlz",
+      "sounds": [
+        "t",
+        "eɪ",
+        "l",
+        "z"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "teeth": {
+      "ipa": "tiːθ",
+      "sounds": [
+        "t",
+        "iː",
+        "θ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/teeth",
+      "audio": "cambridge-audio/words/teeth.mp3",
+      "source": "dictionary"
+    },
+    "television": {
+      "ipa": "ˈtelɪvɪʒən",
+      "sounds": [
+        "t",
+        "e",
+        "l",
+        "ɪ",
+        "v",
+        "ɪ",
+        "ʒ",
+        "ən"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/television",
+      "audio": "cambridge-audio/words/television.mp3",
+      "source": "dictionary"
+    },
+    "ten": {
+      "ipa": "ten",
+      "sounds": [
+        "t",
+        "e",
+        "n"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/ten",
+      "audio": "cambridge-audio/words/ten.mp3",
+      "source": "dictionary"
+    },
+    "tennis": {
+      "ipa": "ˈtenɪs",
+      "sounds": [
+        "t",
+        "e",
+        "n",
+        "ɪ",
+        "s"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/tennis",
+      "audio": "cambridge-audio/words/tennis.mp3",
+      "source": "dictionary"
+    },
+    "three": {
+      "ipa": "θriː",
+      "sounds": [
+        "θ",
+        "r",
+        "iː"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/three",
+      "audio": "cambridge-audio/words/three.mp3",
+      "source": "dictionary"
+    },
+    "tiger": {
+      "ipa": "ˈtaɪɡə",
+      "sounds": [
+        "t",
+        "aɪ",
+        "ɡ",
+        "ə"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/tiger",
+      "audio": "cambridge-audio/words/tiger.mp3",
+      "source": "dictionary"
+    },
+    "tooth": {
+      "ipa": "tuːθ",
+      "sounds": [
+        "t",
+        "uː",
+        "θ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/tooth",
+      "audio": "cambridge-audio/words/tooth.mp3",
+      "source": "dictionary"
+    },
+    "toy": {
+      "ipa": "tɔɪ",
+      "sounds": [
+        "t",
+        "ɔɪ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/toy",
+      "audio": "cambridge-audio/words/toy.mp3",
+      "source": "dictionary"
+    },
+    "train": {
+      "ipa": "treɪn",
+      "sounds": [
+        "t",
+        "r",
+        "eɪ",
+        "n"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/train",
+      "audio": "cambridge-audio/words/train.mp3",
+      "source": "dictionary"
+    },
+    "trousers": {
+      "ipa": "ˈtraʊzəz",
+      "sounds": [
+        "t",
+        "r",
+        "aʊ",
+        "z",
+        "ə",
+        "z"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/trousers",
+      "audio": "cambridge-audio/words/trousers.mp3",
+      "source": "dictionary"
+    },
+    "two": {
+      "ipa": "tuː",
+      "sounds": [
+        "t",
+        "uː"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/two",
+      "audio": "cambridge-audio/words/two.mp3",
+      "source": "dictionary"
+    },
+    "ugly": {
+      "ipa": "ˈʌɡli",
+      "sounds": [
+        "ʌ",
+        "ɡ",
+        "l",
+        "i"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/ugly",
+      "audio": "cambridge-audio/words/ugly.mp3",
+      "source": "dictionary"
+    },
+    "under": {
+      "ipa": "ˈʌndə",
+      "sounds": [
+        "ʌ",
+        "n",
+        "d",
+        "ə"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/under",
+      "audio": "cambridge-audio/words/under.mp3",
+      "source": "dictionary"
+    },
+    "walking": {
+      "ipa": "ˈwɔːkɪŋ",
+      "sounds": [
+        "w",
+        "ɔː",
+        "k",
+        "ɪ",
+        "ŋ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/walking",
+      "audio": "cambridge-audio/words/walking.mp3",
+      "source": "dictionary"
+    },
+    "watching": {
+      "ipa": "ˈwɒtʃɪŋ",
+      "sounds": [
+        "w",
+        "ɒ",
+        "tʃ",
+        "ɪ",
+        "ŋ"
+      ],
+      "source": "practice",
+      "audio": null,
+      "sourcePage": null
+    },
+    "white": {
+      "ipa": "waɪt",
+      "sounds": [
+        "w",
+        "aɪ",
+        "t"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/white",
+      "audio": "cambridge-audio/words/white.mp3",
+      "source": "dictionary"
+    },
+    "window": {
+      "ipa": "ˈwɪndəʊ",
+      "sounds": [
+        "w",
+        "ɪ",
+        "n",
+        "d",
+        "əʊ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/window",
+      "audio": "cambridge-audio/words/window.mp3",
+      "source": "dictionary"
+    },
+    "yellow": {
+      "ipa": "ˈjeləʊ",
+      "sounds": [
+        "j",
+        "e",
+        "l",
+        "əʊ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/yellow",
+      "audio": "cambridge-audio/words/yellow.mp3",
+      "source": "dictionary"
+    },
+    "young": {
+      "ipa": "jʌŋ",
+      "sounds": [
+        "j",
+        "ʌ",
+        "ŋ"
+      ],
+      "sourcePage": "https://dictionary.cambridge.org/pronunciation/english/young",
+      "audio": "cambridge-audio/words/young.mp3",
+      "source": "dictionary"
+    }
+  },
+  "sounds": {
+    "æ": {
+      "file": "cambridge-audio/sounds/e6.mp3",
+      "example": "hat"
+    },
+    "p": {
+      "file": "cambridge-audio/sounds/70.mp3",
+      "example": "pen"
+    },
+    "əl": {
+      "file": "cambridge-audio/sounds/259-6c.mp3",
+      "example": "label"
+    },
+    "ɑː": {
+      "file": "cambridge-audio/sounds/251-2d0.mp3",
+      "example": "father"
+    },
+    "m": {
+      "file": "cambridge-audio/sounds/6d.mp3",
+      "example": "moon"
+    },
+    "z": {
+      "file": "cambridge-audio/sounds/7a.mp3",
+      "example": "zoo"
+    },
+    "b": {
+      "file": "cambridge-audio/sounds/62.mp3",
+      "example": "book"
+    },
+    "eɪ": {
+      "file": "cambridge-audio/sounds/65-26a.mp3",
+      "example": "day"
+    },
+    "i": {
+      "file": "cambridge-audio/sounds/69.mp3",
+      "example": "happy"
+    },
+    "ɡ": {
+      "file": "cambridge-audio/sounds/261.mp3",
+      "example": "give"
+    },
+    "ɔː": {
+      "file": "cambridge-audio/sounds/254-2d0.mp3",
+      "example": "horse"
+    },
+    "l": {
+      "file": "cambridge-audio/sounds/6c.mp3",
+      "example": "look"
+    },
+    "ə": {
+      "file": "cambridge-audio/sounds/259.mp3",
+      "example": "above"
+    },
+    "n": {
+      "file": "cambridge-audio/sounds/6e.mp3",
+      "example": "name"
+    },
+    "s": {
+      "file": "cambridge-audio/sounds/73.mp3",
+      "example": "say"
+    },
+    "k": {
+      "file": "cambridge-audio/sounds/6b.mp3",
+      "example": "cat"
+    },
+    "ɪ": {
+      "file": "cambridge-audio/sounds/26a.mp3",
+      "example": "ship"
+    },
+    "t": {
+      "file": "cambridge-audio/sounds/74.mp3",
+      "example": "town"
+    },
+    "θ": {
+      "file": "cambridge-audio/sounds/3b8.mp3",
+      "example": "think"
+    },
+    "r": {
+      "file": "cambridge-audio/sounds/72.mp3",
+      "example": "run"
+    },
+    "uː": {
+      "file": "cambridge-audio/sounds/75-2d0.mp3",
+      "example": "blue"
+    },
+    "j": {
+      "file": "cambridge-audio/sounds/6a.mp3",
+      "example": "yes"
+    },
+    "f": {
+      "file": "cambridge-audio/sounds/66.mp3",
+      "example": "fish"
+    },
+    "e": {
+      "file": "cambridge-audio/sounds/65.mp3",
+      "example": "head"
+    },
+    "d": {
+      "file": "cambridge-audio/sounds/64.mp3",
+      "example": "day"
+    },
+    "aɪ": {
+      "file": "cambridge-audio/sounds/61-26a.mp3",
+      "example": "eye"
+    },
+    "ɜː": {
+      "file": "cambridge-audio/sounds/25c-2d0.mp3",
+      "example": "bird"
+    },
+    "əʊ": {
+      "file": "cambridge-audio/sounds/259-28a.mp3",
+      "example": "nose"
+    },
+    "ɒ": {
+      "file": "cambridge-audio/sounds/252.mp3",
+      "example": "sock"
+    },
+    "ʊ": {
+      "file": "cambridge-audio/sounds/28a.mp3",
+      "example": "foot"
+    },
+    "ʌ": {
+      "file": "cambridge-audio/sounds/28c.mp3",
+      "example": "cup"
+    },
+    "ð": {
+      "file": "cambridge-audio/sounds/f0.mp3",
+      "example": "this"
+    },
+    "aʊ": {
+      "file": "cambridge-audio/sounds/61-28a.mp3",
+      "example": "mouth"
+    },
+    "tʃ": {
+      "file": "cambridge-audio/sounds/74-283.mp3",
+      "example": "cheese"
+    },
+    "eə": {
+      "file": "cambridge-audio/sounds/65-259.mp3",
+      "example": "hair"
+    },
+    "iː": {
+      "file": "cambridge-audio/sounds/69-2d0.mp3",
+      "example": "sheep"
+    },
+    "ŋ": {
+      "file": "cambridge-audio/sounds/14b.mp3",
+      "example": "sing"
+    },
+    "v": {
+      "file": "cambridge-audio/sounds/76.mp3",
+      "example": "very"
+    },
+    "ɪə": {
+      "file": "cambridge-audio/sounds/26a-259.mp3",
+      "example": "ear"
+    },
+    "ʃ": {
+      "file": "cambridge-audio/sounds/283.mp3",
+      "example": "she"
+    },
+    "ən": {
+      "file": "cambridge-audio/sounds/259-6e.mp3",
+      "example": "sudden"
+    },
+    "dʒ": {
+      "file": "cambridge-audio/sounds/64-292.mp3",
+      "example": "jump"
+    },
+    "h": {
+      "file": "cambridge-audio/sounds/68.mp3",
+      "example": "hand"
+    },
+    "w": {
+      "file": "cambridge-audio/sounds/77.mp3",
+      "example": "we"
+    },
+    "ʊə": {
+      "file": "cambridge-audio/sounds/28a-259.mp3",
+      "example": "pure"
+    },
+    "ʒ": {
+      "file": "cambridge-audio/sounds/292.mp3",
+      "example": "vision"
+    },
+    "ɔɪ": {
+      "file": "cambridge-audio/sounds/254-26a.mp3",
+      "example": "boy"
+    }
+  },
+  "excludedNames": [
+    "alex",
+    "lenny",
+    "lily",
+    "marie",
+    "maskman",
+    "meera",
+    "monty",
+    "mr-star",
+    "mrs-star",
+    "simon",
+    "stella",
+    "suzy"
+  ],
+  "fallbackNotes": {
+    "hands": "The pronunciation page resolves to proper name Hands; its UK media URL returns 404. Keep the exact plural practice recording."
+  }
+}

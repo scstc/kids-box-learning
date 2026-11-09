@@ -43,6 +43,8 @@ import AppUpdate from "./components/AppUpdate";
 import BookShelf from "./components/BookShelf";
 import LearningCount from "./components/LearningCount";
 import Starter from "./components/Starter";
+import WordSounds from "./components/WordSounds";
+import { recordedWordGuide } from "./data/cambridgePronunciation";
 import { pauseOtherMedia } from "./data/media";
 import SpellingInput from "./components/SpellingInput";
 import {
@@ -175,6 +177,7 @@ export default function CourseApp() {
   };
   const unit = courseUnits.find((unit) => unit.id === unitId)!;
   const word = unit.words[wordIndex];
+  const wordGuide = recordedWordGuide(word.id);
   const currentEntry = { unitId, word };
   const learnedIn = (unit: CourseUnit) =>
     unit.words.filter((word) =>
@@ -1105,9 +1108,9 @@ export default function CourseApp() {
                       </div>
                       <p
                         className="kb-word-ipa"
-                        aria-label={`British pronunciation /${word.ipa}/`}
+                        aria-label={`British pronunciation /${wordGuide?.ipa ?? word.ipa}/`}
                       >
-                        /{word.ipa}/
+                        /{wordGuide?.ipa ?? word.ipa}/
                       </p>
                       <div className="kb-word-translation">
                         {progress.learned.includes(entryKey(currentEntry)) && (
@@ -1116,7 +1119,7 @@ export default function CourseApp() {
                             Explored
                           </small>
                         )}
-                        <span className="kb-voice-tag">British pronunciation</span>
+                        <span className="kb-voice-tag">{wordGuide?.source === "dictionary" ? <a href={wordGuide.sourcePage!} target="_blank" rel="noreferrer">Cambridge UK</a> : wordGuide ? "Practice voice · UK" : "British pronunciation"}</span>
                       </div>
                       <div className="kb-button-row">
                         <button
@@ -1141,6 +1144,7 @@ export default function CourseApp() {
                           Slower
                         </button>
                       </div>
+                      {wordGuide ? <WordSounds word={word} guide={wordGuide} audio={audio} /> : <>
                       <div className="kb-chunk-heading">
                         <AudioLines size={16} />
                         {word.chunkType === "音节"
@@ -1199,6 +1203,7 @@ export default function CourseApp() {
                           ),
                         )}
                       </div>
+                      </>}
                       <button
                         className="kb-btn kb-blend-button"
                         onClick={() =>
@@ -1217,7 +1222,7 @@ export default function CourseApp() {
                         <p>{word.tip}</p>
                       </div>
                       <p className="kb-chunk-note">
-                        Tap a part, then blend the word. Sound parts are not always syllables. Short sounds use a phonics voice; whole words use natural British speech.
+                        {wordGuide ? "Recorded sounds from Cambridge Dictionary. Sound parts are not always syllables." : "Tap a part, then blend the word. Sound parts are not always syllables. Short sounds use a phonics voice; whole words use natural British speech."}
                       </p>
                       <RewardButton animated={motion.canAnimate}
                         className="kb-btn kb-learn-next"
