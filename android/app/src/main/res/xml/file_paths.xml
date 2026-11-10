@@ -3,4 +3,5 @@
     <external-path name="my_images" path="." />
     <cache-path name="my_cache_images" path="." />
     <external-files-path name="app_updates" path="Download/" />
+    <external-files-path name="screen_recordings" path="Movies/Kids Box/" />
 </paths>

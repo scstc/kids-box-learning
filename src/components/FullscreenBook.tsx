@@ -13,6 +13,7 @@ import { useBookInk } from "../hooks/useBookInk";
 import type { InkTool } from "./BookInkOverlay";
 import { inkColors, inkWidths } from "../data/bookInkPreferences";
 import { useBookInkPreferences } from "../hooks/useBookInkPreferences";
+import { ScreenRecordControl } from "./ScreenRecording";
 
 const playbackSpeeds = [0.5, 0.75, 1, 1.25, 1.5];
 
@@ -159,5 +160,6 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
       </div>}
     </header>
     <BookPageReader key={pageRequest.revision} printedPage={pageRequest.page} onPageChange={rememberPage} audio={audio} playbackRate={playbackRate} annotation={{ ink, writing, tool: inkTool, preferences }} fitPage minimal />
+    <ScreenRecordControl floating />
   </dialog>, document.body);
 }

@@ -75,6 +75,8 @@ import { useCourseProgress } from "./hooks/useCourseProgress";
 import { useLearner } from "./hooks/useLearner";
 import { learnerRecordKey } from "./data/learnerProfiles";
 import { learnerTotals, readLearnerSummary } from "./data/learnerSummary";
+import ScreenRecordingPanel, { ScreenRecordControl } from "./components/ScreenRecording";
+import { useScreenRecording } from "./hooks/useScreenRecording";
 import "./course.css";
 import { matchesSpelling } from "./data/spelling";
 
@@ -139,6 +141,8 @@ function newRound(questions: WordEntry[], round = 0, firstTry = 0): Game {
 
 export default function CourseApp() {
   const { profile, switchLearner } = useLearner();
+  const recording = useScreenRecording();
+  const recordingActive = ["starting", "recording", "stopping"].includes(recording.status.state);
   const [view, setView] = useState<View>("map");
   const [readerPage, setReaderPage] = useState<number | null>(null);
   const [wordAnimationReplay, setWordAnimationReplay] = useState(0);
@@ -322,6 +326,7 @@ export default function CourseApp() {
             Back to Book 1
           </button>
           <span>Learning as {profile.name}</span>
+          <ScreenRecordControl />
           <button onClick={switchLearner}><UserRound size={18} />Switch learner</button>
         </div>
         <App />
@@ -614,7 +619,7 @@ export default function CourseApp() {
       sparkCount={6}
       shape="star"
       duration={420}
-      disabled={!motion.canAnimate}
+      disabled={!motion.canAnimate || recordingActive}
       style={{ overflowX: "clip" }}
     >
       <div className="kb-shell" data-motion={motion.canAnimate ? "on" : "off"}>
@@ -676,7 +681,7 @@ export default function CourseApp() {
         </header>
         <div className="kb-learner-strip">
           <span><UserRound size={18} aria-hidden="true" />Learning as <strong>{profile.name}</strong></span>
-          <button onClick={switchLearner}><UserRound size={18} aria-hidden="true" />Switch learner</button>
+          <div className="kb-learner-strip-actions"><ScreenRecordControl /><button onClick={switchLearner}><UserRound size={18} aria-hidden="true" />Switch learner</button></div>
         </div>
         <main ref={top} id="course-main">
           {view === "map" && (
@@ -1535,7 +1540,7 @@ export default function CourseApp() {
                 <p>
                   This clears {profile.name}’s explored words, practice bag, completed book activities, grammar and play challenges, animal safari progress and last reading page on this device. This cannot be undone.
                 </p>
-                <p>Handwritten notes, settings, added pictures and audio, and other learners’ records will be kept.</p>
+                <p>Handwritten notes, recordings, settings, added pictures and audio, and other learners’ records will be kept.</p>
                 {resetError && <p className="kb-reset-error" role="alert">{resetError}</p>}
                 <div className="kb-button-row">
                   <button
@@ -1616,9 +1621,10 @@ export default function CourseApp() {
                   </a>
                 </div>
                 <p className="kb-parent-small">
-                  Words, letter names and practice sentences use natural British speech. Short sounds use a separate phonics voice. Original book recordings keep their own speakers. All recordings are included in the app. The website needs internet for resources; the Android app works offline. Progress stays on this device. No microphone is used.
+                  Words, letter names and practice sentences use natural British speech. Short sounds use a separate phonics voice. Original book recordings keep their own speakers. All recordings are included in the app. The website needs internet for resources; the Android app works offline. Progress stays on this device. The microphone is used only when you start screen recording.
                 </p>
                 <AppUpdate />
+                <ScreenRecordingPanel />
                 <section className="kb-parent-reset" aria-label="Learning records">
                   <h3>Learning records</h3>
                   <p>Start a fresh learning journey for {profile.name} on this device. Handwritten notes will be kept.</p>

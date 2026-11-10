@@ -34,11 +34,13 @@ import ClickSpark from "./components/reactbits/ClickSpark";
 import { usePronunciation } from "./hooks/usePronunciation";
 import { useProgress } from "./hooks/useProgress";
 import { recordedWordGuide } from "./data/cambridgePronunciation";
+import { useScreenRecording } from "./hooks/useScreenRecording";
 
 type Page = "explore" | "lab" | "passport";
 type Mode = "listen" | "sounds" | "quiz";
 
 export default function App() {
+  const { status: recording } = useScreenRecording();
   const [page, setPage] = useState<Page>("explore");
   const [mode, setMode] = useState<Mode>("listen");
   const [activeIndex, setActiveIndex] = useState(0);
@@ -128,6 +130,7 @@ export default function App() {
       sparkCount={7}
       shape="star"
       duration={480}
+      disabled={["starting", "recording", "stopping"].includes(recording.state)}
     >
       <div className="app-shell">
         <a href="#main" className="skip-link">

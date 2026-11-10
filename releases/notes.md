@@ -1,10 +1,12 @@
-Kids Box 26.4.14
+Kids Box 26.4.15
 
-- Add Ink settings to the fullscreen book's Write toolbar: choose Purple, Blue, Red, Green, Black or White, and Fine, Medium or Bold strokes. Each learner's preferences are remembered on this device.
-- Changes apply to new strokes. Existing handwriting keeps its original color and thickness, including after reopening the book or resizing the page.
-- The eraser now shows a moving eraser icon and a circle marking its range. Stylus/mouse hover shows the tool; touch shows it while wiping. The indicator disappears when leaving the page, cancelling a gesture or returning to read mode, and is never saved as handwriting.
-- Preserve all learner progress, handwritten notes, offline recordings and book resources. Clearing learning records also keeps pen settings.
+- Add screen recording on the course page and fullscreen talking book. Record the picture and your child's microphone voice; book audio is not mixed in. Headphones help prevent speaker sound entering the microphone.
+- Recordings belong to the selected learner. Stop to save; find videos under For parents → Screen recording, with Open and Share. Switching learners ends and saves the current recording. Clearing learning records keeps videos.
+- On Android, confirm screen sharing and microphone access when starting. Going into the background, locking the screen or ending system sharing stops recording safely. Videos are MP4 in Movies/Kids Box on Android 10+; older Android and gallery-export fallbacks use app files. Valid recordings are retained if gallery or list registration fails, with retry support.
+- Supported desktop browsers can record screen and microphone to local video storage and download the result. Mobile web screen sharing depends on browser support. No recordings are uploaded.
+- Hide click sparks, tap highlights and the book's click marker while recording. Preserve handwriting colors, thickness, eraser feedback and all existing learning/media resources.
+- Fix website deployment timing: use the official GitHub Pages OIDC API with a real 20-minute wait for the complete book resources, instead of the deploy action's 10-minute cap.
 
-Local records do not sync between devices. Uninstalling the app or clearing its data removes local progress and notes.
+Local records do not sync between devices. Uninstalling the app or clearing its data removes local progress, notes, recording indexes and private app videos. Videos exported to Movies/Kids Box may remain in the gallery.
 
 To update on Android, open Parent guide → App updates. Confirm installation after the download finishes.

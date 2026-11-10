@@ -1,0 +1,28 @@
+.kb-learner-strip-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.kb-learner-strip-actions > button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; color: var(--primary-dark); background: var(--surface); font-size: 14px; }
+.kb-recorder-control { position: relative; display: inline-flex; vertical-align: middle; }
+.kb-recorder-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; min-width: 48px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--primary-dark); font-size: 14px; font-weight: 750; touch-action: manipulation; }
+.kb-recorder-button > svg { color: var(--danger); flex-shrink: 0; }
+.kb-recorder-button[data-recording] { color: var(--danger); border-color: var(--danger); }
+.kb-recorder-button:disabled { opacity: .55; cursor: default; }
+.kb-recorder-button:focus-visible, .kb-screen-recording li button:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+.kb-recorder-floating { position: absolute; top: calc(var(--reader-toolbar-height) + env(safe-area-inset-top) + 10px); right: 12px; z-index: 6; }
+.kb-recorder-notice { position: absolute; right: 0; top: calc(100% + 8px); z-index: 30; width: 280px; max-width: calc(100vw - 24px); margin: 0; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: 0 6px 24px rgba(var(--ink-rgb), .12); color: var(--ink-secondary); font-size: 13px; line-height: 1.6; font-weight: 500; }
+.kb-recorder-notice[role="alert"], .kb-recorder-error { color: var(--danger); }
+.kb-screen-recording { margin: 26px 0; padding: 20px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.kb-screen-recording h3 { display: flex; align-items: center; gap: 9px; font-size: 19px; }
+.kb-screen-recording h4 { font-size: 16px; margin: 24px 0 12px; overflow-wrap: anywhere; }
+.kb-screen-recording ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.kb-screen-recording li { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; padding: 14px; border: 1px solid var(--line); border-radius: 12px; }
+.kb-screen-recording li > div:first-child { flex: 1; min-width: 180px; }
+.kb-screen-recording li strong { display: block; font-size: 14px; overflow-wrap: anywhere; }
+.kb-screen-recording li span { display: block; margin-top: 5px; font-size: 12px; color: var(--muted); }
+.kb-screen-recording li > div:last-child { display: flex; gap: 8px; }
+.kb-screen-recording li button { display: flex; align-items: center; gap: 6px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 9px; font-size: 13px; color: var(--primary-dark); }
+body[data-screen-recording] *, body[data-screen-recording] *::before, body[data-screen-recording] *::after { -webkit-tap-highlight-color: transparent !important; }
+body[data-screen-recording] .kb-book-point { display: none; }
+@media (max-width: 600px) {
+  .kb-learner-strip-actions > button, .kb-recorder-button { padding: 10px; font-size: 12px; }
+  .kb-learner-strip-actions > button > svg { display: none; }
+  .kb-learner-strip-actions { gap: 6px; }
+}

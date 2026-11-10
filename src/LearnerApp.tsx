@@ -3,8 +3,10 @@ import CourseApp from "./CourseApp";
 import LearnerPicker from "./components/LearnerPicker";
 import { chooseLearner, openLearner, readLearnerRegistry, type LearnerRegistry } from "./data/learnerProfiles";
 import { LearnerContext } from "./hooks/useLearner";
+import { useScreenRecording } from "./hooks/useScreenRecording";
 
 export default function LearnerApp() {
+  const { stopBeforeSwitch } = useScreenRecording();
   const [initial] = useState(() => {
     try { return { registry: readLearnerRegistry(localStorage), error: "" }; }
     catch { return { registry: { profiles: [], activeId: null } as LearnerRegistry, error: "Saved learners could not be read. Check this device’s storage and try again." }; }
@@ -23,7 +25,8 @@ export default function LearnerApp() {
       setError(error instanceof Error ? error.message : "The learner could not be saved. Please try again.");
     }
   };
-  const switchLearner = () => {
+  const switchLearner = async () => {
+    if (!await stopBeforeSwitch()) return;
     try {
       const latest = readLearnerRegistry(localStorage);
       setRegistry({ ...latest, activeId: profile?.id ?? null });

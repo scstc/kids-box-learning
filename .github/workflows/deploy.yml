@@ -49,7 +49,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     permissions:
+      actions: read
       pages: write
       id-token: write
     environment:
@@ -58,7 +60,50 @@ jobs:
     steps:
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         with:
-          # The bundled book audio/video can exceed the default sync window.
-          timeout: 1200000
+          # deploy-pages caps its timeout at 10 minutes; the full book can take longer to sync.
+          script: |
+            const delay = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
+            const read = async (request, pendingDeployment = false) => {
+              for (let attempt = 0; ; attempt++) {
+                try { return await request(); }
+                catch (error) {
+                  if (attempt >= 4 || (error.status && error.status !== 429 && error.status < 500 && !(pendingDeployment && error.status === 404))) throw error;
+                  core.warning(`GitHub read failed; retrying (${attempt + 1}/4).`);
+                  await delay(Math.min(1000 * 2 ** attempt, 10000));
+                }
+              }
+            };
+            const { data } = await read(() => github.rest.actions.listWorkflowRunArtifacts({
+              ...context.repo, run_id: context.runId, per_page: 100, request: { timeout: 30000 }
+            }));
+            const artifacts = data.artifacts.filter(item => item.name === 'github-pages' && !item.expired);
+            if (artifacts.length !== 1) throw new Error('Expected one current-run github-pages artifact.');
+            const idToken = await core.getIDToken();
+            core.setSecret(idToken);
+            // A creation request is sent once: retrying an ambiguous response could create another deployment.
+            const created = await github.request('POST /repos/{owner}/{repo}/pages/deployments', {
+              ...context.repo, artifact_id: artifacts[0].id, pages_build_version: context.sha,
+              oidc_token: idToken, request: { timeout: 30000 }
+            });
+            const deploymentId = created.data.id || created.data.status_url?.split('/').pop();
+            if (!deploymentId) throw new Error('GitHub did not return a Pages deployment ID.');
+            const deadline = Date.now() + 20 * 60 * 1000;
+            const failed = new Set(['deployment_failed', 'deployment_perms_error', 'deployment_content_failed', 'deployment_cancelled', 'deployment_lost']);
+            while (Date.now() < deadline) {
+              const result = await read(() => github.request('GET /repos/{owner}/{repo}/pages/deployments/{deploymentId}', {
+                ...context.repo, deploymentId, request: { timeout: 30000 }
+              }), true);
+              core.info(`Pages deployment ${deploymentId}: ${result.data.status}`);
+              if (result.data.status === 'succeed') {
+                core.setOutput('page_url', created.data.page_url);
+                return;
+              }
+              if (failed.has(result.data.status)) throw new Error(`Pages deployment failed: ${result.data.status}`);
+              await delay(10000);
+            }
+            await github.request('POST /repos/{owner}/{repo}/pages/deployments/{deploymentId}/cancel', {
+              ...context.repo, deploymentId, request: { timeout: 30000 }
+            });
+            throw new Error('Pages deployment did not finish within 20 minutes and was cancelled.');
