@@ -1,10 +1,11 @@
-Kids Box 26.4.18
+Kids Box 26.4.19
 
-- Center the fullscreen page picker in a dialog on phones and tablets. Keep the page slider, return focus after closing and let Escape close only the picker.
-- Give Write a wider button with a visible label, including tablet portrait layouts.
-- Simplify Tap to read to a single speaker icon. A crossed-out speaker means book taps are silent; the touch target stays 48 pixels wide and the preference is still saved per learner.
-- Align page 50 Grammar words and phrases with the printed text. Also correct the verified vocabulary/grammar offsets on pages 49 and 56.
-- Keep learner avatars, handwriting, recordings, local progress and all offline book resources.
+- Review all 12 Grammar footers and both Grammar reference pages against the original book images.
+- Correct word and phrase tap regions on pages 12, 20, 26, 36, 66, 72, 80 and 86. Keep short words, neighbouring alternatives and separating slashes from stealing each other's taps.
+- Add the missing "Are we small?" question on page 94, including a bundled British English sentence recording, and the missing "I" on page 95 using its existing recording.
+- Add independent printed-glyph checks for all 70 Grammar footer targets, 67 reference targets and 43 separator points at phone/tablet portrait and landscape sizes.
+- Replace the recording hand pointer with an empty tap circle and temporary drawing trails. Drag on a book page to circle or underline while recording; marks fade after release without changing saved handwriting.
+- Keep the centered page picker, wider Write control, speaker switch, learner progress, handwriting, recordings and all existing offline resources.
 
 Local records do not sync between devices. Uninstalling the app or clearing its data removes local progress, notes, recording indexes and private app videos. Videos exported to Movies/Kids Box may remain in the gallery.
 
