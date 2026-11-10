@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { allWordEntries, entryKey, type WordEntry } from "../data/course";
 import { clearLearningRecords } from "../data/learningRecords";
+import { learnerRecordKey } from "../data/learnerProfiles";
+import { useLearner } from "./useLearner";
 
 export type CourseProgress = {
   learned: string[];
   mistakes: string[];
   lastUnit: number;
 };
-const key = "kids-box-book1-progress-v1";
 const valid = new Set(allWordEntries.map(entryKey));
 
 export function readCourseProgress(
@@ -50,6 +51,7 @@ export function readCourseProgress(
       mistakes: filter(object.mistakes),
       lastUnit:
         typeof object.lastUnit === "number" &&
+        Number.isInteger(object.lastUnit) &&
         object.lastUnit >= 1 &&
         object.lastUnit <= 12
           ? object.lastUnit
@@ -61,27 +63,45 @@ export function readCourseProgress(
 }
 
 export function useCourseProgress() {
-  const [progress, setProgress] = useState<CourseProgress>(() => {
+  const { profile } = useLearner();
+  const key = learnerRecordKey("kids-box-book1-progress-v1", profile.id);
+  const readSaved = () => readCourseProgress(
+    localStorage.getItem(key),
+    localStorage.getItem(learnerRecordKey("little-safari-progress-v1", profile.id)),
+  );
+  const [state, setState] = useState(() => {
     try {
-      return readCourseProgress(
-        localStorage.getItem(key),
-        localStorage.getItem("little-safari-progress-v1"),
-      );
+      return { progress: readSaved(), storageError: false };
     } catch {
-      return readCourseProgress(null);
+      return { progress: readCourseProgress(null), storageError: true };
     }
   });
-  const [storageError, setStorageError] = useState(false);
+  const { progress, storageError } = state;
+  const current = useRef(progress);
+  const needsRead = useRef(storageError);
+  const pending = useRef<((previous: CourseProgress) => CourseProgress)[]>([]);
   const update = (transform: (previous: CourseProgress) => CourseProgress) => {
-    setProgress((previous) => {
-      const next = transform(previous);
+    let next = transform(current.current);
+    if (needsRead.current) {
+      pending.current.push(transform);
       try {
-        localStorage.setItem(key, JSON.stringify(next));
+        next = pending.current.reduce((previous, apply) => apply(previous), readSaved());
+        needsRead.current = false;
+        pending.current = [];
       } catch {
-        setStorageError(true);
+        // Keep new learning in memory without replacing records we could not read.
+        current.current = next;
+        setState({ progress: next, storageError: true });
+        return;
       }
-      return next;
-    });
+    }
+    current.current = next;
+    try {
+      localStorage.setItem(key, JSON.stringify(next));
+      setState({ progress: next, storageError: false });
+    } catch {
+      setState({ progress: next, storageError: true });
+    }
   };
   const learn = (entry: WordEntry) =>
     update((previous) => ({
@@ -103,12 +123,14 @@ export function useCourseProgress() {
     update((previous) => ({ ...previous, lastUnit: unit }));
   const reset = () => {
     try {
-      const next = clearLearningRecords(localStorage);
-      setProgress(next);
-      setStorageError(false);
+      const next = clearLearningRecords(localStorage, profile.id);
+      current.current = next;
+      needsRead.current = false;
+      pending.current = [];
+      setState({ progress: next, storageError: false });
       return true;
     } catch {
-      setStorageError(true);
+      setState({ progress: current.current, storageError: true });
       return false;
     }
   };

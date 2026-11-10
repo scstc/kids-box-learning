@@ -87,4 +87,7 @@ describe("孩子的进度可以安全恢复", () => {
       ),
     ).toEqual({ learned: ["1:red"], mistakes: ["2:book"], lastUnit: 1 });
   });
+  it("拒绝小数单元编号，避免恢复到不存在的课程", () => {
+    expect(readCourseProgress(JSON.stringify({ lastUnit: 7.5 })).lastUnit).toBe(1);
+  });
 });

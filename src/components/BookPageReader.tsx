@@ -16,6 +16,7 @@ import type { CourseAudio } from "../hooks/useCourseAudio";
 import "./bookPages.css";
 import MediaSubtitles from "./MediaSubtitles";
 import BookSceneActivity from "./BookSceneActivity";
+import BookInkOverlay, { type BookAnnotation } from "./BookInkOverlay";
 
 type ReaderProps = {
   printedPage: number;
@@ -25,8 +26,9 @@ type ReaderProps = {
   fitPage?: boolean;
   minimal?: boolean;
   playbackRate?: number;
+  annotation?: BookAnnotation;
 };
-function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal, playbackRate = 1 }: ReaderProps) {
+function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal, playbackRate = 1, annotation }: ReaderProps) {
   const [page, setPage] = useState(printedPage);
   const [zoom, setZoom] = useState(1);
   const [loaded, setLoaded] = useState(false);
@@ -239,6 +241,7 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal,
               onError={() => setError(true)}
             />
           )}
+          <div className="kb-book-page-hotspots" inert={annotation?.writing || undefined}>
           {loaded &&
             !error &&
             hotspots.map((hotspot, index) => (
@@ -280,6 +283,8 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal,
               style={{ left: `${point.x}%`, top: `${point.y}%` }}
             />
           )}
+          </div>
+          {loaded && !error && annotation?.ink.page === page && <BookInkOverlay key={`${annotation.ink.learnerId}:${page}`} {...annotation} />}
         </div>
       </div>
       <div className="kb-reader-playback">

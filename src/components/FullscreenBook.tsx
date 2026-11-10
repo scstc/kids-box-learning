@@ -1,16 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { createPortal } from "react-dom";
-import { BookOpen, Check, ChevronDown, Gauge, X } from "lucide-react";
+import { BookOpen, Check, ChevronDown, Eraser, Gauge, PenLine, Undo2, X } from "lucide-react";
 import { pauseOtherMedia } from "../data/media";
 import type { CourseAudio } from "../hooks/useCourseAudio";
 import BookPageReader from "./BookPageReader";
 import { unitStartPages } from "../data/bookActivities";
 import { courseUnits } from "../data/course";
+import { learnerRecordKey } from "../data/learnerProfiles";
+import { useLearner } from "../hooks/useLearner";
+import { useBookInk } from "../hooks/useBookInk";
+import type { InkTool } from "./BookInkOverlay";
 
 const playbackSpeeds = [0.5, 0.75, 1, 1.25, 1.5];
 
 export default function FullscreenBook({ initialPage, audio, onClose }: { initialPage: number; audio: CourseAudio; onClose: () => void }) {
+  const { profile } = useLearner();
   const dialog = useRef<HTMLDialogElement>(null);
   const unitButton = useRef<HTMLButtonElement>(null);
   const pageButton = useRef<HTMLButtonElement>(null);
@@ -26,11 +31,18 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
   const [page, setPage] = useState(initialPage);
   const [previewPage, setPreviewPage] = useState(initialPage);
   const [pageRequest, setPageRequest] = useState({ page: initialPage, revision: 0 });
+  const [writing, setWriting] = useState(false);
+  const [inkTool, setInkTool] = useState<InkTool>("pen");
+  const ink = useBookInk(profile.id, page);
+  const inkError = ink.status === "load-error" || ink.failedPages.length > 0;
+  const showInkTools = writing || inkError || ink.savingPages.length > 0;
+  const inkReady = ink.status !== "loading" && ink.status !== "load-error";
+  const inkStatus = ink.failedPages.length > 0 ? `${ink.failedPages.length === 1 ? `Page ${ink.failedPages[0]}` : `${ink.failedPages.length} pages`} not saved. Retry.` : ink.savingPages.length > 0 ? "Saving notes…" : ink.status === "loading" ? "Opening notes…" : ink.status === "load-error" ? "Could not open notes." : "Saved on this device";
   const unitId = unitStartPages.reduce((unit, start, index) => page >= start ? index + 1 : unit, 1);
   const unit = courseUnits.find(unit => unit.id === unitId)!;
   const rememberPage = (next: number) => {
     setPage(next);
-    try { localStorage.setItem("kids-box-reader-page-v1", String(next)); } catch { /* Reading still works without storage. */ }
+    try { localStorage.setItem(learnerRecordKey("kids-box-reader-page-v1", profile.id), String(next)); } catch { /* Reading still works without storage. */ }
   };
   const jump = (next: number) => {
     if (!Number.isInteger(next) || next < 4 || next > 95 || next === page) return;
@@ -56,7 +68,7 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
     if (document.fullscreenElement) void document.exitFullscreen().catch(() => {});
     onClose();
   };
-  return createPortal(<dialog ref={dialog} className="kb-fullscreen-book" aria-label="Fullscreen talking book"
+  return createPortal(<dialog ref={dialog} className="kb-fullscreen-book" aria-label="Fullscreen talking book" data-ink-tools={showInkTools || undefined}
     onPointerDown={(event) => { if (!(event.target as Element).closest(".kb-fullscreen-navigation")) setPanel(null); }}
     onCancel={(event) => {
       event.preventDefault();
@@ -108,9 +120,22 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
             }}><strong>{speed}×</strong><span>{["Very slow", "Slow", "Normal", "Faster", "Fast"][index]}</span>{playbackRate === speed && <Check size={17} />}</button>)}</div>
           </section>}
         </div>
+        <button className="kb-reader-write-button" aria-label="Write on this page" aria-pressed={writing}
+          onClick={() => { setWriting(!writing); setPanel(null); audio.stop(); pauseOtherMedia(); }}><PenLine size={20} /><span>Write</span></button>
         <button className="kb-fullscreen-close" onClick={close} aria-label="Close talking book"><X size={21} /></button>
       </div>
+      {showInkTools && <div className="kb-reader-ink-tools" aria-label="Handwriting tools">
+        {writing && <div className="kb-reader-ink-actions">
+          <button aria-label="Pen" aria-pressed={inkTool === "pen"} disabled={!inkReady} onClick={() => setInkTool("pen")}><PenLine size={19} /><span>Pen</span></button>
+          <button aria-label="Eraser" aria-pressed={inkTool === "eraser"} disabled={!inkReady} onClick={() => setInkTool("eraser")}><Eraser size={19} /><span>Eraser</span></button>
+          <button aria-label="Undo handwriting" disabled={!ink.canUndo} onClick={ink.undo}><Undo2 size={19} /><span>Undo</span></button>
+        </div>}
+        <div className="kb-reader-ink-feedback" data-error={inkError || undefined}>
+          <strong title={profile.name}>{profile.name}’s notes</strong><span role="status" aria-live="polite">{inkStatus}</span>
+        </div>
+        {inkError && <button className="kb-reader-ink-retry" onClick={() => { if (ink.status === "load-error") ink.retry(); ink.retryFailed(); }}>Retry</button>}
+      </div>}
     </header>
-    <BookPageReader key={pageRequest.revision} printedPage={pageRequest.page} onPageChange={rememberPage} audio={audio} playbackRate={playbackRate} fitPage minimal />
+    <BookPageReader key={pageRequest.revision} printedPage={pageRequest.page} onPageChange={rememberPage} audio={audio} playbackRate={playbackRate} annotation={{ ink, writing, tool: inkTool }} fitPage minimal />
   </dialog>, document.body);
 }

@@ -1,0 +1,49 @@
+.kb-learner-picker { max-width: 940px; margin: 0 auto; padding: 40px 28px 64px; color: var(--ink); }
+.kb-learner-brand { display: flex; align-items: center; gap: 10px; color: var(--primary-dark); font-size: 25px; font-weight: 850; }
+.kb-learner-heading { margin: 48px 0 28px; }
+.kb-learner-heading h1 { margin: 14px 0; font-size: clamp(30px, 6vw, 46px); line-height: 1.25; }
+.kb-learner-heading p { max-width: 660px; color: var(--muted); font-size: 17px; line-height: 1.8; }
+.kb-learner-form { border: 1px solid var(--line); background: var(--surface); border-radius: 20px; padding: 26px; }
+.kb-learner-form > label { display: block; font-size: 16px; font-weight: 750; margin-bottom: 12px; }
+.kb-learner-form > div { display: flex; gap: 12px; }
+.kb-learner-form input { min-width: 0; flex: 1; min-height: 54px; border: 1px solid var(--primary-soft-border); border-radius: 12px; padding: 12px 15px; font: inherit; font-size: 19px; color: var(--ink); background: var(--page); }
+.kb-learner-form .kb-btn { min-height: 54px; }
+.kb-learner-form > p { margin: 14px 0 0; color: var(--muted); line-height: 1.7; font-size: 14px; }
+.kb-learner-form > p.kb-learner-error { color: var(--danger); }
+.kb-learner-list { margin-top: 36px; }
+.kb-learner-list h2 { font-size: 21px; margin-bottom: 18px; }
+.kb-learner-list > div { display: grid; gap: 14px; }
+.kb-learner-card { display: flex; align-items: center; gap: 18px; min-width: 0; width: 100%; min-height: 110px; border: 1px solid var(--line); border-radius: 17px; padding: 20px; text-align: left; background: var(--surface); color: var(--ink); }
+.kb-learner-card[aria-current="true"], .kb-learner-card:hover { border-color: var(--primary-soft-border); background: var(--primary-soft); }
+.kb-learner-avatar { display: grid; place-items: center; flex-shrink: 0; width: 54px; height: 54px; border-radius: 18px; color: var(--primary); background: var(--primary-soft); }
+.kb-learner-card-copy { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: 7px; }
+.kb-learner-card-copy > strong { font-size: 22px; overflow-wrap: anywhere; }
+.kb-learner-card-copy > span { display: block; color: var(--muted); font-size: 14px; line-height: 1.6; }
+.kb-learner-card-copy > span > svg { display: inline-block; vertical-align: middle; margin-right: 6px; }
+.kb-learner-card > svg, .kb-learner-card-copy > span > svg { flex-shrink: 0; }
+.kb-learner-back { margin-top: 26px; min-height: 50px; }
+.kb-learner-strip { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 15px 0; margin-bottom: 6px; border-bottom: 1px solid var(--line); }
+.kb-learner-strip > span { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; color: var(--muted); font-size: 14px; }
+.kb-learner-strip strong { color: var(--ink); overflow-wrap: anywhere; }
+.kb-learner-strip > button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; flex-shrink: 0; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; color: var(--primary-dark); background: var(--surface); font-size: 14px; }
+.kb-learner-progress-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 22px 0 28px; }
+.kb-learner-progress-summary > div { display: flex; flex-direction: column; gap: 8px; padding: 20px; border: 1px solid var(--line); border-radius: 15px; background: var(--surface); }
+.kb-learner-progress-summary strong { font-size: 25px; color: var(--primary-dark); }
+.kb-learner-progress-summary span { color: var(--muted); font-size: 14px; line-height: 1.5; }
+@media (max-width: 600px) {
+  .kb-learner-picker { padding: 26px 16px 40px; }
+  .kb-learner-heading { margin-top: 34px; }
+  .kb-learner-form { padding: 20px; }
+  .kb-learner-form > div { flex-direction: column; }
+  .kb-learner-card { padding: 16px 12px; gap: 12px; }
+  .kb-learner-avatar { width: 44px; height: 44px; border-radius: 14px; }
+  .kb-learner-card-copy > strong { font-size: 20px; }
+  .kb-learner-card-copy > span { font-size: 13px; }
+  .kb-learner-strip { align-items: flex-start; }
+  .kb-learner-strip > span { line-height: 1.7; }
+  .kb-learner-strip > button { font-size: 12px; padding: 10px; }
+  .kb-learner-progress-summary { gap: 8px; }
+  .kb-learner-progress-summary > div { padding: 14px 10px; }
+  .kb-learner-progress-summary strong { font-size: 21px; }
+  .kb-learner-progress-summary span { font-size: 12px; }
+}

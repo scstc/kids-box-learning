@@ -5,6 +5,7 @@ import {
   type PlacementQuestion, type SentenceQuestion, type PictureFixQuestion,
 } from "../data/checkActivities";
 import type { CourseAudio } from "../hooks/useCourseAudio";
+import { usePracticeProgress } from "../hooks/usePracticeProgress";
 import ListenPlace from "./ListenPlace";
 import BuildSentence from "./BuildSentence";
 import FixPicture from "./FixPicture";
@@ -41,12 +42,16 @@ function CheckRound({ questions, title, description, audio, animated }: {
   questions: CheckQuestion[]; title: string; description: string; audio: CourseAudio; animated: boolean;
 }) {
   const [round, setRound] = useState(freshRound);
+  const { completed, complete, storageError } = usePracticeProgress();
   const heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => () => audio.stop(), [audio.stop]);
-  const attempt = (correct: boolean) => setRound(previous => previous.correct ? previous : ({
-    ...previous, correct, attempts: previous.attempts + 1,
-    firstTry: previous.firstTry + (correct && previous.attempts === 0 ? 1 : 0),
-  }));
+  const attempt = (correct: boolean) => {
+    if (correct && !round.correct) complete(questions[round.index].id);
+    setRound(previous => previous.correct ? previous : ({
+      ...previous, correct, attempts: previous.attempts + 1,
+      firstTry: previous.firstTry + (correct && previous.attempts === 0 ? 1 : 0),
+    }));
+  };
   const next = () => {
     audio.stop();
     setRound(previous => previous.index + 1 === questions.length
@@ -60,6 +65,7 @@ function CheckRound({ questions, title, description, audio, animated }: {
     <Star size={48} className="kb-check-star" aria-hidden="true" />
     <h2>{title}: well done!</h2>
     <p>You completed {questions.length} challenges, with {round.firstTry} right on the first try.</p>
+    {storageError && <p className="kb-storage-error" role="alert">Practice progress could not be saved on this device.</p>}
     <button className="kb-btn" onClick={() => { audio.stop(); setRound(freshRound()); }}><RotateCcw size={18} />Play again</button>
   </div>;
   const question = questions[round.index];
@@ -67,6 +73,8 @@ function CheckRound({ questions, title, description, audio, animated }: {
   return <div className="kb-check-round" aria-label={title}>
     {round.correct && animated && <CorrectCelebration key={question.id} />}
     <div className="kb-check-topline"><span className="kb-eyebrow">CHECK &amp; PLAY</span><span>Challenge {round.index + 1} of {questions.length}</span></div>
+    {completed.includes(question.id) && !round.correct && <p className="kb-eyebrow">Practised before</p>}
+    {storageError && <p className="kb-storage-error" role="alert">Practice progress could not be saved on this device.</p>}
     <h2 ref={heading} tabIndex={-1}>{title}</h2>
     <p className="kb-check-description">{description}</p>
     <progress max={questions.length} value={round.index + (round.correct ? 1 : 0)} aria-label="Challenges completed" />

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Check, Headphones, RotateCcw, Star, Volume2, X } from "lucide-react";
 import { grammarQuestionsForUnit, type GrammarQuestion } from "../data/grammarQuestions";
 import type { CourseAudio } from "../hooks/useCourseAudio";
+import { usePracticeProgress } from "../hooks/usePracticeProgress";
 import CorrectCelebration from "./CorrectCelebration";
 import RewardButton from "./RewardButton";
 import "./grammarPractice.css";
@@ -20,6 +21,7 @@ function GrammarRound({ questions, audio, animated }: {
   animated: boolean;
 }) {
   const [round, setRound] = useState(freshRound);
+  const { completed, complete, storageError } = usePracticeProgress();
   const questionHeading = useRef<HTMLHeadingElement>(null);
   useEffect(() => () => audio.stop(), [audio.stop]);
 
@@ -35,6 +37,7 @@ function GrammarRound({ questions, audio, animated }: {
     <h2>You finished this conversation adventure!</h2>
     <p>You answered {questions.length} questions, with {round.firstTry} right on the first try.</p>
     <p>Listen again and try saying the answers yourself.</p>
+    {storageError && <p className="kb-storage-error" role="alert">Practice progress could not be saved on this device.</p>}
     <button className="kb-btn" onClick={restart}><RotateCcw size={18} aria-hidden="true" />Practise again</button>
   </section>;
 
@@ -42,6 +45,7 @@ function GrammarRound({ questions, audio, animated }: {
   const choose = (index: number) => {
     if (round.correct || round.wrong.includes(index)) return;
     void audio.play(question.options[index]);
+    if (index === question.answerIndex) complete(question.id);
     setRound(current => index === question.answerIndex
       ? { ...current, correct: true, firstTry: current.firstTry + (current.wrong.length === 0 ? 1 : 0) }
       : { ...current, wrong: [...current.wrong, index] });
@@ -60,6 +64,8 @@ function GrammarRound({ questions, audio, animated }: {
       <span className="kb-eyebrow">ASK &amp; ANSWER</span>
       <span>Question {round.index + 1} of {questions.length}</span>
     </div>
+    {completed.includes(question.id) && !round.correct && <p className="kb-eyebrow">Practised before</p>}
+    {storageError && <p className="kb-storage-error" role="alert">Practice progress could not be saved on this device.</p>}
     <h2>What would you say?</h2>
     <p className="kb-grammar-intro">Listen to the question. Hear the answers, then choose A, B or C.</p>
     <progress className="kb-grammar-progress" max={questions.length} value={round.index + (round.correct ? 1 : 0)} aria-label="Questions completed" />

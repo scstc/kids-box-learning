@@ -22,6 +22,7 @@ import {
   Sprout,
   Star,
   Turtle,
+  UserRound,
   Volume2,
   VolumeX,
   X,
@@ -71,6 +72,9 @@ import {
 } from "./data/course";
 import { useCourseAudio } from "./hooks/useCourseAudio";
 import { useCourseProgress } from "./hooks/useCourseProgress";
+import { useLearner } from "./hooks/useLearner";
+import { learnerRecordKey } from "./data/learnerProfiles";
+import { learnerTotals, readLearnerSummary } from "./data/learnerSummary";
 import "./course.css";
 import { matchesSpelling } from "./data/spelling";
 
@@ -134,6 +138,7 @@ function newRound(questions: WordEntry[], round = 0, firstTry = 0): Game {
 }
 
 export default function CourseApp() {
+  const { profile, switchLearner } = useLearner();
   const [view, setView] = useState<View>("map");
   const [readerPage, setReaderPage] = useState<number | null>(null);
   const [wordAnimationReplay, setWordAnimationReplay] = useState(0);
@@ -174,7 +179,7 @@ export default function CourseApp() {
     pauseOtherMedia();
     let next = page ?? 4;
     if (page === undefined) {
-      try { const saved = Number(localStorage.getItem("kids-box-reader-page-v1")); if (Number.isInteger(saved) && saved >= 4 && saved <= 95) next = saved; } catch { /* Start at the first page. */ }
+      try { const saved = Number(localStorage.getItem(learnerRecordKey("kids-box-reader-page-v1", profile.id))); if (Number.isInteger(saved) && saved >= 4 && saved <= 95) next = saved; } catch { /* Start at the first page. */ }
     }
     setReaderPage(next);
     if (!document.fullscreenElement) void document.documentElement.requestFullscreen?.().catch(() => {});
@@ -303,6 +308,10 @@ export default function CourseApp() {
       "--unit-color": unit.color,
       "--unit-bg": unit.background,
     }) as CSSProperties;
+  let summary;
+  if (view === "passport") {
+    try { summary = readLearnerSummary(localStorage, profile.id); } catch { /* Show a read error instead of empty saved totals. */ }
+  }
 
   if (view === "legacy")
     return (
@@ -312,7 +321,8 @@ export default function CourseApp() {
             <ArrowLeft size={18} />
             Back to Book 1
           </button>
-          <span>Animal sound safari · Your progress is saved</span>
+          <span>Learning as {profile.name}</span>
+          <button onClick={switchLearner}><UserRound size={18} />Switch learner</button>
         </div>
         <App />
       </>
@@ -664,6 +674,10 @@ export default function CourseApp() {
             <span>For parents</span>
           </button>
         </header>
+        <div className="kb-learner-strip">
+          <span><UserRound size={18} aria-hidden="true" />Learning as <strong>{profile.name}</strong></span>
+          <button onClick={switchLearner}><UserRound size={18} aria-hidden="true" />Switch learner</button>
+        </div>
         <main ref={top} id="course-main">
           {view === "map" && (
             <>
@@ -1419,9 +1433,14 @@ export default function CourseApp() {
             <>
               <PageHeading
                 eyebrow="MY BOOK OF LITTLE DISCOVERIES"
-                title="Every footprint counts."
+                title={`${profile.name}’s progress`}
                 description={`You've explored ${progress.learned.length} words and completed ${complete} units.`}
               />
+              {summary ? <section className="kb-learner-progress-summary" aria-label="Saved learning progress">
+                <div><strong>{summary.activities} / {learnerTotals.activities}</strong><span>Book activities completed</span></div>
+                <div><strong>{summary.challenges} / {learnerTotals.challenges}</strong><span>Grammar & play challenges</span></div>
+                <div><strong>Page {summary.page}</strong><span>Your last reading page</span></div>
+              </section> : <p role="alert">Saved progress could not be read. Please try opening My progress again.</p>}
               <section className="kb-passport-grid">
                 {courseUnits.map((unit) => {
                   const count = learnedIn(unit);
@@ -1514,9 +1533,9 @@ export default function CourseApp() {
             {dialog === "reset" ? (
               <>
                 <p>
-                  This clears explored words, the practice bag, completed book activities, animal safari progress and your last reading page on this device. This cannot be undone.
+                  This clears {profile.name}’s explored words, practice bag, completed book activities, grammar and play challenges, animal safari progress and last reading page on this device. This cannot be undone.
                 </p>
-                <p>Your settings and added pictures and audio will be kept.</p>
+                <p>Handwritten notes, settings, added pictures and audio, and other learners’ records will be kept.</p>
                 {resetError && <p className="kb-reset-error" role="alert">{resetError}</p>}
                 <div className="kb-button-row">
                   <button
@@ -1602,7 +1621,7 @@ export default function CourseApp() {
                 <AppUpdate />
                 <section className="kb-parent-reset" aria-label="Learning records">
                   <h3>Learning records</h3>
-                  <p>Start a fresh learning journey on this device.</p>
+                  <p>Start a fresh learning journey for {profile.name} on this device. Handwritten notes will be kept.</p>
                   <button className="kb-btn kb-btn-secondary" onClick={openReset}>
                     <RotateCcw size={18} />Clear learning records
                   </button>

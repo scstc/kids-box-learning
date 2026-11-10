@@ -27,6 +27,8 @@ import type { CourseAudio } from "../hooks/useCourseAudio";
 import { findBookAudio } from "../data/bookAudio";
 import { mediaUrl } from "../data/media";
 import MediaSubtitles from "./MediaSubtitles";
+import { learnerRecordKey } from "../data/learnerProfiles";
+import { useLearner } from "../hooks/useLearner";
 
 const icons = {
   point: Ear,
@@ -79,21 +81,25 @@ export default function BookActivities({
   onPractice: () => void;
   audio: CourseAudio;
 }) {
+  const { profile } = useLearner();
+  const progressKey = learnerRecordKey("kids-box-book-activity-progress-v1", profile.id);
   const activities = verifiedBookActivities[unitId] ?? [];
   const [selected, setSelected] = useState(activities[0]?.number ?? 1);
-  const [completed, setCompleted] = useState<string[]>(() => {
+  const readCompleted = () => {
+    const parsed: unknown = JSON.parse(localStorage.getItem(progressKey) ?? "[]");
+    return Array.isArray(parsed)
+      ? parsed.filter((value): value is string => typeof value === "string")
+      : [];
+  };
+  const [progressState, setProgressState] = useState(() => {
     try {
-      const parsed: unknown = JSON.parse(
-        localStorage.getItem("kids-box-book-activity-progress-v1") ?? "[]",
-      );
-      return Array.isArray(parsed)
-        ? parsed.filter((value): value is string => typeof value === "string")
-        : [];
+      return { completed: readCompleted(), error: false };
     } catch {
-      return [];
+      return { completed: [] as string[], error: true };
     }
   });
-  const [progressError, setProgressError] = useState(false);
+  const { completed, error: progressError } = progressState;
+  const pendingCompletions = useRef<string[]>([]);
   const [loop, setLoop] = useState(false);
   const [point, setPoint] = useState<{ x: number; y: number } | null>(null);
   const [mediaError, setMediaError] = useState("");
@@ -115,15 +121,18 @@ export default function BookActivities({
     audio.stop();
   }, [resourceKey, audio.stop]);
   const mark = () => {
-    const next = [...new Set([...completed, resourceKey])];
-    setCompleted(next);
+    pendingCompletions.current = [...new Set([...pendingCompletions.current, resourceKey])];
     try {
+      // Read first so a temporary read failure cannot erase earlier completions.
+      const next = [...new Set([...readCompleted(), ...completed, ...pendingCompletions.current])];
       localStorage.setItem(
-        "kids-box-book-activity-progress-v1",
+        progressKey,
         JSON.stringify(next),
       );
+      pendingCompletions.current = [];
+      setProgressState({ completed: next, error: false });
     } catch {
-      setProgressError(true);
+      setProgressState(previous => ({ ...previous, error: true }));
     }
   };
   const add = async (kind: "image" | "audio", files: FileList | null) => {
@@ -319,7 +328,7 @@ export default function BookActivities({
                 </label>
               </div>
               <audio
-                key={audioSource}
+                key={`audio:${audioSource}`}
                 ref={player}
                 src={audioSource}
                 controls
@@ -332,7 +341,7 @@ export default function BookActivities({
                   )
                 }
               />
-              <MediaSubtitles key={audioSource} file={resources.urls.audio ? undefined : original?.file} mediaRef={player} />
+              <MediaSubtitles key={`subtitles:${audioSource}`} file={resources.urls.audio ? undefined : original?.file} mediaRef={player} />
             </div>
           ) : (
             <div className="kb-book-audio-missing">
@@ -411,7 +420,7 @@ export default function BookActivities({
           </div>
           {progressError && (
             <p className="kb-book-resource-error" role="status">
-              You can keep practising, but progress could not be saved.
+              Progress could not be loaded or saved. Keep practising, then try again.
             </p>
           )}
         </article>
