@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { screenRecorder, type RecorderInfo, type RecordingOwner, type RecordingStatus } from "../data/screenRecorder";
+import RecordingPointer from "../components/RecordingPointer";
 
 const active = (status: RecordingStatus) => ["starting", "recording", "stopping"].includes(status.state);
 type Session = {
@@ -91,7 +92,7 @@ export function ScreenRecordingProvider({ children }: { children: ReactNode }) {
     } catch (error) { setNotice(error instanceof Error ? error.message : "Stop recording before switching learners."); return false; }
     finally { running.current = false; setBusy(false); }
   };
-  return <RecordingContext.Provider value={{ info, status, busy, notice, start, stop, stopBeforeSwitch }}>{children}</RecordingContext.Provider>;
+  return <RecordingContext.Provider value={{ info, status, busy, notice, start, stop, stopBeforeSwitch }}>{children}<RecordingPointer enabled={status.state === "recording"} /></RecordingContext.Provider>;
 }
 
 export function useScreenRecording() {

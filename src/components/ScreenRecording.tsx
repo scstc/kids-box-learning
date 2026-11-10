@@ -55,6 +55,7 @@ export default function ScreenRecordingPanel() {
   return <section className="kb-screen-recording" aria-label="Screen recording">
     <h3><Video size={21} aria-hidden="true" />Screen recording</h3>
     <p>Record the screen and your child’s microphone voice. Book audio is not mixed into the video. Headphones help keep speaker sound out of the microphone.</p>
+    <p>A little hand shows each tap while recording. Select the Kids Box tab or screen to include these actions in your video.</p>
     <p>{info?.supported === false ? "Recording is available in the Android app or a supported desktop browser. Mobile browsers may not support screen sharing." : "Start recording, then confirm screen sharing and microphone access. Stop to save the video on this device."}</p>
     <ScreenRecordControl />
     {error && <p className="kb-recorder-error" role="alert">{error}</p>}
