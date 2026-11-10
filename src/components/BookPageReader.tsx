@@ -5,6 +5,7 @@ import {
   Pause,
   Play,
   Volume2,
+  VolumeX,
   ZoomIn,
   ZoomOut,
 } from "lucide-react";
@@ -17,6 +18,9 @@ import "./bookPages.css";
 import MediaSubtitles from "./MediaSubtitles";
 import BookSceneActivity from "./BookSceneActivity";
 import BookInkOverlay, { type BookAnnotation } from "./BookInkOverlay";
+import { bookReadPreferencesStore } from "../data/bookReadPreferences";
+import { useBookReadPreferences } from "../hooks/useBookReadPreferences";
+import { useLearner } from "../hooks/useLearner";
 
 type ReaderProps = {
   printedPage: number;
@@ -29,6 +33,9 @@ type ReaderProps = {
   annotation?: BookAnnotation;
 };
 function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal, playbackRate = 1, annotation }: ReaderProps) {
+  const { profile } = useLearner();
+  const { enabled, setEnabled, storageError } = useBookReadPreferences();
+  const canRead = () => bookReadPreferencesStore.getSnapshot(profile.id).enabled;
   const [page, setPage] = useState(printedPage);
   const [zoom, setZoom] = useState(1);
   const [loaded, setLoaded] = useState(false);
@@ -39,6 +46,12 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal,
   const [loop, setLoop] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const player = useRef<HTMLAudioElement>(null);
+  useEffect(() => {
+    if (enabled) return;
+    audio.stop();
+    player.current?.pause();
+    setIsPlaying(false);
+  }, [enabled, audio.stop]);
   useEffect(() => {
     if (!player.current) return;
     player.current.defaultPlaybackRate = playbackRate;
@@ -72,6 +85,7 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal,
     return () => observer.disconnect();
   }, []);
   const playTrack = (track: BookAudioReference) => {
+    if (!canRead()) { player.current?.pause(); return; }
     beforeSpeak?.();
     audio.stop();
     if (selected?.activity === track.activity && selected.file === track.file && player.current?.src) {
@@ -177,13 +191,17 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal,
           onClick={() => setZoom(Math.min(2, zoom + 0.25))}
         >
           <ZoomIn size={19} />
-        </button></>}
+        </button>
+        <button className="kb-tap-to-read-switch" role="switch" aria-label="Tap to read" aria-checked={enabled}
+          onClick={() => setEnabled(!enabled)}>{enabled ? <Volume2 size={19} /> : <VolumeX size={19} />}<span>Tap to read</span><strong>{enabled ? "On" : "Off"}</strong></button></>}
       </div>
+      {!minimal && storageError && <p className="kb-tap-to-read-error" role="alert">Tap to read settings could not be saved. Your choice applies for now.<button onClick={() => setEnabled(enabled)}>Retry</button></p>}
       {!minimal && <div className="kb-reader-tracks" aria-label="Page recordings">
         {tracks.map((track) => (
           <button
             key={track.activity}
             aria-pressed={selected?.activity === track.activity}
+            disabled={!enabled}
             onClick={() => playTrack(track)}
           >
             <Volume2 size={17} />Activity {track.activity} · CD{track.disc}/{track.track}
@@ -192,11 +210,11 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal,
         ))}
         {tracks.length > 0 && <label><input type="checkbox" checked={loop} onChange={(event) => setLoop(event.target.checked)} />Loop</label>}
       </div>}
-      <div className="kb-reader-audio" hidden={minimal || !selected?.file}>
-        <audio ref={player} controls={!minimal} preload="none" loop={loop}
+      <div className="kb-reader-audio" hidden={minimal || !selected?.file || !enabled}>
+        <audio ref={player} controls={!minimal && enabled} preload="none" loop={loop} muted={!enabled}
           aria-label="Book recording player"
           onLoadedMetadata={(event) => { event.currentTarget.playbackRate = playbackRate; }}
-          onPlay={() => { audio.stop(); setIsPlaying(true); }}
+          onPlay={event => { if (!canRead()) { event.currentTarget.pause(); setIsPlaying(false); return; } audio.stop(); setIsPlaying(true); }}
           onPause={() => setIsPlaying(false)} onEnded={() => setIsPlaying(false)}
           onError={() => setMediaError("This recording could not load. Please try again.")} />
       </div>
@@ -223,6 +241,7 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal,
           className="kb-book-page-image"
           style={{ width: fitPage ? `min(${zoom * 100}%, calc(var(--reader-page-height) * ${1259 / 1600 * zoom}))` : `${zoom * 100}%` }}
           onPointerDown={(event) => {
+            if (!canRead()) return;
             const bounds = event.currentTarget.getBoundingClientRect();
             setPoint({
               x: ((event.clientX - bounds.left) / bounds.width) * 100,
@@ -241,7 +260,7 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal,
               onError={() => setError(true)}
             />
           )}
-          <div className="kb-book-page-hotspots" inert={annotation?.writing || undefined}>
+          <div className="kb-book-page-hotspots" hidden={!enabled} inert={!enabled || annotation?.writing || undefined}>
           {loaded &&
             !error &&
             hotspots.map((hotspot, index) => (
@@ -259,7 +278,9 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal,
                 }}
                 aria-label={hotspot.kind === "text" ? `Read aloud: ${hotspot.word}` : `Play ${hotspot.word} pronunciation (${hotspot.kind === "label" ? "word label" : "picture area"})`}
                 aria-pressed={audio.playingText === hotspot.word}
+                disabled={!enabled}
                 onClick={() => {
+                  if (!canRead()) return;
                   beforeSpeak?.();
                   player.current?.pause();
                   void audio.play(hotspot.word);
@@ -274,9 +295,10 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal,
               aria-label={`Play page activity ${track.activity}, CD${track.disc} track ${track.track}${track.file ? "" : ", recording missing"}`}
               aria-pressed={selected?.activity === track.activity && isPlaying}
               data-missing={!track.file || undefined}
+              disabled={!enabled}
               onClick={() => playTrack(track)} />
           ))}
-          {loaded && !error && <BookSceneActivity key={page} page={page} speak={(text) => { beforeSpeak?.(); player.current?.pause(); void audio.play(text); }} />}
+          {loaded && !error && <BookSceneActivity key={page} page={page} speak={(text) => { if (!canRead()) return; beforeSpeak?.(); player.current?.pause(); void audio.play(text); }} />}
           {point && loaded && (
             <span
               className="kb-book-point"
@@ -288,12 +310,12 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal,
         </div>
       </div>
       <div className="kb-reader-playback">
-        {minimal && selected?.file && <button className="kb-reader-pause" aria-label={isPlaying ? "Pause recording" : "Resume recording"} onClick={() => playTrack(selected)}>{isPlaying ? <Pause size={22} /> : <Play size={22} />}</button>}
-        {audio.playingText ? <div className="kb-media-subtitles" lang="en">{audio.playingText}</div> : <MediaSubtitles file={selected?.file} mediaRef={player} />}
+        {minimal && selected?.file && enabled && <button className="kb-reader-pause" aria-label={isPlaying ? "Pause recording" : "Resume recording"} onClick={() => playTrack(selected)}>{isPlaying ? <Pause size={22} /> : <Play size={22} />}</button>}
+        {enabled && (audio.playingText ? <div className="kb-media-subtitles" lang="en">{audio.playingText}</div> : <MediaSubtitles file={selected?.file} mediaRef={player} />)}
       </div>
       {!minimal && <p className="kb-book-page-note">
-        {tracks.length ? "Tap a blue CD icon to hear the activity recording." : "This page has no CD recording markers."}
-        {hotspots.length > 0 && "Tap an outlined word or phrase to hear it."}
+        {enabled ? tracks.length ? "Tap a blue CD icon to hear the activity recording." : "This page has no CD recording markers." : "Tap to read is off. You can still turn pages and zoom."}
+        {enabled && hotspots.length > 0 && "Tap an outlined word or phrase to hear it."}
         Swipe sideways after zooming in.
       </p>}
     </section>

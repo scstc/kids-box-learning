@@ -397,3 +397,9 @@
     grid-template-columns: 1fr;
   }
 }
+.kb-book-page-toolbar .kb-tap-to-read-switch { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: auto; min-height: 48px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink-secondary); font-size: 13px; touch-action: manipulation; }
+.kb-book-page-toolbar .kb-tap-to-read-switch[aria-checked="true"] { color: var(--primary-dark); background: var(--primary-soft); border-color: var(--primary-soft-border); }
+.kb-tap-to-read-switch strong { font-size: 12px; }
+.kb-tap-to-read-switch:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+.kb-tap-to-read-error { display: flex; align-items: center; gap: 8px; color: var(--danger); font-size: 13px; }
+.kb-tap-to-read-error button { min-width: 48px; min-height: 48px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; touch-action: manipulation; }

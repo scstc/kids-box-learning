@@ -38,9 +38,14 @@ const memoryStore = () => {
     save: vi.fn(async (recording: Stored) => { values.set(recording.id, recording); }),
     get: async (id: string) => values.get(id),
     list: async (learnerId: string) => [...values.values()].filter(recording => recording.learnerId === learnerId),
+    remove: vi.fn(async (id: string) => { values.delete(id); }),
   };
 };
 const owner = { learnerId: "alice", learnerName: "Alice / Learner" };
+const savedVideo = (id: string, learnerId: string): Stored => ({
+  id, learnerId, name: `${id}.webm`, uri: `indexeddb:${id}`, createdAt: 1, duration: 1000,
+  size: 5, playbackAudio: false, blob: new Blob(["video"]),
+});
 let video: Track;
 let mic: Track;
 let unexpectedDisplayAudio: Track;
@@ -58,6 +63,182 @@ beforeEach(() => {
   vi.stubGlobal("MediaStream", Stream);
   vi.stubGlobal("MediaRecorder", Recorder);
   vi.stubGlobal("isSecureContext", true);
+});
+
+describe("a learner can delete only their own finished videos", () => {
+  it("removes the selected video while retaining other videos and refusing another learner's selection", async () => {
+    const store = memoryStore();
+    store.values.set("alice-selected", savedVideo("alice-selected", "alice"));
+    store.values.set("alice-kept", savedVideo("alice-kept", "alice"));
+    store.values.set("bob-kept", savedVideo("bob-kept", "bob"));
+    const recorder = createWebScreenRecorder(store);
+    await expect(recorder.remove({ id: "bob-kept", learnerId: "alice" })).rejects.toThrow("for this learner");
+    expect(store.remove).not.toHaveBeenCalled();
+    await recorder.remove({ id: "alice-selected", learnerId: "alice" });
+    expect((await recorder.listRecordings({ learnerId: "alice" })).recordings.map(item => item.id)).toEqual(["alice-kept"]);
+    expect((await recorder.listRecordings({ learnerId: "bob" })).recordings.map(item => item.id)).toEqual(["bob-kept"]);
+    await expect(recorder.remove({ id: "missing", learnerId: "alice" })).resolves.toBeUndefined();
+  });
+
+  it.each([undefined, { damaged: true }])("allows an owned damaged video to be deleted without allowing it to be opened or shared (%j)", async blob => {
+    const store = memoryStore();
+    store.values.set("alice-damaged", { ...savedVideo("alice-damaged", "alice"), blob: blob as unknown as Blob });
+    store.values.set("bob-kept", savedVideo("bob-kept", "bob"));
+    const recorder = createWebScreenRecorder(store);
+    const selection = { id: "alice-damaged", learnerId: "alice" };
+    await expect(recorder.open(selection)).rejects.toThrow("for this learner");
+    await expect(recorder.share(selection)).rejects.toThrow("for this learner");
+    await expect(recorder.remove({ ...selection, learnerId: "bob" })).rejects.toThrow("for this learner");
+    expect(store.remove).not.toHaveBeenCalled();
+    await recorder.remove(selection);
+    expect(store.values.has(selection.id)).toBe(false);
+    expect(store.values.has("bob-kept")).toBe(true);
+  });
+
+  it("refuses deletion when a damaged row's ownership or stored identity cannot be verified", async () => {
+    const store = memoryStore();
+    store.values.set("no-owner", { ...savedVideo("no-owner", "alice"), learnerId: undefined as unknown as string });
+    store.values.set("wrong-id", savedVideo("another-video", "alice"));
+    const recorder = createWebScreenRecorder(store);
+    await expect(recorder.remove({ id: "no-owner", learnerId: "alice" })).rejects.toThrow("for this learner");
+    await expect(recorder.remove({ id: "wrong-id", learnerId: "alice" })).rejects.toThrow("for this learner");
+    expect(store.remove).not.toHaveBeenCalled();
+    expect(store.values.size).toBe(2);
+  });
+
+  it("treats repeated deletion and an already missing video as complete without touching another learner's latest status", async () => {
+    const store = memoryStore();
+    const recorder = createWebScreenRecorder(store);
+    await recorder.start({ learnerId: "bob", learnerName: "Bob" });
+    await recorder.stop();
+    await vi.waitFor(async () => expect((await recorder.getStatus()).state).toBe("saved"));
+    const saved = await recorder.getStatus();
+    const id = saved.recording!.id;
+    store.values.delete(id);
+    await recorder.remove({ id, learnerId: "alice" });
+    expect(await recorder.getStatus()).toEqual(saved);
+    await recorder.remove({ id, learnerId: "bob" });
+    expect((await recorder.getStatus()).state).toBe("idle");
+    await expect(recorder.remove({ id, learnerId: "bob" })).resolves.toBeUndefined();
+    expect(store.remove).not.toHaveBeenCalled();
+  });
+
+  it("requires a complete list before learner deletion, while keeping unsaved-video recovery available after a read failure", async () => {
+    const store = memoryStore();
+    store.values.set("alice-persisted", savedVideo("alice-persisted", "alice"));
+    store.values.set("bob-kept", savedVideo("bob-kept", "bob"));
+    store.save.mockRejectedValueOnce(new Error("Quota exceeded"));
+    const recorder = createWebScreenRecorder(store);
+    await recorder.start(owner);
+    await recorder.stop();
+    await vi.waitFor(async () => expect((await recorder.getStatus()).state).toBe("error"));
+    const unsaved = (await recorder.getStatus()).recording!;
+    const list = vi.spyOn(store, "list");
+    list.mockRejectedValueOnce(new Error("Recording index is unavailable"));
+    await expect(recorder.listRecordings({ learnerId: "alice", requireComplete: true })).rejects.toThrow("index is unavailable");
+    expect(store.remove).not.toHaveBeenCalled();
+    expect(store.values.has("alice-persisted")).toBe(true);
+    list.mockRejectedValueOnce(new Error("Recording index is unavailable"));
+    expect((await recorder.listRecordings({ learnerId: "alice" })).recordings).toEqual([unsaved]);
+    const complete = await recorder.listRecordings({ learnerId: "alice", requireComplete: true });
+    expect(complete.recordings.map(recording => recording.id).sort()).toEqual(["alice-persisted", unsaved.id].sort());
+    expect((await recorder.listRecordings({ learnerId: "bob", requireComplete: true })).recordings.map(recording => recording.id)).toEqual(["bob-kept"]);
+  });
+
+  it("clears the latest saved-video status only after its persistent deletion succeeds", async () => {
+    const store = memoryStore();
+    const recorder = createWebScreenRecorder(store);
+    await recorder.start(owner);
+    await recorder.stop();
+    await vi.waitFor(async () => expect((await recorder.getStatus()).state).toBe("saved"));
+    const selection = { id: (await recorder.getStatus()).recording!.id, learnerId: "alice" };
+    store.remove.mockRejectedValueOnce(new Error("Read-only storage"));
+    await expect(recorder.remove(selection)).rejects.toThrow("has been kept");
+    expect((await recorder.getStatus()).state).toBe("saved");
+    expect((await recorder.listRecordings({ learnerId: "alice" })).recordings).toHaveLength(1);
+    await recorder.remove(selection);
+    expect(store.values.has(selection.id)).toBe(false);
+    expect(await recorder.getStatus()).toMatchObject({ state: "idle", message: "Recording deleted." });
+    expect((await recorder.listRecordings({ learnerId: "alice" })).recordings).toEqual([]);
+  });
+
+  it("keeps an unsaved video's Blob and retry state until deletion commits, then discards it", async () => {
+    const store = memoryStore();
+    store.save.mockRejectedValueOnce(new Error("Quota exceeded"));
+    const recorder = createWebScreenRecorder(store);
+    await recorder.start(owner);
+    await recorder.stop();
+    await vi.waitFor(async () => expect((await recorder.getStatus()).state).toBe("error"));
+    const selection = { id: (await recorder.getStatus()).recording!.id, learnerId: "alice" };
+    let commit!: () => void;
+    store.remove.mockImplementationOnce(async id => {
+      await new Promise<void>(resolve => { commit = resolve; });
+      store.values.delete(id);
+    });
+    const deleting = recorder.remove(selection);
+    await vi.waitFor(() => expect(store.remove).toHaveBeenCalledTimes(1));
+    expect((await recorder.listRecordings({ learnerId: "alice" })).recordings).toHaveLength(1);
+    expect((await recorder.getStatus()).state).toBe("error");
+    await expect(recorder.stop()).rejects.toThrow("finish deleting");
+    commit();
+    await deleting;
+    expect((await recorder.listRecordings({ learnerId: "alice" })).recordings).toEqual([]);
+    expect((await recorder.getStatus()).state).toBe("idle");
+    await recorder.stop();
+    expect(store.save).toHaveBeenCalledTimes(1);
+  });
+
+  it("retains a recoverable unsaved video if deletion fails", async () => {
+    const store = memoryStore();
+    store.save.mockRejectedValueOnce(new Error("Quota exceeded"));
+    const recorder = createWebScreenRecorder(store);
+    await recorder.start(owner);
+    await recorder.stop();
+    await vi.waitFor(async () => expect((await recorder.getStatus()).state).toBe("error"));
+    const failed = await recorder.getStatus();
+    store.remove.mockRejectedValueOnce(new Error("Deletion aborted"));
+    await expect(recorder.remove({ id: failed.recording!.id, learnerId: "alice" })).rejects.toThrow("has been kept");
+    expect(await recorder.getStatus()).toEqual(failed);
+    expect((await recorder.listRecordings({ learnerId: "alice" })).recordings).toEqual([failed.recording]);
+    expect((await recorder.stop()).state).toBe("saved");
+    expect(store.values.has(failed.recording!.id)).toBe(true);
+  });
+
+  it("does not interrupt a new recording when an older video is deleted", async () => {
+    const store = memoryStore();
+    store.values.set("old-alice", savedVideo("old-alice", "alice"));
+    const recorder = createWebScreenRecorder(store);
+    await recorder.start({ learnerId: "bob", learnerName: "Bob" });
+    await recorder.remove({ id: "old-alice", learnerId: "alice" });
+    expect((await recorder.getStatus()).state).toBe("recording");
+    expect(Recorder.instances[0].stop).not.toHaveBeenCalled();
+    await recorder.stop();
+    await vi.waitFor(async () => expect((await recorder.getStatus()).state).toBe("saved"));
+    expect((await recorder.listRecordings({ learnerId: "bob" })).recordings).toHaveLength(1);
+  });
+
+  it("waits for an in-flight retry to finish instead of deleting a video that could reappear", async () => {
+    const store = memoryStore();
+    store.save.mockRejectedValueOnce(new Error("Quota exceeded"));
+    const recorder = createWebScreenRecorder(store);
+    await recorder.start(owner);
+    await recorder.stop();
+    await vi.waitFor(async () => expect((await recorder.getStatus()).state).toBe("error"));
+    const selection = { id: (await recorder.getStatus()).recording!.id, learnerId: "alice" };
+    let saved!: () => void;
+    store.save.mockImplementationOnce(async recording => {
+      await new Promise<void>(resolve => { saved = resolve; });
+      store.values.set(recording.id, recording);
+    });
+    const saving = recorder.stop();
+    await vi.waitFor(() => expect(store.save).toHaveBeenCalledTimes(2));
+    await expect(recorder.remove(selection)).rejects.toThrow("finish saving");
+    expect(store.remove).not.toHaveBeenCalled();
+    saved();
+    await saving;
+    await recorder.remove(selection);
+    expect(store.values.has(selection.id)).toBe(false);
+  });
 });
 afterEach(() => { vi.unstubAllGlobals(); });
 

@@ -17,8 +17,12 @@
 .kb-screen-recording li > div:first-child { flex: 1; min-width: 180px; }
 .kb-screen-recording li strong { display: block; font-size: 14px; overflow-wrap: anywhere; }
 .kb-screen-recording li span { display: block; margin-top: 5px; font-size: 12px; color: var(--muted); }
-.kb-screen-recording li > div:last-child { display: flex; gap: 8px; }
+.kb-screen-recording .kb-recorder-video-actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .kb-screen-recording li button { display: flex; align-items: center; gap: 6px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 9px; font-size: 13px; color: var(--primary-dark); }
+.kb-screen-recording li button.kb-recorder-delete-button { color: var(--danger); }
+.kb-recorder-delete-confirmation { flex-basis: 100%; min-width: 0; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--page); }
+.kb-recorder-delete-confirmation > p { margin: 0 0 12px; color: var(--ink-secondary); font-size: 13px; line-height: 1.7; }
+.kb-recorder-delete-confirmation > div { display: flex; flex-wrap: wrap; gap: 8px; }
 body[data-screen-recording] *, body[data-screen-recording] *::before, body[data-screen-recording] *::after { -webkit-tap-highlight-color: transparent !important; }
 body[data-screen-recording] .kb-book-point { display: none; }
 @media (max-width: 600px) {

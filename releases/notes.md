@@ -1,10 +1,11 @@
-Kids Box 26.4.16
+Kids Box 26.4.17
 
-- Show a little hand at each tap during screen recording, making it easier to follow actions when watching the video.
-- The hand follows dragging and pen input, then fades shortly after release. It stays above the fullscreen talking book and dialogs, without blocking clicks or handwriting. Palm touches do not steal the pen's indicator.
-- Touches near the screen edge flip the hand to keep it visible. The indicator disappears on cancellation, loss of focus or stopping recording, and is not saved as handwriting.
-- Continue recording only microphone voice with the screen; book audio is not mixed in. Click sparks and native tap highlights stay hidden. Select the Kids Box tab or screen in desktop sharing to include the hand in the video.
-- Existing learner progress, handwritten notes, pen settings, saved videos and offline book resources are preserved.
+- Add a Tap to read switch to the talking book. Turn it off to stop book audio and read or write quietly; word, picture, question and CD taps stay silent. The setting is remembered for each learner in both the page reader and fullscreen book.
+- Choose a superhero avatar when adding a learner, including Spider-Man and Iron Man. Existing learners keep their progress and receive a default avatar. Avatars are bundled for offline use, with Icons8 attribution in the learner picker.
+- Show the current learner's avatar and name at the top right of the fullscreen book. Keep page, unit, speed and handwriting controls accessible on tablets and phones.
+- Delete a learner after confirmation, including their local progress, handwriting, pen/read settings and saved recordings. Keep other learners and shared book resources. Cleanup failures can be retried; data already removed is not restored.
+- Add Delete to every video in For parents → Screen recording. Confirm Delete video to remove the selected local video and its list entry, or choose Keep video to cancel. Failed deletions remain retryable.
+- Deleting learners or videos keeps previously downloaded/shared video copies. Keep recorded tap fingers, microphone-only recording, handwriting controls and all offline book resources.
 
 Local records do not sync between devices. Uninstalling the app or clearing its data removes local progress, notes, recording indexes and private app videos. Videos exported to Movies/Kids Box may remain in the gallery.
 

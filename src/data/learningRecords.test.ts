@@ -41,6 +41,7 @@ describe("clear learning records on this device", () => {
       ["kids-box-spelling-hints-v1", "off"],
       ["kids-box-reader-speed-v1", "0.75"],
       [learnerRecordKey("kids-box-reader-ink-v1", learner), "handwriting"],
+      [learnerRecordKey("kids-box-tap-to-read-v1", learner), "off"],
       ...learningRecordKeys.map((key): [string, string] => [key, "legacy backup"]),
       ...learningRecordKeys.map((key): [string, string] => [learnerRecordKey(key, other), "other learner"]),
     ];

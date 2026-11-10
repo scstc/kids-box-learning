@@ -10,6 +10,7 @@ type Session = {
   notice: string;
   start: (owner: RecordingOwner) => Promise<void>;
   stop: () => Promise<void>;
+  refreshStatus: () => Promise<void>;
   stopBeforeSwitch: () => Promise<boolean>;
 };
 const RecordingContext = createContext<Session | null>(null);
@@ -25,6 +26,7 @@ export function ScreenRecordingProvider({ children }: { children: ReactNode }) {
     if (next.state !== current.current.state || next.message !== current.current.message) {
       if (next.state === "saved") setNotice(`${next.message || "Video saved."} Find it in For parents → Screen recording.`);
       else if (next.state === "error") setNotice(next.message || "The video could not be saved. Please try again.");
+      else if (next.state === "idle") setNotice("");
     }
     current.current = next;
     setStatus(next);
@@ -92,7 +94,8 @@ export function ScreenRecordingProvider({ children }: { children: ReactNode }) {
     } catch (error) { setNotice(error instanceof Error ? error.message : "Stop recording before switching learners."); return false; }
     finally { running.current = false; setBusy(false); }
   };
-  return <RecordingContext.Provider value={{ info, status, busy, notice, start, stop, stopBeforeSwitch }}>{children}<RecordingPointer enabled={status.state === "recording"} /></RecordingContext.Provider>;
+  const refreshStatus = async () => apply(await screenRecorder.getStatus());
+  return <RecordingContext.Provider value={{ info, status, busy, notice, start, stop, refreshStatus, stopBeforeSwitch }}>{children}<RecordingPointer enabled={status.state === "recording"} /></RecordingContext.Provider>;
 }
 
 export function useScreenRecording() {

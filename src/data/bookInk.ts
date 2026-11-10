@@ -33,12 +33,13 @@ export function eraseInkStrokes(strokes: InkStroke[], from: InkPoint, to: InkPoi
   return remaining.length === strokes.length ? strokes : remaining;
 }
 
-type InkAdapter = { read: (page: InkPage) => Promise<InkStroke[]>; write: (page: InkPage, strokes: InkStroke[]) => Promise<void> };
+type InkAdapter = { read: (page: InkPage) => Promise<InkStroke[]>; write: (page: InkPage, strokes: InkStroke[]) => Promise<void>; deleteLearner?: (learnerId: string) => Promise<void> };
 type Entry = { page: InkPage; snapshot: InkSnapshot; ready: boolean; loading: boolean; revision: number; history: InkStroke[][]; listeners: Set<() => void>; tail: Promise<void> };
 
 // Sessions outlive reader mounts: changing pages never cancels an outstanding save.
 export function createInkRepository(adapter: InkAdapter) {
   const entries = new Map<string, Entry>();
+  const deletions = new Map<string, Promise<void>>();
   const learners = new Map<string, { snapshot: LearnerInkSnapshot; listeners: Set<() => void> }>();
   const learnerFor = (learnerId: string) => {
     let learner = learners.get(learnerId);
@@ -74,13 +75,15 @@ export function createInkRepository(adapter: InkAdapter) {
     entry.listeners.forEach(listener => listener());
   };
   const load = (page: InkPage, entry: Entry) => {
-    if (entry.ready || entry.loading) return;
+    if (entry.ready || entry.loading || deletions.has(page.learnerId)) return;
     entry.loading = true;
+    const revision = entry.revision;
     publish(entry, { status: "loading" });
     void adapter.read(page).then(strokes => {
+      if (entry.revision !== revision) return;
       entry.ready = true;
       publish(entry, { strokes, status: "saved" });
-    }, () => publish(entry, { status: "load-error" })).finally(() => { entry.loading = false; });
+    }, () => { if (entry.revision === revision) publish(entry, { status: "load-error" }); }).finally(() => { if (entry.revision === revision) entry.loading = false; });
   };
   const persist = (page: InkPage, entry: Entry) => {
     const revision = ++entry.revision;
@@ -108,6 +111,7 @@ export function createInkRepository(adapter: InkAdapter) {
       return () => { entry.listeners.delete(listener); };
     },
     commit(page: InkPage, strokes: InkStroke[]) {
+      if (deletions.has(page.learnerId)) return;
       const entry = entryFor(page);
       if (!entry.ready || strokes === entry.snapshot.strokes) return;
       entry.history = [...entry.history.slice(-49), entry.snapshot.strokes];
@@ -115,6 +119,7 @@ export function createInkRepository(adapter: InkAdapter) {
       persist(page, entry);
     },
     undo(page: InkPage) {
+      if (deletions.has(page.learnerId)) return;
       const entry = entryFor(page);
       const previous = entry.history.pop();
       if (!entry.ready || !previous) return;
@@ -122,14 +127,43 @@ export function createInkRepository(adapter: InkAdapter) {
       persist(page, entry);
     },
     retry(page: InkPage) {
+      if (deletions.has(page.learnerId)) return;
       const entry = entryFor(page);
       if (!entry.ready) load(page, entry);
       else if (entry.snapshot.status === "save-error") persist(page, entry);
     },
     retryFailed(learnerId: string) {
+      if (deletions.has(learnerId)) return;
       for (const entry of entries.values()) {
         if (entry.page.learnerId === learnerId && entry.snapshot.status === "save-error") persist(entry.page, entry);
       }
+    },
+    deleteLearner(learnerId: string): Promise<void> {
+      const existing = deletions.get(learnerId);
+      if (existing) return existing;
+      if (!adapter.deleteLearner) return Promise.reject(new Error("Handwriting deletion is unavailable."));
+      const deletion = Promise.resolve().then(async () => {
+        await Promise.all([...entries.values()].filter(entry => entry.page.learnerId === learnerId).map(entry => entry.tail));
+        await adapter.deleteLearner!(learnerId);
+        for (const [key, entry] of entries) {
+          if (entry.page.learnerId !== learnerId) continue;
+          // Invalidate any read that began before deletion, and discard Undo history.
+          entry.revision++;
+          entry.history = [];
+          entry.ready = true;
+          entry.loading = false;
+          publish(entry, { strokes: [], status: "saved", canUndo: false });
+          if (entry.listeners.size === 0) entries.delete(key);
+        }
+        publishLearner(learnerId);
+      }).finally(() => {
+        deletions.delete(learnerId);
+        for (const entry of entries.values()) {
+          if (entry.page.learnerId === learnerId && entry.listeners.size > 0) load(entry.page, entry);
+        }
+      });
+      deletions.set(learnerId, deletion);
+      return deletion;
     },
     hasUnsaved: () => [...entries.values()].some(entry => entry.snapshot.status === "saving" || entry.snapshot.status === "save-error"),
     settled: (page: InkPage) => entryFor(page).tail,
@@ -180,7 +214,29 @@ export const bookInkRepository = createInkRepository({
       });
     } finally { database.close(); }
   },
+  async deleteLearner(learnerId) {
+    const database = await openInkDatabase();
+    try {
+      await new Promise<void>((resolve, reject) => {
+        const transaction = database.transaction("pages", "readwrite");
+        const request = transaction.objectStore("pages").openCursor();
+        request.onsuccess = () => {
+          const cursor = request.result;
+          if (!cursor) return;
+          if (Array.isArray(cursor.key) && cursor.key[0] === learnerId) cursor.delete();
+          cursor.continue();
+        };
+        transaction.oncomplete = () => resolve();
+        transaction.onerror = () => reject(transaction.error);
+        transaction.onabort = () => reject(transaction.error);
+      });
+    } finally { database.close(); }
+  },
 });
+
+export function deleteLearnerHandwriting(learnerId: string): Promise<void> {
+  return bookInkRepository.deleteLearner(learnerId);
+}
 
 if (typeof window !== "undefined") window.addEventListener("beforeunload", event => {
   if (!bookInkRepository.hasUnsaved()) return;

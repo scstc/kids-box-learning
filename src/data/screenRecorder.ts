@@ -24,9 +24,10 @@ export type ScreenRecorder = {
   getStatus(): Promise<RecordingStatus>;
   start(owner: RecordingOwner): Promise<RecordingStatus>;
   stop(): Promise<RecordingStatus>;
-  listRecordings(owner: Pick<RecordingOwner, "learnerId">): Promise<{ recordings: Recording[] }>;
+  listRecordings(owner: Pick<RecordingOwner, "learnerId"> & { requireComplete?: boolean }): Promise<{ recordings: Recording[] }>;
   open(selection: RecordingSelection): Promise<void>;
   share(selection: RecordingSelection): Promise<void>;
+  remove(selection: RecordingSelection): Promise<void>;
 };
 
 type StoredRecording = Recording & { blob: Blob };
@@ -34,6 +35,7 @@ export type RecordingStore = {
   save(recording: StoredRecording): Promise<void>;
   get(id: string): Promise<StoredRecording | undefined>;
   list(learnerId: string): Promise<StoredRecording[]>;
+  remove(id: string): Promise<void>;
 };
 
 function openDatabase(): Promise<IDBDatabase> {
@@ -82,6 +84,18 @@ const browserStore: RecordingStore = {
         const request = transaction.objectStore("recordings").index("learnerId").getAll(learnerId);
         request.onsuccess = () => resolve(request.result);
         request.onerror = () => reject(request.error);
+        transaction.onabort = () => reject(transaction.error);
+      });
+    } finally { database.close(); }
+  },
+  async remove(id) {
+    const database = await openDatabase();
+    try {
+      await new Promise<void>((resolve, reject) => {
+        const transaction = database.transaction("recordings", "readwrite");
+        transaction.objectStore("recordings").delete(id);
+        transaction.oncomplete = () => resolve();
+        transaction.onerror = () => reject(transaction.error);
         transaction.onabort = () => reject(transaction.error);
       });
     } finally { database.close(); }
@@ -145,8 +159,11 @@ export function createWebScreenRecorder(store: RecordingStore = browserStore): S
   let starting = false;
   let cancelled = false;
   const unsaved = new Map<string, StoredRecording>();
+  const saving = new Set<string>();
+  const deleting = new Set<string>();
 
   const save = async (recording: StoredRecording, notice?: string) => {
+    saving.add(recording.id);
     try {
       await store.save(recording);
       unsaved.delete(recording.id);
@@ -154,7 +171,7 @@ export function createWebScreenRecorder(store: RecordingStore = browserStore): S
     } catch {
       unsaved.set(recording.id, recording);
       status = { state: "error", recording: metadata(recording), message: "The video could not be saved. Download it from My recordings before closing this page, or retry saving." };
-    }
+    } finally { saving.delete(recording.id); }
   };
   const finish = async (capture: CaptureSession) => {
     if (capture.finalizing) return;
@@ -275,15 +292,17 @@ export function createWebScreenRecorder(store: RecordingStore = browserStore): S
       } else if (session) requestStop();
       else if (status.recording && unsaved.has(status.recording.id)) {
         const recording = unsaved.get(status.recording.id)!;
+        if (deleting.has(recording.id)) throw new Error("Wait for this video to finish deleting before saving it again.");
         status = { state: "stopping", message: "Saving your recording…" };
         await save(recording);
       }
       return status;
     },
-    async listRecordings({ learnerId }) {
+    async listRecordings({ learnerId, requireComplete }) {
       let recordings: StoredRecording[];
       try { recordings = await store.list(learnerId); }
       catch (error) {
+        if (requireComplete) throw error;
         recordings = [...unsaved.values()].filter(recording => recording.learnerId === learnerId);
         if (!recordings.length) throw error;
       }
@@ -300,6 +319,28 @@ export function createWebScreenRecorder(store: RecordingStore = browserStore): S
         catch (error) { if (!(error instanceof DOMException && error.name === "AbortError")) throw error; }
       } else download(recording);
     },
+    async remove(selection) {
+      const { id, learnerId } = selection;
+      const recording = unsaved.get(id) ?? await store.get(id);
+      // Damaged media can still be removed, but its saved ownership must match.
+      if (recording !== undefined && (!recording || recording.id !== id || recording.learnerId !== learnerId))
+        throw new Error("This recording could not be found for this learner.");
+      if (saving.has(id)) throw new Error("Wait for this video to finish saving before deleting it.");
+      if (deleting.has(id)) throw new Error("This video is already being deleted. Please wait.");
+      if (recording === undefined) {
+        if (status.recording?.id === id && status.recording.learnerId === learnerId)
+          status = { state: "idle", message: "Recording deleted." };
+        return;
+      }
+      deleting.add(id);
+      try {
+        await store.remove(id);
+        unsaved.delete(id);
+        if (status.recording?.id === id && status.recording.learnerId === learnerId)
+          status = { state: "idle", message: "Recording deleted." };
+      } catch { throw new Error("The video could not be deleted. It has been kept. Please try again."); }
+      finally { deleting.delete(id); }
+    },
   };
 }
 
@@ -315,4 +356,5 @@ export const screenRecorder: ScreenRecorder = {
   listRecordings: owner => recorder().listRecordings(owner),
   open: selection => recorder().open(selection),
   share: selection => recorder().share(selection),
+  remove: selection => recorder().remove(selection),
 };

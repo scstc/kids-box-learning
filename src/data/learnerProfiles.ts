@@ -1,4 +1,6 @@
-export type LearnerProfile = { id: string; name: string };
+import { defaultLearnerAvatarId, learnerAvatars } from "./learnerAvatars";
+
+export type LearnerProfile = { id: string; name: string; avatarId: string };
 export type LearnerRegistry = {
   profiles: LearnerProfile[];
   activeId: string | null;
@@ -12,6 +14,11 @@ export const learningRecordKeys = [
   "kids-box-reader-page-v1",
   "kids-box-practice-progress-v1",
 ];
+
+function avatarId(value: unknown) {
+  return typeof value === "string" && learnerAvatars.some(avatar => avatar.id === value)
+    ? value : defaultLearnerAvatarId;
+}
 
 function normalizeName(name: string) {
   if (/[\p{Cc}\p{Cf}\p{Zl}\p{Zp}]/u.test(name))
@@ -55,7 +62,7 @@ export function readLearnerRegistry(
       if (ids.has(id) || names.has(identity)) throw new Error();
       ids.add(id);
       names.add(identity);
-      return { id, name };
+      return { id, name, avatarId: avatarId(profile.avatarId) };
     });
     if (
       registry.activeId !== null &&
@@ -87,21 +94,21 @@ export function chooseLearner(storage: WritableStorage, id: string) {
   return { registry, profile };
 }
 
-export function openLearner(storage: WritableStorage, name: string) {
+export function openLearner(storage: WritableStorage, name: string, selectedAvatar?: string) {
   const normalized = normalizeName(name);
   const saved = readLearnerRegistry(storage);
   const existing = saved.profiles.find(
     (profile) => profile.name.toLowerCase() === normalized.toLowerCase(),
   );
   if (existing) return chooseLearner(storage, existing.id);
-  const profile = { id: createProfileId(), name: normalized };
+  const profile = { id: createProfileId(), name: normalized, avatarId: avatarId(selectedAvatar) };
   const registry = {
     profiles: [...saved.profiles, profile],
     activeId: profile.id,
   };
   const copiedKeys: string[] = [];
   try {
-    if (saved.profiles.length === 0) {
+    if (storage.getItem(registryKey) === null) {
       for (const baseKey of learningRecordKeys) {
         const legacy = storage.getItem(baseKey);
         if (legacy !== null) {
@@ -120,4 +127,37 @@ export function openLearner(storage: WritableStorage, name: string) {
     throw error;
   }
   return { registry, profile };
+}
+
+// Notes and videos are cleaned up by the caller before committing profile removal.
+export function removeLearner(storage: WritableStorage, id: string) {
+  const saved = readLearnerRegistry(storage);
+  const removed = saved.profiles.find(profile => profile.id === id);
+  if (!removed) throw new Error("This learner profile could not be found.");
+  const registry = {
+    profiles: saved.profiles.filter(profile => profile.id !== id),
+    activeId: saved.activeId === id ? null : saved.activeId,
+  };
+  const records = [...learningRecordKeys, "kids-box-ink-preferences-v1", "kids-box-tap-to-read-v1"].map(baseKey => {
+    const key = learnerRecordKey(baseKey, id);
+    return { key, value: storage.getItem(key) };
+  });
+  const cleared: typeof records = [];
+  try {
+    for (const record of records) {
+      storage.removeItem(record.key);
+      cleared.push(record);
+    }
+    // Keep this key even when empty: creating another learner must not reimport backups.
+    storage.setItem(registryKey, JSON.stringify(registry));
+  } catch (error) {
+    for (const { key, value } of cleared) {
+      try {
+        if (value === null) storage.removeItem(key);
+        else storage.setItem(key, value);
+      } catch { /* Preserve the original failure; the profile remains available to retry. */ }
+    }
+    throw error;
+  }
+  return { registry, removed };
 }

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { createPortal } from "react-dom";
-import { BookOpen, Check, ChevronDown, Eraser, Gauge, Palette, PenLine, Undo2, X } from "lucide-react";
+import { BookOpen, Check, ChevronDown, Eraser, Gauge, Palette, PenLine, Undo2, Volume2, VolumeX, X } from "lucide-react";
 import { pauseOtherMedia } from "../data/media";
 import type { CourseAudio } from "../hooks/useCourseAudio";
 import BookPageReader from "./BookPageReader";
@@ -14,11 +14,15 @@ import type { InkTool } from "./BookInkOverlay";
 import { inkColors, inkWidths } from "../data/bookInkPreferences";
 import { useBookInkPreferences } from "../hooks/useBookInkPreferences";
 import { ScreenRecordControl } from "./ScreenRecording";
+import LearnerAvatar from "./LearnerAvatar";
+import { useBookReadPreferences } from "../hooks/useBookReadPreferences";
+import "./fullscreenBook.css";
 
 const playbackSpeeds = [0.5, 0.75, 1, 1.25, 1.5];
 
 export default function FullscreenBook({ initialPage, audio, onClose }: { initialPage: number; audio: CourseAudio; onClose: () => void }) {
   const { profile } = useLearner();
+  const { enabled: tapToRead, setEnabled: setTapToRead, storageError: readPreferenceError } = useBookReadPreferences();
   const dialog = useRef<HTMLDialogElement>(null);
   const unitButton = useRef<HTMLButtonElement>(null);
   const pageButton = useRef<HTMLButtonElement>(null);
@@ -127,8 +131,15 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
         </div>
         <button className="kb-reader-write-button" aria-label="Write on this page" aria-pressed={writing}
           onClick={() => { setWriting(!writing); setPanel(null); audio.stop(); pauseOtherMedia(); }}><PenLine size={20} /><span>Write</span></button>
+        <button className="kb-reader-read-switch" type="button" role="switch" aria-label="Tap to read" aria-checked={tapToRead}
+          onClick={() => { setTapToRead(!tapToRead); setPanel(null); if (tapToRead) { audio.stop(); pauseOtherMedia(); } }}>
+          {tapToRead ? <Volume2 size={19} aria-hidden="true" /> : <VolumeX size={19} aria-hidden="true" />}<span>Tap to read</span><i aria-hidden="true" /></button>
+        <div className="kb-reader-learner" aria-label={`Current learner: ${profile.name}`} title={profile.name}>
+          <LearnerAvatar avatarId={profile.avatarId} /><span>{profile.name}</span>
+        </div>
         <button className="kb-fullscreen-close" onClick={close} aria-label="Close talking book"><X size={21} /></button>
       </div>
+      {readPreferenceError && <p className="kb-reader-read-error" role="status">Tap to read could not be saved. Your choice applies for now.<button onClick={() => setTapToRead(tapToRead)}>Retry</button></p>}
       {showInkTools && <div className="kb-reader-ink-tools" aria-label="Handwriting tools">
         {writing && <div className="kb-reader-ink-actions">
           <button aria-label="Pen" aria-pressed={inkTool === "pen"} disabled={!inkReady} onClick={() => setInkTool("pen")}><PenLine size={19} /><span>Pen</span></button>

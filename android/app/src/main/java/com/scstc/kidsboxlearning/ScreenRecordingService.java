@@ -26,6 +26,9 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.provider.MediaStore;
+import android.system.ErrnoException;
+import android.system.Os;
+import android.system.OsConstants;
 import android.view.Surface;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.FileProvider;
@@ -49,6 +52,7 @@ public class ScreenRecordingService extends Service {
     private static final int NOTIFICATION = 42;
     private static volatile ScreenRecordingService instance;
     private static volatile JSONObject pendingRecord;
+    private static volatile JSONObject deletingRecord;
     private final ExecutorService worker = Executors.newSingleThreadExecutor();
     private final AtomicBoolean stopping = new AtomicBoolean(false);
     private final Handler main = new Handler(Looper.getMainLooper());
@@ -136,9 +140,25 @@ public class ScreenRecordingService extends Service {
     }
 
     static synchronized JSONObject pendingRecording(Context context) {
-        if (pendingRecord != null) return pendingRecord;
         try {
-            String value = preferences(context).getString("pending-recording", null);
+            JSONObject item = pendingRecord;
+            if (item == null) {
+                String value = preferences(context).getString("pending-recording", null);
+                item = value == null ? null : new JSONObject(value);
+            }
+            JSONObject deleting = pendingDeletion(context);
+            return item != null && sameRecording(deleting, item.optString("id"), item.optString("learnerId")) ? null : item;
+        } catch (Exception ignored) { return null; }
+    }
+
+    private static boolean sameRecording(JSONObject item, String id, String learner) {
+        return item != null && id.equals(item.optString("id")) && learner.equals(item.optString("learnerId"));
+    }
+
+    private static JSONObject pendingDeletion(Context context) {
+        if (deletingRecord != null) return deletingRecord;
+        try {
+            String value = preferences(context).getString("pending-deletion", null);
             return value == null ? null : new JSONObject(value);
         } catch (Exception ignored) { return null; }
     }
@@ -176,7 +196,112 @@ public class ScreenRecordingService extends Service {
             if (item != null && pending != null && item.optString("id").equals(pending.optString("id"))) pendingListed = true;
         }
         if (!pendingListed && pending != null && learner.equals(pending.optString("learnerId"))) result.put(pending);
+        JSONObject deleting = pendingDeletion(context);
+        if (deleting != null && learner.equals(deleting.optString("learnerId"))) {
+            boolean listed = false;
+            for (int i = 0; i < result.length(); i++) if (deleting.optString("id").equals(result.getJSONObject(i).optString("id"))) listed = true;
+            if (!listed) result.put(deleting);
+        }
         return result;
+    }
+
+    static synchronized void removeRecording(Context context, String id, String learner) throws Exception {
+        if (running() || busy(context)) throw new Exception("Stop recording before deleting a video.");
+        SharedPreferences saved = preferences(context);
+        JSONObject deleting = pendingDeletion(context);
+        if (saved.contains("pending-deletion") && deleting == null)
+            throw new Exception("The previous deletion details could not be read. Your video files have been kept.");
+        JSONObject selected = null;
+        JSONArray own = recordings(context, learner);
+        for (int i = 0; i < own.length(); i++) if (sameRecording(own.getJSONObject(i), id, learner)) selected = own.getJSONObject(i);
+        if (selected == null) throw new Exception("This recording could not be found for the selected learner.");
+        // Parse the whole index before deleting a file; unreadable metadata must not be replaced.
+        JSONArray all = new JSONArray(saved.getString("recordings", "[]"));
+        boolean previousDeletion = deleting != null && !sameRecording(deleting, id, learner);
+        if (previousDeletion) {
+            boolean indexed = false;
+            for (int i = 0; i < all.length(); i++) if (sameRecording(all.optJSONObject(i), deleting.optString("id"), deleting.optString("learnerId"))) indexed = true;
+            if (!indexed) all.put(deleting);
+        }
+        JSONArray remaining = new JSONArray();
+        for (int i = 0; i < all.length(); i++) {
+            Object item = all.get(i);
+            if (!(item instanceof JSONObject) || !sameRecording((JSONObject) item, id, learner)) remaining.put(item);
+        }
+        JSONObject pending = pendingRecord;
+        if (pending == null) {
+            String value = saved.getString("pending-recording", null);
+            if (value != null) pending = new JSONObject(value);
+        }
+        boolean deletingPending = sameRecording(pending, id, learner);
+        // Reject unavailable/unowned storage before creating a deletion journal.
+        removeVideoFile(context, selected, false);
+        deletingRecord = selected;
+        // Preserve a previous deletion's retry entry in the index before replacing
+        // its journal, including when another learner deletes their own video.
+        SharedPreferences.Editor prepared = saved.edit().putString("recordings", all.toString()).putString("pending-deletion", selected.toString());
+        if (previousDeletion && sameRecording(pending, deleting.optString("id"), deleting.optString("learnerId"))) {
+            prepared.remove("pending-recording");
+            pendingRecord = null;
+            if (deleting.optString("id").equals(saved.getString("pending-id", "")))
+                prepared.remove("pending-file").remove("pending-id").remove("pending-finalized").remove("pending-details");
+        }
+        JSONObject previousStatus = status(context);
+        boolean deletingLast = sameRecording(previousStatus.optJSONObject("recording"), id, learner)
+            || (previousDeletion && sameRecording(previousStatus.optJSONObject("recording"), deleting.optString("id"), deleting.optString("learnerId")));
+        if (deletingLast) prepared.putString("status", object("state", "idle").toString());
+        if (!prepared.commit()) throw new Exception("Deletion could not be prepared. The video has been kept. Please retry.");
+        removeVideoFile(context, selected, true);
+        SharedPreferences.Editor finished = saved.edit().putString("recordings", remaining.toString()).remove("pending-deletion");
+        if (deletingPending) finished.remove("pending-recording");
+        if (id.equals(saved.getString("pending-id", "")))
+            finished.remove("pending-file").remove("pending-id").remove("pending-finalized").remove("pending-details");
+        if (deletingLast) finished.putString("status", object("state", "idle").toString());
+        // Keep the journal in memory/on disk until this commit succeeds, so a failed
+        // index write can be retried even after the physical file is already gone.
+        if (!finished.commit()) throw new Exception("The video was deleted, but the list could not be updated. Tap Delete again to finish.");
+        if (deletingPending) pendingRecord = null;
+        deletingRecord = null;
+    }
+
+    private static void removeVideoFile(Context context, JSONObject item, boolean deleting) throws Exception {
+        if (!Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()))
+            throw new Exception("Device video storage is not available for deletion. Please try again.");
+        Uri uri = Uri.parse(item.getString("uri"));
+        if (!"content".equals(uri.getScheme())) throw new Exception("This video address could not be verified.");
+        String authority = context.getPackageName() + ".fileprovider";
+        if (authority.equals(uri.getAuthority())) {
+            File movies = context.getExternalFilesDir(Environment.DIRECTORY_MOVIES);
+            if (movies == null || !Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState(movies)))
+                throw new Exception("Device video storage is not available for deletion. Please try again.");
+            File folder = new File(movies, "Kids Box").getCanonicalFile();
+            File video = new File(folder, item.getString("name")).getCanonicalFile();
+            if (!folder.equals(video.getParentFile()) || !uri.equals(FileProvider.getUriForFile(context, authority, video)))
+                throw new Exception("This video address could not be verified.");
+            try {
+                if (!OsConstants.S_ISREG(Os.lstat(video.getAbsolutePath()).st_mode)) throw new Exception("The saved video is not a regular file.");
+                if (deleting) Os.remove(video.getAbsolutePath());
+            } catch (ErrnoException error) {
+                if (error.errno != OsConstants.ENOENT && error.errno != OsConstants.ENOTDIR)
+                    throw new Exception("The video could not be deleted. Check device storage and try again.", error);
+            }
+            return;
+        }
+        java.util.List<String> parts = uri.getPathSegments();
+        if (Build.VERSION.SDK_INT < 29 || !"media".equals(uri.getAuthority()) || parts.size() != 4
+            || !("external".equals(parts.get(0)) || "external_primary".equals(parts.get(0)))
+            || !"video".equals(parts.get(1)) || !"media".equals(parts.get(2)) || !parts.get(3).matches("[0-9]+"))
+            throw new Exception("This video address could not be verified.");
+        try (Cursor row = context.getContentResolver().query(uri, new String[] { MediaStore.MediaColumns.OWNER_PACKAGE_NAME }, null, null, null)) {
+            if (row == null) throw new Exception("The saved video could not be checked. Please retry.");
+            if (!row.moveToFirst()) return; // Removed in the device gallery: clear its stale list entry.
+            if (!context.getPackageName().equals(row.getString(0))) throw new Exception("This video no longer belongs to Kids Box and was not deleted.");
+        }
+        if (!deleting) return;
+        if (context.getContentResolver().delete(uri, null, null) > 0) return;
+        try (Cursor row = context.getContentResolver().query(uri, new String[] { MediaStore.Video.Media._ID }, null, null, null)) {
+            if (row == null || row.moveToFirst()) throw new Exception("The video could not be deleted. Please retry.");
+        }
     }
 
     static synchronized void remember(Context context, JSONObject item) throws Exception {

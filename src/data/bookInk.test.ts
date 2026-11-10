@@ -165,3 +165,119 @@ describe("persistent notes belong to one learner and one printed page", () => {
     expect(write).toHaveBeenLastCalledWith(alice, original);
   });
 });
+
+describe("deleting a learner's handwriting", () => {
+  it("waits for every queued write and the deletion transaction, blocking new gestures until deletion finishes", async () => {
+    const firstWrite = deferred();
+    const secondWrite = deferred();
+    const remove = deferred();
+    const saved = new Map<string, InkStroke[]>();
+    const write = vi.fn().mockImplementationOnce(async (page: InkPage, strokes: InkStroke[]) => {
+      await firstWrite.promise;
+      saved.set(key(page), strokes);
+    }).mockImplementationOnce(async (page: InkPage, strokes: InkStroke[]) => {
+      await secondWrite.promise;
+      saved.set(key(page), strokes);
+    });
+    const deleteLearner = vi.fn(async (learnerId: string) => {
+      await remove.promise;
+      for (const savedKey of saved.keys()) if (JSON.parse(savedKey)[0] === learnerId) saved.delete(savedKey);
+    });
+    const repository = createInkRepository({ read: async () => [], write, deleteLearner });
+    repository.subscribe(alice, () => {});
+    await vi.waitFor(() => expect(repository.getSnapshot(alice).status).toBe("saved"));
+    repository.commit(alice, [stroke("first")]);
+    repository.commit(alice, [stroke("first"), stroke("second")]);
+    const deletion = repository.deleteLearner(alice.learnerId);
+    expect(repository.deleteLearner(alice.learnerId)).toBe(deletion);
+    repository.commit(alice, [stroke("blocked")]);
+    repository.undo(alice);
+    repository.retry(alice);
+    repository.retryFailed(alice.learnerId);
+    await vi.waitFor(() => expect(write).toHaveBeenCalledTimes(1));
+    expect(deleteLearner).not.toHaveBeenCalled();
+    firstWrite.resolve();
+    await vi.waitFor(() => expect(write).toHaveBeenCalledTimes(2));
+    expect(deleteLearner).not.toHaveBeenCalled();
+    secondWrite.resolve();
+    await vi.waitFor(() => expect(deleteLearner).toHaveBeenCalledWith(alice.learnerId));
+    expect(repository.getSnapshot(alice).strokes.map(item => item.id)).toEqual(["first", "second"]);
+    expect(saved.has(key(alice))).toBe(true);
+    remove.resolve();
+    await deletion;
+    expect(saved.has(key(alice))).toBe(false);
+    expect(repository.getSnapshot(alice)).toMatchObject({ strokes: [], canUndo: false, status: "saved" });
+    expect(repository.hasUnsaved()).toBe(false);
+    expect(write).toHaveBeenCalledTimes(2);
+  });
+
+  it("deletes all the learner's saved pages including unopened pages, while preserving another learner's data and cache", async () => {
+    const unopened = { learnerId: alice.learnerId, page: 95 };
+    const saved = new Map([alice, later, unopened, bob].map(page => [key(page), [stroke(`${page.learnerId}-${page.page}`)]]));
+    const read = vi.fn(async (page: InkPage) => saved.get(key(page)) ?? []);
+    const repository = createInkRepository({
+      read,
+      write: async (page, strokes) => { saved.set(key(page), strokes); },
+      deleteLearner: async learnerId => { for (const savedKey of saved.keys()) if (JSON.parse(savedKey)[0] === learnerId) saved.delete(savedKey); },
+    });
+    const closeAlice = repository.subscribe(alice, () => {});
+    repository.subscribe(bob, () => {});
+    await vi.waitFor(() => expect(repository.getSnapshot(alice).strokes[0]?.id).toBe("alice-14"));
+    const bobCache = repository.getSnapshot(bob);
+    closeAlice();
+    await repository.deleteLearner(alice.learnerId);
+    expect([...saved.keys()]).toEqual([key(bob)]);
+    expect(repository.getSnapshot(bob)).toBe(bobCache);
+    expect(repository.getLearnerSnapshot(alice.learnerId)).toEqual({ savingPages: [], failedPages: [] });
+    repository.subscribe(alice, () => {});
+    repository.subscribe(later, () => {});
+    repository.subscribe(unopened, () => {});
+    await vi.waitFor(() => expect([alice, later, unopened].map(page => repository.getSnapshot(page))).toEqual([
+      { strokes: [], status: "saved", canUndo: false },
+      { strokes: [], status: "saved", canUndo: false },
+      { strokes: [], status: "saved", canUndo: false },
+    ]));
+    expect(read.mock.calls.filter(([page]) => key(page) === key(alice))).toHaveLength(2);
+  });
+
+  it("keeps strokes, undo history and failed saves retryable if deletion fails, without touching other learners", async () => {
+    const saved = new Map([[key(bob), [stroke("Bob's notes")]]]);
+    const write = vi.fn().mockRejectedValueOnce(new Error("Write failed")).mockImplementation(async (page: InkPage, strokes: InkStroke[]) => { saved.set(key(page), strokes); });
+    const deleteLearner = vi.fn().mockRejectedValueOnce(new Error("Delete failed")).mockImplementation(async (learnerId: string) => {
+      for (const savedKey of saved.keys()) if (JSON.parse(savedKey)[0] === learnerId) saved.delete(savedKey);
+    });
+    const repository = createInkRepository({ read: async page => saved.get(key(page)) ?? [], write, deleteLearner });
+    repository.subscribe(alice, () => {});
+    repository.subscribe(bob, () => {});
+    await vi.waitFor(() => expect(repository.getSnapshot(alice).status).toBe("saved"));
+    repository.commit(alice, [stroke("keep until deletion succeeds")]);
+    await repository.settled(alice);
+    const aliceCache = repository.getSnapshot(alice);
+    const bobCache = repository.getSnapshot(bob);
+    await expect(repository.deleteLearner(alice.learnerId)).rejects.toThrow("Delete failed");
+    expect(repository.getSnapshot(alice)).toBe(aliceCache);
+    expect(repository.getSnapshot(alice)).toMatchObject({ status: "save-error", canUndo: true });
+    expect(repository.getSnapshot(bob)).toBe(bobCache);
+    repository.retryFailed(alice.learnerId);
+    await repository.settled(alice);
+    expect(saved.get(key(alice))).toEqual([stroke("keep until deletion succeeds")]);
+    await repository.deleteLearner(alice.learnerId);
+    expect(repository.getSnapshot(alice)).toMatchObject({ strokes: [], status: "saved", canUndo: false });
+    expect(saved.get(key(bob))).toEqual([stroke("Bob's notes")]);
+    expect(deleteLearner).toHaveBeenCalledTimes(2);
+  });
+
+  it("does not restore old cached strokes if an earlier page read resolves after deletion", async () => {
+    let finishRead!: (strokes: InkStroke[]) => void;
+    const repository = createInkRepository({
+      read: () => new Promise<InkStroke[]>(resolve => { finishRead = resolve; }),
+      write: async () => {},
+      deleteLearner: async () => {},
+    });
+    repository.subscribe(alice, () => {});
+    await repository.deleteLearner(alice.learnerId);
+    finishRead([stroke("deleted notes")]);
+    await Promise.resolve();
+    expect(repository.getSnapshot(alice)).toMatchObject({ strokes: [], status: "saved", canUndo: false });
+  });
+});

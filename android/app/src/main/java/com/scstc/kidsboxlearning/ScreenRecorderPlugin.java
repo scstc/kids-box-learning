@@ -199,6 +199,18 @@ public class ScreenRecorderPlugin extends Plugin {
     }
     @PluginMethod public void open(PluginCall call) { showRecording(call, false); }
     @PluginMethod public void share(PluginCall call) { showRecording(call, true); }
+    @PluginMethod public void remove(PluginCall call) {
+        try {
+            currentStatus();
+            if (pending || ScreenRecordingService.running() || ScreenRecordingService.busy(getContext()))
+                throw new Exception("Stop recording before deleting a video.");
+            JSONObject item = recording(call);
+            ScreenRecordingService.removeRecording(getContext(), item.getString("id"), call.getString("learnerId"));
+            call.resolve();
+        } catch (Exception error) {
+            call.reject(error.getMessage() == null ? "The video could not be deleted. Please try again." : error.getMessage(), error);
+        }
+    }
     @Override protected void handleOnStop() { if (ScreenRecordingService.running()) ScreenRecordingService.stopCurrent(); }
     @Override protected void handleOnDestroy() {
         if (pending && !ScreenRecordingService.running()) {
