@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { createPortal } from "react-dom";
-import { BookOpen, Check, ChevronDown, Eraser, Gauge, PenLine, Undo2, X } from "lucide-react";
+import { BookOpen, Check, ChevronDown, Eraser, Gauge, Palette, PenLine, Undo2, X } from "lucide-react";
 import { pauseOtherMedia } from "../data/media";
 import type { CourseAudio } from "../hooks/useCourseAudio";
 import BookPageReader from "./BookPageReader";
@@ -11,6 +11,8 @@ import { learnerRecordKey } from "../data/learnerProfiles";
 import { useLearner } from "../hooks/useLearner";
 import { useBookInk } from "../hooks/useBookInk";
 import type { InkTool } from "./BookInkOverlay";
+import { inkColors, inkWidths } from "../data/bookInkPreferences";
+import { useBookInkPreferences } from "../hooks/useBookInkPreferences";
 
 const playbackSpeeds = [0.5, 0.75, 1, 1.25, 1.5];
 
@@ -20,8 +22,9 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
   const unitButton = useRef<HTMLButtonElement>(null);
   const pageButton = useRef<HTMLButtonElement>(null);
   const speedButton = useRef<HTMLButtonElement>(null);
+  const inkButton = useRef<HTMLButtonElement>(null);
   const scrubbing = useRef(false);
-  const [panel, setPanel] = useState<"units" | "pages" | "speed" | null>(null);
+  const [panel, setPanel] = useState<"units" | "pages" | "speed" | "ink" | null>(null);
   const [playbackRate, setPlaybackRate] = useState(() => {
     try {
       const saved = Number(localStorage.getItem("kids-box-reader-speed-v1"));
@@ -33,6 +36,7 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
   const [pageRequest, setPageRequest] = useState({ page: initialPage, revision: 0 });
   const [writing, setWriting] = useState(false);
   const [inkTool, setInkTool] = useState<InkTool>("pen");
+  const { preferences, setColor, setWidth, storageError: preferenceError } = useBookInkPreferences();
   const ink = useBookInk(profile.id, page);
   const inkError = ink.status === "load-error" || ink.failedPages.length > 0;
   const showInkTools = writing || inkError || ink.savingPages.length > 0;
@@ -68,11 +72,11 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
     if (document.fullscreenElement) void document.exitFullscreen().catch(() => {});
     onClose();
   };
-  return createPortal(<dialog ref={dialog} className="kb-fullscreen-book" aria-label="Fullscreen talking book" data-ink-tools={showInkTools || undefined}
+  return createPortal(<dialog ref={dialog} className="kb-fullscreen-book" aria-label="Fullscreen talking book" data-ink-tools={showInkTools || undefined} data-ink-error={inkError || undefined}
     onPointerDown={(event) => { if (!(event.target as Element).closest(".kb-fullscreen-navigation")) setPanel(null); }}
     onCancel={(event) => {
       event.preventDefault();
-      if (panel) { (panel === "units" ? unitButton : panel === "pages" ? pageButton : speedButton).current?.focus(); setPanel(null); }
+      if (panel) { (panel === "units" ? unitButton : panel === "pages" ? pageButton : panel === "speed" ? speedButton : inkButton).current?.focus(); setPanel(null); }
       else close();
     }}>
     <header className="kb-fullscreen-navigation" aria-label="Book controls">
@@ -130,12 +134,30 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
           <button aria-label="Eraser" aria-pressed={inkTool === "eraser"} disabled={!inkReady} onClick={() => setInkTool("eraser")}><Eraser size={19} /><span>Eraser</span></button>
           <button aria-label="Undo handwriting" disabled={!ink.canUndo} onClick={ink.undo}><Undo2 size={19} /><span>Undo</span></button>
         </div>}
+        {writing && <div className="kb-reader-ink-picker">
+          <button ref={inkButton} className="kb-reader-ink-button" aria-label="Pen color and thickness" aria-expanded={panel === "ink"} aria-controls="kb-reader-ink-options"
+            onClick={() => setPanel(panel === "ink" ? null : "ink")}><Palette size={20} /><span>Ink</span><i aria-hidden="true" style={{ background: preferences.color }} /></button>
+          {panel === "ink" && <section id="kb-reader-ink-options" className="kb-reader-popover kb-reader-ink-menu" aria-label="Pen color and thickness">
+            <h2>Pen settings</h2>
+            <div role="group" aria-label="Pen color"><h3>Color</h3><div className="kb-reader-ink-colors">
+              {inkColors.map(color => <button key={color.value} aria-label={`${color.name} ink`} aria-pressed={preferences.color === color.value} onClick={() => { setColor(color.value); setInkTool("pen"); }}>
+                <i aria-hidden="true" style={{ background: color.value, color: color.name === "White" ? "#172033" : "#ffffff" }}>{preferences.color === color.value && <Check size={17} />}</i><span>{color.name}</span>
+              </button>)}
+            </div></div>
+            <div role="group" aria-label="Pen thickness"><h3>Thickness</h3><div className="kb-reader-ink-widths">
+              {inkWidths.map(width => <button key={width.value} aria-label={`${width.name} pen`} aria-pressed={preferences.width === width.value} onClick={() => { setWidth(width.value); setInkTool("pen"); }}>
+                <svg width="38" height="14" aria-hidden="true"><path d="M4 7H34" stroke="currentColor" strokeWidth={width.value * 1000} strokeLinecap="round" /></svg><span>{width.name}</span>
+              </button>)}
+            </div></div>
+            <p role={preferenceError ? "status" : undefined} className={preferenceError ? "kb-reader-ink-preference-error" : undefined}>{preferenceError ? "Pen settings could not be saved. Choose again to retry." : "Remembered for you. Changes apply to new strokes."}</p>
+          </section>}
+        </div>}
         <div className="kb-reader-ink-feedback" data-error={inkError || undefined}>
           <strong title={profile.name}>{profile.name}’s notes</strong><span role="status" aria-live="polite">{inkStatus}</span>
         </div>
         {inkError && <button className="kb-reader-ink-retry" onClick={() => { if (ink.status === "load-error") ink.retry(); ink.retryFailed(); }}>Retry</button>}
       </div>}
     </header>
-    <BookPageReader key={pageRequest.revision} printedPage={pageRequest.page} onPageChange={rememberPage} audio={audio} playbackRate={playbackRate} annotation={{ ink, writing, tool: inkTool }} fitPage minimal />
+    <BookPageReader key={pageRequest.revision} printedPage={pageRequest.page} onPageChange={rememberPage} audio={audio} playbackRate={playbackRate} annotation={{ ink, writing, tool: inkTool, preferences }} fitPage minimal />
   </dialog>, document.body);
 }
