@@ -193,7 +193,8 @@ function Page({ printedPage, audio, beforeSpeak, onPageChange, fitPage, minimal,
           <ZoomIn size={19} />
         </button>
         <button className="kb-tap-to-read-switch" role="switch" aria-label="Tap to read" aria-checked={enabled}
-          onClick={() => setEnabled(!enabled)}>{enabled ? <Volume2 size={19} /> : <VolumeX size={19} />}<span>Tap to read</span><strong>{enabled ? "On" : "Off"}</strong></button></>}
+          title={`Tap to read: ${enabled ? "on" : "off"}`}
+          onClick={() => setEnabled(!enabled)}>{enabled ? <Volume2 size={22} aria-hidden="true" /> : <VolumeX size={22} aria-hidden="true" />}</button></>}
       </div>
       {!minimal && storageError && <p className="kb-tap-to-read-error" role="alert">Tap to read settings could not be saved. Your choice applies for now.<button onClick={() => setEnabled(enabled)}>Retry</button></p>}
       {!minimal && <div className="kb-reader-tracks" aria-label="Page recordings">

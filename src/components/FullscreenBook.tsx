@@ -26,6 +26,8 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
   const dialog = useRef<HTMLDialogElement>(null);
   const unitButton = useRef<HTMLButtonElement>(null);
   const pageButton = useRef<HTMLButtonElement>(null);
+  const pageDialog = useRef<HTMLDialogElement>(null);
+  const pageSlider = useRef<HTMLInputElement>(null);
   const speedButton = useRef<HTMLButtonElement>(null);
   const inkButton = useRef<HTMLButtonElement>(null);
   const scrubbing = useRef(false);
@@ -77,6 +79,18 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
     if (document.fullscreenElement) void document.exitFullscreen().catch(() => {});
     onClose();
   };
+  const closePageDialog = () => {
+    pageDialog.current?.close();
+    setPanel(null);
+    pageButton.current?.focus();
+  };
+  useEffect(() => {
+    if (panel !== "pages") return;
+    const node = pageDialog.current;
+    node?.showModal();
+    pageSlider.current?.focus();
+    return () => node?.close();
+  }, [panel]);
   return createPortal(<dialog ref={dialog} className="kb-fullscreen-book" aria-label="Fullscreen talking book" data-ink-tools={showInkTools || undefined} data-ink-error={inkError || undefined}
     onPointerDown={(event) => { if (!(event.target as Element).closest(".kb-fullscreen-navigation")) setPanel(null); }}
     onCancel={(event) => {
@@ -102,21 +116,29 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
           </section>}
         </div>
         <div className="kb-reader-page-picker">
-          <button ref={pageButton} className="kb-reader-page-button" aria-label={`Choose book page, current page ${page}`} aria-expanded={panel === "pages"} aria-controls="kb-reader-page-list"
+          <button ref={pageButton} className="kb-reader-page-button" aria-label={`Choose book page, current page ${page}`} aria-haspopup="dialog" aria-expanded={panel === "pages"} aria-controls="kb-reader-page-list"
             onClick={() => { scrubbing.current = false; setPreviewPage(page); setPanel(panel === "pages" ? null : "pages"); }}>
             <span>Page</span><strong>{page}</strong><span className="kb-reader-page-total">/ 95</span><ChevronDown size={13} />
           </button>
-          {panel === "pages" && <section id="kb-reader-page-list" className="kb-reader-popover kb-reader-page-menu" aria-label="Choose a page">
+          <dialog ref={pageDialog} id="kb-reader-page-list" className="kb-reader-page-dialog" aria-labelledby="kb-reader-page-title"
+            onCancel={event => { event.preventDefault(); event.stopPropagation(); closePageDialog(); }}
+            onClick={event => {
+              if (event.target !== event.currentTarget) return;
+              const bounds = event.currentTarget.getBoundingClientRect();
+              if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closePageDialog();
+            }}>
+            <div className="kb-reader-page-dialog-heading"><h2 id="kb-reader-page-title">Choose a page</h2><button onClick={closePageDialog} aria-label="Close page picker"><X size={21} /></button></div>
             <div className="kb-reader-page-preview"><span>Page</span><output htmlFor="kb-reader-page-slider">{previewPage}</output><span>/ 95</span></div>
             <p id="kb-reader-page-help">Slide to choose a page. Release to open it.</p>
-            <input id="kb-reader-page-slider" className="kb-reader-page-slider" aria-label="Book page" aria-describedby="kb-reader-page-help" aria-valuetext={`Page ${previewPage} of 95`}
+            <input ref={pageSlider} id="kb-reader-page-slider" className="kb-reader-page-slider" aria-label="Book page" aria-describedby="kb-reader-page-help" aria-valuetext={`Page ${previewPage} of 95`}
               type="range" min={4} max={95} step={1} value={previewPage} style={{ "--page-progress": `${(previewPage - 4) / 91 * 100}%` } as CSSProperties}
               onPointerDown={() => { scrubbing.current = true; }}
               onChange={(event) => { const next = Number(event.currentTarget.value); setPreviewPage(next); if (!scrubbing.current) jump(next); }}
-              onPointerUp={(event) => { scrubbing.current = false; jump(Number(event.currentTarget.value)); }}
+              onPointerUp={(event) => { scrubbing.current = false; jump(Number(event.currentTarget.value)); closePageDialog(); }}
               onPointerCancel={() => { scrubbing.current = false; setPreviewPage(page); }} />
             <div className="kb-reader-page-limits" aria-hidden="true"><span>4</span><span>95</span></div>
-          </section>}
+            <button className="kb-reader-page-open" onClick={() => { jump(previewPage); closePageDialog(); }}>Open page {previewPage}</button>
+          </dialog>
         </div>
         <div className="kb-reader-speed-picker">
           <button ref={speedButton} className="kb-reader-speed-button" aria-label="CD playback speed" aria-expanded={panel === "speed"} aria-controls="kb-reader-speed-list" data-adjusted={playbackRate !== 1 || undefined}
@@ -132,8 +154,9 @@ export default function FullscreenBook({ initialPage, audio, onClose }: { initia
         <button className="kb-reader-write-button" aria-label="Write on this page" aria-pressed={writing}
           onClick={() => { setWriting(!writing); setPanel(null); audio.stop(); pauseOtherMedia(); }}><PenLine size={20} /><span>Write</span></button>
         <button className="kb-reader-read-switch" type="button" role="switch" aria-label="Tap to read" aria-checked={tapToRead}
+          title={`Tap to read: ${tapToRead ? "on" : "off"}`}
           onClick={() => { setTapToRead(!tapToRead); setPanel(null); if (tapToRead) { audio.stop(); pauseOtherMedia(); } }}>
-          {tapToRead ? <Volume2 size={19} aria-hidden="true" /> : <VolumeX size={19} aria-hidden="true" />}<span>Tap to read</span><i aria-hidden="true" /></button>
+          {tapToRead ? <Volume2 size={22} aria-hidden="true" /> : <VolumeX size={22} aria-hidden="true" />}</button>
         <div className="kb-reader-learner" aria-label={`Current learner: ${profile.name}`} title={profile.name}>
           <LearnerAvatar avatarId={profile.avatarId} /><span>{profile.name}</span>
         </div>
