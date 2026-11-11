@@ -1,11 +1,9 @@
-Kids Box 26.4.19
+Kids Box 26.4.20
 
-- Review all 12 Grammar footers and both Grammar reference pages against the original book images.
-- Correct word and phrase tap regions on pages 12, 20, 26, 36, 66, 72, 80 and 86. Keep short words, neighbouring alternatives and separating slashes from stealing each other's taps.
-- Add the missing "Are we small?" question on page 94, including a bundled British English sentence recording, and the missing "I" on page 95 using its existing recording.
-- Add independent printed-glyph checks for all 70 Grammar footer targets, 67 reference targets and 43 separator points at phone/tablet portrait and landscape sizes.
-- Replace the recording hand pointer with an empty tap circle and temporary drawing trails. Drag on a book page to circle or underline while recording; marks fade after release without changing saved handwriting.
-- Keep the centered page picker, wider Write control, speaker switch, learner progress, handwriting, recordings and all existing offline resources.
+- Move Word explorer selection to a compact toolbar above the learning card. Keep the current word, its position, Previous and Next visible while reading or exploring sounds.
+- Tap the current word to open a centered picture picker with every word in the unit, the selected word and explored markers. Only the word list scrolls inside this picker; closing it returns focus to the selector.
+- Choosing a word opens its learning card immediately, without scrolling down to select and back up to see it. Keep pronunciation, IPA, sounds, blending, slow playback and learning progress.
+- Preserve all Grammar corrections, temporary recording circles, book controls and offline resources from the previous release.
 
 Local records do not sync between devices. Uninstalling the app or clearing its data removes local progress, notes, recording indexes and private app videos. Videos exported to Movies/Kids Box may remain in the gallery.
 

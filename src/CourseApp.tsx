@@ -45,6 +45,7 @@ import BookShelf from "./components/BookShelf";
 import LearningCount from "./components/LearningCount";
 import Starter from "./components/Starter";
 import WordSounds from "./components/WordSounds";
+import WordExplorerPicker from "./components/WordExplorerPicker";
 import GrammarPractice from "./components/GrammarPractice";
 import CheckPractice from "./components/CheckPractice";
 import { recordedWordGuide } from "./data/cambridgePronunciation";
@@ -165,6 +166,7 @@ export default function CourseApp() {
     }
   });
   const top = useRef<HTMLElement>(null);
+  const explorer = useRef<HTMLDivElement>(null);
   const resetCancel = useRef<HTMLButtonElement>(null);
   const { progress, learn, incorrect, correct, visit, reset, storageError } =
     useCourseProgress();
@@ -299,9 +301,18 @@ export default function CourseApp() {
         : newRound(game.questions, game.round + 1, game.firstTry),
     );
   };
+  const chooseExplorerWord = (index: number) => {
+    setWordIndex(index);
+    requestAnimationFrame(() => explorer.current?.scrollIntoView({ block: "start", behavior: "instant" }));
+  };
+  const openWordExplorer = () => {
+    setActivity("words");
+    setGame(null);
+    requestAnimationFrame(() => explorer.current?.scrollIntoView({ block: "start", behavior: "instant" }));
+  };
   const markAndNext = () => {
     learn(currentEntry);
-    if (wordIndex + 1 < unit.words.length) setWordIndex(wordIndex + 1);
+    if (wordIndex + 1 < unit.words.length) chooseExplorerWord(wordIndex + 1);
     else {
       setNotice("You've explored every word in this unit. Try a listening game!");
       startGame("listen");
@@ -1035,7 +1046,8 @@ export default function CourseApp() {
                     key={tab.id}
                     aria-pressed={activity === tab.id}
                     onClick={() => {
-                      if (tab.id === "listen" || tab.id === "spell")
+                      if (tab.id === "words") openWordExplorer();
+                      else if (tab.id === "listen" || tab.id === "spell")
                         startGame(tab.id);
                       else {
                         setActivity(tab.id);
@@ -1055,7 +1067,7 @@ export default function CourseApp() {
                   key={unit.id}
                   unitId={unit.id}
                   audio={audio}
-                  onPractice={() => setActivity("words")}
+                  onPractice={openWordExplorer}
                 />
               ) : activity === "media" ? (
                 <BookMedia key={unit.id} unitId={unit.id} audio={audio} />
@@ -1108,7 +1120,8 @@ export default function CourseApp() {
                   ))}
                 </section>
               ) : (
-                <>
+                <div ref={explorer} className="kb-word-explorer" style={themeStyle(unit)}>
+                  <WordExplorerPicker key={unit.id} unit={unit} index={wordIndex} learned={progress.learned} onSelect={chooseExplorerWord} />
                   <section
                     className="kb-word-lesson"
                     style={themeStyle(unit)}
@@ -1272,53 +1285,6 @@ export default function CourseApp() {
                           : "I know this word!"}
                         <ArrowRight size={18} />
                       </RewardButton>
-                      <div className="kb-word-pager">
-                        <button
-                          disabled={wordIndex === 0}
-                          onClick={() => setWordIndex(wordIndex - 1)}
-                          aria-label="Previous word"
-                        >
-                          <ChevronLeft size={20} />
-                        </button>
-                        <Progress
-                          value={wordIndex + 1}
-                          max={unit.words.length}
-                        />
-                        <button
-                          disabled={wordIndex === unit.words.length - 1}
-                          onClick={() => setWordIndex(wordIndex + 1)}
-                          aria-label="Next word"
-                        >
-                          <ChevronRight size={20} />
-                        </button>
-                      </div>
-                    </div>
-                  </section>
-                  <section className="kb-unit-words">
-                    <div className="kb-small-section-heading">
-                      <h2>Words in this unit</h2>
-                      <span>Choose a word to explore.</span>
-                    </div>
-                    <div className="kb-mini-word-grid">
-                      {unit.words.map((item, index) => (
-                        <button
-                          key={item.id}
-                          aria-pressed={wordIndex === index}
-                          onClick={() => setWordIndex(index)}
-                          style={themeStyle(unit)}
-                          aria-label={`Learn ${item.en}`}
-                        >
-                          <WordArt id={item.id} unitId={unit.id} />
-                          <strong lang="en">{item.en}</strong>
-                          {progress.learned.includes(
-                            entryKey({ unitId: unit.id, word: item }),
-                          ) && (
-                            <i>
-                              <Check size={12} />
-                            </i>
-                          )}
-                        </button>
-                      ))}
                     </div>
                   </section>
                   {unit.id === 7 && (
@@ -1334,7 +1300,7 @@ export default function CourseApp() {
                       <ArrowRight size={18} />
                     </button>
                   )}
-                </>
+                </div>
               )}
             </>
           )}
